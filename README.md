@@ -18,9 +18,10 @@ To organice the team tasks we will be using the following [Trello board](https:/
 ### Main web features
 Entities:
  - Users.
- - Boocks.
+ - Books.
  - Book reviews.
  - Book offers.
+ - Shoping cart
 
 Types of users:
 - Unregistered - Can see book ofers a read book reviews.
