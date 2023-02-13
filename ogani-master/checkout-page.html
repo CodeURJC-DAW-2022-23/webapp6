@@ -30,7 +30,6 @@
     </div>
 
     <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
             <a href="#"><img src="img/logo.png" alt=""></a>
@@ -40,7 +39,7 @@
                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                 <li>
                     <div class="header__top__right__auth">
-                        <a href="./login.html"><i class="fa fa-user"></i> Iniciar sesión</a>
+                        <a href="#"><i class="fa fa-user"></i> Iniciar sesión</a>
                     </div>
                 </li>
         </div>
@@ -90,8 +89,7 @@
                             </div>
 
                             <div class="header__top__right__auth">
-                                <a href="./login.html"><i class="fa fa-user"></i> Iniciar sesión</a>
-                                <a href="./register.html">Registro</a>
+                                <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
                             </div>
                         </div>
                     </div>
@@ -108,17 +106,16 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Inicio</a></li>
-                            <li><a href="./shop-grid.html">Libros</a></li>
-                            <li><a href="./contact.html">Contacto</a></li>
-                            <li><a href="./user.html">Usuario</a></li>
+                            <li><a href="./index.html">Inicio</a></li>
+                            <li><a href="./books-general-page.html">Libros</a></li>
+                            <li><a href="./contact-page.html">Contacto</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="./user-page.html"><i class="fa fa-heart"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -130,40 +127,132 @@
     </header>
     <!-- Header Section End -->
 
-    <!-- Login Section Begin -->
-    <section>
+    <!-- Hero Section Begin -->
+    <section class="hero">
     <div class="container">
         <div class="row">
-            <form action="action_page.php">
-                <div class="container">
-                  <h1>Register</h1>
-                  <p>Please fill in this form to create an account.</p>
-                  <hr>
-              
-                  <label for="email"><b>Email</b></label>
-                  <input type="text" placeholder="Enter Email" name="email" id="email" required>
-                  <hr>
-
-                  <label for="psw"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-                  <hr>
-
-                  <label for="psw-repeat"><b>Repeat Password</b></label>
-                  <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-                  <hr>
-            
-                  <button type="submit" class="registerbtn">Register</button>
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                        <form action="#">
+                            <input type="text" placeholder="Encuentra tu proximo libro favorito">
+                            <button type="submit" class="site-btn">BUSCAR</button>
+                        </form>
+                    </div>
                 </div>
-              
-                <div class="container signin">
-                  <p>Already have an account? <a href="./login.html">Sign in</a>.</p>
-                </div>
-              </form>
+            </div>
         </div>
     </div>
     </section>
-    <!-- Login Section End -->
- 
+    <!-- Hero Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Checkout</h2>
+                        <div class="breadcrumb__option">
+                            <a href="./index.html">Home</a>
+                            <span>Checkout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="row">
+
+            </div>
+            <div class="checkout__form">
+                <h4>Datos de facturación</h4>
+                <form action="#">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Nombre<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Apellido<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>País<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Dirección completa<span>*</span></p>
+                                <input type="text" placeholder="Ciudad, código postal" class="checkout__input__add">
+                                <input type="text" placeholder="Dirección, portal, piso">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Teléfono<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Correo<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Número de cuenta<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Pin<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4>Tu pedido</h4>
+                                <div class="checkout__order__products">Producto <span>Total</span></div>
+                                <ul>
+                                    <li><a href="./index.html">Cien años de Soledad, Santillana, 2015</a>
+                                        <span>13,50€</span>
+                                    </li>
+
+                                </ul>
+                                <ul>
+                                    <div class="checkout__order__subtotal">Subtotal <span>13,50€</span></div>
+                                    <div class="checkout__order__total">Total <span>16,34€</span></div>
+                                    <div class="checkout__input__checkbox">
+
+                                    </div>
+
+                                    <button type="submit" class="site-btn">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer spad">
@@ -201,8 +290,6 @@
                 </div>
             </div>
     </footer>
-    <!-- Footer Section End --><!-- Footer Section Begin -->
-    <my-footer></my-footer>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->

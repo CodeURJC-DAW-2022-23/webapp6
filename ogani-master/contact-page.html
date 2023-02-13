@@ -30,7 +30,6 @@
     </div>
 
     <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
             <a href="#"><img src="img/logo.png" alt=""></a>
@@ -90,8 +89,7 @@
                             </div>
 
                             <div class="header__top__right__auth">
-                                <a href="./login.html"><i class="fa fa-user"></i> Iniciar sesión</a>
-                                <a href="./register.html">Registro</a>
+                                <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
                             </div>
                         </div>
                     </div>
@@ -109,16 +107,15 @@
                     <nav class="header__menu">
                         <ul>
                             <li><a href="./index.html">Inicio</a></li>
-                            <li class="active"><a href="./shop-grid.html">Libros</a></li>
-                            <li><a href="./contact.html">Contacto</a></li>
-                            <li><a href="./user.html">Usuario</a></li>
+                            <li><a href="./books-general-page.html">Libros</a></li>
+                            <li class="active"><a href="./contact-page.html">Contacto</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="./user-page.html"><i class="fa fa-heart"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -132,54 +129,33 @@
 
     <!-- Hero Section Begin -->
     <section class="hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>Géneros</span>
-                        </div>
-                        <ul>
-                            <li><a href="#">Novela</a></li>
-                            <li><a href="#">Ensayo</a></li>
-                            <li><a href="#">Poesía</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    Géneros
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">BUSCAR</button>
-                            </form>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                        <form action="#">
+                            <input type="text" placeholder="Encuentra tu proximo libro favorito">
+                            <button type="submit" class="site-btn">BUSCAR</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </section>
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg"
-        data-setbg="img/books-banners/la-verdad-sobre-el-caso-savolta-banner.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>La verdad sobre el caso Savolta</h2>
+                        <h2>Contáctanos</h2>
                         <div class="breadcrumb__option">
                             <a href="./index.html">Inicio</a>
-                            <a href="./index.html">Novela</a>
-                            <a href="./index.html">Policiaca</a>
-                            <a href="./index.html">La verdad sobre el caso Savolta</a>
-                            <span>Compra uno</span>
+                            <span>Contáctanos</span>
                         </div>
                     </div>
                 </div>
@@ -188,45 +164,68 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-    <!-- Product Details Section Begin -->
-    <section class="product-details spad">
+    <!-- Description Section Begin -->
+
+    <div class="container">
+        <div class="contact__widget">
+            <h4>Estamos aquí para ayudarte</h4>
+            <p>Ponemos a tu disposición la siguiente información para que nos contactes en caso de duda con cualquiera
+                de los servicios que te ofrecemos.</p>
+        </div>
+    </div>
+
+
+    <!-- Description Section End -->
+
+    <!-- Contact Section Begin -->
+    <section class="contact spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__pic">
-                        <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large" src="img/books-offers/example-book.jpg"
-                                alt="">
-                        </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_phone"></span>
+                        <h4>Teléfono</h4>
+                        <p>+34 687138577</p>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__text">
-                        <h3>Anuncio de ejemplo</h3>
-                        <div class="product__details__price">10€</div>
-                        <p>Este es un libro imaginario que estoy vendiendo a modo de ejemplo.</p>
-                        <a href="#" class="primary-btn">COMPRAR</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                        <ul>
-                            <li><b>Autor</b> <span>Eduardo Mendoza</span></li>
-                            <li><b>Editorial</b> <span>Planeta</span></li>
-                            <li><b>Género</b> <span>Novela</span></li>
-                            <li><b>Subjenero</b> <span>Policiaca</span></li>
-                            <li><b>Comparte este anuncio</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </div>
-                            </li>
-                        </ul>
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_pin_alt"></span>
+                        <h4>Dirección</h4>
+                        <p>Calle Pintor Rosales, 32, Madrid</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_mail_alt"></span>
+                        <h4>Correo electrónico</h4>
+                        <p>readme@tienda.com</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Product Details Section End -->
+    <!-- Contact Section End -->
+
+    <!-- Map Begin -->
+    <div class="map">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12148.64823183581!2d-3.728525062269527!3d40.42741030406445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42286c769a3a9f%3A0x1f08aa4ec52b853f!2sP.%C2%BA%20del%20Pintor%20Rosales%2C%2032%2C%2028008%20Madrid!5e0!3m2!1ses!2ses!4v1675759676965!5m2!1ses!2ses"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-inside">
+            <i class="icon_pin"></i>
+            <div class="inside-widget">
+                <h4>Madrid</h4>
+                <ul>
+                    <li>+34 687138577</li>
+                    <li>Calle Pintor Rosales, 32</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Map End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer spad">
@@ -264,6 +263,8 @@
                 </div>
             </div>
     </footer>
+    <!-- Footer Section End --><!-- Footer Section Begin -->
+    <my-footer></my-footer>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
@@ -275,6 +276,7 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+
 
 
 </body>
