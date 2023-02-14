@@ -147,26 +147,32 @@
     <!-- Hero Section End -->
 
     <!-- Login Section Begin -->
-    <section>
+    <section class="checkout spad">
         <div class="container">
-            <div class="row">
-                <form>
-                    <h1>Login</h1>
-                    <hr>
-                    <!-- Username -->
-                    <label for="name">Username:</label>
-                    <input type="name">
-                    <!-- Password -->
-                    <label for="username">Password:</label>
-                    <input type="password">
-                    <div id="lower">
-                        <!-- Submit Button -->
-                        <input type="submit" value="Login">
-                    </div>
+            <div class="checkout__form">
+                <h4>Identifícate</h4>
+                <form action="#">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="checkout__input">
+                                <p>Usuario<span>*</span></p>
+                                <input type="text" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Contraseña<span>*</span></p>
+                                <input type="password" required>
+                            </div>                           
+                        </div>
+                        
                 </form>
+                <div class="col-lg-4 col-md-6">
+                </div>
+                <div class="blog__item__text">
+                    <a href="./user-page.html" class="blog__btn">Iniciar sesión<span class="arrow_right"></span></a>
+                    <a href="./register-page.html" class="blog__btn">Crear cuenta<span class="arrow_right"></span></a>
+                </div>
             </div>
         </div>
-        <hr>
     </section>
     <!-- Login Section End -->
  

@@ -146,39 +146,40 @@
     </section>
     <!-- Hero Section End -->
 
-    <!-- Login Section Begin -->
-    <section>
-    <div class="container">
-        <div class="row">
-            <form action="action_page.php">
-                <div class="container">
-                  <h1>Register</h1>
-                  <p>Please fill in this form to create an account.</p>
-                  <hr>
-              
-                  <label for="email"><b>Email</b></label>
-                  <input type="text" placeholder="Enter Email" name="email" id="email" required>
-                  <hr>
-
-                  <label for="psw"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-                  <hr>
-
-                  <label for="psw-repeat"><b>Repeat Password</b></label>
-                  <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-                  <hr>
-            
-                  <button type="submit" class="registerbtn">Register</button>
+    <!-- Register Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <h4>Crea una cuenta</h4>
+                <form action="#">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="checkout__input">
+                                <p>Nombre de usuario<span>*</span></p>
+                                <input type="text" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Correo electrónico<span>*</span></p>
+                                <input type="text" required>
+                            </div>  
+                            <div class="checkout__input">
+                                <p>Contraseña<span>*</span></p>
+                                <input type="password" required>
+                            </div>                           
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <button type="button" class="site-btn">FOTO DE PERFIL<span>*</span></button>
+                            </div>
+                        </div>
+                </form>
+                <div class="blog__item__text">
+                    <a href="./user-page.html" class="blog__btn">Crear cuenta<span class="arrow_right"></span></a>
                 </div>
-              
-                <div class="container signin">
-                  <p>Already have an account? <a href="./login.html">Sign in</a>.</p>
-                </div>
-              </form>
+            </div>
         </div>
-    </div>
     </section>
-    <!-- Login Section End -->
+    <!-- Register Section End -->
  
 
     <!-- Footer Section Begin -->
