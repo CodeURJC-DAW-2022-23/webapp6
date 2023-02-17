@@ -30,6 +30,7 @@
     </div>
 
     <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
             <a href="#"><img src="img/logo.png" alt=""></a>
@@ -39,15 +40,16 @@
                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                 <li>
                     <div class="header__top__right__auth">
-                        <a href="#"><i class="fa fa-user"></i> Iniciar sesión</a>
+                        <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
                     </div>
                 </li>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html"></a></li>
-                <li><a href="./shop-grid.html">Libros</a></li>
-                <li><a href="./contact.html">Contacto</a></li>
+                <li class="active"><a href="./index.html">Inicio</a></li>
+                <li><a href="./books-general-page.html">Libros</a></li>
+                <li><a href="./contact-page.html">Contacto</a></li>
+                <li><a href="./statistics-page.html">Estadísticas</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -109,6 +111,7 @@
                             <li class="active"><a href="./index.html">Inicio</a></li>
                             <li><a href="./books-general-page.html">Libros</a></li>
                             <li><a href="./contact-page.html">Contacto</a></li>
+                            <li><a href="./statistics-page.html">Estadísticas</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -129,20 +132,20 @@
 
     <!-- Hero Section Begin -->
     <section class="hero">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
-                <div class="hero__search">
-                    <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Encuentra tu proximo libro favorito">
-                            <button type="submit" class="site-btn">BUSCAR</button>
-                        </form>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="#">
+                                <input type="text" placeholder="Encuentra tu proximo libro favorito">
+                                <button type="submit" class="site-btn">BUSCAR</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>
     <!-- Hero Section End -->
 
@@ -209,7 +212,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -222,8 +224,6 @@
                 </div>
             </div>
     </footer>
-    <!-- Footer Section End --><!-- Footer Section Begin -->
-    <my-footer></my-footer>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->

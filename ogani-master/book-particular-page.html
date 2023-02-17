@@ -30,6 +30,7 @@
     </div>
 
     <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
             <a href="#"><img src="img/logo.png" alt=""></a>
@@ -39,15 +40,16 @@
                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                 <li>
                     <div class="header__top__right__auth">
-                        <a href="#"><i class="fa fa-user"></i> Iniciar sesión</a>
+                        <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
                     </div>
                 </li>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html"></a></li>
-                <li><a href="./shop-grid.html">Libros</a></li>
-                <li><a href="./contact.html">Contacto</a></li>
+                <li><a href="./index.html">Inicio</a></li>
+                <li class="active"><a href="./books-general-page.html">Libros</a></li>
+                <li><a href="./contact-page.html">Contacto</a></li>
+                <li><a href="./statistics-page.html">Estadísticas</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -109,6 +111,7 @@
                             <li><a href="./index.html">Inicio</a></li>
                             <li class="active"><a href="./books-general-page.html">Libros</a></li>
                             <li><a href="./contact-page.html">Contacto</a></li>
+                            <li><a href="./statistics-page.html">Estadísticas</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -129,20 +132,20 @@
 
     <!-- Hero Section Begin -->
     <section class="hero">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
-                <div class="hero__search">
-                    <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Encuentra tu proximo libro favorito">
-                            <button type="submit" class="site-btn">BUSCAR</button>
-                        </form>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="#">
+                                <input type="text" placeholder="Encuentra tu proximo libro favorito">
+                                <button type="submit" class="site-btn">BUSCAR</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>
     <!-- Hero Section End -->
 
@@ -153,6 +156,16 @@
                 <h2>Reseñas</h2>
             </div>
             <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                            <div class="blog__item__text">
+                                <a href="./upload-review-page.html" class="blog__btn">Publica tu reseña<span
+                                        class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-8 col-md-7">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -160,7 +173,7 @@
                                 <div class="blog__item__text">
                                     <ul>
                                         <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                            </ul>
+                                    </ul>
                                     <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
                                     <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
                                         quaerat </p>
@@ -172,11 +185,13 @@
                                 <div class="blog__item__text">
                                     <ul>
                                         <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                            </ul>
+                                    </ul>
                                     <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
                                     <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat quaerat Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
+                                        quaerat quaerat Sed quia non numquam modi tempora indunt ut labore et dolore
+                                        magnam aliquam
+                                        quaerat Sed quia non numquam modi tempora indunt ut labore et dolore magnam
+                                        aliquam
                                         quaerat. </p>
                                 </div>
                             </div>
@@ -186,13 +201,13 @@
                                 <div class="blog__item__text">
                                     <ul>
                                         <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                            </ul>
+                                    </ul>
                                     <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
                                     <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
                                         quaerat </p>
                                 </div>
                             </div>
-                        </div>         
+                        </div>
                     </div>
                     <div class="blog__item__text">
                         <a href="#" class="blog__btn">Cargar más reseñas <span class="arrow_right"></span></a>
@@ -215,7 +230,8 @@
                     <div class="sidebar">
                         <div class="sidebar__item">
                             <div class="blog__item__text">
-                                <a href="./upload-offer-page.html" class="blog__btn">Vende tu libro<span class="arrow_right"></span></a>
+                                <a href="./upload-offer-page.html" class="blog__btn">Vende tu libro<span
+                                        class="arrow_right"></span></a>
                             </div>
                             <hr>
                             <h4>Filtrar por precio</h4>
@@ -288,7 +304,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div>
                     <div class="blog__item__text">
                         <a href="#" class="blog__btn">Cargar más anuncios <span class="arrow_right"></span></a>
@@ -318,11 +334,10 @@
                     <div class="footer__widget">
                         <h6>Enlaces interesantes</h6>
                         <ul>
-                            <li><a href="./contact.html">Sobre nosotros</a></li>
+                            <li><a href="./contact-page.html">Sobre nosotros</a></li>
                         </ul>
                     </div>
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-lg-12">
