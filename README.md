@@ -3,6 +3,17 @@
 
 Web application made for the Web Applications Developement course from Universidad Rey Juan Carlos.
 
+## Technology description and development run instructions
+- Java version: 17
+- SpringBoot version: 3.0.2
+- Database: MySQL
+    Scheme: `books`
+    User: `root`
+    Password: `password`
+
+To start the application run the `ReadmeBookstoreApplication.java` and go to `https://localhost:8443/` on your browser.
+
+
 ### Team members
 ~~~~
 Gonzalo Ortega Carpintero - g.ortega.2019@alumnos.urjc.es
