@@ -1,234 +1,85 @@
-<!DOCTYPE html>
-<html lang="zxx">
+{{>header}}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>
-
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                <li>
-                    <div class="header__top__right__auth">
-                        <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
-                    </div>
-                </li>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li><a href="./index.html">Inicio</a></li>
-                <li><a href="./books-general-page.html">Libros</a></li>
-                <li class="active"><a href="./contact-page.html">Contacto</a></li>
-                <li><a href="./statistics-page.html">Estadísticas</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> readme@tienda.es</li>
-                <li>Compra, vende y analiza tus libros favoritos.</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Humberger End -->
-
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i> readme@tienda.es</li>
-                                <li>Compra, vende y analiza tus libros favoritos.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
-
-                            <div class="header__top__right__auth">
-                                <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <nav class="header__menu">
-                        <ul>
-                            <li><a href="./index.html">Inicio</a></li>
-                            <li><a href="./books-general-page.html">Libros</a></li>
-                            <li class="active"><a href="./contact-page.html">Contacto</a></li>
-                            <li><a href="./statistics-page.html">Estadísticas</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-3">
-                    <div class="header__cart">
-                        <ul>
-                            <li><a href="./user-page.html"><i class="fa fa-heart"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-    </header>
-    <!-- Header Section End -->
-
-    <!-- Hero Section Begin -->
-    <section class="hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <input type="text" placeholder="Encuentra tu proximo libro favorito">
-                                <button type="submit" class="site-btn">BUSCAR</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
-
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Contáctanos</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Inicio</a>
-                            <span>Contáctanos</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-
-    <!-- Description Section Begin -->
-
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
     <div class="container">
-        <div class="contact__widget">
-            <h4>Estamos aquí para ayudarte</h4>
-            <p>Ponemos a tu disposición la siguiente información para que nos contactes en caso de duda con cualquiera
-                de los servicios que te ofrecemos.</p>
-        </div>
-    </div>
-
-
-    <!-- Description Section End -->
-
-    <!-- Contact Section Begin -->
-    <section class="contact spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
-                    <div class="contact__widget">
-                        <span class="icon_phone"></span>
-                        <h4>Teléfono</h4>
-                        <p>+34 687138577</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
-                    <div class="contact__widget">
-                        <span class="icon_pin_alt"></span>
-                        <h4>Dirección</h4>
-                        <p>Calle Pintor Rosales, 32, Madrid</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
-                    <div class="contact__widget">
-                        <span class="icon_mail_alt"></span>
-                        <h4>Correo electrónico</h4>
-                        <p>readme@tienda.com</p>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Contáctanos</h2>
+                    <div class="breadcrumb__option">
+                        <a href="./index.html">Inicio</a>
+                        <span>Contáctanos</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Contact Section End -->
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
 
-    <!-- Map Begin -->
-    <div class="map">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12148.64823183581!2d-3.728525062269527!3d40.42741030406445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42286c769a3a9f%3A0x1f08aa4ec52b853f!2sP.%C2%BA%20del%20Pintor%20Rosales%2C%2032%2C%2028008%20Madrid!5e0!3m2!1ses!2ses!4v1675759676965!5m2!1ses!2ses"
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <div class="map-inside">
-            <i class="icon_pin"></i>
-            <div class="inside-widget">
-                <h4>Madrid</h4>
-                <ul>
-                    <li>+34 687138577</li>
-                    <li>Calle Pintor Rosales, 32</li>
-                </ul>
+<!-- Description Section Begin -->
+
+<div class="container">
+    <div class="contact__widget">
+        <h4>Estamos aquí para ayudarte</h4>
+        <p>Ponemos a tu disposición la siguiente información para que nos contactes en caso de duda con cualquiera
+            de los servicios que te ofrecemos.</p>
+    </div>
+</div>
+
+
+<!-- Description Section End -->
+
+<!-- Contact Section Begin -->
+<section class="contact spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <span class="icon_phone"></span>
+                    <h4>Teléfono</h4>
+                    <p>+34 687138577</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <span class="icon_pin_alt"></span>
+                    <h4>Dirección</h4>
+                    <p>Calle Pintor Rosales, 32, Madrid</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <span class="icon_mail_alt"></span>
+                    <h4>Correo electrónico</h4>
+                    <p>readme@tienda.com</p>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Map End -->
+</section>
+<!-- Contact Section End -->
 
-    <!-- Footer -->
-    {{>footer}}
+<!-- Map Begin -->
+<div class="map">
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12148.64823183581!2d-3.728525062269527!3d40.42741030406445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42286c769a3a9f%3A0x1f08aa4ec52b853f!2sP.%C2%BA%20del%20Pintor%20Rosales%2C%2032%2C%2028008%20Madrid!5e0!3m2!1ses!2ses!4v1675759676965!5m2!1ses!2ses"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="map-inside">
+        <i class="icon_pin"></i>
+        <div class="inside-widget">
+            <h4>Madrid</h4>
+            <ul>
+                <li>+34 687138577</li>
+                <li>Calle Pintor Rosales, 32</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Map End -->
+
+<!-- Footer -->
+{{>footer}}
