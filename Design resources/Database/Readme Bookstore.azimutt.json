@@ -1,0 +1,765 @@
+{
+  "id": "1f61c600-37f2-47e0-b667-8f9d5d158774",
+  "name": "Readme Bookstore",
+  "sources": [
+    {
+      "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+      "name": "default",
+      "kind": {
+        "kind": "AmlEditor"
+      },
+      "content": [
+        "users",
+        "  id uuid pk",
+        "  username varchar",
+        "  password varchar",
+        "  email varchar",
+        "  favorites uuid[] fk books.id",
+        "  readed_reviews uuid[] fk reviews.id",
+        "  search_history varchar[]",
+        "",
+        "books",
+        "  id uuid pk",
+        "  title varchar",
+        "  author varchar",
+        "  genre varchar",
+        "  cover image",
+        "  offers uuid[] fk offers.id",
+        "  reviews uuid[] fk reviews.id",
+        "",
+        "offers",
+        "  id uuid pk",
+        "  user_id uuid fk users.id",
+        "  book_id uuid fk books.id",
+        "  date timestamp",
+        "  edition varchar",
+        "  description varchar",
+        "  price float",
+        "  picture image",
+        "",
+        "reviews",
+        "  id uuid pk",
+        "  user_id uuid fk users.id",
+        "  book_id uuid fk books.id",
+        "  date timestamp",
+        "  text varchar",
+        "",
+        "sales_record",
+        "  id uuid pk",
+        "  offer_id fk offers.id",
+        "  buyer_id fk users.id",
+        ""
+      ],
+      "tables": [
+        {
+          "schema": "",
+          "table": "books",
+          "columns": [
+            {
+              "name": "id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "title",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "author",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "genre",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "cover",
+              "type": "image",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "offers",
+              "type": "uuid[]",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "reviews",
+              "type": "uuid[]",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            }
+          ],
+          "primaryKey": {
+            "columns": [
+              "id"
+            ],
+            "origins": [
+              {
+                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "lines": []
+              }
+            ]
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "schema": "",
+          "table": "offers",
+          "columns": [
+            {
+              "name": "id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "user_id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "book_id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "date",
+              "type": "timestamp",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "edition",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "description",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "price",
+              "type": "float",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "picture",
+              "type": "image",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            }
+          ],
+          "primaryKey": {
+            "columns": [
+              "id"
+            ],
+            "origins": [
+              {
+                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "lines": []
+              }
+            ]
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "schema": "",
+          "table": "reviews",
+          "columns": [
+            {
+              "name": "id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "user_id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "book_id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "date",
+              "type": "timestamp",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "text",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            }
+          ],
+          "primaryKey": {
+            "columns": [
+              "id"
+            ],
+            "origins": [
+              {
+                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "lines": []
+              }
+            ]
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "schema": "",
+          "table": "sales_record",
+          "columns": [
+            {
+              "name": "id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "offer_id",
+              "type": "unknown",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "buyer_id",
+              "type": "unknown",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            }
+          ],
+          "primaryKey": {
+            "columns": [
+              "id"
+            ],
+            "origins": [
+              {
+                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "lines": []
+              }
+            ]
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "schema": "",
+          "table": "users",
+          "columns": [
+            {
+              "name": "id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "username",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "password",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "email",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "favorites",
+              "type": "uuid[]",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "readed_reviews",
+              "type": "uuid[]",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "search_history",
+              "type": "varchar[]",
+              "origins": [
+                {
+                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "lines": []
+                }
+              ]
+            }
+          ],
+          "primaryKey": {
+            "columns": [
+              "id"
+            ],
+            "origins": [
+              {
+                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "lines": []
+              }
+            ]
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "users_readed_reviews_fk_az",
+          "src": {
+            "table": ".users",
+            "column": "readed_reviews"
+          },
+          "ref": {
+            "table": ".reviews",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "name": "users_favorites_fk_az",
+          "src": {
+            "table": ".users",
+            "column": "favorites"
+          },
+          "ref": {
+            "table": ".books",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "name": "books_reviews_fk_az",
+          "src": {
+            "table": ".books",
+            "column": "reviews"
+          },
+          "ref": {
+            "table": ".reviews",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "name": "books_offers_fk_az",
+          "src": {
+            "table": ".books",
+            "column": "offers"
+          },
+          "ref": {
+            "table": ".offers",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "name": "offers_book_id_fk_az",
+          "src": {
+            "table": ".offers",
+            "column": "book_id"
+          },
+          "ref": {
+            "table": ".books",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "name": "offers_user_id_fk_az",
+          "src": {
+            "table": ".offers",
+            "column": "user_id"
+          },
+          "ref": {
+            "table": ".users",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "name": "reviews_book_id_fk_az",
+          "src": {
+            "table": ".reviews",
+            "column": "book_id"
+          },
+          "ref": {
+            "table": ".books",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "name": "reviews_user_id_fk_az",
+          "src": {
+            "table": ".reviews",
+            "column": "user_id"
+          },
+          "ref": {
+            "table": ".users",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "name": "sales_record_buyer_id_fk_az",
+          "src": {
+            "table": ".sales_record",
+            "column": "buyer_id"
+          },
+          "ref": {
+            "table": ".users",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        },
+        {
+          "name": "sales_record_offer_id_fk_az",
+          "src": {
+            "table": ".sales_record",
+            "column": "offer_id"
+          },
+          "ref": {
+            "table": ".offers",
+            "column": "id"
+          },
+          "origins": [
+            {
+              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "lines": []
+            }
+          ]
+        }
+      ],
+      "createdAt": 1676919827739,
+      "updatedAt": 1676920687758
+    }
+  ],
+  "usedLayout": "initial layout",
+  "layouts": {
+    "initial layout": {
+      "canvas": {
+        "position": {
+          "left": 0,
+          "top": 1.6666667461395264
+        },
+        "zoom": 1
+      },
+      "tables": [
+        {
+          "id": ".sales_record",
+          "position": {
+            "left": 250,
+            "top": 370
+          },
+          "size": {
+            "width": 172.359375,
+            "height": 117
+          },
+          "color": "green",
+          "columns": [
+            "id",
+            "offer_id",
+            "buyer_id"
+          ]
+        },
+        {
+          "id": ".reviews",
+          "position": {
+            "left": 500,
+            "top": 750
+          },
+          "size": {
+            "width": 136.5625,
+            "height": 165
+          },
+          "color": "sky",
+          "columns": [
+            "id",
+            "user_id",
+            "book_id",
+            "date",
+            "text"
+          ]
+        },
+        {
+          "id": ".offers",
+          "position": {
+            "left": 500,
+            "top": 380
+          },
+          "size": {
+            "width": 153.671875,
+            "height": 237
+          },
+          "color": "blue",
+          "columns": [
+            "id",
+            "user_id",
+            "book_id",
+            "date",
+            "edition",
+            "description",
+            "price",
+            "picture"
+          ]
+        },
+        {
+          "id": ".users",
+          "position": {
+            "left": 140,
+            "top": 540
+          },
+          "size": {
+            "width": 198.28125,
+            "height": 213
+          },
+          "color": "violet",
+          "columns": [
+            "id",
+            "username",
+            "password",
+            "email",
+            "favorites",
+            "readed_reviews",
+            "search_history"
+          ]
+        },
+        {
+          "id": ".books",
+          "position": {
+            "left": 780,
+            "top": 590
+          },
+          "size": {
+            "width": 142.359375,
+            "height": 213
+          },
+          "color": "orange",
+          "columns": [
+            "id",
+            "title",
+            "author",
+            "genre",
+            "cover",
+            "offers",
+            "reviews"
+          ]
+        }
+      ],
+      "createdAt": 1676919827739,
+      "updatedAt": 1676920757747
+    }
+  },
+  "createdAt": 1676919886193,
+  "updatedAt": 1676920768478,
+  "version": 2
+}
