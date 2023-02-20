@@ -1,4 +1,4 @@
-package es.codeurjc.readmebookstore;
+package es.codeurjc.readmebookstore.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
