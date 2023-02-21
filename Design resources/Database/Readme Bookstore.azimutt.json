@@ -1,9 +1,9 @@
 {
-  "id": "1f61c600-37f2-47e0-b667-8f9d5d158774",
-  "name": "Readme Bookstore",
+  "id": "6e3929fe-dd0d-4d49-9b28-170e53c30ca6",
+  "name": "New Project",
   "sources": [
     {
-      "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+      "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
       "name": "default",
       "kind": {
         "kind": "AmlEditor"
@@ -17,6 +17,7 @@
         "  favorites uuid[] fk books.id",
         "  readed_reviews uuid[] fk reviews.id",
         "  search_history varchar[]",
+        "  user_photo Image",
         "",
         "books",
         "  id uuid pk",
@@ -26,8 +27,12 @@
         "  cover image",
         "  offers uuid[] fk offers.id",
         "  reviews uuid[] fk reviews.id",
+        "admin",
+        "  id uuid pk",
+        "  username varchar",
+        "  password varchar",
         "",
-        "offers",
+        "offer",
         "  id uuid pk",
         "  user_id uuid fk users.id",
         "  book_id uuid fk books.id",
@@ -36,6 +41,7 @@
         "  description varchar",
         "  price float",
         "  picture image",
+        "  sold boolean",
         "",
         "reviews",
         "  id uuid pk",
@@ -47,10 +53,62 @@
         "sales_record",
         "  id uuid pk",
         "  offer_id fk offers.id",
-        "  buyer_id fk users.id",
-        ""
+        "  buyer_id fk users.id"
       ],
       "tables": [
+        {
+          "schema": "",
+          "table": "admin",
+          "columns": [
+            {
+              "name": "id",
+              "type": "uuid",
+              "origins": [
+                {
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "username",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "password",
+              "type": "varchar",
+              "origins": [
+                {
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
+                  "lines": []
+                }
+              ]
+            }
+          ],
+          "primaryKey": {
+            "columns": [
+              "id"
+            ],
+            "origins": [
+              {
+                "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
+                "lines": []
+              }
+            ]
+          },
+          "origins": [
+            {
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
+              "lines": []
+            }
+          ]
+        },
         {
           "schema": "",
           "table": "books",
@@ -60,7 +118,7 @@
               "type": "uuid",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -70,7 +128,7 @@
               "type": "varchar",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -80,7 +138,7 @@
               "type": "varchar",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -90,7 +148,7 @@
               "type": "varchar",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -100,7 +158,7 @@
               "type": "image",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -110,7 +168,7 @@
               "type": "uuid[]",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -120,7 +178,7 @@
               "type": "uuid[]",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -132,28 +190,28 @@
             ],
             "origins": [
               {
-                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                 "lines": []
               }
             ]
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
         },
         {
           "schema": "",
-          "table": "offers",
+          "table": "offer",
           "columns": [
             {
               "name": "id",
               "type": "uuid",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -163,7 +221,7 @@
               "type": "uuid",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -173,7 +231,7 @@
               "type": "uuid",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -183,7 +241,7 @@
               "type": "timestamp",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -193,7 +251,7 @@
               "type": "varchar",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -203,7 +261,7 @@
               "type": "varchar",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -213,7 +271,7 @@
               "type": "float",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -223,7 +281,17 @@
               "type": "image",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "sold",
+              "type": "boolean",
+              "origins": [
+                {
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -235,14 +303,14 @@
             ],
             "origins": [
               {
-                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                 "lines": []
               }
             ]
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -256,7 +324,7 @@
               "type": "uuid",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -266,7 +334,7 @@
               "type": "uuid",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -276,7 +344,7 @@
               "type": "uuid",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -286,7 +354,7 @@
               "type": "timestamp",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -296,7 +364,7 @@
               "type": "varchar",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -308,14 +376,14 @@
             ],
             "origins": [
               {
-                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                 "lines": []
               }
             ]
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -329,7 +397,7 @@
               "type": "uuid",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -339,7 +407,7 @@
               "type": "unknown",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -349,7 +417,7 @@
               "type": "unknown",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -361,14 +429,14 @@
             ],
             "origins": [
               {
-                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                 "lines": []
               }
             ]
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -382,7 +450,7 @@
               "type": "uuid",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -392,7 +460,7 @@
               "type": "varchar",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -402,7 +470,7 @@
               "type": "varchar",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -412,7 +480,7 @@
               "type": "varchar",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -422,7 +490,7 @@
               "type": "uuid[]",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -432,7 +500,7 @@
               "type": "uuid[]",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -442,7 +510,17 @@
               "type": "varchar[]",
               "origins": [
                 {
-                  "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
+                  "lines": []
+                }
+              ]
+            },
+            {
+              "name": "user_photo",
+              "type": "Image",
+              "origins": [
+                {
+                  "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                   "lines": []
                 }
               ]
@@ -454,14 +532,14 @@
             ],
             "origins": [
               {
-                "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+                "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
                 "lines": []
               }
             ]
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -480,7 +558,7 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -497,7 +575,7 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -514,7 +592,7 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -531,15 +609,15 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
         },
         {
-          "name": "offers_book_id_fk_az",
+          "name": "offer_book_id_fk_az",
           "src": {
-            "table": ".offers",
+            "table": ".offer",
             "column": "book_id"
           },
           "ref": {
@@ -548,15 +626,15 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
         },
         {
-          "name": "offers_user_id_fk_az",
+          "name": "offer_user_id_fk_az",
           "src": {
-            "table": ".offers",
+            "table": ".offer",
             "column": "user_id"
           },
           "ref": {
@@ -565,7 +643,7 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -582,7 +660,7 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -599,7 +677,7 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -616,7 +694,7 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
@@ -633,14 +711,14 @@
           },
           "origins": [
             {
-              "id": "5a987a6a-f17b-4dd5-b8b5-ac3236166f18",
+              "id": "521ee628-4d6d-4fb5-b659-1a598c1c01f0",
               "lines": []
             }
           ]
         }
       ],
-      "createdAt": 1676919827739,
-      "updatedAt": 1676920687758
+      "createdAt": 1676971179513,
+      "updatedAt": 1676971869521
     }
   ],
   "usedLayout": "initial layout",
@@ -648,38 +726,82 @@
     "initial layout": {
       "canvas": {
         "position": {
-          "left": 0,
-          "top": 1.6666667461395264
+          "left": 3.3900065422058105,
+          "top": 33.899999141693115
         },
         "zoom": 1
       },
       "tables": [
         {
-          "id": ".sales_record",
+          "id": ".admin",
           "position": {
-            "left": 250,
-            "top": 370
+            "left": 790,
+            "top": 20
           },
           "size": {
-            "width": 172.359375,
-            "height": 117
+            "width": 144.2201385498047,
+            "height": 116.22420501708984
           },
-          "color": "green",
+          "color": "emerald",
           "columns": [
             "id",
-            "offer_id",
-            "buyer_id"
+            "username",
+            "password"
+          ]
+        },
+        {
+          "id": ".offer",
+          "position": {
+            "left": 710,
+            "top": 420
+          },
+          "size": {
+            "width": 153.6412353515625,
+            "height": 260.1954345703125
+          },
+          "color": "yellow",
+          "columns": [
+            "id",
+            "user_id",
+            "book_id",
+            "date",
+            "edition",
+            "description",
+            "price",
+            "picture",
+            "sold"
+          ]
+        },
+        {
+          "id": ".books",
+          "position": {
+            "left": 120,
+            "top": 460
+          },
+          "size": {
+            "width": 142.33961486816406,
+            "height": 212.20501708984375
+          },
+          "color": "orange",
+          "columns": [
+            "id",
+            "offers",
+            "reviews",
+            "title",
+            "author",
+            "genre",
+            "cover"
           ]
         },
         {
           "id": ".reviews",
           "position": {
-            "left": 500,
-            "top": 750
+            "left": 800,
+            "top": 230
           },
           "size": {
-            "width": 136.5625,
-            "height": 165
+            "width": 136.5413055419922,
+            "height": 164.21461486816406
           },
           "color": "sky",
           "columns": [
@@ -691,36 +813,31 @@
           ]
         },
         {
-          "id": ".offers",
+          "id": ".sales_record",
           "position": {
-            "left": 500,
-            "top": 380
+            "left": 50,
+            "top": 110
           },
           "size": {
-            "width": 153.671875,
-            "height": 237
+            "width": 172.33592224121094,
+            "height": 116.22419738769531
           },
-          "color": "blue",
+          "color": "green",
           "columns": [
             "id",
-            "user_id",
-            "book_id",
-            "date",
-            "edition",
-            "description",
-            "price",
-            "picture"
+            "offer_id",
+            "buyer_id"
           ]
         },
         {
           "id": ".users",
           "position": {
-            "left": 140,
-            "top": 540
+            "left": 450,
+            "top": 20
           },
           "size": {
-            "width": 198.28125,
-            "height": 213
+            "width": 198.25775146484375,
+            "height": 236.20022583007812
           },
           "color": "violet",
           "columns": [
@@ -730,36 +847,16 @@
             "email",
             "favorites",
             "readed_reviews",
-            "search_history"
-          ]
-        },
-        {
-          "id": ".books",
-          "position": {
-            "left": 780,
-            "top": 590
-          },
-          "size": {
-            "width": 142.359375,
-            "height": 213
-          },
-          "color": "orange",
-          "columns": [
-            "id",
-            "title",
-            "author",
-            "genre",
-            "cover",
-            "offers",
-            "reviews"
+            "search_history",
+            "user_photo"
           ]
         }
       ],
-      "createdAt": 1676919827739,
-      "updatedAt": 1676920757747
+      "createdAt": 1676971179513,
+      "updatedAt": 1676971939521
     }
   },
-  "createdAt": 1676919886193,
-  "updatedAt": 1676920768478,
+  "createdAt": 1676971675857,
+  "updatedAt": 1676971681550,
   "version": 2
 }
