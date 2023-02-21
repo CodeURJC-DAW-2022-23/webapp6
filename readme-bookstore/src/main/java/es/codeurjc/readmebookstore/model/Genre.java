@@ -1,4 +1,4 @@
-package es.codeurjc.readmebookstore.model;
+/*package es.codeurjc.readmebookstore.model;
 
 import java.util.List;
 
@@ -57,3 +57,4 @@ public class Genre {
 		return "Book [id=" + id + ", books=" + books + "]";
 	}
 }
+*/

@@ -3,7 +3,6 @@ package es.codeurjc.readmebookstore.model;
 import java.sql.Blob;
 import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +21,9 @@ public class Book {
 	private String title;
 	private String author;
 
-	@ManyToMany
- 	private List<Genre> genre;
+	private String genre;
+	/*@ManyToMany
+ 	private List<Genre> genre;*/
 	
 	@Lob
 	private Blob cover;
@@ -66,13 +66,20 @@ public class Book {
 		this.id = id;
 	}
 
-	public List<Genre> getGenre() {
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	/*public List<Genre> getGenre() {
 		return genre;
 	}
 
 	public void setGenre(List<Genre> genre) {
 		this.genre = genre;
-	}
+	}*/
 
 	public Blob getCover() {
 		return cover;
