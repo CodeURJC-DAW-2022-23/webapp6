@@ -3,111 +3,120 @@
 <!-- Admin Section Begin -->
 <section class="checkout spad">
     <div class="container">
+        <div class="section-title">
+            <h2>Página de amdinistrador</h2>
+        </div>
         <div class="checkout__form">
+
+            <!-- Users -->
             <h4>Usuarios</h4>
-            <form action="#">
-                <div class="checkout__input">
-                    <p>
-                        <a href="#"></i>Usuario 1</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Usuario 2</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Usuario 3</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Usuario 4</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                </div>
-            </form>
+            <table class="admin_table">
+                <tr>
+                    <th>id</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                    <th>Libros favoritos</th>
+                    <th>Reseñas leidas</th>
+                    <th>Historial de búsqueda</th>
+                    <th>Imagen</th>
+                    <th></th>
+                </tr>
+                <tr class="blog__item__text">
+                    <td>0001</td>
+                    <td class="checkout__input"><input type="text" value="UsuarioDeEjemplo"></td>
+                    <td class="checkout__input"><input type="text" value="usuariodeejemplo@correo.ex"></td>
+                    <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
+                    <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
+                    <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
+                    <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
+
+                    <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar usuario</a></td>
+                </tr>
+            </table>
+
+            <!-- Offers -->
             <h4>Anuncios</h4>
-            <form action="#">
-                <div class="checkout__input">
-                    <p>
-                        <a href="\ogani-master\offer.html"></i>id 001: La verdad sobre el caso savolta</a><span> -
-                        </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Anuncio 2</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Anuncio 3</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Anuncio 4</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                </div>
-            </form>
+            <table class="admin_table">
+                <tr>
+                    <th>id</th>
+                    <th>Fecha</th>
+                    <th>Edición</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th></th>
+                </tr>
+                <tr class="blog__item__text">
+                    <td>0001</td>
+                    <td class="checkout__input"><input type="date" value="2023-02-28"></td>
+                    <td class="checkout__input"><input type="text" value="Edición de ejemplo"></td>
+                    <td class="checkout__input"><input type="text" value="Descripción de un anuncio de ejemplo."></td>
+                    <td class="checkout__input"><input type="number" value=23></td>
+                    <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
+
+                    <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar anuncio</a></td>
+                </tr>
+            </table>
+            
+            <!-- Reviews -->
             <h4>Reseñas</h4>
-            <form action="#">
-                <div class="checkout__input">
-                    <p>
-                        <a href="#"></i>Reseña 1</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Reseña 2</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Reseña 3</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Reseña 4</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                </div>
-            </form>
+            <table class="admin_table">
+                <tr>
+                    <th>id</th>
+                    <th>Fecha</th>
+                    <th>Texto</th>
+                    <th></th>
+                </tr>
+                <tr class="blog__item__text">
+                    <td>0001</td>
+                    <td class="checkout__input"><input type="date" value="2023-02-28"></td>
+                    <td class="checkout__input"><input type="text" value="Esto es una reseña de ejemplo de un libro de ejemplo"></td>
+
+                    <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar reseña</a></td>
+                </tr>
+            </table>
+
+            <!-- Books -->
             <h4>Libros</h4>
-            <form action="#">
+            <table class="admin_table">
+                <tr>
+                    <th>id</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Género</th>
+                    <th>Imágen</th>
+                    <th></th>
+                </tr>
+                <tr class="blog__item__text">
+                    <td>0001</td>
+                    <td class="checkout__input"><input type="text" value="Libro de ejemplo"></td>
+                    <td class="checkout__input"><input type="text" value="Autor de ejemplo"></td>
+                    <td class="checkout__input"><input type="text" value="Género de ejemplo"></td>
+                    <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
+
+                    <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar libro</a></td>
+                </tr>
+            </table>
+            <div class="checkout__order">
+                <h4>Añadir nuevo libro</h4>
+
                 <div class="checkout__input">
-                    <p>
-                        <a href="#"></i>Libro 1</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Libro 2</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Libro 3</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
-                    <p>
-                        <a href="#"></i>Libro 4</a><span> - </span>
-                        <a href="#"></i> Eliminar</a>
-                    </p>
+                    <p>Título<span>*</span></p>
+                    <input type="text">
                 </div>
-                <div class="checkout__order">
-                    <h4>Añadir nuevo libro</h4>
-
-                    <div class="checkout__input">
-                        <p>Título<span>*</span></p>
-                        <input type="text">
-                    </div>
-                    <div class="checkout__input">
-                        <p>Autor<span>*</span></p>
-                        <input type="text">
-                    </div>
-                    <div class="checkout__input">
-                        <p>Género<span>*</span></p>
-                        <input type="text">
-                    </div>
-
-                    <button type="submit" class="site-btn">Subir foto de página<span>*</span></button>
-                    <button type="submit" class="site-btn">Subir libro</button>
+                <div class="checkout__input">
+                    <p>Autor<span>*</span></p>
+                    <input type="text">
                 </div>
-            </form>
+                <div class="checkout__input">
+                    <p>Género<span>*</span></p>
+                    <input type="text">
+                </div>
+
+                <button type="submit" class="site-btn">Subir foto de página<span>*</span></button>
+                <button type="submit" class="site-btn">Subir libro</button>
+            </div>
+
         </div>
     </div>
 </section>
