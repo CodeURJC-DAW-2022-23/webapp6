@@ -6,8 +6,13 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.hibernate.annotations.DynamicUpdate;
 import java.sql.Blob;
 import java.util.List;
+import java.sql.Blob;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,14 +21,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany; 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "User")
+<<<<<<< Updated upstream
 @DynamicUpdate
+=======
+>>>>>>> Stashed changes
 public class User {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

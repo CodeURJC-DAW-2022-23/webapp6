@@ -14,9 +14,14 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.ManyToMany;
 
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name = "Book")
+<<<<<<< Updated upstream
 @DynamicUpdate
+=======
+>>>>>>> Stashed changes
 public class Book {
 
 	@Id

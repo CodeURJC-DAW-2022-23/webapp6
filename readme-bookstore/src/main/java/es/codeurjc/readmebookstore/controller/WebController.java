@@ -1,11 +1,43 @@
 package es.codeurjc.readmebookstore.controller;
 
+import java.security.Principal;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+
+import es.codeurjc.readmebookstore.service.UserService;
+import es.codeurjc.readmebookstore.model.User;
 
 @Controller
 public class WebController {
+
+	@Autowired
+	private UserService userService;
+
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			model.addAttribute("logged", true);
+			model.addAttribute("id", request.getRequestedSessionId());
+			model.addAttribute("userName", principal.getName());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
 
 	@GetMapping("/")
 	public String home(Model model) {

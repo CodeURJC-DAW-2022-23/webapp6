@@ -12,32 +12,32 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
-    public User findById(long id) {
-        return repository.findById(id).orElseThrow();
-
+    public Optional<User> findById(long id) {
+        return userRepository.findById(id);
     }
 
+
     public User findByName(String name) {
-        return repository.findByName(name).orElseThrow();
+        return userRepository.findByName(name).orElseThrow();
 
     }
 
     public boolean exist(long id) {
-        return repository.existsById(id);
+        return userRepository.existsById(id);
     }
 
     public Page<User> findAll(int n) {
-        return repository.findAll( PageRequest.of(n, 5));
+        return userRepository.findAll( PageRequest.of(n, 5));
     }
 
     public void save(User user) {
-        repository.save(user);
+        userRepository.save(user);
     }
 
     public void delete(long id) {
-        repository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
 
