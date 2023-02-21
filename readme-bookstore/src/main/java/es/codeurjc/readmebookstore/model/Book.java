@@ -3,15 +3,20 @@ package es.codeurjc.readmebookstore.model;
 import java.sql.Blob;
 import java.util.List;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.persistence.ManyToMany;
 
 @Entity
+@Table(name = "Book")
+@DynamicUpdate
 public class Book {
 
 	@Id

@@ -1,6 +1,9 @@
 package es.codeurjc.readmebookstore.model;
 
 import java.util.List;
+
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Blob;
@@ -17,6 +20,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "User")
+@DynamicUpdate
 public class User {
 
 	@Id
