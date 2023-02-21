@@ -18,10 +18,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Book")
-<<<<<<< Updated upstream
-@DynamicUpdate
-=======
->>>>>>> Stashed changes
 public class Book {
 
 	@Id
