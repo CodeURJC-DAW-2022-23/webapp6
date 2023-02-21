@@ -36,7 +36,7 @@ public class User {
 	private Blob photo;
 
 	@OneToMany
-	private List<Reviews> readedReviews;
+	private List<Review> readedReviews;
 
 	public User() {
 	}
@@ -70,7 +70,7 @@ public class User {
 		return roles;
 	}
 
-    public List<Reviews> getReadedReviews() {
+    public List<Review> getReadedReviews() {
 		return readedReviews;
 	}
 
@@ -90,7 +90,7 @@ public class User {
 		this.roles = roles;
 	}	
 
-	public void setReadedReviews(List<Reviews> readedReviews) {
+	public void setReadedReviews(List<Review> readedReviews) {
 		this.readedReviews = readedReviews;
 	}
 

@@ -32,7 +32,7 @@ public class Book {
  	private List<Offers> offers;
 
 	@OneToMany
- 	private List<Reviews> reviews;
+ 	private List<Review> reviews;
 
 	public Book() {}
 
@@ -97,11 +97,11 @@ public class Book {
 		this.offers = offers;
 	}
 
-	public List<Reviews> getReviews() {
+	public List<Review> getReviews() {
 		return reviews;
 	}
 
-	public void setReviews(List<Reviews> reviews) {
+	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
 
