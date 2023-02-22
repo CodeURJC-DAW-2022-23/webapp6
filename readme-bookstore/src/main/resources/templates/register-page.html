@@ -5,30 +5,45 @@
     <div class="container">
         <div class="checkout__form">
             <h4>Crea una cuenta</h4>
-            <form action="#">
+            <form action="/newuser" method="post" enctype="multipart/form-data" class="appointment-form">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout__input">
                             <p>Nombre de usuario<span>*</span></p>
-                            <input type="text" required>
+                            <input type="text" name="name" class="form-control" placeholder="Nombre" required>
                         </div>
-                        <div class="checkout__input">
-                            <p>Correo electrónico<span>*</span></p>
-                            <input type="text" required>
-                        </div>
+                        
                         <div class="checkout__input">
                             <p>Contraseña<span>*</span></p>
-                            <input type="password" required>
+                            <input type="password" name="encodedPassword" class="form-control" placeholder="Contraseña" required>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="checkout__order">
-                            <button type="button" class="site-btn">FOTO DE PERFIL<span>*</span></button>
+
+                        <div class="checkout__input">
+                            <p>Correo electrónico<span>*</span></p>
+                            <input type="text" name="email" class="form-control" placeholder="Email" required>
                         </div>
-                    </div>
+
+                        <!-- <div class="checkout__input">
+                            <p>Correo electrónico<span>*</span></p>
+                            <input type="text" name="email" class="form-control" required>
+                        </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <button type="button" class="site-btn">FOTO DE PERFIL<span>*</span></button>
+                            </div>
+                        </div> -->
             </form>
             <div class="blog__item__text">
-                <a href="./user-page.html" class="blog__btn">Crear cuenta<span class="arrow_right"></span></a>
+                <div class="form-group">
+                    <input type="submit" value="Crear cuenta" class="btn btn-white py-3 px-4">
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    <input type="hidden" name="roles" value="USER"/>
+                </div>
+                {{#registererror}}
+                <p style="color:white;">Credenciales inválidas. Elige otro nombre de usuario.</p>
+                {{/registererror}}
+                <!-- <a href="./user-page.html" class="blog__btn">Crear cuenta<span class="arrow_right"></span></a> -->
             </div>
         </div>
     </div>

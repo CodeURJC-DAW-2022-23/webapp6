@@ -18,6 +18,11 @@
 		<java.version>17</java.version>
 	</properties>
 	
+	<dependency>
+    <groupId>org.springframework.security.oauth</groupId>
+    <artifactId>spring-security-oauth2</artifactId>    
+	</dependency>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

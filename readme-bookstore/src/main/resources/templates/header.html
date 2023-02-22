@@ -37,12 +37,25 @@
             <a href="#"><img src="img/logo.png" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+            <ul>                
                 {{^logged}}
                     <div class="header__top__right__auth">
                         <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
                     </div>
+                {{/logged}}
+                {{^logged}}
+					<li><i class="header__top__right__auth" aria-hidden="true"></i>
+                        <a href="/register-page.html">Registrarse</a></li>
+				{{/logged}}
+                </li> 
+               
+                {{#logged}}
+                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                    <form action="/logout" method="post">
+                        <button class="btn btn-default navbar-btn" type="submit">Log Out</button>
+                        <input type="hidden" name="_csrf" value="{{token}}" />
+                    </form>
+                    
                 {{/logged}}
                 </li> 
                 

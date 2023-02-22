@@ -46,30 +46,16 @@ public class LoginWebController {
 		return "login-page";
 	}
 
-	@GetMapping("/register-page.html")
-	public String register(Model model) {
-		return "register-page";
+
+	@RequestMapping("/loginerror-page")
+	public String loginerror() {
+
+		
+
+		return "loginerror-page";
 	}
 
-	/* @GetMapping("/register")
-	public String showDishes(Model model) {
-
-		model.addAttribute("loginerror", false);
-
-		return "register-page";
-	} */
-
-
-	@RequestMapping("/loginerror")
-	public String loginerror(Model model) {
-
-		model.addAttribute("loginerror", true);
-		model.addAttribute("registererror", false);
-
-		return "register-page";
-	}
-
-	@RequestMapping("/logout")
+	@RequestMapping("/logout")//Is not used I think
 	public String logout(Model model) {
 
 		model.addAttribute("loginerror", false);
@@ -86,6 +72,19 @@ public class LoginWebController {
 
 		return "register";
 	}
+
+	@GetMapping("/register-page.html")
+	public String register(Model model) {
+		return "register-page";
+	}
+
+	@RequestMapping("/register")
+	public String showDishes(Model model) {
+
+		model.addAttribute("loginerror", false);
+
+		return "login-page";
+	} 
 
 	@PostMapping("/newuser")
 	public String newUserProcess(Model model, User user) throws IOException {

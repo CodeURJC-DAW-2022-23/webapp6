@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -85,10 +86,6 @@ public class WebController {
 		return "offer-page";
 	}
 
-	/* @GetMapping("/register-page.html")
-	public String register(Model model) {
-		return "register-page";
-	} */
 
 	@GetMapping("/statistics-page.html")
 	public String statistics(Model model) {
@@ -105,9 +102,6 @@ public class WebController {
 		return "upload-review-page";
 	}
 
-	@GetMapping("/user-page.html")
-	public String user(Model model) {
-		return "user-page";
-	}
+	
 
 } 

@@ -47,15 +47,18 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((autorizeRequests ) -> autorizeRequests 
-        .requestMatchers("/user-page").hasAnyRole( "USER")   
+        .requestMatchers("/admin-page").hasRole("ADMIN")   
         .requestMatchers( "/**").permitAll() 
         //.formLogin(withDefaults())   
         );
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/");
-        http.formLogin().failureUrl("/loginerror");
+        http.formLogin().defaultSuccessUrl("/user-page");
+        http.formLogin().failureUrl("/loginerror-page");
+
+        http.logout().logoutUrl("/logout");
+        http.logout().logoutSuccessUrl("/");
 
        
         //http.formLogin().loginPage("/login-page").loginProcessingUrl("/login");
