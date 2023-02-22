@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import java.util.Optional;
+import java.util.List;
 import es.codeurjc.readmebookstore.model.User;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,9 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
 
 
 }

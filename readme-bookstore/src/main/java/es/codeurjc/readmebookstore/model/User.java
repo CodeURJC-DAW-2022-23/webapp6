@@ -24,12 +24,20 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 @DynamicUpdate
 
 public class User {
+
+	@Override
+	public String toString() {
+		return "Users [id=" + id + ", name=" + name +  ", email=" + email
+				+ ", imageFile=" + imageFile + ", image=" + image + ", encodedPassword=" + encodedPassword + 
+				", roles=" + roles + ", readedReviews=" + readedReviews + "]";
+	}
 	
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
@@ -43,7 +51,8 @@ public class User {
 	private List<String> roles;
 
     @Lob
-	private Blob photo;
+	private Blob imageFile;
+	private boolean image;
 
 	@OneToMany
 	private List<Review> readedReviews;
@@ -102,6 +111,25 @@ public class User {
 
 	public void setReadedReviews(List<Review> readedReviews) {
 		this.readedReviews = readedReviews;
+	}
+
+	public Blob getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(Blob image) {
+		this.imageFile = image;
+	}
+
+	public boolean hasImage(){
+		return this.image;
+	}
+
+	public void setImage(boolean image){
+		this.image = image;
+	}
+	public boolean getImage() {
+		return image;
 	}
 
 }

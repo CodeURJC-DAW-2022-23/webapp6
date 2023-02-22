@@ -39,11 +39,13 @@
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                <li>
+                {{^logged}}
                     <div class="header__top__right__auth">
                         <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
                     </div>
-                </li>
+                {{/logged}}
+                </li> 
+                
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
