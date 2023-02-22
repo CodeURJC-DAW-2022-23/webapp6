@@ -49,10 +49,11 @@ public class Book {
 
 	public Book() {}
 
-	public Book(String title, String author) {
+	public Book(String title, String author, String genre) {
 		super();
 		this.title = title;
 		this.author = author;
+		this.genre = genre;
 	}
 
 	public String getTitle() {
