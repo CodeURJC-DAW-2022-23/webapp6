@@ -45,107 +45,32 @@ public class DatabaseInitializer {
 
 		// Sample books
 
-		Book book1 = new Book("Elantris",
-				"Brandon Sanderson", "Fantasía");
-		//setBookImage(book1, "/sample_images/tus_zonas_erroneas.jpg");
+		/*Book book1 = new Book("SUEÑOS DE ACERO Y NEON",
+				"Los personajes que protagonizan este relato sobreviven en una sociedad en decadencia a la que, no obstante, lograrán devolver la posibilidad de un futuro. Año 2484. En un mundo dominado por las grandes corporaciones, solo un hombre, Jordi Thompson, detective privado deslenguado y vividor, pero de gran talento y sentido d...");
+
+		setBookImage(book1, "/sample_images/tus_zonas_erroneas.jpg");
 		bookRepository.save(book1);
 
-		Book book2 = new Book("Nacidos de la bruma",
-		"Brandon Sanderson", "Fantasía");
-		//setBookImage(book2, "/sample_images/la_vida_secreta_de_la_mente.jpg");
+		Book book2 = new Book("LA VIDA SECRETA DE LA MENTE",
+				"La vida secreta de la mentees un viaje especular que recorre el cerebro y el pensamiento: se trata de descubrir nuestra mente para entendernos hasta en los más pequeños rincones que componen lo que somos, cómo forjamos las ideas en los primeros días de vida, cómo damos forma a las decisiones que nos constituyen, cómo soñamos y cómo imaginamos, por qué sentimos ciertas emociones hacia los demás, cómo los demás influyen en nosotros, y cómo el cerebro se transforma y, con él, lo que somos.");
+
+		setBookImage(book2, "/sample_images/la_vida_secreta_de_la_mente.jpg");
 		bookRepository.save(book2);
 
-		Book book3 = new Book("El Archivo de las Tormentas",
-		"Brandon Sanderson", "Fantasía");
-		//setBookImage(book3, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book3);
+		bookRepository.save(new Book("CASI SIN QUERER",
+				"El amor algunas veces es tan complicado como impredecible. Pero al final lo que más valoramos son los detalles más simples, los más bonitos, los que llegan sin avisar. Y a la hora de escribir sobre sentimientos, no hay nada más limpio que hacerlo desde el corazón. Y eso hace Defreds en este libro."));
 
-		Book book4 = new Book("El Señor de los Anillos",
-		"J. R. R. Tolkien", "Fantasía");
-		//setBookImage(book4, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book4);
+		bookRepository.save(new Book("TERMINAMOS Y OTROS POEMAS SIN TERMINAR",
+				"Recopilación de nuevos poemas, textos en prosa y pensamientos del autor. Un sabio dijo una vez: «Pocas cosas hipnotizan tanto en este mundo como una llama y como la luna, será porque no podemos cogerlas o porque nos iluminan en la penumbra». Realmente no sé si alguien dijo esta cita o me la acabo de inventar pero deberían de haberla escrito porque el poder hipnótico que ejercen esa mujer de rojo y esa dama blanca sobre el ser humano es digna de estudio."));
 
-		Book book5 = new Book("Harry Potter",
-		"J. K. Rowling", "Fantasía");
-		//setBookImage(book5, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book5);
+		bookRepository.save(new Book("LA LEGIÓN PERDIDA",
+				"En el año 53 a. C. el cónsul Craso cruzó el Éufrates para conquistar Oriente, pero su ejército fue destrozado en Carrhae. Una legión entera cayó prisionera de los partos. Nadie sabe a ciencia cierta qué pasó con aquella legión perdida.150 años después, Trajano está a punto de volver a cruzar el Éufrates. ..."));
+*/
+		// Sample Shops
 
-		Book book6 = new Book("La Ilíada",
-		"Homero", "Literatura clásica");
-		//setBookImage(book6, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book6);
+		//shopRepository.save(new Shop("La casa del libro", "C/Falsa 123"));
+		//shopRepository.save(new Shop("FNAC", "C/Falsa 456"));
 
-		Book book7 = new Book("La Odisea",
-		"Homero", "Literatura clásica");
-		//setBookImage(book7, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book7);
-
-		Book book8 = new Book("La Eneida",
-		"Virgilio", "Literatura clásica");
-		//setBookImage(book8, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book8);
-
-		Book book9 = new Book("La República",
-		"Platón", "Literatura clásica");
-		//setBookImage(book9, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book9);
-
-		Book book10 = new Book("Arte de amar",
-		"Ovidio", "Literatura clásica");
-		//setBookImage(book10, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book10);
-
-		Book book11 = new Book("Don Quijote de la Mancha",
-		"Miguel de Cervantes", "Literatura universal");
-		//setBookImage(book11, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book11);
-
-		Book book12 = new Book("Romeo y Julieta",
-		"William Shakespeare", "Literatura universal");
-		//setBookImage(book12, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book12);
-
-		Book book13 = new Book("Cumbres borrascosas",
-		"Emily Bronte", "Literatura universal");
-		//setBookImage(book13, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book13);
-
-		Book book14 = new Book("El retrato de Dorian Gray",
-		"Oscar Wilde", "Literatura universal");
-		//setBookImage(book14, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book14);
-
-		Book book15 = new Book("El Conde de Montecristo",
-		"Alejandro Dumas", "Literatura universal");
-		//setBookImage(book15, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book15);
-
-		Book book16 = new Book("El primer hombre de Roma",
-		"Colleen McCullough", "Novela histórica");
-		//setBookImage(book16, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book16);
-
-		Book book17 = new Book("Trilogía de Trajano",
-		"Santiago Posteguillo", "Novela histórica");
-		//setBookImage(book17, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book17);
-
-		Book book18 = new Book("Los pilares de la Tierra",
-		"Ken Follett", "Novela histórica");
-		//setBookImage(book18, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book18);
-
-		Book book19 = new Book("El médico",
-		"Noah Gordon", "Novela histórica");
-		//setBookImage(book19, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book19);
-
-		Book book20 = new Book("Episodios Nacionales",
-		"Benito Pérez Galdos", "Novela histórica");
-		//setBookImage(book20, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-		bookRepository.save(book20);
-
-		//bookRepository.save(new Book("CASI SIN QUERER", "El amor algunasveces."));
 
 		// Sample users
 
