@@ -4,7 +4,9 @@ import java.sql.Blob;
 import java.util.List;
 
 import org.hibernate.annotations.DynamicUpdate;
+import jakarta.annotation.Nonnull;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +19,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
+@DynamicUpdate
 @Table(name = "Book")
 public class Book {
 
@@ -25,6 +28,7 @@ public class Book {
 	private Long id = null;
 	
 	private String title;
+
 	private String author;
 
 	private String genre;
@@ -34,18 +38,22 @@ public class Book {
 	@Lob
 	private Blob cover;
 
-	@OneToMany
- 	private List<Offers> offers;
+	@OneToMany(mappedBy="book", cascade=CascadeType.ALL, orphanRemoval=true)
+ 	private List<Offers> offer;
 
-	@OneToMany
- 	private List<Review> reviews;
+	@OneToMany(mappedBy="book", cascade=CascadeType.ALL, orphanRemoval=true)
+ 	private List<Review> review;
+
+	@ManyToMany
+	private List<User> user;
 
 	public Book() {}
 
-	public Book(String title, String author) {
+	public Book(String title, String author, String genre) {
 		super();
 		this.title = title;
 		this.author = author;
+		this.genre = genre;
 	}
 
 	public String getTitle() {
@@ -96,19 +104,27 @@ public class Book {
 	}
 
 	public List<Offers> getOffers() {
-		return offers;
+		return offer;
 	}
 
-	public void setOffers(List<Offers> offers) {
-		this.offers = offers;
+	public void setOffers(List<Offers> offer) {
+		this.offer = offer;
 	}
 
 	public List<Review> getReviews() {
-		return reviews;
+		return review;
 	}
 
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
+	public void setReviews(List<Review> review) {
+		this.review = review;
+	}
+
+	public List<User> getUsers() {
+		return user;
+	}
+
+	public void setUser(List<User> user) {
+		this.user = user;
 	}
 
 	@Override

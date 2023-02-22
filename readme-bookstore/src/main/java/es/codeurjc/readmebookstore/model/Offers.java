@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Table;
 
@@ -25,7 +26,7 @@ public class Offers {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id = null;
-	
+
 	private Date date;
 	private String edition;
 	private Float price;
@@ -38,20 +39,22 @@ public class Offers {
 
 	private boolean image;
 
+	private boolean sold;
+
 	@ManyToOne
 	private Book book;
 
-   @ManyToMany
-	private List<User> users;
+	@ManyToOne
+	private User user;
 
-
-	public Offers() {}
+	public Offers() {
+	}
 
 	public Offers(Date date, String edition, String description, Float price) {
 		this.date = date;
 		this.edition = edition;
 		this.description = description;
-		this.price =price;
+		this.price = price;
 	}
 
 	public Long getId() {
@@ -102,12 +105,20 @@ public class Offers {
 		this.imageFile = image;
 	}
 
-	public boolean getImage(){
+	public boolean getImage() {
 		return this.image;
 	}
 
-	public void setImage(boolean image){
+	public void setImage(boolean image) {
 		this.image = image;
+	}
+
+	public boolean getSold() {
+		return this.sold;
+	}
+
+	public void setSold(boolean sold) {
+		this.sold= sold;
 	}
 
 	public Book getBook() {
@@ -118,11 +129,11 @@ public class Offers {
 		this.book = book;
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
-	
-	public void setGames(List<User> users) {
-		this.users = users;
-	}	
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
