@@ -13,7 +13,7 @@ import java.sql.Blob;
 import java.util.List;
 
 import jakarta.persistence.*;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,7 +33,7 @@ public class User {
 	public String toString() {
 		return "Users [id=" + id + ", name=" + name +  ", email=" + email
 				+ ", imageFile=" + imageFile + ", image=" + image + ", encodedPassword=" + encodedPassword + 
-				", roles=" + roles + ", readedReviews=" + readedReviews + "]";
+				", roles=" + roles + ", readedReviews=" + readedReview + "]";
 	}
 	
 	@Id
@@ -54,8 +54,14 @@ public class User {
 	private Blob imageFile;
 	private boolean image;
 
-	@OneToMany
-	private List<Review> readedReviews;
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, orphanRemoval=true)
+	private List<Review> readedReview;
+
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, orphanRemoval=true)
+	private List<Offers> offer;
+
+	@ManyToMany
+	private List<Book> favouriteBook;
 
 	public User() {
 	}
@@ -90,7 +96,15 @@ public class User {
 	}
 
     public List<Review> getReadedReviews() {
-		return readedReviews;
+		return readedReview;
+	}
+
+	public List<Book> getFavouriteBooks(){
+		return favouriteBook;
+	}
+
+	public List<Offers> getOffers(){
+		return offer;
 	}
 
 	public void setName(String name) {
@@ -109,13 +123,22 @@ public class User {
 		this.roles = roles;
 	}	
 
-	public void setReadedReviews(List<Review> readedReviews) {
-		this.readedReviews = readedReviews;
+	public void setReadedReviews(List<Review> readedReview) {
+		this.readedReview = readedReview;
+	}
+
+	public void setFavouriteBooks(List<Book> favouriteBook){
+		this.favouriteBook = favouriteBook;
+	}
+
+	public void setOffers(List<Offers> offer){
+		this.offer = offer;
 	}
 
 	public Blob getImageFile() {
 		return imageFile;
 	}
+	
 
 	public void setImageFile(Blob image) {
 		this.imageFile = image;
