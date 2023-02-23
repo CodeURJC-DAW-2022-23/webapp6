@@ -32,8 +32,10 @@ public class Book {
 	/*@ManyToMany
  	private List<Genre> genre;*/
 	
-	@Lob
-	private Blob cover;
+	 @Lob
+	 private Blob imageFile;
+  
+	 private boolean image;
 
 	@OneToMany(mappedBy="book", cascade=CascadeType.ALL, orphanRemoval=true)
  	private List<Offer> offer;
@@ -92,12 +94,20 @@ public class Book {
 		this.genre = genre;
 	}*/
 
-	public Blob getCover() {
-		return cover;
+	public Blob getImageFile() {
+		return imageFile;
 	}
 
-	public void setCover(Blob image) {
-		this.cover = image;
+	public void setImageFile(Blob image) {
+		this.imageFile = image;
+	}
+
+	public boolean getImage() {
+		return this.image;
+	}
+
+	public void setImage(boolean image) {
+		this.image = image;
 	}
 
 	public List<Offer> getOffers() {

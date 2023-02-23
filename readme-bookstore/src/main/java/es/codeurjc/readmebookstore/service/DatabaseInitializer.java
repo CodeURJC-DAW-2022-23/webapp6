@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Date;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +46,7 @@ public class DatabaseInitializer {
 
 		Book book1 = new Book("Elantris",
 				"Brandon Sanderson", "Fantasía");
-		// setBookImage(book1, "/sample_images/tus_zonas_erroneas.jpg");
+		setBookImage(book1, "/static/img/books-banners/la-verdad-sobre-el-caso-savolta-banner.jpg");
 		bookRepository.save(book1);
 
 		Book book2 = new Book("Nacidos de la bruma",
@@ -157,13 +160,9 @@ public class DatabaseInitializer {
 		offerRepository.save(testOffer);
 	}
 
-	/*
-	 * public void setBookImage(Book book, String classpathResource) throws
-	 * IOException {
-	 * book.setImage(true);
-	 * Resource image = new ClassPathResource(classpathResource);
-	 * book.setImageFile(BlobProxy.generateProxy(image.getInputStream(),
-	 * image.contentLength()));
-	 * }
-	 */
+	public void setBookImage(Book book, String classpathResource) throws IOException {
+		book.setImage(true);
+		Resource image = new ClassPathResource(classpathResource);
+		book.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+	}
 }
