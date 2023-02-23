@@ -40,13 +40,16 @@
                                 <ul>
                                     <li><i class="fa fa-calendar-o"></i> {{date}}</li>
                                 </ul>
-                                <h5><a href="#">Usuario 1</a></h5>
+                                <h5><a href="#">{{user.name}}</a></h5>
                                 <p>{{text}} </p>
                             </div>
                         </div>
                     </div>
                     {{/reviews}}
                 </div>
+                {{^reviews}}
+                    <p>Actualmente no hay reseñas de este libro</p>
+                {{/reviews}} 
                 <div class="blog__item__text">
                     <a href="#" class="blog__btn">Cargar más reseñas <span class="arrow_right"></span></a>
                 </div>
@@ -68,7 +71,7 @@
                 <div class="sidebar">
                     <div class="sidebar__item">
                         <div class="blog__item__text">
-                            <a href="./upload-offer-page.html" class="blog__btn">Vende tu libro<span
+                            <a href="/uploadOffer/{{book.id}}" class="blog__btn">Vende tu libro<span
                                     class="arrow_right"></span></a>
                         </div>
                         <hr>
@@ -98,16 +101,20 @@
                             <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="./offer-page.html">La verdad sobre el caso Savolta</a></h6>
-                                <h5>{{price}}</h5>
+                                <h6><a href="./offer-page.html">{{book.title}}</a></h6>
+                                <h5>{{price}} euros</h5>
                             </div>
                         </div>
                     </div>
                     {{/offers}}
                 </div>
+                {{^offers}}
+                    <p>Actualmente no hay anuncios de este libro</p>
+                {{/offers}}  
                 <div class="blog__item__text">
                     <a href="#" class="blog__btn">Cargar más anuncios <span class="arrow_right"></span></a>
                 </div>
+
             </div>
         </div>
     </div>
