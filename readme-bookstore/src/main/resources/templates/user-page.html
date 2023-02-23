@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout__input">
-                            <p><strong>Nombre de usuario: </strong>{{userName}}</p>
+                            <p><strong>Nombre de usuario: </strong>{{name}}</p>
                         </div>
                         <div class="checkout__input">
                             <p><strong>Correo electrónico: </strong>{{email}}</p>
@@ -22,7 +22,7 @@
                     </div>
             </form>
             <div class="blog__item__text">
-                <a href="#" class="blog__btn">Modifica tu perfil<span class="arrow_right"></span></a>
+                <a href="/updateProfile" class="blog__btn">Modifica tu perfil<span class="arrow_right"></span></a>
             </div>
         </div>
     </div>
@@ -39,57 +39,18 @@
         <div class="row">
             <div class="col-lg-9 col-md-7">
                 <div class="row">
+                    <!--{{#user.offer}}-->
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="./offer-page.html">La verdad sobre el caso Savolta</a></h6>
-                                <h5>5.00 €</h5>
+                                <h5>{{price}}</h5>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Anuncio</a></h6>
-                                <h5>5.00 €</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Anuncio</a></h6>
-                                <h5>5.00 €</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Anuncio</a></h6>
-                                <h5>5.00 €</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Anuncio</a></h6>
-                                <h5>5.00 €</h5>
-                            </div>
-                        </div>
-                    </div>
-
+                    <!--{{/user.offer}}-->
                 </div>
                 <div class="blog__item__text">
                     <a href="#" class="blog__btn">Cargar más anuncios <span class="arrow_right"></span></a>
@@ -160,6 +121,7 @@
         <div class="row">
             <div class="col-lg-9 col-md-7">
                 <div class="row">
+                   
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
@@ -169,16 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Libro</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                   
                 <div class="blog__item__text">
                     <a href="#" class="blog__btn">Cargar más libros <span class="arrow_right"></span></a>
                 </div>

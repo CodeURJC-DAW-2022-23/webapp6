@@ -9,8 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import es.codeurjc.readmebookstore.service.UserService;
-
-import static java.lang.System.out;
+import es.codeurjc.readmebookstore.repository.UserRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -22,6 +26,9 @@ public class UserWebController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @ModelAttribute
     public void addAttributes(Model model, HttpServletRequest request) {
@@ -64,12 +71,34 @@ public class UserWebController {
 
         return "redirect:/user/" + user.getId();
     }
+    
     @GetMapping("/user-page.html")
 	public String user(Model model) {
 		return "user-page";
 	}
+
 	@RequestMapping("/user-page")
 	public String user() {
 		return "user-page.html";
 	}
+ 
+	@GetMapping("/updateProfile")
+	public String updateUserProfile(Model model) {
+		return "update-user-page";
+	}
+
+    @RequestMapping("/updatedProfile")
+	public String updatedProfile() {
+		return "user-page.html";
+	}
+
+    @PostMapping("/updatedProfile")
+	public String actualicedProfile(Model model,@RequestParam String email, HttpServletRequest request) throws IOException {
+        String username = request.getUserPrincipal().getName();
+		User user = userRepository.findByName(username).orElseThrow();
+        user.setEmail(email);
+        userService.save(user);
+        return "index";
+    }
+
 }
