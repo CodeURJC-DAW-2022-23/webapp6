@@ -40,18 +40,19 @@
         <div class="humberger__menu__cart">
             <ul>                
                 {{^logged}}
-                    <div class="header__top__right__auth">
-                        <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
-                    </div>
+                    <li><i class="header__top__right__auth"></i>
+                        <a href="./login-page.html"></i> Iniciar sesión</a>
+                    </li>
                 {{/logged}}
+
                 {{^logged}}
-					<li><i class="header__top__right__auth" aria-hidden="true"></i>
+					<li><i class="header__top__right__auth"></i>
                         <a href="/register-page.html">Registrarse</a></li>
-				{{/logged}}
-                </li> 
+                    </li>
+                {{/logged}}                 
                
                 {{#logged}}
-                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                <li><a href="user-page"><i class="fa fa-user"></i></a></li>
                     <form action="/logout" method="post">
                         <button class="btn btn-default navbar-btn" type="submit">Log Out</button>
                         <input type="hidden" name="_csrf" value="{{token}}" />
@@ -104,12 +105,24 @@
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
-
-                            <div class="header__top__right__auth">
-                                <a href="./login-page.html"><i class="fa fa-user"></i> Iniciar sesión</a>
-                            </div>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>                                
+                                {{^logged}}
+                                    <a href="./login-page.html"> Iniciar sesión</a>
+                                {{/logged}}
+                                {{^logged}}
+                                    <a href="/register-page.html">Registrarse</a></li>
+                                {{/logged}}
+                                
+                                {{#logged}}
+                                <a>
+                                <form action="/logout" method="post">
+                                    <a href="/user-page.html"><i class="fa fa-user"></i></a>
+                                    <button class="btn btn-default navbar-btn" type="submit">Log Out</button>
+                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                </form>
+                                </a>      
+                                {{/logged}}
+                            </div>                                        
                         </div>
                     </div>
                 </div>
@@ -135,7 +148,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="./user-page.html"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
                         </ul>
                     </div>
                 </div>

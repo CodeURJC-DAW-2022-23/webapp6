@@ -78,12 +78,19 @@ public class LoginWebController {
 		return "register-page";
 	}
 
-	@RequestMapping("/register")
-	public String showDishes(Model model) {
+	@RequestMapping("/register-success")
+	public String showDishesSuccess(Model model) {
 
-		model.addAttribute("loginerror", false);
+		model.addAttribute("registererror", false);
 
 		return "login-page";
+	} 
+	@RequestMapping("/register-error")
+	public String showDishes(Model model) {
+
+		model.addAttribute("registererror", true);
+
+		return "register-page";
 	} 
 
 	@PostMapping("/newuser")
@@ -101,7 +108,7 @@ public class LoginWebController {
 		if(existe) {
 
 			model.addAttribute("registererror", true);
-			return "register";
+			return "register-error";
 		}
 
 		user.setImage(false);
@@ -111,7 +118,7 @@ public class LoginWebController {
 
 		model.addAttribute("registererror", false);
 
-		return "register";
+		return "register-success";
 	}
 
 
