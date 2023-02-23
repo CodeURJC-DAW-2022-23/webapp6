@@ -147,9 +147,9 @@ public class DatabaseInitializer {
 		// bookRepository.save(new Book("CASI SIN QUERER", "El amor algunasveces."));
 
 		// Sample users
-		User testUser = new User("user", passwordEncoder.encode("pass"), "testuser@mail.ex", "USER");
+		User testUser = new User("user", passwordEncoder.encode("pass"), "user@mail.ex", "USER");
 		userRepository.save(testUser);
-		userRepository.save(new User("admin", passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
+		userRepository.save(new User("admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", "ADMIN"));
 
 		// Sample reviews
 		Review testReview = new Review("This is an example review.", new Date(), book1, testUser);
