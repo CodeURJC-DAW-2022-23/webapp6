@@ -1,8 +1,7 @@
 package es.codeurjc.readmebookstore.model;
 
 import java.sql.Blob;
-import java.sql.Date;
-import java.util.List;
+import java.util.Date;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -12,16 +11,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Offers")
 @DynamicUpdate
-public class Offers {
+public class Offer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,14 +43,16 @@ public class Offers {
 	@ManyToOne
 	private User user;
 
-	public Offers() {
+	public Offer() {
 	}
 
-	public Offers(Date date, String edition, String description, Float price) {
+	public Offer(Date date, String edition, String description, Float price, Book book, User user) {
 		this.date = date;
 		this.edition = edition;
 		this.description = description;
 		this.price = price;
+		this.book = book;
+		this.user = user;
 	}
 
 	public Long getId() {

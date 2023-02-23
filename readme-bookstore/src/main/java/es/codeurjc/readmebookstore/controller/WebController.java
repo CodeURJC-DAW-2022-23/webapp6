@@ -7,25 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import es.codeurjc.readmebookstore.service.UserService;
-import es.codeurjc.readmebookstore.model.User;
 
 @Controller
 public class WebController {
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
-	@Autowired
-	private UserService userService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -54,11 +39,6 @@ public class WebController {
 		return "index";
 	}
 
-	@GetMapping("/admin-page.html")
-	public String admin(Model model) {
-		return "admin-page";
-	}
-
 	@GetMapping("/book-particular-page.html")
 	public String bookParticular(Model model) {
 		return "book-particular-page";
@@ -79,13 +59,10 @@ public class WebController {
 		return "contact-page";
 	}
 
-	
-
 	@GetMapping("/offer-page.html")
 	public String offer(Model model) {
 		return "offer-page";
 	}
-
 
 	@GetMapping("/statistics-page.html")
 	public String statistics(Model model) {
@@ -102,6 +79,4 @@ public class WebController {
 		return "upload-review-page";
 	}
 
-	
-
-} 
+}

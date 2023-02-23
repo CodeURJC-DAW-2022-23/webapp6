@@ -4,7 +4,6 @@ import java.sql.Blob;
 import java.util.List;
 
 import org.hibernate.annotations.DynamicUpdate;
-import jakarta.annotation.Nonnull;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -15,8 +14,6 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.ManyToMany;
-
-import jakarta.persistence.Table;
 
 @Entity
 @DynamicUpdate
@@ -39,7 +36,7 @@ public class Book {
 	private Blob cover;
 
 	@OneToMany(mappedBy="book", cascade=CascadeType.ALL, orphanRemoval=true)
- 	private List<Offers> offer;
+ 	private List<Offer> offer;
 
 	@OneToMany(mappedBy="book", cascade=CascadeType.ALL, orphanRemoval=true)
  	private List<Review> review;
@@ -103,11 +100,11 @@ public class Book {
 		this.cover = image;
 	}
 
-	public List<Offers> getOffers() {
+	public List<Offer> getOffers() {
 		return offer;
 	}
 
-	public void setOffers(List<Offers> offer) {
+	public void setOffers(List<Offer> offer) {
 		this.offer = offer;
 	}
 

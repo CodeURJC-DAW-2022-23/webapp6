@@ -1,20 +1,23 @@
 package es.codeurjc.readmebookstore.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
-import es.codeurjc.readmebookstore.model.Offers;
-import es.codeurjc.readmebookstore.repository.OffersRepository;
+import es.codeurjc.readmebookstore.model.Offer;
+import es.codeurjc.readmebookstore.repository.OfferRepository;
 
-public class OffersService {
+@Service
+public class OfferService {
 
     @Autowired
-	private OffersRepository repository;
+	private OfferRepository repository;
 
-	public Optional<Offers> findById(long id) {
+	public Optional<Offer> findById(long id) {
 		return repository.findById(id);
 	}
 	
@@ -22,11 +25,15 @@ public class OffersService {
 		return repository.existsById(id);
 	}
 
-	public Page<Offers> findAll(int n) {
+	public Page<Offer> findAll(int n) {
 		return repository.findAll( PageRequest.of(n, 5));
 	}
 
-	public void save(Offers offers) {
+	public List<Offer> findAll() {
+		return repository.findAll();
+	}
+
+	public void save(Offer offers) {
 		repository.save(offers);
 	}
 

@@ -21,10 +21,11 @@
                     <th>Imagen</th>
                     <th></th>
                 </tr>
+                {{#userList}}
                 <tr class="blog__item__text">
-                    <td>0001</td>
-                    <td class="checkout__input"><input type="text" value="UsuarioDeEjemplo"></td>
-                    <td class="checkout__input"><input type="text" value="usuariodeejemplo@correo.ex"></td>
+                    <td>{{id}}</td>
+                    <td class="checkout__input"><input type="text" value="{{name}}"></td>
+                    <td class="checkout__input"><input type="text" value="{{email}}"></td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
@@ -32,6 +33,7 @@
 
                     <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar usuario</a></td>
                 </tr>
+                {{/userList}}
             </table>
 
             <!-- Offers -->
@@ -43,19 +45,25 @@
                     <th>Edición</th>
                     <th>Descripción</th>
                     <th>Precio</th>
+                    <th>Libro</th>
+                    <th>Vendedor</th>
                     <th>Imagen</th>
                     <th></th>
                 </tr>
+                {{#offerList}}
                 <tr class="blog__item__text">
-                    <td>0001</td>
-                    <td class="checkout__input"><input type="date" value="2023-02-28"></td>
-                    <td class="checkout__input"><input type="text" value="Edición de ejemplo"></td>
-                    <td class="checkout__input"><input type="text" value="Descripción de un anuncio de ejemplo."></td>
-                    <td class="checkout__input"><input type="number" value=23></td>
+                    <td>{{id}}</td>
+                    <td class="checkout__input"><input type="date" value="{{date}}"></td>
+                    <td class="checkout__input"><input type="text" value="{{edition}}"></td>
+                    <td class="checkout__input"><input type="text" value="{{description}}"></td>
+                    <td class="checkout__input"><input type="number" value={{price}}></td>
+                    <td class="checkout__input"><input type="text" value="{{book}}"></td>
+                    <td class="checkout__input"><input type="text" value="{{user}}"></td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
 
                     <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar anuncio</a></td>
                 </tr>
+                {{/offerList}}
             </table>
             
             <!-- Reviews -->
@@ -65,15 +73,21 @@
                     <th>id</th>
                     <th>Fecha</th>
                     <th>Texto</th>
+                    <th>Libro</th>
+                    <th>Autor</th>
                     <th></th>
                 </tr>
+                {{#reviewList}}
                 <tr class="blog__item__text">
-                    <td>0001</td>
-                    <td class="checkout__input"><input type="date" value="2023-02-28"></td>
-                    <td class="checkout__input"><input type="text" value="Esto es una reseña de ejemplo de un libro de ejemplo"></td>
+                    <td>{{id}}</td>
+                    <td class="checkout__input"><input type="date" value="{{date}}"></td>
+                    <td class="checkout__input"><input type="text" value="{{text}}"></td>
+                    <td class="checkout__input"><input type="text" value="{{book}}"></td>
+                    <td class="checkout__input"><input type="text" value="{{user}}"></td>
 
                     <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar reseña</a></td>
                 </tr>
+                {{/reviewList}}
             </table>
 
             <!-- Books -->
@@ -87,16 +101,20 @@
                     <th>Imágen</th>
                     <th></th>
                 </tr>
+                {{#bookList}}
                 <tr class="blog__item__text">
-                    <td>0001</td>
-                    <td class="checkout__input"><input type="text" value="Libro de ejemplo"></td>
-                    <td class="checkout__input"><input type="text" value="Autor de ejemplo"></td>
-                    <td class="checkout__input"><input type="text" value="Género de ejemplo"></td>
+                    <td>{{id}}</td>
+                    <td class="checkout__input"><input type="text" value="{{title}}"></td>
+                    <td class="checkout__input"><input type="text" value="{{author}}"></td>
+                    <td class="checkout__input"><input type="text" value="{{genre}}"></td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
 
                     <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar libro</a></td>
                 </tr>
+                {{/bookList}}
             </table>
+
+            <!-- Add new book -->
             <div class="checkout__order">
                 <h4>Añadir nuevo libro</h4>
 

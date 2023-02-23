@@ -1,6 +1,6 @@
 package es.codeurjc.readmebookstore.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -37,10 +37,11 @@ public class Review {
 
     public Review() {}
 
-	public Review(String text, Date date) {
-		super();
+	public Review(String text, Date date, Book book, User user) {
 		this.text = text;
 		this.date = date;
+		this.book = book;
+		this.user = user;
     }
 
 	public Long getId() {
