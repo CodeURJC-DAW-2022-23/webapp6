@@ -53,6 +53,18 @@ public class BookController {
     private BookRepository bookRepository;
 
 
+	@ModelAttribute
+    public void addAttributes(Model model, HttpServletRequest request) {
+
+        Principal principal = request.getUserPrincipal();
+		
+        if (principal != null) {
+            model.addAttribute("logged", true);
+        } else {
+            model.addAttribute("logged", false);
+        }
+    }
+
  
 	@GetMapping("/books")
 	public String showBooks(Model model) {

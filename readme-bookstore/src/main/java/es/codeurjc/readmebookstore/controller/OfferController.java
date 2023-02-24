@@ -51,6 +51,34 @@ public class OfferController {
 		return "upload-offer-page";
 	}
 
+
+    @GetMapping("/modifyOffer/{id}")
+	public String modifyReview(Model model, @PathVariable long id) {
+        Optional<Offer> offer = offerRepository.findById(id);
+        model.addAttribute("offer", offer.get());
+		return "update-offer-page";
+	}
+
+
+    @PostMapping("/updatedOffer/{id}")
+	public String updatedReview(Model model, @PathVariable long id, @RequestParam String edition, @RequestParam String text, @RequestParam float price) {
+        Optional<Offer> offer = offerRepository.findById(id);
+        Date date = new Date();
+        offer.get().setDate(date);
+        offer.get().setDescription(text);
+        offer.get().setEdition(edition);
+        offer.get().setPrice(price);
+		offerRepository.save(offer.get());
+		return "redirect:/user-page";
+	}
+  
+
+    @GetMapping("/deleteOffer/{id}")
+	public String deleteReview(Model model, @PathVariable long id) {
+        offerRepository.deleteById(id);
+		return "redirect:/user-page";
+	}
+
   
 
 }

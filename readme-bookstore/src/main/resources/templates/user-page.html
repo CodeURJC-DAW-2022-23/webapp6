@@ -51,18 +51,20 @@
                                 <h5>{{price}}</h5>
                             </div>
                             <div class="blog__item__text">
-                                <a href="/modifyOffer/{{id}}" class="blog__btn">Editar anuncio<span class="arrow_right"></span></a>
+                                <a href="/modifyOffer/{{id}}" class="blog__btn">Editar anuncio<span
+                                        class="arrow_right"></span></a>
                             </div>
                             <div class="blog__item__text">
-                                <a href="/deleteOffer/{{id}}" class="blog__btn">Eliminar anuncio<span class="arrow_right"></span></a>
+                                <a href="/deleteOffer/{{id}}" class="blog__btn">Eliminar anuncio<span
+                                        class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
                     {{/offers}}
                 </div>
-                {{^reviews}}
-                    <p>Actualmente no tienes anuncios subidos</p>
-                {{/reviews}} 
+                {{^offers}}
+                <p>Actualmente no tienes anuncios subidos</p>
+                {{/offers}}
                 <div class="blog__item__text">
                     <a href="#" class="blog__btn">Cargar más anuncios <span class="arrow_right"></span></a>
                 </div>
@@ -128,7 +130,7 @@ Shopping history Section End -->
     <div class="container">
         <hr>
         <div class="section-title">
-            <h2>Libros favoritos</h2>
+            <h2>Tus libros favoritos</h2>
         </div>
         <div class="row">
             <div class="col-lg-9 col-md-7">
@@ -136,20 +138,23 @@ Shopping history Section End -->
                     {{#favourites}}
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
-                            <img class="product__item__pic set-bg" src="/books/{{id}}/image">
+                            <div class="blog__item__text">
+                                <img class="product__item__pic set-bg" src="/books/{{id}}/image">
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="/book/{{id}}">{{title}}</a></h6>
                             </div>
                         </div>
                         <div class="blog__item__text">
-                            <a href="/supressFavoutites/{{id}}" class="blog__btn">Quitar de favoritos<span class="arrow_right"></span></a>
+                            <a href="/deleteFavourite/{{id}}" class="blog__btn">Quitar de favoritos<span
+                                    class="arrow_right"></span></a>
                         </div>
                     </div>
                     {{/favourites}}
-                    {{^favourites}}
-                        <p>Actualmente no tienes libros favoritos</p>
-                    {{/favourites}} 
+                </div>             
+                {{^favourites}}
+                <p>Actualmente no tienes libros favoritos</p>
+                {{/favourites}}
                 <div class="blog__item__text">
                     <a href="#" class="blog__btn">Cargar más libros <span class="arrow_right"></span></a>
                 </div>
@@ -164,7 +169,7 @@ Shopping history Section End -->
 <section class="blog spad">
     <div class="container">
         <div class="section-title">
-            <h2>Reseñas realizadas</h2>
+            <h2>Tus reseñas</h2>
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-7">
@@ -181,10 +186,12 @@ Shopping history Section End -->
                                 </div>
                                 <p>{{text}} </p>
                                 <div class="blog__item__text">
-                                    <a href="/modifyReview/{{id}}" class="blog__btn">Editar reseña<span class="arrow_right"></span></a>
+                                    <a href="/modifyReview/{{id}}" class="blog__btn">Editar reseña<span
+                                            class="arrow_right"></span></a>
                                 </div>
                                 <div class="blog__item__text">
-                                    <a href="/deleteReview/{{id}}" class="blog__btn">Eliminar reseña<span class="arrow_right"></span></a>
+                                    <a href="/deleteReview/{{id}}" class="blog__btn">Eliminar reseña<span
+                                            class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -192,8 +199,8 @@ Shopping history Section End -->
                     {{/reviews}}
                 </div>
                 {{^reviews}}
-                    <p>Actualmente no tienes reseñas publicadas</p>
-                {{/reviews}} 
+                <p>Actualmente no tienes reseñas publicadas</p>
+                {{/reviews}}
                 <div class="blog__item__text">
                     <a href="#" class="blog__btn">Cargar más reseñas <span class="arrow_right"></span></a>
                 </div>

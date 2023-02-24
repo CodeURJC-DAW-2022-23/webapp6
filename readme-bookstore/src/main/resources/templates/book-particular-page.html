@@ -24,10 +24,12 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
+                        {{#logged}}
                         <div class="blog__item__text">
                             <a href="/uploadReview/{{book.id}}" class="blog__btn">Publica tu reseña<span
                                     class="arrow_right"></span></a>
                         </div>
+                        {{/logged}}
                     </div>
                 </div>
             </div>
@@ -70,11 +72,13 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
+                        {{#logged}}
                         <div class="blog__item__text">
                             <a href="/uploadOffer/{{book.id}}" class="blog__btn">Vende tu libro<span
                                     class="arrow_right"></span></a>
                         </div>
                         <hr>
+                        {{/logged}}
                         <h4>Filtrar por precio</h4>
                         <div class="price-range-wrap">
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
