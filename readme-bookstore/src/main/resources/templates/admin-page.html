@@ -24,14 +24,17 @@
                 {{#userList}}
                 <tr class="blog__item__text">
                     <td>{{id}}</td>
-                    <td class="checkout__input"><input type="text" value="{{name}}"></td>
+                    <td>{{name}}</td>
                     <td class="checkout__input"><input type="text" value="{{email}}"></td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
 
-                    <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar usuario</a></td>
+                    <td class="checkout__input">
+                        <a href="#" class="blog__btn">Guardar cambios</a>
+                        <a href="/admin/delete-user/{{id}}" class="blog__btn">Eliminar usuario</a>
+                    </td>
                 </tr>
                 {{/userList}}
             </table>
@@ -58,14 +61,17 @@
                     <td class="checkout__input"><input type="text" value="{{description}}"></td>
                     <td class="checkout__input"><input type="number" value={{price}}></td>
                     <td class="checkout__input"><input type="text" value="{{book}}"></td>
-                    <td class="checkout__input"><input type="text" value="{{user}}"></td>
+                    <td>{{user.name}}</td>
                     <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
 
-                    <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar anuncio</a></td>
+                    <td class="checkout__input">
+                        <a href="#" class="blog__btn">Guardar cambios</a>
+                        <a href="/admin/delete-offer/{{id}}" class="blog__btn">Eliminar oferta</a>
+                    </td>
                 </tr>
                 {{/offerList}}
             </table>
-            
+
             <!-- Reviews -->
             <h4>Reseñas</h4>
             <table class="admin_table">
@@ -79,13 +85,19 @@
                 </tr>
                 {{#reviewList}}
                 <tr class="blog__item__text">
-                    <td>{{id}}</td>
-                    <td class="checkout__input"><input type="date" value="{{date}}"></td>
-                    <td class="checkout__input"><input type="text" value="{{text}}"></td>
-                    <td class="checkout__input"><input type="text" value="{{book}}"></td>
-                    <td class="checkout__input"><input type="text" value="{{user}}"></td>
+                    <form action="/admin/edit-review/{{id}}">
+                        <td>{{id}}</td>
+                        <td class="checkout__input"><input type="date" name="date" value="{{date}}"></td>
+                        <td class="checkout__input"><input type="text" name="text" value="{{text}}"></td>
+                        <td>{{book.title}}</td>
+                        <td>{{user.name}}</td>
 
-                    <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar reseña</a></td>
+                        <td class="checkout__input">
+                            <button type="submit" class="blog__btn">Guardar cambios</button>
+                            <a href="/admin/delete-review/{{id}}" class="blog__btn">Eliminar reseña</a>
+                        </td>
+                    </form>
+
                 </tr>
                 {{/reviewList}}
             </table>
@@ -103,36 +115,42 @@
                 </tr>
                 {{#bookList}}
                 <tr class="blog__item__text">
-                    <td>{{id}}</td>
-                    <td class="checkout__input"><input type="text" value="{{title}}"></td>
-                    <td class="checkout__input"><input type="text" value="{{author}}"></td>
-                    <td class="checkout__input"><input type="text" value="{{genre}}"></td>
-                    <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
+                    <form action="/admin/edit-book/{{id}}">
+                        <td>{{id}}</td>
+                        <td class="checkout__input"><input type="text" name="title" value="{{title}}"></td>
+                        <td class="checkout__input"><input type="text" name="author" value="{{author}}"></td>
+                        <td class="checkout__input"><input type="text" name="genre" value="{{genre}}"></td>
+                        <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
 
-                    <td class="checkout__input"><a href="#" class="blog__btn">Guardar cambios</a><a href="#" class="blog__btn">Eliminar libro</a></td>
+                        <td class="checkout__input">
+                            <button type="submit" class="blog__btn">Guardar cambios</button>
+                            <a href="/admin/delete-book/{{id}}" class="blog__btn">Eliminar libro</a>
+                        </td>
+                    </form>
                 </tr>
                 {{/bookList}}
             </table>
 
             <!-- Add new book -->
             <div class="checkout__order">
-                <h4>Añadir nuevo libro</h4>
+                <h4>Añadir un libro nuevo</h4>
+                <form action="/admin/add-book">
+                    <div class="checkout__input">
+                        <p>Introduzca el título del libro:</p>
+                        <input type="text" name="title" placeholder="Titulo" required>
+                    </div>
+                    <div class="checkout__input">
+                        <p>Introduzca el autor del libro:</p>
+                        <input type="text" name="author" placeholder="Autor" required>
+                    </div>
+                    <div class="checkout__input">
+                        <p>Introduzca el género principal del libro:</p>
+                        <input type="text" name="genre" placeholder="Género" required>
+                    </div>
 
-                <div class="checkout__input">
-                    <p>Título<span>*</span></p>
-                    <input type="text">
-                </div>
-                <div class="checkout__input">
-                    <p>Autor<span>*</span></p>
-                    <input type="text">
-                </div>
-                <div class="checkout__input">
-                    <p>Género<span>*</span></p>
-                    <input type="text">
-                </div>
-
-                <button type="submit" class="site-btn">Subir foto de página<span>*</span></button>
-                <button type="submit" class="site-btn">Subir libro</button>
+                    <button class="site-btn">Subir foto de página</button>
+                    <button type="submit" class="site-btn">Subir libro</button>
+                </form>
             </div>
 
         </div>
