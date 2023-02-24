@@ -15,11 +15,13 @@
                             <p><strong>Correo electrónico: </strong>{{email}}</p>
                         </div>
                     </div>
+                    {{#hasImage}}
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
-                            <img class="product__details__pic__item--large" src="img/latest-product/lp-3.jpg" alt="">
+                            <img class="product__details__pic__item--large" src="/user-page/{{name}}/image" alt="">
                         </div>
                     </div>
+                    {{/hasImage}}
             </form>
             <div class="blog__item__text">
                 <a href="/updateProfile" class="blog__btn">Modifica tu perfil<span class="arrow_right"></span></a>

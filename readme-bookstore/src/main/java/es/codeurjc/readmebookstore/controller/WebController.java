@@ -34,7 +34,7 @@ public class WebController {
 		return "index";
 	}
 
-	@GetMapping("/index.html")
+	@GetMapping("/index")
 	public String index(Model model) {
 		return "index";
 	}

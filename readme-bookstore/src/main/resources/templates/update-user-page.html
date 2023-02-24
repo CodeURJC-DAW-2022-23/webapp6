@@ -5,7 +5,7 @@
     <div class="container">
         <div class="checkout__form">
             <h4>Modificar perfil de usuario</h4>
-            <form action="/updatedProfile" method="post">
+            <form action="/updateProfile" method="post" enctype="multipart/form-data" class="appointment-form">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout__input">
@@ -16,14 +16,17 @@
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
+                            <div class="product__item__pic set-bg" data-setbg="/user-page/{{name}}/image">
                             </div>
-                            <button type="button" class="site-btn">FOTO DE PERFIL<span>*</span></button>
+                            <input type='file' name='imageField' accept=".jpg, .jpeg" />
                         </div>
                     </div>
                     <input type="hidden" name="_csrf" value="{{token}}"/>
-                    <input type="submit" value="Guardar cambios" class="btn btn-white py-3 px-4"/>
+                    <div class="blog__item__text">
+                        <input type="submit" value="Guardar cambios" class="blog__btn">
+                    </div>
             </form>
+            
         </div>
     </div>
 </section>

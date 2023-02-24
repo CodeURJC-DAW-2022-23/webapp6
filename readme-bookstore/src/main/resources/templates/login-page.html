@@ -8,6 +8,9 @@
             <form action="/login" method="post">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
+                        {{#loginererror}}
+                            <p style="color:rgb(255, 0, 0);">Nombre o contraseña incorrectos.</p>
+                        {{/loginererror}}
                         <div class="checkout__input">
                             <p>Usuario<span>*</span></p>
                             <input type="text" name="username" required>
@@ -16,7 +19,10 @@
                             <p>Contraseña<span>*</span></p>
                             <input type="password" name="password" required>
                         </div>
-                        <input type="submit" value="Iniciar sesión" class="btn btn-white py-3 px-4">
+                        
+                        <div class="blog__item__text">
+                            <input type="submit" value="Iniciar sesión" class="blog__btn">
+                        </div>
 					    <input type="hidden" name="_csrf" value="{{token}}"/>
                     </div>
                     

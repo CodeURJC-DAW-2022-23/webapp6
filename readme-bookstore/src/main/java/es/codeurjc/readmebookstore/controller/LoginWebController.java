@@ -48,11 +48,10 @@ public class LoginWebController {
 
 
 	@RequestMapping("/loginerror-page")
-	public String loginerror() {
+	public String loginerror(Model model) {
+		model.addAttribute("loginererror", true);
 
-		
-
-		return "loginerror-page";
+		return "login-page";
 	}
 
 	@RequestMapping("/logout")//Is not used I think
@@ -64,7 +63,14 @@ public class LoginWebController {
 		return "register";
 	}
 
-	@GetMapping("/newuser")
+	
+
+	@GetMapping("/register-page.html")
+	public String register(Model model) {
+		return "register-page";
+	}
+
+	@GetMapping("/newUser")
 	public String newUser(Model model) {
 
 		model.addAttribute("loginerror", false);
@@ -72,11 +78,39 @@ public class LoginWebController {
 
 		return "register";
 	}
+	
+	@PostMapping("/newUser")
+	public String newUserProcess(Model model, User user, MultipartFile imageField) throws IOException {
 
-	@GetMapping("/register-page.html")
-	public String register(Model model) {
-		return "register-page";
+		model.addAttribute("loginerror", false);
+
+		boolean existe = false;
+		List<User> users = userService.findAll();
+		for(User u : users) {
+			if(user.getName().equals(u.getName())) {
+				existe = true;
+			}
+		}
+		if(existe) {
+
+			model.addAttribute("registererror", true);
+			return "register-error";
+		}
+		
+
+		if (!imageField.isEmpty()) {
+			user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+			user.setImage(true);
+		}
+
+		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
+		userService.save(user);
+
+		model.addAttribute("registererror", false);
+
+		return "register-success";
 	}
+	
 
 	@RequestMapping("/register-success")
 	public String showDishesSuccess(Model model) {
@@ -93,70 +127,20 @@ public class LoginWebController {
 		return "register-page";
 	} 
 
-	@PostMapping("/newuser")
-	public String newUserProcess(Model model, User user) throws IOException {
+	@GetMapping("/user-page/{name}/image")
+	public ResponseEntity<Object> downloadImage(@PathVariable String name) throws SQLException {
 
-		model.addAttribute("loginerror", false);
+		User user = userService.findByName(name);
+		if (user.getImageFile() != null) {
 
-		boolean existe = false;
-		List<User> users = userService.findAll();
-		for(User u : users) {
-			if(user.getName().equals(u.getName())) {
-				existe = true;
-			}
-		}
-		if(existe) {
-
-			model.addAttribute("registererror", true);
-			return "register-error";
-		}
-
-		user.setImage(false);
-
-		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
-		userService.save(user);
-
-		model.addAttribute("registererror", false);
-
-		return "register-success";
-	}
-
-
-
-	@GetMapping("/user/{id}/image")
-	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
-
-		Optional<User> user = userService.findById(id);
-		if (user.isPresent() && user.get().getImageFile() != null) {
-
-			Resource file = new InputStreamResource(user.get().getImageFile().getBinaryStream());
+			Resource file = new InputStreamResource(user.getImageFile().getBinaryStream());
 
 			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(user.get().getImageFile().length()).body(file);
+					.contentLength(user.getImageFile().length()).body(file);
 
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
-
-	private void updateImage(User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
-
-		if (!imageField.isEmpty()) {
-			user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-			user.setImage(true);
-		} else {
-			if (removeImage) {
-				user.setImageFile(null);
-				user.setImage(false);
-			} else {
-				// Maintain the same image loading it before updating the dish
-				User dbUser = userService.findById(user.getId()).orElseThrow();
-				if (dbUser.hasImage()) {
-					user.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
-							dbUser.getImageFile().length()));
-					user.setImage(true);
-				}
-			}
-		}
-	}
+	
 }
