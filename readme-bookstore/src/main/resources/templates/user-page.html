@@ -41,19 +41,28 @@
         <div class="row">
             <div class="col-lg-9 col-md-7">
                 <div class="row">
-                    <!--{{#user.offer}}-->
+                    {{#offers}}
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="./offer-page.html">La verdad sobre el caso Savolta</a></h6>
+                                <h6><a href="./offer-page.html">{{book.title}}</a></h6>
                                 <h5>{{price}}</h5>
+                            </div>
+                            <div class="blog__item__text">
+                                <a href="/modifyOffer/{{id}}" class="blog__btn">Editar anuncio<span class="arrow_right"></span></a>
+                            </div>
+                            <div class="blog__item__text">
+                                <a href="/deleteOffer/{{id}}" class="blog__btn">Eliminar anuncio<span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
-                    <!--{{/user.offer}}-->
+                    {{/offers}}
                 </div>
+                {{^reviews}}
+                    <p>Actualmente no tienes anuncios subidos</p>
+                {{/reviews}} 
                 <div class="blog__item__text">
                     <a href="#" class="blog__btn">Cargar más anuncios <span class="arrow_right"></span></a>
                 </div>
@@ -63,7 +72,8 @@
 </section>
 <!-- Offers Section End -->
 
-<!-- Shopping history Section Begin -->
+
+<!-- Shopping history Section Begin 
 <section class="product spad">
     <div class="container">
         <hr>
@@ -111,7 +121,7 @@
         </div>
     </div>
 </section>
-<!-- Shopping history Section End -->
+Shopping history Section End -->
 
 <!-- Favourites Section Begin -->
 <section class="product spad">
@@ -123,17 +133,23 @@
         <div class="row">
             <div class="col-lg-9 col-md-7">
                 <div class="row">
-                   
+                    {{#favourites}}
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
+                            <img class="product__item__pic set-bg" src="/books/{{id}}/image">
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="./book-particular-page.html">La verdad sobre el caso Savolta</a></h6>
+                                <h6><a href="/book/{{id}}">{{title}}</a></h6>
                             </div>
                         </div>
+                        <div class="blog__item__text">
+                            <a href="/supressFavoutites/{{id}}" class="blog__btn">Quitar de favoritos<span class="arrow_right"></span></a>
+                        </div>
                     </div>
-                   
+                    {{/favourites}}
+                    {{^favourites}}
+                        <p>Actualmente no tienes libros favoritos</p>
+                    {{/favourites}} 
                 <div class="blog__item__text">
                     <a href="#" class="blog__btn">Cargar más libros <span class="arrow_right"></span></a>
                 </div>
@@ -142,6 +158,51 @@
     </div>
 </section>
 <!-- Favourites Section End -->
+
+
+<!-- Reviews Section Begin -->
+<section class="blog spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>Reseñas realizadas</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-7">
+                <div class="row">
+                    {{#reviews}}
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="blog__item">
+                            <div class="blog__item__text">
+                                <ul>
+                                    <li><i class="fa fa-calendar-o"></i> {{date}}</li>
+                                </ul>
+                                <div class="product__item__text">
+                                    <h6><a href="/book/{{book.id}}">{{book.title}}</a></h6>
+                                </div>
+                                <p>{{text}} </p>
+                                <div class="blog__item__text">
+                                    <a href="/modifyReview/{{id}}" class="blog__btn">Editar reseña<span class="arrow_right"></span></a>
+                                </div>
+                                <div class="blog__item__text">
+                                    <a href="/deleteReview/{{id}}" class="blog__btn">Eliminar reseña<span class="arrow_right"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/reviews}}
+                </div>
+                {{^reviews}}
+                    <p>Actualmente no tienes reseñas publicadas</p>
+                {{/reviews}} 
+                <div class="blog__item__text">
+                    <a href="#" class="blog__btn">Cargar más reseñas <span class="arrow_right"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Reviews Section End -->
+
 
 <!-- Footer -->
 {{>footer}}

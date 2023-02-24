@@ -51,6 +51,27 @@ public class ReviewController {
 		return "upload-review-page";
 	}
 
+    @GetMapping("/modifyReview/{id}")
+	public String modifyReview(Model model, @PathVariable long id) {
+        Optional<Review> review = reviewRepository.findById(id);
+        model.addAttribute("review", review.get());
+		return "update-review-page";
+	}
+
+    @PostMapping("/updatedReview/{id}")
+	public String updatedReview(Model model, @PathVariable long id, @RequestParam String text) {
+        Optional<Review> review = reviewRepository.findById(id);
+        Date date = new Date();
+        review.get().setDate(date);
+        review.get().setText(text);
+		reviewRepository.save(review.get());
+		return "redirect:/user-page";
+	}
   
 
+    @GetMapping("/deleteReview/{id}")
+	public String deleteReview(Model model, @PathVariable long id) {
+        reviewRepository.deleteById(id);
+		return "redirect:/user-page";
+	}
 }

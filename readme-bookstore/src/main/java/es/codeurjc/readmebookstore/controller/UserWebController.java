@@ -62,6 +62,9 @@ public class UserWebController {
             model.addAttribute("id", request.getRequestedSessionId());
             model.addAttribute("name", principal.getName());
             model.addAttribute("email", user.getEmail());
+            model.addAttribute("favourites", user.getFavouriteBooks());
+            model.addAttribute("reviews", user.getReadedReviews());
+            model.addAttribute("offers", user.getOffers());
             model.addAttribute("hasImage", user.hasImage());
             if (user.hasImage()){
                 model.addAttribute("imageField", user.getImageFile());
