@@ -22,24 +22,26 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6">
-                <div class="product__details__pic">
-                    <div class="product__details__pic__item">
-                        <img class="product__details__pic__item--large" src="img/books-offers/example-book.jpg" alt="">
-                    </div>
-                </div>
+                <img src="/offers/{{offer.id}}/image">
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
-                    <h3>Anuncio de ejemplo</h3>
-                    <h4>Vendedor: Usuario1</h4>
-                    <div class="product__details__price">10€</div>
-                    <p>Este es un libro imaginario que estoy vendiendo a modo de ejemplo.</p>
-                    <a href="./checkout-page.html" class="primary-btn">COMPRAR</a>
+                    <h3>{{offer.book.title}}</h3>
+                    <h4>Vendedor: {{offer.user.name}}</h4>
+                    <div class="product__details__price">{{offer.price}} EUR</div>
+                    <p>{{offer.description}}</p>
+
+                    {{#logged}}
+                    <a href="./checkout-page.html" class="primary-btn">Comprar</a>
+                    {{/logged}}
+                    {{^logged}}
+                    <a href="/login" class="primary-btn">Inicia sesión para comprar este libro</a>
+                    {{/logged}}
+
                     <ul>
-                        <li><b>Autor</b> <span>Eduardo Mendoza</span></li>
-                        <li><b>Editorial</b> <span>Planeta</span></li>
-                        <li><b>Género</b> <span>Novela</span></li>
-                        <li><b>Subjenero</b> <span>Policiaca</span></li>
+                        <li><b>Autor</b> <span>{{offer.book.author}}</span></li>
+                        <li><b>Editorial</b> <span>{{offer.edition}}</span></li>
+                        <li><b>Género</b> <span>{{offer.book.genre}}</span></li>
                         <li><b>Comparte este anuncio</b>
                             <div class="share">
                                 <a href="#"><i class="fa fa-facebook"></i></a>

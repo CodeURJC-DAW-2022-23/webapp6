@@ -1,7 +1,9 @@
 package es.codeurjc.readmebookstore.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Offer;
@@ -69,15 +72,21 @@ public class AdminController {
         return "admin-page";
     }
 
-    @RequestMapping("/admin/add-book")
+    @GetMapping("/admin/add-book")
     public String addBook(Model model, @RequestParam String title, @RequestParam String genre,
-            @RequestParam String author) {
+            @RequestParam String author, MultipartFile imageField) throws IOException {
         Book newBook = new Book(title, author, genre);
+
+        if (!imageField.isEmpty()) {
+            newBook.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+            newBook.setImage(true);
+        }
         bookRepository.save(newBook);
         return "redirect:/admin";
     }
 
-    // EDIT DATA //////////////////////////////////////////////////////////////////////////////////////////
+    // EDIT DATA
+    // //////////////////////////////////////////////////////////////////////////////////////////
 
     @RequestMapping("/admin/edit-user/{id}")
     public String editUser(Model model, @PathVariable long id, @RequestParam String email) {
@@ -88,7 +97,8 @@ public class AdminController {
     }
 
     @RequestMapping("/admin/edit-offer/{id}")
-    public String editOffer(Model model, @PathVariable long id, @RequestParam String edition, @RequestParam String description, @RequestParam Float price) {
+    public String editOffer(Model model, @PathVariable long id, @RequestParam String edition,
+            @RequestParam String description, @RequestParam Float price) {
         Offer offer = offerService.findById(id).get();
         offer.setEdition(edition);
         offer.setDescription(description);
@@ -113,11 +123,12 @@ public class AdminController {
         book.setGenre(genre);
         book.setAuthor(author);
         bookRepository.save(book);
-        
+
         return "redirect:/admin";
     }
 
-    // DELETE DATA ///////////////////////////////////////////////////////////////////////////////////
+    // DELETE DATA
+    // ///////////////////////////////////////////////////////////////////////////////////
 
     @RequestMapping("/admin/delete-user/{id}")
     public String deleteUser(Model model, @PathVariable long id) {

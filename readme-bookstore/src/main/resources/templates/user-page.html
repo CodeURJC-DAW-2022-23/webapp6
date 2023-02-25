@@ -18,7 +18,7 @@
                     {{#hasImage}}
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
-                            <img class="product__details__pic__item--large" src="/user-page/{{name}}/image" alt="">
+                            <img class="product__details__pic__item--large" src="/users/{{name}}/image" alt="">
                         </div>
                     </div>
                     {{/hasImage}}
@@ -44,10 +44,9 @@
                     {{#offers}}
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            </div>
+                            <img src="/offers/{{id}}/image">
                             <div class="product__item__text">
-                                <h6><a href="./offer-page.html">{{book.title}}</a></h6>
+                                <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
                                 <h5>{{price}}</h5>
                             </div>
                             <div class="blog__item__text">

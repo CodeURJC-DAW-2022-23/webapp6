@@ -22,7 +22,7 @@
     <div class="container">
         <div class="checkout__form">
             <h4>Detalles del libro</h4>
-            <form action="/uploadedOffer/{{book.id}}" method="post">
+            <form action="/upload-offer/{{book.id}}" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout__input">
@@ -35,18 +35,19 @@
                         </div>
                         <div class="checkout__input">
                             <p>Precio<span>*</span></p>
-                            <input type="text" name="price" required>
+                            <input type="number" step="0.01" name="price" required>
                         </div>
 
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
                             <h4>Tu libro</h4>
-                            <input type="hidden" name="_csrf" value="{{token}}"/>
-                            <button type="button" class="site-btn">SUBIR UNA FOTO<span>*</span></button>
+                            <input type="hidden" name="_csrf" value="{{token}}" />
+                            <input type='file' name='imageField' accept=".png, .jpg, .jpeg" />
                             <button type="submit" class="site-btn">SUBIR LIBRO</button>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>

@@ -40,10 +40,11 @@
                         <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
                         <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
                         <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
-                        <td title="Editar imagen" class="checkout__input"><a href="#"><img src="/users/{{id}}/image" height="100"></a></td>
+                        <td title="Editar imagen" class="checkout__input"><a href="#"><img
+                                    src="/users/{{name}}/image" height="100"></a></td>
                         <td class="checkout__input">
                             <button title="Guardar cambios" type="submit" class="blog__btn"><i
-                                class="fa fa-save"></i></button>
+                                    class="fa fa-save"></i></button>
                             <a title="Eliminar usuario" href="/admin/delete-user/{{id}}" class="blog__btn"><i
                                     class="fa fa-trash"></i></a>
                         </td>
@@ -76,11 +77,12 @@
                         <td class="checkout__input"><input type="text" name="edition" value="{{edition}}"></td>
                         <td class="checkout__input"><input type="text" name="description" value="{{description}}"></td>
                         <td class="checkout__input"><input type="number" step="0.01" name="price" value={{price}}></td>
-                        <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-cog"></a></td>
+                        <td title="Editar imagen" class="checkout__input"><a href="#"><img src="/offers/{{id}}/image"
+                                    height="100"></a></td>
 
                         <td class="checkout__input">
                             <button title="Guardar cambios" type="submit" class="blog__btn"><i
-                                class="fa fa-save"></i></button>
+                                    class="fa fa-save"></i></button>
                             <a title="Eliminar anuncio" href="/admin/delete-offer/{{id}}" class="blog__btn"><i
                                     class="fa fa-trash"></i></a>
                         </td>
@@ -133,12 +135,13 @@
                 </tr>
                 {{#bookList}}
                 <tr class="blog__item__text">
-                    <form action="/admin/edit-book/{{id}}">
+                    <form action="/admin/edit-book/{{id}}" enctype="multipart/form-data">
                         <td>{{id}}</td>
                         <td class="checkout__input"><input type="text" name="title" value="{{title}}"></td>
                         <td class="checkout__input"><input type="text" name="author" value="{{author}}"></td>
                         <td class="checkout__input"><input type="text" name="genre" value="{{genre}}"></td>
-                        <td title="Editar imagen" class="checkout__input"><a href="#"><img src="/books/{{id}}/image" height="100"></a></td>
+                        <td title="Editar imagen" class="checkout__input"><a href="#"><img src="/books/{{id}}/image"
+                                    height="100"></a></td>
 
                         <td class="checkout__input">
                             <button title="Guardar cambios" type="submit" class="blog__btn"><i
@@ -154,7 +157,7 @@
             <!-- Add new book -->
             <div class="checkout__order">
                 <h4>Añadir un libro nuevo</h4>
-                <form action="/admin/add-book">
+                <form action="/admin/add-book" enctype="multipart/form-data">
                     <div class="checkout__input">
                         <p>Introduzca el título del libro:</p>
                         <input type="text" name="title" placeholder="Titulo" required>
@@ -167,8 +170,10 @@
                         <p>Introduzca el género principal del libro:</p>
                         <input type="text" name="genre" placeholder="Género" required>
                     </div>
-
-                    <button class="site-btn">Subir foto de página</button>
+                    <div class="checkout__input">
+                        <p>Seleccione la imagen de portada:</p>
+                        <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                    </div>
                     <button type="submit" class="site-btn">Subir libro</button>
                 </form>
             </div>
