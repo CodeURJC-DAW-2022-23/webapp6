@@ -8,7 +8,7 @@
         </div>
         <div class="checkout__form">
 
-            <!-- Users -->
+            <!-------------------------------------------- Users -------------------------------------------->
             <h4>Usuarios</h4>
             <table class="admin_table">
                 <tr>
@@ -21,88 +21,106 @@
                     <th>Imagen</th>
                     <th></th>
                 </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Administrator</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
                 {{#userList}}
                 <tr class="blog__item__text">
-                    <td>{{id}}</td>
-                    <td>{{name}}</td>
-                    <td class="checkout__input"><input type="text" value="{{email}}"></td>
-                    <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
-                    <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
-                    <td class="checkout__input"><a href="#" class="blog__btn">Eliminar</a></td>
-                    <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
-
-                    <td class="checkout__input">
-                        <a href="#" class="blog__btn">Guardar cambios</a>
-                        <a href="/admin/delete-user/{{id}}" class="blog__btn">Eliminar usuario</a>
-                    </td>
+                    <form action="/admin/edit-user/{{id}}">
+                        <td>{{id}}</td>
+                        <td>{{name}}</td>
+                        <td class="checkout__input"><input type="text" name="email" value="{{email}}"></td>
+                        <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
+                        <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
+                        <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
+                        <td title="Editar imagen" class="checkout__input"><a href="#"><img src="/users/{{id}}/image" height="100"></a></td>
+                        <td class="checkout__input">
+                            <button title="Guardar cambios" type="submit" class="blog__btn"><i
+                                class="fa fa-save"></i></button>
+                            <a title="Eliminar usuario" href="/admin/delete-user/{{id}}" class="blog__btn"><i
+                                    class="fa fa-trash"></i></a>
+                        </td>
+                    </form>
                 </tr>
                 {{/userList}}
             </table>
 
-            <!-- Offers -->
+            <!------------------------------------------- Offers -------------------------------------------->
             <h4>Anuncios</h4>
             <table class="admin_table">
                 <tr>
                     <th>id</th>
+                    <th>Libro</th>
+                    <th>Vendedor</th>
                     <th>Fecha</th>
                     <th>Edición</th>
                     <th>Descripción</th>
                     <th>Precio</th>
-                    <th>Libro</th>
-                    <th>Vendedor</th>
                     <th>Imagen</th>
                     <th></th>
                 </tr>
                 {{#offerList}}
                 <tr class="blog__item__text">
-                    <td>{{id}}</td>
-                    <td class="checkout__input"><input type="date" value="{{date}}"></td>
-                    <td class="checkout__input"><input type="text" value="{{edition}}"></td>
-                    <td class="checkout__input"><input type="text" value="{{description}}"></td>
-                    <td class="checkout__input"><input type="number" value={{price}}></td>
-                    <td class="checkout__input"><input type="text" value="{{book}}"></td>
-                    <td>{{user.name}}</td>
-                    <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
+                    <form action="/admin/edit-offer/{{id}}">
+                        <td>{{id}}</td>
+                        <td>{{book.title}}</td>
+                        <td>{{user.name}}</td>
+                        <td><i class="fa fa-calendar-o"></i> {{date}}</td>
+                        <td class="checkout__input"><input type="text" name="edition" value="{{edition}}"></td>
+                        <td class="checkout__input"><input type="text" name="description" value="{{description}}"></td>
+                        <td class="checkout__input"><input type="number" step="0.01" name="price" value={{price}}></td>
+                        <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-cog"></a></td>
 
-                    <td class="checkout__input">
-                        <a href="#" class="blog__btn">Guardar cambios</a>
-                        <a href="/admin/delete-offer/{{id}}" class="blog__btn">Eliminar oferta</a>
-                    </td>
+                        <td class="checkout__input">
+                            <button title="Guardar cambios" type="submit" class="blog__btn"><i
+                                class="fa fa-save"></i></button>
+                            <a title="Eliminar anuncio" href="/admin/delete-offer/{{id}}" class="blog__btn"><i
+                                    class="fa fa-trash"></i></a>
+                        </td>
+                    </form>
                 </tr>
                 {{/offerList}}
             </table>
 
-            <!-- Reviews -->
+            <!----------------------------------------- Reviews ------------------------------------------->
             <h4>Reseñas</h4>
             <table class="admin_table">
                 <tr>
                     <th>id</th>
-                    <th>Fecha</th>
-                    <th>Texto</th>
                     <th>Libro</th>
                     <th>Autor</th>
+                    <th>Fecha</th>
+                    <th>Texto</th>
                     <th></th>
                 </tr>
                 {{#reviewList}}
                 <tr class="blog__item__text">
                     <form action="/admin/edit-review/{{id}}">
                         <td>{{id}}</td>
-                        <td class="checkout__input"><input type="date" name="date" value="{{date}}"></td>
-                        <td class="checkout__input"><input type="text" name="text" value="{{text}}"></td>
                         <td>{{book.title}}</td>
                         <td>{{user.name}}</td>
+                        <td><i class="fa fa-calendar-o"></i> {{date}}</td>
+                        <td class="checkout__input"><input type="text" name="text" value="{{text}}"></td>
 
                         <td class="checkout__input">
-                            <button type="submit" class="blog__btn">Guardar cambios</button>
-                            <a href="/admin/delete-review/{{id}}" class="blog__btn">Eliminar reseña</a>
+                            <button title="Guardar cambios" type="submit" class="blog__btn"><i
+                                    class="fa fa-save"></i></button>
+                            <a title="Eliminar reseña" href="/admin/delete-review/{{id}}" class="blog__btn"><i
+                                    class="fa fa-trash"></i></a>
                         </td>
                     </form>
-
                 </tr>
                 {{/reviewList}}
             </table>
 
-            <!-- Books -->
+            <!------------------------------------------- Books ------------------------------------------->
             <h4>Libros</h4>
             <table class="admin_table">
                 <tr>
@@ -120,11 +138,13 @@
                         <td class="checkout__input"><input type="text" name="title" value="{{title}}"></td>
                         <td class="checkout__input"><input type="text" name="author" value="{{author}}"></td>
                         <td class="checkout__input"><input type="text" name="genre" value="{{genre}}"></td>
-                        <td class="checkout__input"><a href="#" class="blog__btn">Reemplazar</a></td>
+                        <td title="Editar imagen" class="checkout__input"><a href="#"><img src="/books/{{id}}/image" height="100"></a></td>
 
                         <td class="checkout__input">
-                            <button type="submit" class="blog__btn">Guardar cambios</button>
-                            <a href="/admin/delete-book/{{id}}" class="blog__btn">Eliminar libro</a>
+                            <button title="Guardar cambios" type="submit" class="blog__btn"><i
+                                    class="fa fa-save"></i></button>
+                            <a title="Eliminar libro" href="/admin/delete-book/{{id}}" class="blog__btn"><i
+                                    class="fa fa-trash"></i></a>
                         </td>
                     </form>
                 </tr>
@@ -152,7 +172,6 @@
                     <button type="submit" class="site-btn">Subir libro</button>
                 </form>
             </div>
-
         </div>
     </div>
 </section>

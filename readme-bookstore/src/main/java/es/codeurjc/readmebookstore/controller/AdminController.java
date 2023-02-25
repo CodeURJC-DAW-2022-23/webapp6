@@ -54,6 +54,7 @@ public class AdminController {
     public String admin(Model model) {
 
         List<User> userList = userService.findAll();
+        userList.remove(0); // The admin is removed so it displays diferently.
         model.addAttribute("userList", userList);
 
         List<Book> bookList = bookService.findAll();
@@ -76,6 +77,34 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    // EDIT DATA //////////////////////////////////////////////////////////////////////////////////////////
+
+    @RequestMapping("/admin/edit-user/{id}")
+    public String editUser(Model model, @PathVariable long id, @RequestParam String email) {
+        User user = userService.findById(id).get();
+        user.setEmail(email);
+        userRepository.save(user);
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("/admin/edit-offer/{id}")
+    public String editOffer(Model model, @PathVariable long id, @RequestParam String edition, @RequestParam String description, @RequestParam Float price) {
+        Offer offer = offerService.findById(id).get();
+        offer.setEdition(edition);
+        offer.setDescription(description);
+        offer.setPrice(price);
+        offerRepository.save(offer);
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("/admin/edit-review/{id}")
+    public String editReview(Model model, @PathVariable long id, @RequestParam String text) {
+        Review review = reviewService.findById(id).get();
+        review.setText(text);
+        reviewRepository.save(review);
+        return "redirect:/admin";
+    }
+
     @RequestMapping("/admin/edit-book/{id}")
     public String editBook(Model model, @PathVariable long id, @RequestParam String title, @RequestParam String genre,
             @RequestParam String author) {
@@ -84,19 +113,11 @@ public class AdminController {
         book.setGenre(genre);
         book.setAuthor(author);
         bookRepository.save(book);
+        
         return "redirect:/admin";
     }
 
-    // @RequestMapping("/admin/edit-review/{id}")
-    // public String editReview(Model model, @PathVariable long id, @RequestParam
-    // Date date, @RequestParam String text) {
-    //
-    // Review review = reviewService.findById(id).get();
-    // review.setDate(date);
-    // review.setText(text);
-    // reviewRepository.save(review);
-    // return "redirect:/admin";
-    // }
+    // DELETE DATA ///////////////////////////////////////////////////////////////////////////////////
 
     @RequestMapping("/admin/delete-user/{id}")
     public String deleteUser(Model model, @PathVariable long id) {
@@ -104,9 +125,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping("/admin/delete-book/{id}")
-    public String deleteBook(Model model, @PathVariable long id) {
-        bookRepository.deleteById(id);
+    @RequestMapping("/admin/delete-offer/{id}")
+    public String deleteOffer(Model model, @PathVariable long id) {
+        offerRepository.deleteById(id);
         return "redirect:/admin";
     }
 
@@ -116,9 +137,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping("/admin/delete-offer/{id}")
-    public String deleteOffer(Model model, @PathVariable long id) {
-        offerRepository.deleteById(id);
+    @RequestMapping("/admin/delete-book/{id}")
+    public String deleteBook(Model model, @PathVariable long id) {
+        bookRepository.deleteById(id);
         return "redirect:/admin";
     }
 

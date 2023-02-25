@@ -5,7 +5,6 @@ import java.util.Date;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "Offers")
@@ -23,12 +24,14 @@ public class Offer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id = null;
 
+	@Temporal(TemporalType.DATE)
 	private Date date;
+	
 	private String edition;
-	private Float price;
 
-	@Column(columnDefinition = "TEXT")
 	private String description;
+
+	private Float price;
 
 	@Lob
 	private Blob imageFile;

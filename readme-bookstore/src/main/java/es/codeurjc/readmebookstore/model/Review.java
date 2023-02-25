@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +14,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Review")
+@Table(name = "Reviews")
 @DynamicUpdate
 public class Review {
 
@@ -23,7 +22,6 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id = null;
 
-    @Column(columnDefinition = "TEXT")
 	private String text;
 
 	@Temporal(TemporalType.DATE)
