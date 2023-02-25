@@ -46,6 +46,9 @@ public class Offer {
 	@ManyToOne
 	private User user;
 
+	@ManyToOne
+	private User buyer;
+
 	public Offer() {
 	}
 
@@ -136,5 +139,13 @@ public class Offer {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public User getBuyer() {
+		return buyer;
+	}
+
+	public void setBuyer(User user) {
+		this.buyer = user;
 	}
 }

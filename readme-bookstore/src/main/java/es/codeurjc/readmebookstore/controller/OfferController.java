@@ -72,14 +72,23 @@ public class OfferController {
     }
 
     @GetMapping("/offer-page/{id}")
-    public String offerPage(Model model, @PathVariable long id) {
+    public String offerPage(Model model, @PathVariable long id, HttpServletRequest request) {
+
         Offer offer = offerRepository.findById(id).get();
+        String activeUserName = request.getUserPrincipal().getName();
+        String vendorName = offer.getUser().getName();
+
+        Boolean soldOffer = offer.getSold();
+        Boolean ownOffer = activeUserName.equals(vendorName);
+
+        model.addAttribute("sold", soldOffer);
+        model.addAttribute("own", ownOffer);
         model.addAttribute("offer", offer);
         return "offer-page";
     }
 
-    @GetMapping("/modifyOffer/{id}")
-    public String modifyReview(Model model, @PathVariable long id) {
+    @GetMapping("/update-offer/{id}")
+    public String loadUpdateOferPage(Model model, @PathVariable long id) {
         Optional<Offer> offer = offerRepository.findById(id);
         model.addAttribute("offer", offer.get());
         return "update-offer-page";
@@ -101,6 +110,27 @@ public class OfferController {
     @GetMapping("/deleteOffer/{id}")
     public String deleteReview(Model model, @PathVariable long id) {
         offerRepository.deleteById(id);
+        return "redirect:/user-page";
+    }
+
+    @GetMapping("/checkout/{id}")
+    public String loadCheckoutPage(Model model, @PathVariable long id) {
+        Offer offer = offerRepository.findById(id).get();
+        model.addAttribute("offer", offer);
+        return "checkout-page";
+    }
+
+    @GetMapping("/buy-offer/{id}")
+    public String buyOffer(Model model, @PathVariable long id, HttpServletRequest request) {
+        Offer offer = offerRepository.findById(id).get();
+        User buyer = userRepository.findByName(request.getUserPrincipal().getName()).get();
+
+        offer.setSold(true);
+
+
+        offer.setBuyer(buyer);
+        offerRepository.save(offer);
+
         return "redirect:/user-page";
     }
 

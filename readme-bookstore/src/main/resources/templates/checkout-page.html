@@ -22,7 +22,7 @@
         </div>
         <div class="checkout__form">
             <h4>Datos de facturación</h4>
-            <form action="#">
+            <form action="/buy-offer/{{offer.id}}">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="row">
@@ -75,21 +75,16 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
                             <h4>Tu pedido</h4>
                             <div class="checkout__order__products">Producto</div>
-                            <ul>
-                                <a href="./index.html">La verdad sobre el caso Savolta</a>
-                            </ul>
+                            <ul>{{offer.book.title}}</ul>
                             <div class="checkout__order__products">Vendedor</div>
+                            <ul>{{offer.user.name}}</ul>
                             <ul>
-                                <a href="./index.html">Usuario1</a>
-                            </ul>
-                            <ul>
-                                <div class="checkout__order__total">Total <span>10€</span></div>
+                                <div class="checkout__order__total">Total <span>{{offer.price}} EUR</span></div>
                                 <div class="checkout__input__checkbox">
                                 </div>
                                 <button type="submit" class="site-btn">Comprar</button>

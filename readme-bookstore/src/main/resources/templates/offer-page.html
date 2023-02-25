@@ -31,12 +31,25 @@
                     <div class="product__details__price">{{offer.price}} EUR</div>
                     <p>{{offer.description}}</p>
 
+                    {{#sold}}
+                    <p>Ejemplar vendido.</p>
+                    {{/sold}}
+
+                    {{^sold}}
                     {{#logged}}
-                    <a href="./checkout-page.html" class="primary-btn">Comprar</a>
+                    {{#own}}
+                    <a href="/update-offer/{{offer.id}}" class="primary-btn">Editar</a>
+                    {{/own}}
+
+                    {{^own}}
+                    <a href="/checkout/{{offer.id}}" class="primary-btn">Comprar</a>
+                    {{/own}}
                     {{/logged}}
+
                     {{^logged}}
                     <a href="/login" class="primary-btn">Inicia sesión para comprar este libro</a>
                     {{/logged}}
+                    {{/sold}}
 
                     <ul>
                         <li><b>Autor</b> <span>{{offer.book.author}}</span></li>
