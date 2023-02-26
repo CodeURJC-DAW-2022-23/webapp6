@@ -3,7 +3,7 @@ package es.codeurjc.readmebookstore.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.User;
+import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.service.UserService;
+import es.codeurjc.readmebookstore.service.OfferService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import es.codeurjc.readmebookstore.repository.UserRepository;
@@ -38,6 +40,9 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private OfferService offerService;
+
+    @Autowired
     private UserRepository userRepository;
 
     @ModelAttribute
@@ -48,13 +53,18 @@ public class UserController {
         if (principal != null) {
             User user = userService.findByName(principal.getName());
 
+            List<Offer> offers = offerService.findOffersNotSoldByUser(user.getId());
+            List<Offer> historial = offerService.findShoppingHistorial(user.getId());
+
+
             model.addAttribute("logged", true);
             model.addAttribute("id", request.getRequestedSessionId());
             model.addAttribute("name", principal.getName());
             model.addAttribute("email", user.getEmail());
             model.addAttribute("favourites", user.getFavouriteBooks());
             model.addAttribute("reviews", user.getReadedReviews());
-            model.addAttribute("offers", user.getOffers());
+            model.addAttribute("offers", offers);
+            model.addAttribute("historial", historial);
             model.addAttribute("hasImage", user.hasImage());
             if (user.hasImage()) {
                 model.addAttribute("imageField", user.getImageFile());

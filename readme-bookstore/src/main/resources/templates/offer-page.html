@@ -32,7 +32,7 @@
                     <p>{{offer.description}}</p>
 
                     {{#sold}}
-                    <p>Ejemplar vendido.</p>
+                    <p>Ejemplar de {{offer.user.name}} vendido a {{offer.buyer.name}}.</p>
                     {{/sold}}
 
                     {{^sold}}

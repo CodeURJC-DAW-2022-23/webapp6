@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import jakarta.servlet.http.HttpServletRequest;
 import es.codeurjc.readmebookstore.model.Book;
+import es.codeurjc.readmebookstore.model.Offer;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.UserService;
+import es.codeurjc.readmebookstore.service.OfferService;
 import es.codeurjc.readmebookstore.repository.UserRepository;
 import es.codeurjc.readmebookstore.repository.BookRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +41,9 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+	@Autowired
+    private OfferService offerService;
 
     @Autowired
     private UserRepository userRepository;
@@ -70,9 +75,10 @@ public class BookController {
     @GetMapping("/book/{id}")
 	public String showBook(Model model, @PathVariable long id) {
         Optional<Book> book = bookRepository.findById(id);
+		List<Offer> offers = offerService.findOffersNotSoldByBook(id);
         model.addAttribute("book", book.get());
         model.addAttribute("reviews", book.get().getReviews());
-        model.addAttribute("offers", book.get().getOffers());
+        model.addAttribute("offers", offers);
 		return "book-particular-page";
 	}
 

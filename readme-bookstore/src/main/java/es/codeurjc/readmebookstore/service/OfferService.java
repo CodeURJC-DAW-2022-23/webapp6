@@ -33,6 +33,18 @@ public class OfferService {
 		return repository.findAll();
 	}
 
+	public List<Offer> findOffersNotSoldByBook(long id) {
+		return repository.findByOffersNotSoldByBook(id);
+	}
+
+	public List<Offer> findOffersNotSoldByUser(long id) {
+		return repository.findByOffersNotSoldByUser(id);
+	}
+
+	public List<Offer> findShoppingHistorial(long id) {
+		return repository.findByShoppingHistorial(id);
+	}
+
 	public void save(Offer offers) {
 		repository.save(offers);
 	}

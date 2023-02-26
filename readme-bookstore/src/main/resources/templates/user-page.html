@@ -31,98 +31,7 @@
 </section>
 <!-- Register Section End -->
 
-<!-- Offers Section Begin -->
-<section class="product spad">
-    <div class="container">
-        <hr>
-        <div class="section-title">
-            <h2>Tus anuncios</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-9 col-md-7">
-                <div class="row">
-                    {{#offers}}
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <img src="/offers/{{id}}/image">
-                            <div class="product__item__text">
-                                <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
-                                <h5>{{price}}</h5>
-                            </div>
-                            <div class="blog__item__text">
-                                <a href="/update-offer/{id}" class="blog__btn">Editar anuncio<span
-                                        class="arrow_right"></span></a>
-                            </div>
-                            <div class="blog__item__text">
-                                <a href="/deleteOffer/{{id}}" class="blog__btn">Eliminar anuncio<span
-                                        class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    {{/offers}}
-                </div>
-                {{^offers}}
-                <p>Actualmente no tienes anuncios subidos</p>
-                {{/offers}}
-                <div class="blog__item__text">
-                    <a href="#" class="blog__btn">Cargar más anuncios <span class="arrow_right"></span></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Offers Section End -->
 
-
-<!-- Shopping history Section Begin 
-<section class="product spad">
-    <div class="container">
-        <hr>
-        <div class="section-title">
-            <h2>Historial de compras y ventas</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-9 col-md-7">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="./offer-page.html">La verdad sobre el caso Savolta</a></h6>
-                                <h5>5.00 €</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Anuncio</a></h6>
-                                <h5>5.00 €</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Anuncio</a></h6>
-                                <h5>5.00 €</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog__item__text">
-                    <a href="#" class="blog__btn">Cargar más productos <span class="arrow_right"></span></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-Shopping history Section End -->
 
 <!-- Favourites Section Begin -->
 <section class="product spad">
@@ -162,6 +71,52 @@ Shopping history Section End -->
     </div>
 </section>
 <!-- Favourites Section End -->
+
+
+
+
+<!-- Offers Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <hr>
+        <div class="section-title">
+            <h2>Tus anuncios</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-md-7">
+                <div class="row">
+                    {{#offers}}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="product__item">
+                            <img src="/offers/{{id}}/image">
+                            <div class="product__item__text">
+                                <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
+                                <h5>{{price}}</h5>
+                            </div>
+                            <div class="blog__item__text">
+                                <a href="/update-offer/{{id}}" class="blog__btn">Editar anuncio<span
+                                        class="arrow_right"></span></a>
+                            </div>
+                            <div class="blog__item__text">
+                                <a href="/deleteOffer/{{id}}" class="blog__btn">Eliminar anuncio<span
+                                        class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/offers}}
+                </div>
+                {{^offers}}
+                <p>Actualmente no tienes anuncios subidos</p>
+                {{/offers}}
+                <div class="blog__item__text">
+                    <a href="#" class="blog__btn">Cargar más anuncios <span class="arrow_right"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Offers Section End -->
+
 
 
 <!-- Reviews Section Begin -->
@@ -208,6 +163,42 @@ Shopping history Section End -->
     </div>
 </section>
 <!-- Reviews Section End -->
+
+
+
+<!-- Shopping history Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <hr>
+        <div class="section-title">
+            <h2>Tu historial de compra-venta</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-md-7">
+                <div class="row">
+                    {{#historial}}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="product__item">
+                            <img src="/offers/{{id}}/image">
+                            <div class="product__item__text">
+                                <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
+                                <h5>{{price}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    {{/historial}}
+                </div>
+                {{^historial}}
+                <p>Actualmente no tienes historial de compra-venta</p>
+                {{/historial}}
+                <div class="blog__item__text">
+                    <a href="#" class="blog__btn">Cargar más historial de compra-venta <span class="arrow_right"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping history Section End -->
 
 
 <!-- Footer -->
