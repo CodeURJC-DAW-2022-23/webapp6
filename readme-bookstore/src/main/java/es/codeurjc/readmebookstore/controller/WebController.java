@@ -2,7 +2,7 @@ package es.codeurjc.readmebookstore.controller;
 
 import java.security.Principal;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,10 +39,10 @@ public class WebController {
 		return "index";
 	}
 
-	@GetMapping("/book-particular-page.html")
+	/* @GetMapping("/book-particular-page.html")
 	public String bookParticular(Model model) {
 		return "book-particular-page";
-	}
+	} */
 
 	@GetMapping("/books-general-page.html")
 	public String booksGeneral(Model model) {

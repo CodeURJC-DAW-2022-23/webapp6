@@ -19,7 +19,7 @@ import es.codeurjc.readmebookstore.repository.BookRepository;
 import es.codeurjc.readmebookstore.repository.UserRepository;
 import es.codeurjc.readmebookstore.repository.ReviewRepository;
 import es.codeurjc.readmebookstore.repository.OfferRepository;
-import jakarta.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 
 @Service
 public class DatabaseInitializer {
@@ -63,7 +63,7 @@ public class DatabaseInitializer {
 		// Sample users
 		User admin = new User("admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", "ADMIN");
 		userRepository.save(admin);
-		User user1 = new User("User1", passwordEncoder.encode("pass"), "user1@mail.ex", "USER");
+		User user1 = new User("user", passwordEncoder.encode("pass"), "user1@mail.ex", "USER");
 		setUserImage(user1, "/static/img/user-profiles/example-profile.png");
 		userRepository.save(user1);
 		User user2 = new User("User2", passwordEncoder.encode("pass"), "user2@mail.ex", "USER");

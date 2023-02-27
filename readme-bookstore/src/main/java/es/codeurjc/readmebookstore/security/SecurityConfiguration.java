@@ -12,70 +12,12 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-
-import jakarta.annotation.security.PermitAll;
-import org.springframework.security.config.annotation.web.AbstractRequestMatcherRegistry;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
 
 @Configuration
-@EnableWebSecurity
-public class SecurityConfiguration {
-    
-    @Autowired
-	RepositoryUserDetailsService userDetailsService;
-
-    @Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder(10, new SecureRandom());
-	}
-
-    
-    
-
-    /* @Override
-    protected void configure(HttpSecurity http) throws Exception {
-    	
-    	// Public pages
-        http.authorizeRequests().antMatchers("/").permitAll();
-        http.authorizeRequests().antMatchers("/login").permitAll();
-        http.authorizeRequests().antMatchers("/loginerror").permitAll();
-        http.authorizeRequests().antMatchers("/logout").permitAll();
-        // Private pages */
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((autorizeRequests ) -> autorizeRequests 
-        .requestMatchers("/admin-page").hasRole("ADMIN")   
-        .requestMatchers( "/**").permitAll() 
-        //.formLogin(withDefaults())   
-        );
-        http.formLogin().loginPage("/login");
-        http.formLogin().usernameParameter("username");
-        http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/user-page");
-        http.formLogin().failureUrl("/loginerror-page");
-
-        http.logout().logoutUrl("/logout");
-        http.logout().logoutSuccessUrl("/");
-
-       
-        //http.formLogin().loginPage("/login-page").loginProcessingUrl("/login");
-        //http.authorizeHttpRequests().requestMatchers("/index").permitAll().anyRequest().authenticated();
-        
-    return http.build();
-}
-
-
-} 
-
-
-
-
-/* 
-@Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	RepositoryUserDetailsService userDetailsService;
 	
@@ -97,17 +39,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/loginerror").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
         // Private pages
-        http.authorizeRequests().antMatchers("/newbook").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/editbook/*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/removebook/*").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/user-page").hasAnyRole("USER", "ADMIN");
+        http.authorizeRequests().antMatchers("/checkout-page/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/statistics-page/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/update-offer/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/update-review/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/update-user/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/upload-offer-page/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/upload-review-page/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN");
         // Login form
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/");
-        http.formLogin().failureUrl("/loginerror");
+        http.formLogin().defaultSuccessUrl("/user-page");
+        http.formLogin().failureUrl("/loginerror-page");
         // Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
     }
-}*/
+}

@@ -2,8 +2,8 @@ package es.codeurjc.readmebookstore.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.http.HttpStatus;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.RequestDispatcher;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 
@@ -27,6 +27,12 @@ public class PageErrorController implements ErrorController {
         }
 
         return "error-page";
+    }
+
+    @Override
+    public String getErrorPath() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getErrorPath'");
     }
 
 }

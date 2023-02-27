@@ -24,7 +24,7 @@ import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.service.UserService;
 import es.codeurjc.readmebookstore.service.OfferService;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import es.codeurjc.readmebookstore.repository.UserRepository;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
