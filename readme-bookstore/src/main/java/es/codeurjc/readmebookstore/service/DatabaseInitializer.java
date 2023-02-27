@@ -48,15 +48,15 @@ public class DatabaseInitializer {
 		setBookImage(book0, "/static/img/book-covers/la-verdad-sobre-el-caso-savolta.png");
 		bookRepository.save(book0);
 
-		Book book1 = new Book("Elantris", "Brandon Sanderson", "Fantasía");
+		Book book1 = new Book("Elantris", "Brandon Sanderson", "Fantasia");
 		setBookImage(book1, "/static/img/book-covers/elantris.jpg");
 		bookRepository.save(book1);
 
-		Book book2 = new Book("Nacidos de la bruma", "Brandon Sanderson", "Fantasía");
+		Book book2 = new Book("Nacidos de la bruma", "Brandon Sanderson", "Fantasia");
 		setBookImage(book2, "/static/img/book-covers/nacidos-de-la-bruma.jpg");
 		bookRepository.save(book2);
 
-		Book book3 = new Book("El Archivo de las Tormentas", "Brandon Sanderson", "Fantasía");
+		Book book3 = new Book("El Archivo de las Tormentas", "Brandon Sanderson", "Fantasia");
 		setBookImage(book3, "/static/img/book-covers/el-archivo-de-las-tormentas.jpg");
 		bookRepository.save(book3);
 

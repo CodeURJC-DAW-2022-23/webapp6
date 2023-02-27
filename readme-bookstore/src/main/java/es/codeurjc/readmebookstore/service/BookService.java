@@ -34,4 +34,21 @@ public class BookService {
 	public void delete(long id) {
 		repository.deleteById(id);
 	}
+
+	public Optional<Book> findByTitle (String title) {
+		return repository.findByTitle(title);
+	}
+
+	public List<Book> findByAuthor (String author) {
+		return repository.findByAuthor(author);
+	}
+
+	public List<Book> findByGenre (String genre) {
+		return repository.findByGenre(genre);
+	}
+
+	public List<Book> findByPartial (String genre) {
+		return repository.findByPartial(genre);
+	}
+
 }

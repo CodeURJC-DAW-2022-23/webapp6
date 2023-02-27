@@ -26,6 +26,8 @@ import es.codeurjc.readmebookstore.repository.BookRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -120,5 +122,99 @@ public class BookController {
 		}
 	}
 
+	@GetMapping("/search")
+    public String doSearch(Model model, @RequestParam String searchtext) {
+		String result = "false";
+		result = doSearchTitle(model, searchtext);
+        if (result != "false") {
+            return result;
+        } else {
+			result = doSearchAuthor(model, searchtext);
+			if (result != "false") {
+				return result;
+			} else {
+				result = doSearchGenre(model, searchtext);
+				if (result != "false") {
+					return result;
+				} else {
+					result = doSearchPartial(model, searchtext);
+					if (result != "false") {
+						return result;
+					} else {
+						//return "error-search"; No has encontrado nada
+						return "error-page";
+					}
+				}
+			}
+		}
+    }
+
+	private String doSearchTitle(Model model, @RequestParam String title) {
+		String result = "false";
+		try {
+            Optional<Book> booktitle = bookService.findByTitle(title);
+            if(booktitle.get().getId() != null) {	
+				return showBook(model, booktitle.get().getId());
+            }
+            else {
+                result = "false";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = "false";
+        }
+		return result;
+	}
+
+	private String doSearchAuthor(Model model, @RequestParam String author) {
+		String result = "false";
+		try {
+            List<Book> bookauthor = bookService.findByAuthor(author);
+            if (bookauthor.size() > 0) {
+				model.addAttribute("books", bookauthor);
+				return "books-general-page";
+			} else {
+				return "false";
+			}
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = "false";
+        }
+		return result;
+	}
+
+	private String doSearchGenre(Model model, @RequestParam String genre) {
+		String result = "false";
+		try {
+            List<Book> bookgenre = bookService.findByPartial(genre);
+            if (bookgenre.size() > 0) {
+				model.addAttribute("books", bookgenre);
+				return "books-general-page";
+			} else {
+				return "false";
+			}
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = "false";
+        }
+		return result;
+	}
+
+	private String doSearchPartial(Model model, @RequestParam String partial) {
+		String result = "false";
+		try {
+            List<Book> bookpartial = bookService.findByGenre(partial);
+            if (bookpartial.size() > 0) {
+				model.addAttribute("books", bookpartial);
+				return "books-general-page";
+			} else {
+				return "false";
+			}
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = "false";
+        }
+		return result;
+	}
 
 }
