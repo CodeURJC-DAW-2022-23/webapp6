@@ -117,6 +117,10 @@ public class Offer {
 		this.image = image;
 	}
 
+	public boolean hasImage() {
+		return this.image;
+	}
+
 	public boolean getSold() {
 		return this.sold;
 	}

@@ -96,13 +96,19 @@ public class OfferController {
 
     @PostMapping("/updatedOffer/{id}")
     public String updatedReview(Model model, @PathVariable long id, @RequestParam String edition,
-            @RequestParam String text, @RequestParam float price) {
+            @RequestParam String text, @RequestParam float price,MultipartFile imageField) throws IOException {
         Optional<Offer> offer = offerRepository.findById(id);
         Date date = new Date();
         offer.get().setDate(date);
         offer.get().setDescription(text);
         offer.get().setEdition(edition);
         offer.get().setPrice(price);
+        offerRepository.save(offer.get());
+        try {
+            updateImage(offer.get(), false, imageField);
+        } catch (Exception e) {
+            return "redirect:/user-page";
+        }
         offerRepository.save(offer.get());
         return "redirect:/user-page";
     }
@@ -145,6 +151,28 @@ public class OfferController {
                     .contentLength(offer.getImageFile().length()).body(file);
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    private void updateImage(Offer offer, boolean removeImage, MultipartFile imageField)
+            throws IOException, SQLException {
+
+        if (!imageField.isEmpty()) {
+            offer.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+            offer.setImage(true);
+        } else {
+            if (removeImage) {
+                offer.setImageFile(null);
+                offer.setImage(false);
+            } else {
+                // Maintain the same image loading it before updating the dish
+                Offer dbOffer = offerService.findById(offer.getId()).orElseThrow();
+                if (dbOffer.hasImage()) {
+                    offer.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
+                            dbOffer.getImageFile().length()));
+                    offer.setImage(true);
+                }
+            }
         }
     }
 

@@ -22,7 +22,7 @@
     <div class="container">
         <div class="checkout__form">
             <h4>Detalles del libro</h4>
-            <form action="/updatedOffer/{{offer.id}}" method="post">
+            <form action="/updatedOffer/{{offer.id}}" method="post" enctype="multipart/form-data" class="appointment-form">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout__input">
@@ -42,8 +42,12 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
                             <h4>Tu libro</h4>
+                            <div class="checkout__order">
+                                <div class="product__item__pic set-bg" data-setbg="/offers/{{offer.id}}/image">
+                                </div>
+                                <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                            </div>
                             <input type="hidden" name="_csrf" value="{{token}}"/>
-                            <button type="button" class="site-btn">Cambiar la foto<span>*</span></button>
                             <button type="submit" class="site-btn">Actualizar anuncio</button>
                         </div>
                     </div>
