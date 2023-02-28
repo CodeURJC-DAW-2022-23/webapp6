@@ -25,12 +25,7 @@ public class LoginController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@RequestMapping("/login")
-	public String login() {
-		return "login-page";
-	}
-
-	@GetMapping("/login-page.html")
+	@GetMapping("/login")
 	public String login(Model model) {
 		return "login-page";
 	}
@@ -51,7 +46,7 @@ public class LoginController {
 		return "register";
 	}
 
-	@GetMapping("/register-page.html")
+	@GetMapping("/register")
 	public String register(Model model) {
 		return "register-page";
 	}

@@ -6,26 +6,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.RequestDispatcher;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
 @Controller
 public class PageErrorController implements ErrorController {
 
     @GetMapping("/error")
-    public String handleError(HttpServletRequest request) {
+    public String handleError(Model model, HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
-                return "error404-page";
+                model.addAttribute("404", true);
             } else if (statusCode == HttpStatus.FORBIDDEN.value()) {
-                return "error403-page";
+                model.addAttribute("403", true);
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                return "error500-page";
+                model.addAttribute("500", true);
+            } else {
+                model.addAttribute("else", true);
             }
         }
-
         return "error-page";
     }
 
