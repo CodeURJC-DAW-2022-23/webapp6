@@ -561,7 +561,7 @@ ol {
 -----------------------*/
 
 .hero {
-	padding-bottom: 50px;
+	padding-bottom: 0px;
 }
 
 .hero.hero-normal {
@@ -639,7 +639,7 @@ ol {
 }
 
 .hero__search__form {
-	width: 610px;
+	width: 100%;
 	height: 50px;
 	border: 1px solid #ebebeb;
 	position: relative;
@@ -811,7 +811,7 @@ ol {
 -----------------------*/
 
 .featured {
-	padding-top: 80px;
+	padding-top: 0px;
 	padding-bottom: 40px;
 }
 
