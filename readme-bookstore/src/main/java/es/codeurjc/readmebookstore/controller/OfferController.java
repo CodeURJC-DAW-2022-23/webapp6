@@ -94,7 +94,7 @@ public class OfferController {
         return "update-offer-page";
     }
 
-    @PostMapping("/updatedOffer/{id}")
+    @PostMapping("/updated-offer/{id}")
     public String updatedReview(Model model, @PathVariable long id, @RequestParam String edition,
             @RequestParam String text, @RequestParam float price,MultipartFile imageField) throws IOException {
         Optional<Offer> offer = offerRepository.findById(id);
@@ -113,7 +113,7 @@ public class OfferController {
         return "redirect:/user-page";
     }
 
-    @GetMapping("/deleteOffer/{id}")
+    @GetMapping("/delete-offer/{id}")
     public String deleteReview(Model model, @PathVariable long id) {
         offerRepository.deleteById(id);
         return "redirect:/user-page";

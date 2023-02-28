@@ -32,7 +32,7 @@ public class ReviewController {
 
 
  
-	@PostMapping("/uploadedReview/{id}")
+	@PostMapping("/uploaded-review/{id}")
 	public String uploadedReview(Model model, @PathVariable long id, @RequestParam String text, HttpServletRequest request) {
         Optional<Book> book = bookRepository.findById(id);
         String username = request.getUserPrincipal().getName();
@@ -44,21 +44,21 @@ public class ReviewController {
 	}
 
 
-    @GetMapping("/uploadReview/{id}")
+    @GetMapping("/upload-review/{id}")
 	public String uploadReview(Model model, @PathVariable long id) {
         Optional<Book> book = bookRepository.findById(id);
         model.addAttribute("book", book.get());
 		return "upload-review-page";
 	}
 
-    @GetMapping("/modifyReview/{id}")
+    @GetMapping("/modify-review/{id}")
 	public String modifyReview(Model model, @PathVariable long id) {
         Optional<Review> review = reviewRepository.findById(id);
         model.addAttribute("review", review.get());
 		return "update-review-page";
 	}
 
-    @PostMapping("/updatedReview/{id}")
+    @PostMapping("/updated-review/{id}")
 	public String updatedReview(Model model, @PathVariable long id, @RequestParam String text) {
         Optional<Review> review = reviewRepository.findById(id);
         Date date = new Date();
@@ -69,7 +69,7 @@ public class ReviewController {
 	}
   
 
-    @GetMapping("/deleteReview/{id}")
+    @GetMapping("/delete-review/{id}")
 	public String deleteReview(Model model, @PathVariable long id) {
         reviewRepository.deleteById(id);
 		return "redirect:/user-page";

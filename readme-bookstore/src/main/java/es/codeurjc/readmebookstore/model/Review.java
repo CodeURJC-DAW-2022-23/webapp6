@@ -31,15 +31,15 @@ public class Review {
  	private Book book;
 
     @ManyToOne
-    private User user;
+    private User author;
 
     public Review() {}
 
-	public Review(String text, Date date, Book book, User user) {
+	public Review(String text, Date date, Book book, User author) {
 		this.text = text;
 		this.date = date;
 		this.book = book;
-		this.user = user;
+		this.author = author;
     }
 
 	public Long getId() {
@@ -74,12 +74,12 @@ public class Review {
 		this.book = book;
 	}
 
-	public User getUser() {
-		return user;
+	public User getAuthor() {
+		return author;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 	@Override

@@ -53,6 +53,21 @@ public class AdminController {
     @Autowired
     private OfferService offerService;
 
+    @GetMapping("/")
+	public String home(Model model) {
+		return "index";
+	}
+
+	@GetMapping("/index")
+	public String index(Model model) {
+		return "index";
+	}
+
+    @GetMapping("/contact")
+	public String contact(Model model) {
+		return "contact-page";
+	}
+
     @GetMapping("/admin")
     public String admin(Model model) {
 
