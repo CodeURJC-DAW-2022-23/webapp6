@@ -1,21 +1,16 @@
 {{>header}}
 
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="img/books-banners/la-verdad-sobre-el-caso-savolta-banner.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>La verdad sobre el caso Savolta</h2>
-                    <div class="breadcrumb__option">
-                        <span>Compra uno</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="container">
+    <div class="section-title">
+        {{#sold}}
+            <h2>Ejemplar vendido</h2>
+        {{/sold}}
+        {{^sold}}
+            <h2>Compra este ejemplar</h2>
+        {{/sold}}
+        
     </div>
 </section>
-<!-- Breadcrumb Section End -->
 
 <!-- Offer Section Begin -->
 <section class="product-details spad">
