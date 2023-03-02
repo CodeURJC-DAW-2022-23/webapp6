@@ -203,4 +203,9 @@ public class UserController {
         return "redirect:/book/" + bookid;
 	}
 
+    @GetMapping("/delete-favourite-user-page/{bookid}")
+    public String deleteFavoriteUserPage(Model model, @PathVariable long bookid) {
+        userService.deletefavorite(bookid);
+        return "redirect:/user-page";
+	}
 }
