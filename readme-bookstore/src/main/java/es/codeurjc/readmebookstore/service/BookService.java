@@ -53,4 +53,12 @@ public class BookService {
 		return repository.findByPartial(genre);
 	}
 
+	public Book BookfindById (long id) {
+		return repository.BookfindById(id);
+	}
+
+	public List<Book> isFavorite (Long userid, Long bookid) {
+		return repository.isFavorite(userid, bookid);
+	}
+
 }

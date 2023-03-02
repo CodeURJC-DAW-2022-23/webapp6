@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,8 +22,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.User;
+import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.service.UserService;
+import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.OfferService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +48,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BookService bookService;
 
     @ModelAttribute
     public void addAttributes(Model model, HttpServletRequest request) {
@@ -178,5 +185,22 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/addfavorite/{bookid}")
+	public String addFavorite(Model model, @PathVariable long bookid, HttpServletRequest request) throws IOException {
+        Book book = bookService.BookfindById(bookid); 
+        
+        String sessionName = request.getUserPrincipal().getName();
+        Optional<User> user = userService.findByNameopt(sessionName);
+        user.get().setFavouriteBooks(book);
+		userRepository.save(user.get());
+        return "redirect:/book/" + bookid;
+	}
+
+    @GetMapping("/removefavorite/{bookid}")
+	public String removeFavorite(Model model, @PathVariable long bookid) {
+        userService.deletefavorite(bookid);
+        return "redirect:/book/" + bookid;
+	}
 
 }

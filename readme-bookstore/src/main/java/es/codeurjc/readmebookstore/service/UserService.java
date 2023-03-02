@@ -25,6 +25,10 @@ public class UserService {
 
     }
 
+    public Optional findByNameopt(String name) {
+        return userRepository.findByNameopt(name);
+    }
+
     public boolean exist(long id) {
         return userRepository.existsById(id);
     }
@@ -43,6 +47,10 @@ public class UserService {
 
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public void deletefavorite(long id) {
+        userRepository.deletefavorite(id);
     }
 
 

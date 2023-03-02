@@ -24,6 +24,12 @@ public interface BookRepository extends JpaRepository<Book, Long> {
         @Query(value = "select * from books.book  where (genre like  %:partial%) or (title like  %:partial%) or (author like  %:partial%);", nativeQuery = true)
         List<Book> findByPartial (String partial);
 
+        @Query(value = "select * from books.book  where id = :id", nativeQuery = true)
+        Book BookfindById (long id);
+
+        @Query(value = "SELECT * FROM (SELECT * FROM books.book b where b.id in (select favourite_book_id from books.user_favourite_book f  where f.user_id = :userid)) c WHERE c.id = :bookid", nativeQuery = true)
+        List<Book> isFavorite(Long userid, Long bookid);
+        
         public Page<Book> findAll(Pageable page);
 
 }

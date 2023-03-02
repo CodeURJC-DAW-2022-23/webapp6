@@ -857,6 +857,11 @@ ol {
 	bottom: 20px;
 }
 
+.img-responsive{
+	max-width:50%;
+	height:auto
+   }
+
 .featured__item__pic {
 	height: 270px;
 	position: relative;
@@ -1078,6 +1083,11 @@ ol {
 /*---------------------
   Sidebar
 -----------------------*/
+
+.sidebar__fav {
+	align-items: center;
+	text-align: center;
+}
 
 .sidebar__item {
 	margin-bottom: 35px;

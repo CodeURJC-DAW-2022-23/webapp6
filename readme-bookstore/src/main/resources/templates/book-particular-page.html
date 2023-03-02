@@ -1,8 +1,33 @@
 {{>header}}
 
 <section class="container">
-    <div class="section-title">
-        <h2>{{book.title}}</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="section-title">
+                <h2>{{book.title}}</h2>
+            </div>
+            {{#logged}}
+            <div class="sidebar__fav">
+                {{#isfav}}
+                <div class="blog__item__text">
+                    <a href="/removefavorite/{{book.id}}" class="blog__btn">Quitar de Favoritos<span
+                            class="icon_heart"></span></a>
+                </div>
+                {{/isfav}}
+                {{^isfav}}
+                <div class="blog__item__text">
+                    <a href="/addfavorite/{{book.id}}" class="blog__btn">Añadir a Favoritos<span
+                            class="icon_heart_alt"></span></a>
+                </div>
+                {{/isfav}}
+            </div>
+            {{/logged}}
+        </div>
+        <div class="col-lg-6">
+            <div class="img-responsive">
+                <img src="/books/{{book.id}}/image">
+            </div>
+        </div>
     </div>
 </section>
 

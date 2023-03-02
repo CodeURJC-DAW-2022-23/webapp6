@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Offer;
+import es.codeurjc.readmebookstore.model.User;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ import es.codeurjc.readmebookstore.repository.BookRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -77,12 +77,27 @@ public class BookController {
 	}
 
     @GetMapping("/book/{id}")
-	public String showBook(Model model, @PathVariable long id) {
+	public String showBook(Model model, @PathVariable long id, HttpServletRequest request) {
         Optional<Book> book = bookRepository.findById(id);
 		List<Offer> offers = offerService.findOffersNotSoldByBook(id);
         model.addAttribute("book", book.get());
         model.addAttribute("reviews", book.get().getReviews());
         model.addAttribute("offers", offers);
+		try {
+            Principal principal = request.getUserPrincipal();
+			if (principal != null) {
+				User usergetid = userService.findByName(principal.getName());
+				List<Book> favorites = bookService.isFavorite(usergetid.getId(), id);
+				if (favorites.isEmpty()) {
+					model.addAttribute("isfav", false);
+				} else {
+					model.addAttribute("isfav", true);
+				}
+			}
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("isfav", true);
+        }
 		return "book-particular-page";
 	}
 
@@ -125,9 +140,9 @@ public class BookController {
 	}
 
 	@GetMapping("/search")
-    public String doSearch(Model model, @RequestParam String searchtext) {
+    public String doSearch(Model model, @RequestParam String searchtext, HttpServletRequest request) {
 		String result = "false";
-		result = doSearchTitle(model, searchtext);
+		result = doSearchTitle(model, searchtext, request);
         if (result != "false") {
             return result;
         } else {
@@ -151,12 +166,12 @@ public class BookController {
 		}
     }
 
-	private String doSearchTitle(Model model, @RequestParam String title) {
+	private String doSearchTitle(Model model, @RequestParam String title, HttpServletRequest request) {
 		String result = "false";
 		try {
             Optional<Book> booktitle = bookService.findByTitle(title);
             if(booktitle.get().getId() != null) {	
-				return showBook(model, booktitle.get().getId());
+				return showBook(model, booktitle.get().getId(), request);
             }
             else {
                 result = "false";

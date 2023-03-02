@@ -119,8 +119,8 @@ public class User {
 		this.readedReview = readedReview;
 	}
 
-	public void setFavouriteBooks(List<Book> favouriteBook) {
-		this.favouriteBook = favouriteBook;
+	public void setFavouriteBooks(Book favouriteBook) {
+		this.favouriteBook.add((Book) favouriteBook);
 	}
 
 	public void setOffers(List<Offer> offer) {
