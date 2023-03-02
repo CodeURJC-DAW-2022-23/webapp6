@@ -69,8 +69,10 @@ public class BookController {
  
 	@GetMapping("/books")
 	public String showBooks(Model model) {
-        List<Book> books = bookService.findAll();
-        model.addAttribute("books", books);
+        model.addAttribute("books", bookService.findAll(0));
+		model.addAttribute("isbooksempty", bookService.findAll(0).isEmpty());
+
+		model.addAttribute("currentPage", 0);
 		return "books-general-page";
 	}
 
@@ -87,13 +89,13 @@ public class BookController {
 	@GetMapping("/books/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
-		Optional<Book> game = bookService.findById(id);
-		if (game.isPresent() && game.get().getImageFile() != null) {
+		Optional<Book> book = bookService.findById(id);
+		if (book.isPresent() && book.get().getImageFile() != null) {
 
-			Resource file = new InputStreamResource(game.get().getImageFile().getBinaryStream());
+			Resource file = new InputStreamResource(book.get().getImageFile().getBinaryStream());
 
 			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(game.get().getImageFile().length()).body(file);
+					.contentLength(book.get().getImageFile().length()).body(file);
 
 		} else {
 			return ResponseEntity.notFound().build();
@@ -112,10 +114,10 @@ public class BookController {
 				book.setImage(false);
 			} else {
 				// Maintain the same image loading it before updating the book
-				Book dbGame = bookService.findById(book.getId()).orElseThrow();
-				if (dbGame.getImage()) {
-					book.setImageFile(BlobProxy.generateProxy(dbGame.getImageFile().getBinaryStream(),
-							dbGame.getImageFile().length()));
+				Book dbBook = bookService.findById(book.getId()).orElseThrow();
+				if (dbBook.getImage()) {
+					book.setImageFile(BlobProxy.generateProxy(dbBook.getImageFile().getBinaryStream(),
+							dbBook.getImageFile().length()));
 					book.setImage(true);
 				}
 			}

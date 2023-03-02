@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,10 +34,10 @@ public class Book {
 	/*@ManyToMany
  	private List<Genre> genre;*/
 	
-	 @Lob
-	 private Blob imageFile;
+	@Lob
+	private Blob imageFile;
   
-	 private boolean image;
+	private boolean image;
 
 	@OneToMany(mappedBy="book", cascade=CascadeType.ALL, orphanRemoval=true)
  	private List<Offer> offer;
@@ -94,6 +96,7 @@ public class Book {
 		this.genre = genre;
 	}*/
 
+	@JsonIgnore
 	public Blob getImageFile() {
 		return imageFile;
 	}
@@ -110,6 +113,7 @@ public class Book {
 		this.image = image;
 	}
 
+	@JsonIgnore
 	public List<Offer> getOffers() {
 		return offer;
 	}
@@ -118,6 +122,7 @@ public class Book {
 		this.offer = offer;
 	}
 
+	@JsonIgnore
 	public List<Review> getReviews() {
 		return review;
 	}
@@ -126,6 +131,7 @@ public class Book {
 		this.review = review;
 	}
 
+	@JsonIgnore
 	public List<User> getUsers() {
 		return user;
 	}

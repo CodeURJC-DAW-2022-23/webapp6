@@ -31,7 +31,7 @@ public class StatisticsController {
         int userNumber = userService.findAll().size();
         model.addAttribute("userNumber", userNumber);
 
-        int bookNumber = bookService.findAll().size();
+        int bookNumber = bookService.findAll(0).getSize();
         model.addAttribute("bookNumber", bookNumber);
 
         int reviewNumber = reviewService.findAll().size();
