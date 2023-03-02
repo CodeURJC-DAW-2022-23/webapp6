@@ -13,13 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
-
 import es.codeurjc.readmebookstore.model.User;
 import es.codeurjc.readmebookstore.service.UserService;
+import es.codeurjc.readmebookstore.service.MailService;
+import javax.mail.MessagingException;
 
 @Controller
 public class LoginController {
 
+	@Autowired
+	private MailService mailService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -60,6 +63,7 @@ public class LoginController {
 		return "register";
 	}
 
+	
 	@PostMapping("/newUser")
 	public String newUserProcess(Model model, User user, MultipartFile imageField) throws IOException {
 
@@ -87,6 +91,15 @@ public class LoginController {
 		userService.save(user);
 
 		model.addAttribute("registererror", false);
+
+		String subject = "Confirmación de registro";
+        String body = "Hola " + user.getName() + ",\n\nSomos Readme. Gracias por registrarte en nuestra página web.";
+
+		try{
+			mailService.sendConfirmationEmail(user.getEmail(), subject, body);
+		}catch(MessagingException e){
+			System.out.println("El error de senConfitmationEmail es: " + e);
+		}
 
 		return "register-success";
 	}
