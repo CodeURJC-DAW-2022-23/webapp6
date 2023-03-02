@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,7 +76,7 @@ public class AdminController {
         userList.remove(0); // The admin is removed so it displays diferently.
         model.addAttribute("userList", userList);
 
-        List<Book> bookList = bookService.findAll();
+        Page<Book> bookList = bookService.findAll(0);
         model.addAttribute("bookList", bookList);
 
         List<Review> reviewList = reviewService.findAll();
