@@ -253,9 +253,94 @@ public class DatabaseInitializer {
 		reviewRepository.save(review34);
 
 		// Sample offers
-		Offer testOffer = new Offer(new Date(), "Seix Barral", "This is a test description", 10f, book0, user1);
-		setOfferImage(testOffer, "/static/img/book-offers/example-book.jpg");
-		offerRepository.save(testOffer);
+		Offer offer1 = new Offer(new Date(), "Seix Barral", "This is a test description", 10f, book0, user3);
+		setOfferImage(offer1, "/static/img/book-offers/savolta-1.jpg");
+		offerRepository.save(offer1);
+
+		Offer offer2 = new Offer(new Date(), "TOR BOOKS", "This is a test description", 12f, book0, user4);
+		setOfferImage(offer2, "/static/img/book-offers/savolta-2.jpg");
+		offerRepository.save(offer2);
+
+		Offer offer3 = new Offer(new Date(), "TOR BOOKS", "This is a test description", 10f, book1, user5);
+		setOfferImage(offer3, "/static/img/book-offers/elantris-1.jpg");
+		offerRepository.save(offer3);
+
+		Offer offer4 = new Offer(new Date(), "SM", "This is a test description", 9f, book1, user6);
+		setOfferImage(offer4, "/static/img/book-offers/elantris-2.jpg");
+		offerRepository.save(offer4);
+
+		Offer offer5 = new Offer(new Date(), "Nova", "This is a test description", 15f, book2, user4);
+		setOfferImage(offer5, "/static/img/book-offers/nacidos-de-la-bruma-1.jpg");
+		offerRepository.save(offer5);
+
+		Offer offer6 = new Offer(new Date(), "Nova", "This is a test description", 13f, book2, user3);
+		setOfferImage(offer6, "/static/img/book-offers/nacidos-de-la-bruma-2.jpeg");
+		offerRepository.save(offer6);
+
+		Offer offer7 = new Offer(new Date(), "Nova", "This is a test description", 15f, book3, user7);
+		setOfferImage(offer7, "/static/img/book-offers/el-archivo-de-las-tormentas-1.jpg");
+		offerRepository.save(offer7);
+
+		Offer offer8 = new Offer(new Date(), "Nova", "This is a test description", 13f, book3, user3);
+		setOfferImage(offer8, "/static/img/book-offers/el-archivo-de-las-tormentas-2.jpg");
+		offerRepository.save(offer8);	
+
+		Offer offer9 = new Offer(new Date(), "Minotauro", "This is a test description", 10f, book4, user2);
+		setOfferImage(offer9, "/static/img/book-offers/el-señor-de-los-anillos-1.jpg");
+		offerRepository.save(offer9);
+
+		Offer offer10 = new Offer(new Date(), "Minotauro", "This is a test description", 17f, book4, user3);
+		setOfferImage(offer10, "/static/img/book-offers/el-señor-de-los-anillos-2.jpg");
+		offerRepository.save(offer10);	
+
+		Offer offer11 = new Offer(new Date(), "Minotauro", "This is a test description", 13f, book4, user4);
+		setOfferImage(offer11, "/static/img/book-offers/el-señor-de-los-anillos-3.jpg");
+		offerRepository.save(offer11);	
+
+		Offer offer12 = new Offer(new Date(), "Minotauro", "This is a test description", 12f, book4, user5);
+		setOfferImage(offer12, "/static/img/book-offers/el-señor-de-los-anillos-4.jpg");
+		offerRepository.save(offer12);	
+
+		Offer offer13 = new Offer(new Date(), "Minotauro", "This is a test description", 11f, book4, user6);
+		setOfferImage(offer13, "/static/img/book-offers/el-señor-de-los-anillos-5.jpg");
+		offerRepository.save(offer13);	
+
+		Offer offer14 = new Offer(new Date(), "Minotauro", "This is a test description", 18f, book4, user7);
+		setOfferImage(offer14, "/static/img/book-offers/el-señor-de-los-anillos-6.jpg");
+		offerRepository.save(offer14);	
+
+		Offer offer15 = new Offer(new Date(), "Minotauro", "This is a test description", 10f, book11, user2);
+		setOfferImage(offer15, "/static/img/book-offers/don-quijote-1.jpg");
+		offerRepository.save(offer15);
+
+		Offer offer16 = new Offer(new Date(), "Minotauro", "This is a test description", 12f, book11, user3);
+		setOfferImage(offer16, "/static/img/book-offers/don-quijote-2.jpg");
+		offerRepository.save(offer16);	
+
+		Offer offer17 = new Offer(new Date(), "Minotauro", "This is a test description", 11f, book11, user4);
+		setOfferImage(offer17, "/static/img/book-offers/don-quijote-3.jpg");
+		offerRepository.save(offer17);	
+
+		Offer offer18 = new Offer(new Date(), "Minotauro", "This is a test description", 13f, book11, user5);
+		setOfferImage(offer18, "/static/img/book-offers/don-quijote-4.jpg");
+		offerRepository.save(offer18);	
+
+		Offer offer19 = new Offer(new Date(), "Minotauro", "This is a test description", 15f, book11, user6);
+		setOfferImage(offer19, "/static/img/book-offers/don-quijote-5.jpg");
+		offerRepository.save(offer19);	
+
+		Offer offer20 = new Offer(new Date(), "Minotauro", "This is a test description", 16f, book11, user7);
+		setOfferImage(offer20, "/static/img/book-offers/don-quijote-6.jpeg");
+		offerRepository.save(offer20);
+
+		Offer offer21 = new Offer(new Date(), "Minotauro", "This is a test description", 16f, book11, user4);
+		setOfferImage(offer21, "/static/img/book-offers/don-quijote-7.jpg");
+		offerRepository.save(offer21);
+
+		Offer offer22 = new Offer(new Date(), "Minotauro", "This is a test description", 16f, book11, user6);
+		setOfferImage(offer22, "/static/img/book-offers/don-quijote-8.jpg");
+		offerRepository.save(offer22);
+
 	}
 
 	public void setBookImage(Book book, String classpathResource) throws IOException {
@@ -276,92 +361,5 @@ public class DatabaseInitializer {
 		offer.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
 	}
 
-	// More books down here:
-
-	// Book book4 = new Book("El Señor de los Anillos",
-	// "J. R. R. Tolkien", "Fantasía");
-	// // setBookImage(book4, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book4);
-	//
-	// Book book5 = new Book("Harry Potter",
-	// "J. K. Rowling", "Fantasía");
-	// // setBookImage(book5, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book5);
-	//
-	// Book book6 = new Book("La Ilíada",
-	// "Homero", "Literatura clásica");
-	// // setBookImage(book6, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book6);
-	//
-	// Book book7 = new Book("La Odisea",
-	// "Homero", "Literatura clásica");
-	// // setBookImage(book7, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book7);
-	//
-	// Book book8 = new Book("La Eneida",
-	// "Virgilio", "Literatura clásica");
-	// // setBookImage(book8, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book8);
-	//
-	// Book book9 = new Book("La República",
-	// "Platón", "Literatura clásica");
-	// // setBookImage(book9, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book9);
-	//
-	// Book book10 = new Book("Arte de amar",
-	// "Ovidio", "Literatura clásica");
-	// // setBookImage(book10, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book10);
-	//
-	// Book book11 = new Book("Don Quijote de la Mancha",
-	// "Miguel de Cervantes", "Literatura universal");
-	// // setBookImage(book11, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book11);
-	//
-	// Book book12 = new Book("Romeo y Julieta",
-	// "William Shakespeare", "Literatura universal");
-	// // setBookImage(book12, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book12);
-	//
-	// Book book13 = new Book("Cumbres borrascosas",
-	// "Emily Bronte", "Literatura universal");
-	// // setBookImage(book13, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book13);
-	//
-	// Book book14 = new Book("El retrato de Dorian Gray",
-	// "Oscar Wilde", "Literatura universal");
-	// // setBookImage(book14, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book14);
-	//
-	// Book book15 = new Book("El Conde de Montecristo",
-	// "Alejandro Dumas", "Literatura universal");
-	// // setBookImage(book15, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book15);
-	//
-	// Book book16 = new Book("El primer hombre de Roma",
-	// "Colleen McCullough", "Novela histórica");
-	// // setBookImage(book16, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book16);
-	//
-	// Book book17 = new Book("Trilogía de Trajano",
-	// "Santiago Posteguillo", "Novela histórica");
-	// // setBookImage(book17, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book17);
-	//
-	// Book book18 = new Book("Los pilares de la Tierra",
-	// "Ken Follett", "Novela histórica");
-	// // setBookImage(book18, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book18);
-	//
-	// Book book19 = new Book("El médico",
-	// "Noah Gordon", "Novela histórica");
-	// // setBookImage(book19, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book19);
-	//
-	// Book book20 = new Book("Episodios Nacionales",
-	// "Benito Pérez Galdos", "Novela histórica");
-	// // setBookImage(book20, "/sample_images/la_vida_secreta_de_la_mente.jpg");
-	// bookRepository.save(book20);
-	//
-	// // bookRepository.save(new Book("CASI SIN QUERER", "El amor algunasveces."));
+	
 }
