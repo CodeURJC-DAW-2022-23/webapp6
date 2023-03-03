@@ -131,20 +131,33 @@ public class DatabaseInitializer {
 		// Sample users
 		User admin = new User("admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", "ADMIN");
 		userRepository.save(admin);
+
 		User user1 = new User("user", passwordEncoder.encode("pass"), "user1@mail.ex", "USER");
 		setUserImage(user1, "/static/img/user-profiles/example-profile.png");
 		userRepository.save(user1);
+
 		User user2 = new User("User2", passwordEncoder.encode("pass"), "user2@mail.ex", "USER");
+		setUserImage(user2, "/static/img/user-profiles/example-profile.png");
 		userRepository.save(user2);
+
 		User user3 = new User("jose", passwordEncoder.encode("jose"), "jose@gmail.com", "USER");
+		setUserImage(user3, "/static/img/user-profiles/example-profile.png");
 		userRepository.save(user3);
+
 		User user4 = new User("maria", passwordEncoder.encode("maria"), "maria@gmail.com", "USER");
+		setUserImage(user4, "/static/img/user-profiles/example-profile.png");
 		userRepository.save(user4);
+
 		User user5 = new User("carlos", passwordEncoder.encode("carlos"), "carlos@gmail.com", "USER");
+		setUserImage(user5, "/static/img/user-profiles/example-profile.png");
 		userRepository.save(user5);
+
 		User user6 = new User("carlota", passwordEncoder.encode("carlota"), "carlota@gmail.com", "USER");
+		setUserImage(user6, "/static/img/user-profiles/example-profile.png");
 		userRepository.save(user6);
+
 		User user7 = new User("sonia", passwordEncoder.encode("sonia"), "sonia@gmail.com", "USER");
+		setUserImage(user7, "/static/img/user-profiles/example-profile.png");
 		userRepository.save(user7);
 
 		// Sample reviews

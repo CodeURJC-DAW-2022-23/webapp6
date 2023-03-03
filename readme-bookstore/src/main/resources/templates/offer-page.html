@@ -22,12 +22,12 @@
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
                     <h3>{{offer.book.title}}</h3>
-                    <h4>Vendedor: {{offer.user.name}}</h4>
+                    <h4>Vendedor: {{offer.seller.name}}</h4>
                     <div class="product__details__price">{{offer.price}} EUR</div>
                     <p>{{offer.description}}</p>
 
                     {{#sold}}
-                    <p>Ejemplar de {{offer.user.name}} vendido a {{offer.buyer.name}}.</p>
+                    <p>Ejemplar de {{offer.seller.name}} vendido a {{offer.buyer.name}}.</p>
                     {{/sold}}
 
                     {{^sold}}

@@ -47,7 +47,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
                             <div class="blog__item__text">
-                                <img class="product__item__pic set-bg" src="/books/{{id}}/image">
+                                <a href="/book/{{id}}"><img class="product__item__pic set-bg" src="/books/{{id}}/image"></a>
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="/book/{{id}}">{{title}}</a></h6>
@@ -88,7 +88,7 @@
                     {{#offers}}
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
-                            <img src="/offers/{{id}}/image">
+                            <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
                             <div class="product__item__text">
                                 <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
                                 <h5>{{price}}</h5>
@@ -179,7 +179,7 @@
                     {{#historial}}
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
-                            <img src="/offers/{{id}}/image">
+                            <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
                             <div class="product__item__text">
                                 <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
                                 <h5>{{price}}</h5>
