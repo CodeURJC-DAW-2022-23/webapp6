@@ -99,6 +99,7 @@ public class LoginController {
 			mailService.sendConfirmationEmail(user.getEmail(), subject, body);
 		}catch(MessagingException e){
 			System.out.println("El error de senConfitmationEmail es: " + e);
+			return "register-error";
 		}
 
 		return "register-success";
