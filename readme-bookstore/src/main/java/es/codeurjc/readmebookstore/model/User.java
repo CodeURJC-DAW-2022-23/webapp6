@@ -51,7 +51,7 @@ public class User {
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Review> readedReview;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Offer> offer;
 
 	@ManyToMany

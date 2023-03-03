@@ -29,6 +29,10 @@ public class BookService {
 		return repository.findAll( PageRequest.of(n, 5));
 	}
 
+	public List<Book> findAll() {
+		return repository.findAll();
+	}
+
 	public void save(Book book) {
 		repository.save(book);
 	}

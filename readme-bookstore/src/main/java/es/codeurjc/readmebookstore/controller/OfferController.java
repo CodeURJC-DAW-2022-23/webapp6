@@ -76,7 +76,7 @@ public class OfferController {
 
         Offer offer = offerRepository.findById(id).get();
         String activeUserName = request.getUserPrincipal().getName();
-        String vendorName = offer.getUser().getName();
+        String vendorName = offer.getSeller().getName();
 
         Boolean soldOffer = offer.getSold();
         Boolean ownOffer = activeUserName.equals(vendorName);

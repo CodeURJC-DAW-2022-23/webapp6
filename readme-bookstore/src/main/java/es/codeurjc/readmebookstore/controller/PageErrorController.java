@@ -27,6 +27,7 @@ public class PageErrorController implements ErrorController {
             } else {
                 model.addAttribute("else", true);
             }
+            model.addAttribute("error", statusCode);
         }
         return "error-page";
     }

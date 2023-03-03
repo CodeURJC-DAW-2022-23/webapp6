@@ -44,7 +44,7 @@ public class Offer {
 	private Book book;
 
 	@ManyToOne
-	private User user;
+	private User seller;
 
 	@ManyToOne
 	private User buyer;
@@ -58,7 +58,7 @@ public class Offer {
 		this.description = description;
 		this.price = price;
 		this.book = book;
-		this.user = user;
+		this.seller = user;
 	}
 
 	public Long getId() {
@@ -137,12 +137,12 @@ public class Offer {
 		this.book = book;
 	}
 
-	public User getUser() {
-		return user;
+	public User getSeller() {
+		return seller;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setSeller(User user) {
+		this.seller = user;
 	}
 
 	public User getBuyer() {

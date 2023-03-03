@@ -16,7 +16,6 @@
                     <th>Usuario</th>
                     <th>Correo</th>
                     <th>Libros favoritos</th>
-                    <th>Reseñas leidas</th>
                     <th>Historial de búsqueda</th>
                     <th>Imagen</th>
                     <th></th>
@@ -29,22 +28,23 @@
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
-                    <td>-</td>
                 </tr>
                 {{#userList}}
                 <tr class="blog__item__text">
-                    <form action="/admin/edit-user/{{id}}">
+                    <form action="/admin/edit-user/{{id}}" method="post" enctype="multipart/form-data">
                         <td>{{id}}</td>
                         <td>{{name}}</td>
                         <td class="checkout__input"><input type="text" name="email" value="{{email}}"></td>
                         <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
                         <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
-                        <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
-                        <td title="Editar imagen" class="checkout__input"><a href="#"><img
-                                    src="/users/{{name}}/image" height="100"></a></td>
+                        <td title="Editar imagen" class="checkout__input">
+                            <a href="#"><img src="/users/{{name}}/image" height="100"></a>
+                            <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                        </td>
                         <td class="checkout__input">
                             <button title="Guardar cambios" type="submit" class="blog__btn"><i
                                     class="fa fa-save"></i></button>
+                            <input type="hidden" name="_csrf" value="{{token}}" />
                             <a title="Eliminar usuario" href="/admin/delete-user/{{id}}" class="blog__btn"><i
                                     class="fa fa-trash"></i></a>
                         </td>
@@ -69,20 +69,23 @@
                 </tr>
                 {{#offerList}}
                 <tr class="blog__item__text">
-                    <form action="/admin/edit-offer/{{id}}">
+                    <form action="/admin/edit-offer/{{id}}" method="post" enctype="multipart/form-data">
                         <td>{{id}}</td>
                         <td>{{book.title}}</td>
-                        <td>{{user.name}}</td>
-                        <td><i class="fa fa-calendar-o"></i> {{date}}</td>
+                        <td>{{seller.name}}</td>
+                        <td class="checkout__input"><input type="date" name="date" value="{{date}}"></td>
                         <td class="checkout__input"><input type="text" name="edition" value="{{edition}}"></td>
                         <td class="checkout__input"><input type="text" name="description" value="{{description}}"></td>
                         <td class="checkout__input"><input type="number" step="0.01" name="price" value={{price}}></td>
-                        <td title="Editar imagen" class="checkout__input"><a href="#"><img src="/offers/{{id}}/image"
-                                    height="100"></a></td>
+                        <td title="Editar imagen" class="checkout__input">
+                            <a href="#"><img src="/offers/{{id}}/image" height="100"></a>
+                            <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                        </td>
 
                         <td class="checkout__input">
                             <button title="Guardar cambios" type="submit" class="blog__btn"><i
                                     class="fa fa-save"></i></button>
+                            <input type="hidden" name="_csrf" value="{{token}}" />
                             <a title="Eliminar anuncio" href="/admin/delete-offer/{{id}}" class="blog__btn"><i
                                     class="fa fa-trash"></i></a>
                         </td>
@@ -104,16 +107,17 @@
                 </tr>
                 {{#reviewList}}
                 <tr class="blog__item__text">
-                    <form action="/admin/edit-review/{{id}}">
+                    <form action="/admin/edit-review/{{id}}" method="post" enctype="multipart/form-data">
                         <td>{{id}}</td>
                         <td>{{book.title}}</td>
-                        <td>{{user.name}}</td>
-                        <td><i class="fa fa-calendar-o"></i> {{date}}</td>
+                        <td>{{author.name}}</td>
+                        <td class="checkout__input"><input type="date" name="date" value="{{date}}"></td>
                         <td class="checkout__input"><input type="text" name="text" value="{{text}}"></td>
 
                         <td class="checkout__input">
                             <button title="Guardar cambios" type="submit" class="blog__btn"><i
                                     class="fa fa-save"></i></button>
+                            <input type="hidden" name="_csrf" value="{{token}}" />
                             <a title="Eliminar reseña" href="/admin/delete-review/{{id}}" class="blog__btn"><i
                                     class="fa fa-trash"></i></a>
                         </td>
@@ -135,17 +139,20 @@
                 </tr>
                 {{#bookList}}
                 <tr class="blog__item__text">
-                    <form action="/admin/edit-book/{{id}}" enctype="multipart/form-data">
+                    <form action="/admin/edit-book/{{id}}" method="post" enctype="multipart/form-data">
                         <td>{{id}}</td>
                         <td class="checkout__input"><input type="text" name="title" value="{{title}}"></td>
                         <td class="checkout__input"><input type="text" name="author" value="{{author}}"></td>
                         <td class="checkout__input"><input type="text" name="genre" value="{{genre}}"></td>
-                        <td title="Editar imagen" class="checkout__input"><a href="#"><img src="/books/{{id}}/image"
-                                    height="100"></a></td>
+                        <td title="Editar imagen" class="checkout__input">
+                            <a href="#"><img src="/books/{{id}}/image" height="100"></a>
+                            <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                        </td>
 
                         <td class="checkout__input">
                             <button title="Guardar cambios" type="submit" class="blog__btn"><i
                                     class="fa fa-save"></i></button>
+                            <input type="hidden" name="_csrf" value="{{token}}" />
                             <a title="Eliminar libro" href="/admin/delete-book/{{id}}" class="blog__btn"><i
                                     class="fa fa-trash"></i></a>
                         </td>
@@ -157,7 +164,7 @@
             <!-- Add new book -->
             <div class="checkout__order">
                 <h4>Añadir un libro nuevo</h4>
-                <form action="/admin/add-book" enctype="multipart/form-data">
+                <form action="/admin/add-book" method="post" enctype="multipart/form-data">
                     <div class="checkout__input">
                         <p>Introduzca el título del libro:</p>
                         <input type="text" name="title" placeholder="Titulo" required>
@@ -175,6 +182,7 @@
                         <input type='file' name='imageField' accept=".jpg, .jpeg" />
                     </div>
                     <button type="submit" class="site-btn">Subir libro</button>
+                    <input type="hidden" name="_csrf" value="{{token}}" />
                 </form>
             </div>
         </div>

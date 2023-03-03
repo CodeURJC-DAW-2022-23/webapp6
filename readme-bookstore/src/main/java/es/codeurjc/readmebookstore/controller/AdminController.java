@@ -1,15 +1,18 @@
 package es.codeurjc.readmebookstore.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,19 +58,19 @@ public class AdminController {
     private OfferService offerService;
 
     @GetMapping("/")
-	public String home(Model model) {
-		return "index";
-	}
+    public String home(Model model) {
+        return "index";
+    }
 
-	@GetMapping("/index")
-	public String index(Model model) {
-		return "index";
-	}
+    @GetMapping("/index")
+    public String index(Model model) {
+        return "index";
+    }
 
     @GetMapping("/contact")
-	public String contact(Model model) {
-		return "contact-page";
-	}
+    public String contact(Model model) {
+        return "contact-page";
+    }
 
     @GetMapping("/admin")
     public String admin(Model model) {
@@ -76,7 +79,7 @@ public class AdminController {
         userList.remove(0); // The admin is removed so it displays diferently.
         model.addAttribute("userList", userList);
 
-        Page<Book> bookList = bookService.findAll(0);
+        List<Book> bookList = bookService.findAll();
         model.addAttribute("bookList", bookList);
 
         List<Review> reviewList = reviewService.findAll();
@@ -88,7 +91,7 @@ public class AdminController {
         return "admin-page";
     }
 
-    @GetMapping("/admin/add-book")
+    @PostMapping("/admin/add-book")
     public String addBook(Model model, @RequestParam String title, @RequestParam String genre,
             @RequestParam String author, MultipartFile imageField) throws IOException {
         Book newBook = new Book(title, author, genre);
@@ -102,42 +105,69 @@ public class AdminController {
     }
 
     // EDIT DATA
-    // //////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
 
-    @RequestMapping("/admin/edit-user/{id}")
-    public String editUser(Model model, @PathVariable long id, @RequestParam String email) {
+    @PostMapping("/admin/edit-user/{id}")
+    public String editUser(Model model, @PathVariable long id, @RequestParam String email, MultipartFile imageField) {
         User user = userService.findById(id).get();
         user.setEmail(email);
         userRepository.save(user);
+
+        try {
+            updateImage(user, false, imageField);
+        } catch (Exception e) {
+            return "redirect:/admin";
+        }
+        userRepository.save(user);
+
         return "redirect:/admin";
     }
 
-    @RequestMapping("/admin/edit-offer/{id}")
-    public String editOffer(Model model, @PathVariable long id, @RequestParam String edition,
-            @RequestParam String description, @RequestParam Float price) {
+    @PostMapping("/admin/edit-offer/{id}")
+    public String editOffer(Model model, @PathVariable long id, @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+            @RequestParam String edition, @RequestParam String description, @RequestParam Float price,
+            MultipartFile imageField) {
         Offer offer = offerService.findById(id).get();
+        offer.setDate(date);
         offer.setEdition(edition);
         offer.setDescription(description);
         offer.setPrice(price);
         offerRepository.save(offer);
+
+        try {
+            updateImage(offer, false, imageField);
+        } catch (Exception e) {
+            return "redirect:/admin";
+        }
+        offerRepository.save(offer);
+
         return "redirect:/admin";
     }
 
-    @RequestMapping("/admin/edit-review/{id}")
-    public String editReview(Model model, @PathVariable long id, @RequestParam String text) {
+    @PostMapping("/admin/edit-review/{id}")
+    public String editReview(Model model, @PathVariable long id, @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+            @RequestParam String text) {
         Review review = reviewService.findById(id).get();
+        review.setDate(date);
         review.setText(text);
         reviewRepository.save(review);
         return "redirect:/admin";
     }
 
-    @RequestMapping("/admin/edit-book/{id}")
+    @PostMapping("/admin/edit-book/{id}")
     public String editBook(Model model, @PathVariable long id, @RequestParam String title, @RequestParam String genre,
-            @RequestParam String author) {
+            @RequestParam String author, MultipartFile imageField) {
         Book book = bookService.findById(id).get();
         book.setTitle(title);
         book.setGenre(genre);
         book.setAuthor(author);
+        bookRepository.save(book);
+
+        try {
+            updateImage(book, false, imageField);
+        } catch (Exception e) {
+            return "redirect:/admin";
+        }
         bookRepository.save(book);
 
         return "redirect:/admin";
@@ -168,6 +198,72 @@ public class AdminController {
     public String deleteBook(Model model, @PathVariable long id) {
         bookRepository.deleteById(id);
         return "redirect:/admin";
+    }
+
+    private void updateImage(User user, boolean removeImage, MultipartFile imageField)
+            throws IOException, SQLException {
+
+        if (!imageField.isEmpty()) {
+            user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+            user.setImage(true);
+        } else {
+            if (removeImage) {
+                user.setImageFile(null);
+                user.setImage(false);
+            } else {
+                // Maintain the same image loading it before updating the dish
+                Offer dbOffer = offerService.findById(user.getId()).orElseThrow();
+                if (dbOffer.hasImage()) {
+                    user.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
+                            dbOffer.getImageFile().length()));
+                    user.setImage(true);
+                }
+            }
+        }
+    }
+
+    private void updateImage(Offer offer, boolean removeImage, MultipartFile imageField)
+            throws IOException, SQLException {
+
+        if (!imageField.isEmpty()) {
+            offer.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+            offer.setImage(true);
+        } else {
+            if (removeImage) {
+                offer.setImageFile(null);
+                offer.setImage(false);
+            } else {
+                // Maintain the same image loading it before updating the dish
+                Offer dbOffer = offerService.findById(offer.getId()).orElseThrow();
+                if (dbOffer.hasImage()) {
+                    offer.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
+                            dbOffer.getImageFile().length()));
+                    offer.setImage(true);
+                }
+            }
+        }
+    }
+
+    private void updateImage(Book book, boolean removeImage, MultipartFile imageField)
+            throws IOException, SQLException {
+
+        if (!imageField.isEmpty()) {
+            book.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+            book.setImage(true);
+        } else {
+            if (removeImage) {
+                book.setImageFile(null);
+                book.setImage(false);
+            } else {
+                // Maintain the same image loading it before updating the dish
+                Offer dbOffer = offerService.findById(book.getId()).orElseThrow();
+                if (dbOffer.hasImage()) {
+                    book.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
+                            dbOffer.getImageFile().length()));
+                    book.setImage(true);
+                }
+            }
+        }
     }
 
 }
