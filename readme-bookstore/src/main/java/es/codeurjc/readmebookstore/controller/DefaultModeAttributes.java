@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import es.codeurjc.readmebookstore.model.User;
 import es.codeurjc.readmebookstore.service.UserService;
 
-
-
 @ControllerAdvice
 public class DefaultModeAttributes {
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
 
@@ -29,23 +27,19 @@ public class DefaultModeAttributes {
 
 			model.addAttribute("logged", true);
 			model.addAttribute("userName", principal.getName());
-            model.addAttribute("user", request.isUserInRole("USER"));
+			model.addAttribute("user", request.isUserInRole("USER"));
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 
 			try {
-				
 				User user = userService.findByName(principal.getName());
-
 				model.addAttribute("id", user.getId());
-				
-		}catch (RuntimeException e) {
-			model.addAttribute("logged", false);
-		    }
+			} catch (RuntimeException e) {
+				model.addAttribute("logged", false);
+			}
 
 		} else {
 			model.addAttribute("logged", false);
 		}
 	}
-
 
 }

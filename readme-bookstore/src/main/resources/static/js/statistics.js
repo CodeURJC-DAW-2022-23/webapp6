@@ -13,8 +13,8 @@ var offers = document.querySelector("#offers");
 const genreStats = {
     label: "Números generales",
     data: [books.dataset.num, users.dataset.num, reviews.dataset.num, offers.dataset.num], // Tags data
-    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-    borderColor: 'rgba(54, 162, 235, 1)',
+    backgroundColor: '#2484c6',
+    borderColor: '#2484c6',
     borderWidth: 1,
 };
 

@@ -93,31 +93,11 @@ public class UserController {
         return "user-page";
     }
 
-    /*
-     * @GetMapping("/user-page/{id}")
-     * public String User(Model model, @PathVariable long id) {
-     * 
-     * Optional<User> user = userService.findById(id);
-     * if (user.isPresent()) {
-     * model.addAttribute("user", user.get());
-     * return "user-page";
-     * } else {
-     * return "index-page";
-     * }
-     * }
-     */
-
     @GetMapping("/updateProfile")
     public String updateUserProfile(Model model) {
         return "update-user-page";
     }
 
-    /*
-     * @RequestMapping("/updatedProfile")
-     * public String updatedProfile() {
-     * return "user-page.html";
-     * }
-     */
     @PostMapping("/updateProfile")
     public String updateProfile(Model model, @RequestParam String email, HttpServletRequest request,
             MultipartFile imageField) throws IOException {
@@ -132,7 +112,7 @@ public class UserController {
         }
         userService.save(user);
 
-        return "index";
+        return "user-page";
     }
 
     @PostMapping("/updateUser")

@@ -96,21 +96,21 @@ public class OfferController {
 
     @PostMapping("/updated-offer/{id}")
     public String updatedReview(Model model, @PathVariable long id, @RequestParam String edition,
-            @RequestParam String text, @RequestParam float price,MultipartFile imageField) throws IOException {
-        Optional<Offer> offer = offerRepository.findById(id);
+            @RequestParam String text, @RequestParam float price, MultipartFile imageField) throws IOException {
+        Offer offer = offerRepository.findById(id).get();
         Date date = new Date();
-        offer.get().setDate(date);
-        offer.get().setDescription(text);
-        offer.get().setEdition(edition);
-        offer.get().setPrice(price);
-        offerRepository.save(offer.get());
+        offer.setDate(date);
+        offer.setDescription(text);
+        offer.setEdition(edition);
+        offer.setPrice(price);
+        offerRepository.save(offer);
         try {
-            updateImage(offer.get(), false, imageField);
+            updateImage(offer, false, imageField);
         } catch (Exception e) {
-            return "redirect:/user-page";
+            return "redirect:/offer-page/" + offer.getId();
         }
-        offerRepository.save(offer.get());
-        return "redirect:/user-page";
+        offerRepository.save(offer);
+        return "redirect:/offer-page/" + offer.getId();
     }
 
     @GetMapping("/delete-offer/{id}")
@@ -132,7 +132,6 @@ public class OfferController {
         User buyer = userRepository.findByName(request.getUserPrincipal().getName()).get();
 
         offer.setSold(true);
-
 
         offer.setBuyer(buyer);
         offerRepository.save(offer);

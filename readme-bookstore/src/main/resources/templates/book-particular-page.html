@@ -38,131 +38,89 @@
     </div>
 </section>
 
-<!-- Comments Section Begin -->
-<section class="blog spad">
+<!-- Reviews Section Begin -->
+<section class="featured spad">
     <div class="container">
         <div class="checkout__form">
             <h4>Reseñas</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-5">
-                <div class="sidebar">
-                    <div class="sidebar__item">
-                        {{#logged}}
-                        <div class="blog__item__text">
-                            <a href="/upload-review/{{book.id}}" class="blog__btn">Publica tu reseña<span
-                                    class="arrow_right"></span></a>
-                        </div>
-                        {{/logged}}
-                        {{^logged}}
-                        <div class="blog__item__text">
-                            <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu reseña<span
-                                    class="fa fa-user"></span></a>
-                        </div>
-                        {{/logged}}
+        <div class="row featured__filter" id="Books">
+            {{#reviews}}
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="featured__item">
+                    <div class="featured__item__text">
+                        <i class="fa fa-calendar-o"></i> {{date}}
+                        <h6 class="bold"><a href="/book/{{book.id}}">{{author.name}}</a></h6>
+                        {{text}}
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-7">
-                <div class="row">
-                    {{#reviews}}
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="blog__item">
-                            <div class="blog__item__text">
-                                <ul>
-                                    <li><i class="fa fa-calendar-o"></i> {{date}}</li>
-                                </ul>
-                                <h5><a href="#">{{author.name}}</a></h5>
-                                <p>{{text}} </p>
-                            </div>
-                        </div>
-                    </div>
-                    {{/reviews}}
-                </div>
-                {{^reviews}}
-                <p>Actualmente no hay reseñas de este libro</p>
-                {{/reviews}}
-                <div class="blog__item__text">
-                    <a href="#" class="blog__btn">Cargar más reseñas <span class="arrow_right"></span></a>
-                </div>
-            </div>
+            {{/reviews}}
+        </div>
+
+        {{^reviews}}
+        <p>Actualmente no hay reseñas de este libro</p>
+        {{/reviews}}
+
+        <div class="blog__item__text">
+            {{#logged}}
+            <a href="/upload-review/{{book.id}}" class="blog__btn">Publica tu reseña</a>
+            {{/logged}}
+            {{^logged}}
+            <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu reseña<span
+                    class="fa fa-user"></span></a>
+            {{/logged}}
+            <a href="#" class="primary-btn">Cargar más reseñas <span class="arrow_right"></span></a>
         </div>
     </div>
 </section>
-<!-- Comments Section End -->
+<!-- Reviews Section End -->
+
+
 
 <!-- Offers Section Begin -->
-<section class="product spad">
+<section class="featured spad">
     <div class="container">
         <div class="checkout__form">
             <h4>Anuncios</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-5">
-                <div class="sidebar">
-                    <div class="sidebar__item">
-                        {{#logged}}
-                        <div class="blog__item__text">
-                            <a href="/upload-offer-page/{{book.id}}" class="blog__btn">Vende tu libro<span
-                                    class="arrow_right"></span></a>
-                        </div>
-                        <hr>
-                        {{/logged}}
-                        {{^logged}}
-                        <div class="blog__item__text">
-                            <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu anuncio<span
-                                    class="fa fa-user"></span></a>
-                        </div>
-                        {{/logged}}
+        <div class="row featured__filter" id="Books">
+            {{#offers}}
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg">
+                        <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
+                        <h5>{{price}} euros</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-md-7">
-                <div class="row">
-                    {{#logged}}
-                    {{#offers}}
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
-                            <div class="product__item__text">
-                                <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
-                                <h5>{{price}} euros</h5>
-                            </div>
-                        </div>
-                    </div>
-                    {{/offers}}
-                    {{^offers}}
-                        <p>Actualmente no hay anuncios de este libro</p>
-                    {{/offers}}
-                    {{/logged}}
+            {{/offers}}
 
-                    {{^logged}}
-                    {{#offers}}
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <img src="/offers/{{id}}/image">
-                            <div class="product__item__text">
-                                <h6>{{book.title}}</h6>
-                                <h5>{{price}} euros</h5>
-                            </div>
-                        </div>
-                    </div>
-                    {{/offers}}
-                    {{^offers}}
-                        <p>Actualmente no hay anuncios de este libro</p>
-                    {{/offers}}
-                    {{/logged}}
-                </div>
-                
-                <div class="blog__item__text">
-                    <a href="#" class="blog__btn">Cargar más anuncios <span class="arrow_right"></span></a>
-                </div>
+            {{^offers}}
+            <p>Actualmente no hay anuncios de este libro</p>
+            {{/offers}}
 
-            </div>
+        </div>
+
+        <div class="blog__item__text">
+            {{#logged}}
+            <a href="/upload-offer-page/{{book.id}}" class="blog__btn">Vende tu libro</a>
+            {{/logged}}
+            {{^logged}}
+            <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu anuncio<span
+                    class="fa fa-user"></span></a>
+            {{/logged}}
+            <a href="#" class="primary-btn">Cargar más anuncios <span class="arrow_right"></span></a>
         </div>
     </div>
 </section>
 <!-- Offers Section End -->
+
+
+
 
 <!-- Footer -->
 {{>footer}}

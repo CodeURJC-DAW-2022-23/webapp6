@@ -1,17 +1,18 @@
 {{>header}}
 
-<!-- Register Section Begin -->
+<div class="section-title">
+    <h2>Perfil de usuario</h2>
+</div>
+
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
-            <h4>Perfil de usuario</h4>
+            <h4>Tus datos</h4>
             <form action="#">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout__input">
-                            <p><strong>Nombre de usuario: </strong>{{name}}</p>
-                        </div>
-                        <div class="checkout__input">
+                            <p><strong>Nombre de ususario: </strong>{{name}}</p>
                             <p><strong>Correo electrónico: </strong>{{email}}</p>
                         </div>
                     </div>
@@ -29,89 +30,75 @@
         </div>
     </div>
 </section>
-<!-- Register Section End -->
-
 
 
 <!-- Favourites Section Begin -->
-<section class="product spad">
+<section class="featured spad">
+
     <div class="container">
-        <hr>
-        <div class="section-title">
-            <h2>Tus libros favoritos</h2>
+        <div class="checkout__form">
+            <h4>Tus libros favoritos</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-9 col-md-7">
-                <div class="row">
-                    {{#favourites}}
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="blog__item__text">
-                                <a href="/book/{{id}}"><img class="product__item__pic set-bg" src="/books/{{id}}/image"></a>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/book/{{id}}">{{title}}</a></h6>
-                            </div>
-                        </div>
-                        <div class="blog__item__text">
-                            <a href="/delete-favourite-user-page/{{id}}" class="blog__btn">Quitar de favoritos<span
-                                    class="arrow_right"></span></a>
-                        </div>
+        <div class="row featured__filter" id="Books">
+            {{#favourites}}
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg">
+                        <a href="/book/{{id}}"><img src="/books/{{id}}/image"></a>
+                        <ul class="featured__item__pic__hover">
+                            <li><a title="Eliminar de favoritos" href="/delete-favourite-user-page/{{id}}"><i class="fa fa-heart"></i></a></li>
+                        </ul>
                     </div>
-                    {{/favourites}}
-                </div>             
-                {{^favourites}}
-                <p>Actualmente no tienes libros favoritos</p>
-                {{/favourites}}
-                <div class="blog__item__text">
-                    <a href="#" class="blog__btn">Cargar más libros <span class="arrow_right"></span></a>
+                    <div class="featured__item__text">
+                        <h6><a href="/book/{{id}}">{{title}}</a></h6>
+                    </div>
                 </div>
             </div>
+            {{/favourites}}
+
+            {{^favourites}}
+            <p>Actualmente no tienes libros favoritos</p>
+            {{/favourites}}
+        </div>
+        <div class="blog__item__text">
+            <a href="#" class="primary-btn">Cargar más libros <span class="arrow_right"></span></a>
         </div>
     </div>
 </section>
 <!-- Favourites Section End -->
 
-
-
-
 <!-- Offers Section Begin -->
-<section class="product spad">
+<section class="featured spad">
     <div class="container">
-        <hr>
-        <div class="section-title">
-            <h2>Tus anuncios</h2>
+        <div class="checkout__form">
+            <h4>Tus anuncios</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-9 col-md-7">
-                <div class="row">
-                    {{#offers}}
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
-                            <div class="product__item__text">
-                                <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
-                                <h5>{{price}}</h5>
-                            </div>
-                            <div class="blog__item__text">
-                                <a href="/update-offer/{{id}}" class="blog__btn">Editar anuncio<span
-                                        class="arrow_right"></span></a>
-                            </div>
-                            <div class="blog__item__text">
-                                <a href="/delete-offer/{{id}}" class="blog__btn">Eliminar anuncio<span
-                                        class="arrow_right"></span></a>
-                            </div>
-                        </div>
+        <div class="row featured__filter" id="Books">
+            {{#offers}}
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg">
+                        <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
+                        <ul class="featured__item__pic__hover">
+                            <li><a title="Editar" href="/update-offer/{{id}}"><i class="fa fa-pencil"></i></a></li>
+                            <li><a title="Eliminar" href="/delete-offer/{{id}}"><i class="fa fa-trash"></i></a></li>
+                        </ul>
                     </div>
-                    {{/offers}}
-                </div>
-                {{^offers}}
-                <p>Actualmente no tienes anuncios subidos</p>
-                {{/offers}}
-                <div class="blog__item__text">
-                    <a href="#" class="blog__btn">Cargar más anuncios <span class="arrow_right"></span></a>
+                    <div class="featured__item__text">
+                        <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
+                        <h5>{{price}}</h5>
+                    </div>
                 </div>
             </div>
+            {{/offers}}
+
+            {{^offers}}
+            <p>Actualmente no tienes anuncios subidos</p>
+            {{/offers}}
+
+        </div>
+        <div class="blog__item__text">
+            <a href="#" class="primary-btn">Cargar más anuncios <span class="arrow_right"></span></a>
         </div>
     </div>
 </section>
@@ -120,85 +107,74 @@
 
 
 <!-- Reviews Section Begin -->
-<section class="blog spad">
+<section class="featured spad">
     <div class="container">
-        <div class="section-title">
-            <h2>Tus reseñas</h2>
+        <div class="checkout__form">
+            <h4>Tus reseñas</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-8 col-md-7">
-                <div class="row">
-                    {{#reviews}}
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="blog__item">
-                            <div class="blog__item__text">
-                                <ul>
-                                    <li><i class="fa fa-calendar-o"></i> {{date}}</li>
-                                </ul>
-                                <div class="product__item__text">
-                                    <h6><a href="/book/{{book.id}}">{{book.title}}</a></h6>
-                                </div>
-                                <p>{{text}} </p>
-                                <div class="blog__item__text">
-                                    <a href="/modify-review/{{id}}" class="blog__btn">Editar reseña<span
-                                            class="arrow_right"></span></a>
-                                </div>
-                                <div class="blog__item__text">
-                                    <a href="/delete-review/{{id}}" class="blog__btn">Eliminar reseña<span
-                                            class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
+        <div class="row featured__filter" id="Books">
+            {{#reviews}}
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="featured__item">
+                    <div class="featured__item__text">
+                        <i class="fa fa-calendar-o"></i> {{date}}
+                        <h6 class="bold"><a href="/book/{{book.id}}">{{book.title}}</a></h6>
+                        {{text}}
                     </div>
-                    {{/reviews}}
-                </div>
-                {{^reviews}}
-                <p>Actualmente no tienes reseñas publicadas</p>
-                {{/reviews}}
-                <div class="blog__item__text">
-                    <a href="#" class="blog__btn">Cargar más reseñas <span class="arrow_right"></span></a>
+                    <div class="blog__item__text text-center">
+                        <a title="Editar" href="/modify-review/{{id}}" class="blog__btn"><i class="fa fa-pencil"></i></a>
+                        <a title="Eliminar" href="/delete-review/{{id}}" class="blog__btn"><i class="fa fa-trash"></i></a>
+                    </div>
                 </div>
             </div>
+            {{/reviews}}
+        </div>
+        {{^reviews}}
+        <p>Actualmente no tienes reseñas publicadas</p>
+        {{/reviews}}
+        <div class="blog__item__text">
+            <a href="#" class="primary-btn">Cargar más reseñas <span class="arrow_right"></span></a>
         </div>
     </div>
+    
 </section>
 <!-- Reviews Section End -->
 
 
 
 <!-- Shopping history Section Begin -->
-<section class="product spad">
+<section class="featured spad">
     <div class="container">
-        <hr>
-        <div class="section-title">
-            <h2>Tu historial de compra-venta</h2>
+        <div class="checkout__form">
+            <h4>Tus historial de compraventa</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-9 col-md-7">
-                <div class="row">
-                    {{#historial}}
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
-                            <div class="product__item__text">
-                                <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
-                                <h5>{{price}}</h5>
-                            </div>
-                        </div>
+        <div class="row featured__filter" id="Books">
+            {{#historial}}
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg">
+                        <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
                     </div>
-                    {{/historial}}
-                </div>
-                {{^historial}}
-                <p>Actualmente no tienes historial de compra-venta</p>
-                {{/historial}}
-                <div class="blog__item__text">
-                    <a href="#" class="blog__btn">Cargar más historial de compra-venta <span class="arrow_right"></span></a>
+                    <div class="featured__item__text">
+                        <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
+                        <h5>{{price}}</h5>
+                    </div>
                 </div>
             </div>
+            {{/historial}}
+
+            {{^historial}}
+            <p>Actualmente no tienes historial de compra-venta</p>
+            {{/historial}}
+        </div>
+        <div class="blog__item__text">
+            <a href="#" class="primary-btn">Cargar más historial de compra-venta <span class="arrow_right"></span></a>
         </div>
     </div>
 </section>
 <!-- Shopping history Section End -->
+
+
 
 
 <!-- Footer -->

@@ -1,5 +1,4 @@
 package es.codeurjc.readmebookstore.controller;
-import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
@@ -9,34 +8,26 @@ import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.model.User;
 
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.UserService;
 import es.codeurjc.readmebookstore.service.OfferService;
-import es.codeurjc.readmebookstore.repository.UserRepository;
 import es.codeurjc.readmebookstore.repository.BookRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
 public class BookController {
-
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserService userService;
@@ -46,9 +37,6 @@ public class BookController {
 
 	@Autowired
     private OfferService offerService;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private BookRepository bookRepository;
@@ -114,28 +102,6 @@ public class BookController {
 
 		} else {
 			return ResponseEntity.notFound().build();
-		}
-	}
-
-
-	private void updateImage(Book book, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
-		
-		if (!imageField.isEmpty()) {
-			book.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-			book.setImage(true);
-		} else {
-			if (removeImage) {
-				book.setImageFile(null);
-				book.setImage(false);
-			} else {
-				// Maintain the same image loading it before updating the book
-				Book dbBook = bookService.findById(book.getId()).orElseThrow();
-				if (dbBook.getImage()) {
-					book.setImageFile(BlobProxy.generateProxy(dbBook.getImageFile().getBinaryStream(),
-							dbBook.getImageFile().length()));
-					book.setImage(true);
-				}
-			}
 		}
 	}
 
