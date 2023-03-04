@@ -1,0 +1,22 @@
+bookid,title,categories
+0,La verdad sobre el caso Savolta,Policiaca|Misterio|Drama|Novela
+1,Elantris,Fantasia|Novela|Alta Fantasia
+2,Nacidos de la bruma,Fantasia|Novela
+3,El Archivo de las Tormentas,Fantasia|Novela|Fantasia Epica
+4,El Señor de los Anillos,Fantasia|Novela|Alta Fantasia|Aventuras
+5,Harry Potter,Fantasia|Novela|Juvenil|Aventuras
+6,La Ilíada,Literatura clásica|Epopeya|Poesia
+7,La Odisea,Literatura clásica|Epopeya|
+8,La Eneida,Literatura clásica|Fantasia|Epopeya
+9,La República,Literatura clásica|Politica|Filosofia
+10,Arte de amar,Literatura clásica|Poesia|Elegia
+11,Don Quijote de la Mancha,Literatura universal|Novela|Satira
+12,Romeo y Julieta,Literatura universal|Comedia|Drama|Tragedia|Elegia|Romance
+13,Cumbres borrascosas,Literatura universal|Novela|Tragedia
+14,El retrato de Dorian Gray,Literatura universal|Misterio|Aventuras|Filosofia
+15,El Conde de Montecristo,Literatura universal|Novela|Aventuras
+16,El primer hombre de Roma,Novela histórica|Novela|Ficcion
+17,Trilogía de Trajano,Novela histórica|Novela|Ficcion
+18,Los pilares de la Tierra,Novela histórica|Novela|Ficcion
+19,El médico,Novela histórica|Novela|Aventuras
+20,Episodios Nacionales,Novela histórica|Novela|Ficcion

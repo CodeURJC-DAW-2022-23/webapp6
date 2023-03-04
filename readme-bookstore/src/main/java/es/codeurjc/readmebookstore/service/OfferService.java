@@ -45,6 +45,10 @@ public class OfferService {
 		return repository.findByShoppingHistorial(id);
 	}
 
+	public List<Offer> findBooksBought(long id) {
+		return repository.findBooksBought(id);
+	}
+
 	public void save(Offer offers) {
 		repository.save(offers);
 	}

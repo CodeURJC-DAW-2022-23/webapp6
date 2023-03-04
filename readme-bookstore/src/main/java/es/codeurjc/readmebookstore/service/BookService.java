@@ -65,4 +65,8 @@ public class BookService {
 		return repository.isFavorite(userid, bookid);
 	}
 
+	public List<Book> favoritesbooks (Long userid) {
+		return repository.favoritesbooks(userid);
+	}
+
 }
