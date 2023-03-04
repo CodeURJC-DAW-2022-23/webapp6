@@ -1,4 +1,3 @@
-<!-- Hero Section Begin -->
 <section class="hero">
     <div class="container">
         <div class="row">
@@ -27,28 +26,15 @@
                         </form>
                     </div>
                 </div>
-                <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                <div class="hero__item set-bg" data-setbg="">
                     <div class="hero__text">
                         <span>LIBRO RECOMENDADO</span>
-                        <h2>La verdad <br />sobre el caso Savolta</h2>
+                        <h2>{{bestPick.title}}</h2>
                         <p>Basado en tus búsquedas y libros favoritos.</p>
-                        <a href="#" class="primary-btn">Lee sus reseñas</a>
+                        <a href="/book/{{bestPick.id}}" class="primary-btn">Lee sus reseñas</a>
                     </div>
                 </div>
-
-                <!--{{#algoritbooks}}
-                <div class="hero__item set-bg" data-setbg="/books/{{id}}/image">
-                    <div class="hero__text">
-                        <span>LIBRO RECOMENDADO</span>
-                        <h2>{{title}}</h2>
-                        <p>Basado en tus compras y libros favoritos.</p>
-                        <a href="/book/{{id}}" class="primary-btn">Lee sus reseñas</a>
-                    </div>
-                </div>
-                {{/algoritbooks}}-->
-
             </div>
         </div>
     </div>
 </section>
-<!-- Hero Section End -->

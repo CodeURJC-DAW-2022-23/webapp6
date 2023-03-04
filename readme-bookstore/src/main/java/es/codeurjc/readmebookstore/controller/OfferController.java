@@ -105,7 +105,8 @@ public class OfferController {
         offer.setPrice(price);
         offerRepository.save(offer);
         try {
-            updateImage(offer, false, imageField);
+            AdminController admin = new AdminController();
+            admin.updateImage(offer, false, imageField);
         } catch (Exception e) {
             return "redirect:/offer-page/" + offer.getId();
         }
@@ -152,27 +153,4 @@ public class OfferController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    private void updateImage(Offer offer, boolean removeImage, MultipartFile imageField)
-            throws IOException, SQLException {
-
-        if (!imageField.isEmpty()) {
-            offer.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-            offer.setImage(true);
-        } else {
-            if (removeImage) {
-                offer.setImageFile(null);
-                offer.setImage(false);
-            } else {
-                // Maintain the same image loading it before updating the dish
-                Offer dbOffer = offerService.findById(offer.getId()).orElseThrow();
-                if (dbOffer.hasImage()) {
-                    offer.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
-                            dbOffer.getImageFile().length()));
-                    offer.setImage(true);
-                }
-            }
-        }
-    }
-
 }

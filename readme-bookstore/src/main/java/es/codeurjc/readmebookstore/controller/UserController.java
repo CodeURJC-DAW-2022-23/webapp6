@@ -9,7 +9,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -63,7 +62,6 @@ public class UserController {
             List<Offer> offers = offerService.findOffersNotSoldByUser(user.getId());
             List<Offer> historial = offerService.findShoppingHistorial(user.getId());
 
-
             model.addAttribute("logged", true);
             model.addAttribute("id", request.getRequestedSessionId());
             model.addAttribute("name", principal.getName());
@@ -106,7 +104,8 @@ public class UserController {
         user.setEmail(email);
         userService.save(user);
         try {
-            updateImage(user, false, imageField);
+            AdminController admin = new AdminController();
+            admin.updateImage(user, false, imageField);
         } catch (Exception e) {
             return "user-page";
         }
@@ -129,28 +128,6 @@ public class UserController {
         return "/user-page/";
     }
 
-    private void updateImage(User user, boolean removeImage, MultipartFile imageField)
-            throws IOException, SQLException {
-
-        if (!imageField.isEmpty()) {
-            user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-            user.setImage(true);
-        } else {
-            if (removeImage) {
-                user.setImageFile(null);
-                user.setImage(false);
-            } else {
-                // Maintain the same image loading it before updating the dish
-                User dbUser = userService.findById(user.getId()).orElseThrow();
-                if (dbUser.hasImage()) {
-                    user.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
-                            dbUser.getImageFile().length()));
-                    user.setImage(true);
-                }
-            }
-        }
-    }
-
     @GetMapping("/users/{name}/image")
     public ResponseEntity<Object> downloadImage(@PathVariable String name) throws SQLException {
 
@@ -167,25 +144,25 @@ public class UserController {
     }
 
     @GetMapping("/addfavorite/{bookid}")
-	public String addFavorite(Model model, @PathVariable long bookid, HttpServletRequest request) throws IOException {
-        Book book = bookService.BookfindById(bookid); 
-        
+    public String addFavorite(Model model, @PathVariable long bookid, HttpServletRequest request) throws IOException {
+        Book book = bookService.BookfindById(bookid);
+
         String sessionName = request.getUserPrincipal().getName();
         Optional<User> user = userService.findByNameopt(sessionName);
         user.get().setFavouriteBooks(book);
-		userRepository.save(user.get());
+        userRepository.save(user.get());
         return "redirect:/book/" + bookid;
-	}
+    }
 
     @GetMapping("/removefavorite/{bookid}")
-	public String removeFavorite(Model model, @PathVariable long bookid) {
+    public String removeFavorite(Model model, @PathVariable long bookid) {
         userService.deletefavorite(bookid);
         return "redirect:/book/" + bookid;
-	}
+    }
 
     @GetMapping("/delete-favourite-user-page/{bookid}")
     public String deleteFavoriteUserPage(Model model, @PathVariable long bookid) {
         userService.deletefavorite(bookid);
         return "redirect:/user-page";
-	}
+    }
 }

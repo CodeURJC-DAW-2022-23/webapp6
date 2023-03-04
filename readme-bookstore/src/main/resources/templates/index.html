@@ -13,31 +13,18 @@
         </div>
         <div class="row">
             <div class="categories__slider owl-carousel">
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                        <h5><a href="#">EJEMPLO 1</a></h5>
+                {{#recommendedBooks}}
+                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg">
+                            <a href="/book/{{id}}"><img src="/books/{{id}}/image"></a>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="/book/{{id}}">{{title}}</a></h6>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="img/categories/cat-2.jpg">
-                        <h5><a href="#">EJEMPLO 2</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="img/categories/cat-3.jpg">
-                        <h5><a href="#">EJEMPLO 3</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="img/categories/cat-4.jpg">
-                        <h5><a href="#">EJEMPLO 4</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="img/categories/cat-5.jpg">
-                        <h5><a href="#">EJEMPLO 5</a></h5>
-                    </div>
-                </div>
+                {{/recommendedBooks}}
             </div>
         </div>
     </div>

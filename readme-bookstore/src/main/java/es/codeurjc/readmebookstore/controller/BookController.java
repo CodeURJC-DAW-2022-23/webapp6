@@ -1,6 +1,8 @@
 package es.codeurjc.readmebookstore.controller;
+
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
@@ -25,54 +27,79 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
-public class BookController extends AlgorithmController{
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private BookService bookService;
+public class BookController extends AlgorithmController {
 
 	@Autowired
-    private OfferService offerService;
+	private UserService userService;
 
-    @Autowired
-    private BookRepository bookRepository;
+	@Autowired
+	private BookService bookService;
 
+	@Autowired
+	private OfferService offerService;
+
+	@Autowired
+	private BookRepository bookRepository;
 
 	@ModelAttribute
-    public void addAttributes(Model model, HttpServletRequest request) {
+	public void addAttributes(Model model, HttpServletRequest request) {
 
-        Principal principal = request.getUserPrincipal();
-		
-        if (principal != null) {
-            model.addAttribute("logged", true);
-        } else {
-            model.addAttribute("logged", false);
-        }
-    }
+		Principal principal = request.getUserPrincipal();
 
- 
+		if (principal != null) {
+			model.addAttribute("logged", true);
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
+
+	/**
+	 * @return List with the recomended books using the recomendation algorithm.
+	 */
+	private List<Book> getRecommendedBooks() {
+		// Long [] recommendedBooks = recommendationAlgorithm (model, request);
+		Long[] recommendedBooksIds = { (long) 1, (long) 2, (long) 3, (long) 4, (long) 5, (long) 6 };
+
+		List<Book> recommendedBooks = new ArrayList<Book>();
+
+		for (int i = 0; i < recommendedBooksIds.length; i++) {
+			Book book = bookService.findById(recommendedBooksIds[i]).get();
+			recommendedBooks.add(book);
+		}
+		return recommendedBooks;
+	}
+
+	@GetMapping("/")
+	public String showAlgoritgmBooks(Model model) {
+		List<Book> recommendedBooks = getRecommendedBooks();
+
+		model.addAttribute("bestPick", recommendedBooks.get(0));
+		model.addAttribute("recommendedBooks", recommendedBooks);
+
+		return "index";
+	}
+
 	@GetMapping("/books")
 	public String showBooks(Model model) {
-        model.addAttribute("books", bookService.findAll(0));
+		model.addAttribute("bestPick", getRecommendedBooks().get(0));
+
+		model.addAttribute("books", bookService.findAll(0));
 		model.addAttribute("isbooksempty", bookService.findAll(0).isEmpty());
 
 		model.addAttribute("currentPage", 0);
 		return "books-general-page";
 	}
 
-    @GetMapping("/book/{id}")
+	@GetMapping("/book/{id}")
 	public String showBook(Model model, @PathVariable long id, HttpServletRequest request) {
-        Optional<Book> book = bookRepository.findById(id);
+		Optional<Book> book = bookRepository.findById(id);
 		List<Offer> offers = offerService.findOffersNotSoldByBook(id);
-        model.addAttribute("book", book.get());
-        model.addAttribute("reviews", book.get().getReviews());
-        model.addAttribute("offers", offers);
+		model.addAttribute("book", book.get());
+		model.addAttribute("reviews", book.get().getReviews());
+		model.addAttribute("offers", offers);
 		try {
-            Principal principal = request.getUserPrincipal();
+			Principal principal = request.getUserPrincipal();
 			if (principal != null) {
 				User usergetid = userService.findByName(principal.getName());
 				List<Book> favorites = bookService.isFavorite(usergetid.getId(), id);
@@ -82,10 +109,10 @@ public class BookController extends AlgorithmController{
 					model.addAttribute("isfav", true);
 				}
 			}
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("isfav", true);
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("isfav", true);
+		}
 		return "book-particular-page";
 	}
 
@@ -106,12 +133,12 @@ public class BookController extends AlgorithmController{
 	}
 
 	@GetMapping("/search")
-    public String doSearch(Model model, @RequestParam String searchtext, HttpServletRequest request) {
+	public String doSearch(Model model, @RequestParam String searchtext, HttpServletRequest request) {
 		String result = "false";
 		result = doSearchTitle(model, searchtext, request);
-        if (result != "false") {
-            return result;
-        } else {
+		if (result != "false") {
+			return result;
+		} else {
 			result = doSearchAuthor(model, searchtext);
 			if (result != "false") {
 				return result;
@@ -124,89 +151,79 @@ public class BookController extends AlgorithmController{
 					if (result != "false") {
 						return result;
 					} else {
-						//return "error-search"; No has encontrado nada
+						// return "error-search"; No has encontrado nada
 						return "error-page";
 					}
 				}
 			}
 		}
-    }
+	}
 
 	private String doSearchTitle(Model model, @RequestParam String title, HttpServletRequest request) {
 		String result = "false";
 		try {
-            Optional<Book> booktitle = bookService.findByTitle(title);
-            if(booktitle.get().getId() != null) {	
+			Optional<Book> booktitle = bookService.findByTitle(title);
+			if (booktitle.get().getId() != null) {
 				return showBook(model, booktitle.get().getId(), request);
-            }
-            else {
-                result = "false";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            result = "false";
-        }
+			} else {
+				result = "false";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "false";
+		}
 		return result;
 	}
 
 	private String doSearchAuthor(Model model, @RequestParam String author) {
 		String result = "false";
 		try {
-            List<Book> bookauthor = bookService.findByAuthor(author);
-            if (bookauthor.size() > 0) {
+			List<Book> bookauthor = bookService.findByAuthor(author);
+			if (bookauthor.size() > 0) {
 				model.addAttribute("books", bookauthor);
 				return "books-general-page";
 			} else {
 				return "false";
 			}
-        } catch (Exception e) {
-            e.printStackTrace();
-            result = "false";
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "false";
+		}
 		return result;
 	}
 
 	private String doSearchGenre(Model model, @RequestParam String genre) {
 		String result = "false";
 		try {
-            List<Book> bookgenre = bookService.findByPartial(genre);
-            if (bookgenre.size() > 0) {
+			List<Book> bookgenre = bookService.findByPartial(genre);
+			if (bookgenre.size() > 0) {
 				model.addAttribute("books", bookgenre);
 				return "books-general-page";
 			} else {
 				return "false";
 			}
-        } catch (Exception e) {
-            e.printStackTrace();
-            result = "false";
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "false";
+		}
 		return result;
 	}
 
 	private String doSearchPartial(Model model, @RequestParam String partial) {
 		String result = "false";
 		try {
-            List<Book> bookpartial = bookService.findByGenre(partial);
-            if (bookpartial.size() > 0) {
+			List<Book> bookpartial = bookService.findByGenre(partial);
+			if (bookpartial.size() > 0) {
 				model.addAttribute("books", bookpartial);
 				return "books-general-page";
 			} else {
 				return "false";
 			}
-        } catch (Exception e) {
-            e.printStackTrace();
-            result = "false";
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "false";
+		}
 		return result;
-	}
-
-	@GetMapping("/algorithmbooks")
-	public String showalgoritgmBooks(Model model, HttpServletRequest request) throws Exception {
-		//Long [] recommendedBooks = recommendationAlgorithm (model, request);
-		Long [] recommendedBooks = { (long)0, (long)1, (long)2, (long)3, (long)4, (long)5};
-        Long bookid = recommendedBooks[0];
-		model.addAttribute("algoritbooks", bookService.findById(bookid));
-		return "redirect:/search";
 	}
 
 }

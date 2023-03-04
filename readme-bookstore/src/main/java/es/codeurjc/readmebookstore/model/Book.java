@@ -25,30 +25,29 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id = null;
-	
+
 	private String title;
 
 	private String author;
 
 	private String genre;
-	/*@ManyToMany
- 	private List<Genre> genre;*/
-	
+
 	@Lob
 	private Blob imageFile;
-  
+
 	private boolean image;
 
-	@OneToMany(mappedBy="book", cascade=CascadeType.ALL, orphanRemoval=true)
- 	private List<Offer> offer;
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Offer> offer;
 
-	@OneToMany(mappedBy="book", cascade=CascadeType.ALL, orphanRemoval=true)
- 	private List<Review> review;
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Review> review;
 
 	@ManyToMany
 	private List<User> user;
 
-	public Book() {}
+	public Book() {
+	}
 
 	public Book(String title, String author, String genre) {
 		super();
@@ -88,13 +87,6 @@ public class Book {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	/*public List<Genre> getGenre() {
-		return genre;
-	}
-
-	public void setGenre(List<Genre> genre) {
-		this.genre = genre;
-	}*/
 
 	@JsonIgnore
 	public Blob getImageFile() {

@@ -57,16 +57,6 @@ public class AdminController {
     @Autowired
     private OfferService offerService;
 
-    @GetMapping("/")
-    public String home(Model model) {
-        return "index";
-    }
-
-    @GetMapping("/index")
-    public String index(Model model) {
-        return "index";
-    }
-
     @GetMapping("/contact")
     public String contact(Model model) {
         return "contact-page";
@@ -200,9 +190,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    private void updateImage(User user, boolean removeImage, MultipartFile imageField)
+    public void updateImage(User user, boolean removeImage, MultipartFile imageField)
             throws IOException, SQLException {
-
         if (!imageField.isEmpty()) {
             user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
             user.setImage(true);
@@ -211,7 +200,6 @@ public class AdminController {
                 user.setImageFile(null);
                 user.setImage(false);
             } else {
-                // Maintain the same image loading it before updating the dish
                 Offer dbOffer = offerService.findById(user.getId()).orElseThrow();
                 if (dbOffer.hasImage()) {
                     user.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
@@ -222,9 +210,8 @@ public class AdminController {
         }
     }
 
-    private void updateImage(Offer offer, boolean removeImage, MultipartFile imageField)
+    public void updateImage(Offer offer, boolean removeImage, MultipartFile imageField)
             throws IOException, SQLException {
-
         if (!imageField.isEmpty()) {
             offer.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
             offer.setImage(true);
@@ -233,7 +220,6 @@ public class AdminController {
                 offer.setImageFile(null);
                 offer.setImage(false);
             } else {
-                // Maintain the same image loading it before updating the dish
                 Offer dbOffer = offerService.findById(offer.getId()).orElseThrow();
                 if (dbOffer.hasImage()) {
                     offer.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
@@ -244,9 +230,8 @@ public class AdminController {
         }
     }
 
-    private void updateImage(Book book, boolean removeImage, MultipartFile imageField)
+    public void updateImage(Book book, boolean removeImage, MultipartFile imageField)
             throws IOException, SQLException {
-
         if (!imageField.isEmpty()) {
             book.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
             book.setImage(true);
@@ -255,7 +240,6 @@ public class AdminController {
                 book.setImageFile(null);
                 book.setImage(false);
             } else {
-                // Maintain the same image loading it before updating the dish
                 Offer dbOffer = offerService.findById(book.getId()).orElseThrow();
                 if (dbOffer.hasImage()) {
                     book.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
