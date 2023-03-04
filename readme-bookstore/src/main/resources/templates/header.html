@@ -41,7 +41,7 @@
         <div class="humberger__menu__logo">
             <a href="#"><img src="img/logo.png" alt=""></a>
         </div>
-        <div class="humberger__menu__cart">
+        <div class="humberger__menu__nav mobile-menu">
             <ul>
                 {{^logged}}
                 <li><i class="header__top__right__auth"></i>
@@ -53,18 +53,24 @@
                 <li><i class="header__top__right__auth"></i>
                     <a href="/register">Registrarse</a>
                 </li>
-                </li>
+
                 {{/logged}}
 
                 {{#logged}}
+                {{#admin}}
+                <li><a class="bold" href="/admin">ADMINISTRADOR</a></li>
+                {{/admin}}
+                {{^admin}}
                 <li><a href="user-page"><i class="fa fa-user"></i></a></li>
+                {{/admin}}
+
                 <form action="/logout" method="post">
                     <button class="btn btn-default navbar-btn" type="submit">Log Out</button>
                     <input type="hidden" name="_csrf" value="{{token}}" />
                 </form>
                 {{/logged}}
                 </li>
-
+            </ul>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
@@ -119,23 +125,31 @@
                                 <a href="https://es.linkedin.com/school/universidad-rey-juan-carlos/"><i
                                         class="fa fa-linkedin"></i></a>
                                 <a href="https://www.pinterest.es/urjc/"><i class="fa fa-pinterest-p"></i></a>
-                                {{^logged}}
-                                <a href="/login"> Iniciar sesión</a>
-                                {{/logged}}
-                                {{^logged}}
-                                <a href="/register">Registrarse</a></li>
-                                {{/logged}}
-
-                                {{#logged}}
-                                <a>
-                                    <form action="/logout" method="post">
-                                        <a href="/user-page"><i class="fa fa-user"></i></a>
-                                        <button class="btn btn-default navbar-btn" type="submit">Log Out</button>
-                                        <input type="hidden" name="_csrf" value="{{token}}" />
-                                    </form>
-                                </a>
-                                {{/logged}}
                             </div>
+                            {{^logged}}
+                            <div class="header__top__right__social">
+                                <a href="/login"> Iniciar sesión</a>
+                                <a href="/register">Registrarse</a></li>
+                            </div>
+                            {{/logged}}
+                            {{#logged}}
+                            <div class="header__top__right__auth">
+                                <form action="/logout" method="post">
+                                    {{#admin}}
+                                    <a class="bold" href="/admin">ADMINISTRADOR</a>
+                                    {{/admin}}
+                                    {{^admin}}
+                                    <a href="/user-page"><i class="fa fa-user"></i></a>
+                                    {{/admin}}
+                                </form>
+                            </div>
+                            <div class="header__top__right__auth">
+                                <form action="/logout" method="post">
+                                    <button class="btn btn-default navbar-btn" type="submit">Log Out</button>
+                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                </form>
+                            </div>
+                            {{/logged}}
                         </div>
                     </div>
                 </div>
@@ -155,9 +169,7 @@
                             <li><a href="/books">Libros</a></li>
                             <li><a href="/contact">Contacto</a></li>
                             <li><a href="/statistics">Estadísticas</a></li>
-                            {{#admin}}
-                            <li><a href="/admin">Administrador</a></li>
-                            {{/admin}}
+
                         </ul>
                     </nav>
                 </div>

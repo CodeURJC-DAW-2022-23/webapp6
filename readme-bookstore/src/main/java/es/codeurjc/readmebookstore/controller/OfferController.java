@@ -2,6 +2,7 @@ package es.codeurjc.readmebookstore.controller;
 
 import java.util.Optional;
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -75,11 +76,16 @@ public class OfferController {
     public String offerPage(Model model, @PathVariable long id, HttpServletRequest request) {
 
         Offer offer = offerRepository.findById(id).get();
-        String activeUserName = request.getUserPrincipal().getName();
-        String vendorName = offer.getSeller().getName();
 
+        String vendorName = offer.getSeller().getName();
+        Boolean ownOffer = false;
         Boolean soldOffer = offer.getSold();
-        Boolean ownOffer = activeUserName.equals(vendorName);
+
+        Principal principal = request.getUserPrincipal();
+        if (principal != null) {
+            String activeUserName = request.getUserPrincipal().getName();
+            ownOffer = activeUserName.equals(vendorName);
+        }
 
         model.addAttribute("sold", soldOffer);
         model.addAttribute("own", ownOffer);

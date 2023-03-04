@@ -71,7 +71,7 @@ public class BookController extends AlgorithmController {
 	}
 
 	@GetMapping("/")
-	public String showAlgoritgmBooks(Model model) {
+	public String mainPage(Model model) {
 		List<Book> recommendedBooks = getRecommendedBooks();
 
 		model.addAttribute("bestPick", recommendedBooks.get(0));
