@@ -93,7 +93,7 @@ public class LoginController {
 		model.addAttribute("registererror", false);
 
 		String subject = "Confirmación de registro";
-        String body = "Hola " + user.getName() + ",\n\nSomos Readme. Gracias por registrarte en nuestra página web.";
+        String body = "Hola " + user.getName() + ",";
 
 		try{
 			mailService.sendConfirmationEmail(user.getEmail(), subject, body);
