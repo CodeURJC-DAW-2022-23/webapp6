@@ -1,5 +1,6 @@
 package es.codeurjc.readmebookstore.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -65,6 +66,7 @@ public class User {
 		this.encodedPassword = encodedPassword;
 		this.email = email;
 		this.roles = List.of(roles);
+		this.favouriteBook = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -121,6 +123,10 @@ public class User {
 
 	public void setFavouriteBooks(Book favouriteBook) {
 		this.favouriteBook.add((Book) favouriteBook);
+	}
+
+	public void setListFavouriteBooks(List<Book> favouriteBooks) {
+		this.favouriteBook = favouriteBooks;
 	}
 
 	public void setOffers(List<Offer> offer) {

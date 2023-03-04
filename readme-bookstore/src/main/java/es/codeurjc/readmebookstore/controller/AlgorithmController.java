@@ -8,6 +8,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +33,6 @@ public class AlgorithmController {
     @Autowired
     private OfferService offerService;
 
-    @GetMapping
     public Long [] recommendationAlgorithm (Model model, HttpServletRequest request) throws Exception {
         Long [] recommendedBooks = new Long[6];
         String[][] categoriesMatrix = ponderationMatrix();
@@ -58,31 +59,39 @@ public class AlgorithmController {
                 "Alta Fantasia", "Fantasia Epica", "Aventuras", "Juvenil", "Literatura clásica", "Epopeya", "Poesia",
                 "Politica", "Filosofia", "Elegia", "Literatura universal", "Satira", "Comedia", "Tragedia", "Romance",
                 "Novela histórica", "Ficcion" };
-        String[][] categoriesMatrix = new String[21][headermatrix.length];
+        String[][] categoriesMatrix = new String[22][headermatrix.length];
         for (l = 0; l < headermatrix.length; l++) {
             categoriesMatrix[0][l] = headermatrix[l];
         }
-        File file = new File("/static/Categoria_Libros.txt");
+        Resource filetxt = new ClassPathResource("/static/Categoria_Libros.txt");
+        File file = filetxt.getFile();
         BufferedReader br = new BufferedReader(new FileReader(file));
-        i = 1;
+        i = 0;
+        Boolean compare;
         while ((st = br.readLine()) != null) {
+            if (i>0){
             String[] linepart = st.split(",");
-            String[] categories = linepart[2].split("|");
+            String[] categories = linepart[2].split(";");
             for (j = 0; j < headermatrix.length; j++) {
                 if (j < 2) {
                     categoriesMatrix[i][j] = linepart[j];
                 } else {
-                    catlen = categories[j].length();
-                    for (k = 0; k < catlen; k++) {
-                        if (categoriesMatrix[0][j] == categories[k]) {
+                    k = 0;
+                    catlen = categories.length;
+                    compare = true;
+                    while (compare) {
+                        if ((k < catlen) && headermatrix[j].equals(categories[k])) {
                             categoriesMatrix[i][j] = "1.0";
+                            compare = false;
                         } else {
                             categoriesMatrix[i][j] = "0.0";
+                            compare = false;
                         }
+                        k++;
                     }
                 }
             }
-            i++;
+            }i++;
         }
         br.close();
         return categoriesMatrix;

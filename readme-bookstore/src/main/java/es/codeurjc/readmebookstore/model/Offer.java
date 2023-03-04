@@ -52,13 +52,15 @@ public class Offer {
 	public Offer() {
 	}
 
-	public Offer(Date date, String edition, String description, Float price, Book book, User user) {
+	public Offer(Date date, String edition, String description, Float price, Book book, User seller, Boolean sold, User buyer) {
 		this.date = date;
 		this.edition = edition;
 		this.description = description;
 		this.price = price;
 		this.book = book;
-		this.seller = user;
+		this.seller = seller;
+		this.sold = sold;
+		this.buyer = buyer;
 	}
 
 	public Long getId() {

@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class BookController {
+public class BookController extends AlgorithmController{
 
     @Autowired
     private UserService userService;
@@ -198,6 +198,15 @@ public class BookController {
             result = "false";
         }
 		return result;
+	}
+
+	@GetMapping("/algorithmbooks")
+	public String showalgoritgmBooks(Model model, HttpServletRequest request) throws Exception {
+		//Long [] recommendedBooks = recommendationAlgorithm (model, request);
+		Long [] recommendedBooks = { (long)0, (long)1, (long)2, (long)3, (long)4, (long)5};
+        Long bookid = recommendedBooks[0];
+		model.addAttribute("algoritbooks", bookService.findById(bookid));
+		return "redirect:/search";
 	}
 
 }

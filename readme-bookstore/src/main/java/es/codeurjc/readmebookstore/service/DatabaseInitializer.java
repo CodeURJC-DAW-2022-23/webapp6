@@ -142,6 +142,11 @@ public class DatabaseInitializer {
 
 		User user3 = new User("jose", passwordEncoder.encode("jose"), "jose@gmail.com", "USER");
 		setUserImage(user3, "/static/img/user-profiles/example-profile.png");
+		user3.setFavouriteBooks(book0);
+		user3.setFavouriteBooks(book8);
+		user3.setFavouriteBooks(book13);
+		user3.setFavouriteBooks(book15);
+		user3.setFavouriteBooks(book19);
 		userRepository.save(user3);
 
 		User user4 = new User("maria", passwordEncoder.encode("maria"), "maria@gmail.com", "USER");
@@ -264,95 +269,120 @@ public class DatabaseInitializer {
 
 		Review review34 = new Review("Me encanta", new Date(), book20, user6);
 		reviewRepository.save(review34);
-
+		
 		// Sample offers
-		Offer offer1 = new Offer(new Date(), "Seix Barral", "This is a test description", 10f, book0, user3);
+		Offer offer1 = new Offer(new Date(), "Seix Barral", "This is a test description", 10f, book0, user3, false, null);
 		setOfferImage(offer1, "/static/img/book-offers/savolta-1.jpg");
 		offerRepository.save(offer1);
 
-		Offer offer2 = new Offer(new Date(), "TOR BOOKS", "This is a test description", 12f, book0, user4);
+		Offer offer2 = new Offer(new Date(), "TOR BOOKS", "This is a test description", 12f, book0, user4, false, null);
 		setOfferImage(offer2, "/static/img/book-offers/savolta-2.jpg");
 		offerRepository.save(offer2);
 
-		Offer offer3 = new Offer(new Date(), "TOR BOOKS", "This is a test description", 10f, book1, user5);
+		Offer offer3 = new Offer(new Date(), "TOR BOOKS", "This is a test description", 10f, book1, user5, false, null);
 		setOfferImage(offer3, "/static/img/book-offers/elantris-1.jpg");
 		offerRepository.save(offer3);
 
-		Offer offer4 = new Offer(new Date(), "SM", "This is a test description", 9f, book1, user6);
+		Offer offer4 = new Offer(new Date(), "SM", "This is a test description", 9f, book1, user6, false, null);
 		setOfferImage(offer4, "/static/img/book-offers/elantris-2.jpg");
 		offerRepository.save(offer4);
 
-		Offer offer5 = new Offer(new Date(), "Nova", "This is a test description", 15f, book2, user4);
+		Offer offer5 = new Offer(new Date(), "Nova", "This is a test description", 15f, book2, user4, false, null);
 		setOfferImage(offer5, "/static/img/book-offers/nacidos-de-la-bruma-1.jpg");
 		offerRepository.save(offer5);
 
-		Offer offer6 = new Offer(new Date(), "Nova", "This is a test description", 13f, book2, user3);
+		Offer offer6 = new Offer(new Date(), "Nova", "This is a test description", 13f, book2, user3, false, null);
 		setOfferImage(offer6, "/static/img/book-offers/nacidos-de-la-bruma-2.jpeg");
 		offerRepository.save(offer6);
 
-		Offer offer7 = new Offer(new Date(), "Nova", "This is a test description", 15f, book3, user7);
+		Offer offer7 = new Offer(new Date(), "Nova", "This is a test description", 15f, book3, user7, false, null);
 		setOfferImage(offer7, "/static/img/book-offers/el-archivo-de-las-tormentas-1.jpg");
 		offerRepository.save(offer7);
 
-		Offer offer8 = new Offer(new Date(), "Nova", "This is a test description", 13f, book3, user3);
+		Offer offer8 = new Offer(new Date(), "Nova", "This is a test description", 13f, book3, user3, false, null);
 		setOfferImage(offer8, "/static/img/book-offers/el-archivo-de-las-tormentas-2.jpg");
 		offerRepository.save(offer8);	
 
-		Offer offer9 = new Offer(new Date(), "Minotauro", "This is a test description", 10f, book4, user2);
+		Offer offer9 = new Offer(new Date(), "Minotauro", "This is a test description", 10f, book4, user2, false, null);
 		setOfferImage(offer9, "/static/img/book-offers/el-señor-de-los-anillos-1.jpg");
 		offerRepository.save(offer9);
 
-		Offer offer10 = new Offer(new Date(), "Minotauro", "This is a test description", 17f, book4, user3);
+		Offer offer10 = new Offer(new Date(), "Minotauro", "This is a test description", 17f, book4, user3, false, null);
 		setOfferImage(offer10, "/static/img/book-offers/el-señor-de-los-anillos-2.jpg");
 		offerRepository.save(offer10);	
 
-		Offer offer11 = new Offer(new Date(), "Minotauro", "This is a test description", 13f, book4, user4);
+		Offer offer11 = new Offer(new Date(), "Minotauro", "This is a test description", 13f, book4, user4, false, null);
 		setOfferImage(offer11, "/static/img/book-offers/el-señor-de-los-anillos-3.jpg");
 		offerRepository.save(offer11);	
 
-		Offer offer12 = new Offer(new Date(), "Minotauro", "This is a test description", 12f, book4, user5);
+		Offer offer12 = new Offer(new Date(), "Minotauro", "This is a test description", 12f, book4, user5, false, null);
 		setOfferImage(offer12, "/static/img/book-offers/el-señor-de-los-anillos-4.jpg");
 		offerRepository.save(offer12);	
 
-		Offer offer13 = new Offer(new Date(), "Minotauro", "This is a test description", 11f, book4, user6);
+		Offer offer13 = new Offer(new Date(), "Minotauro", "This is a test description", 11f, book4, user6, false, null);
 		setOfferImage(offer13, "/static/img/book-offers/el-señor-de-los-anillos-5.jpg");
 		offerRepository.save(offer13);	
 
-		Offer offer14 = new Offer(new Date(), "Minotauro", "This is a test description", 18f, book4, user7);
+		Offer offer14 = new Offer(new Date(), "Minotauro", "This is a test description", 18f, book4, user7, false, null);
 		setOfferImage(offer14, "/static/img/book-offers/el-señor-de-los-anillos-6.jpg");
 		offerRepository.save(offer14);	
 
-		Offer offer15 = new Offer(new Date(), "Minotauro", "This is a test description", 10f, book11, user2);
+		Offer offer15 = new Offer(new Date(), "Minotauro", "This is a test description", 10f, book11, user2, false, null);
 		setOfferImage(offer15, "/static/img/book-offers/don-quijote-1.jpg");
 		offerRepository.save(offer15);
 
-		Offer offer16 = new Offer(new Date(), "Minotauro", "This is a test description", 12f, book11, user3);
+		Offer offer16 = new Offer(new Date(), "Minotauro", "This is a test description", 12f, book11, user3, false, null);
 		setOfferImage(offer16, "/static/img/book-offers/don-quijote-2.jpg");
 		offerRepository.save(offer16);	
 
-		Offer offer17 = new Offer(new Date(), "Minotauro", "This is a test description", 11f, book11, user4);
+		Offer offer17 = new Offer(new Date(), "Minotauro", "This is a test description", 11f, book11, user4, false, null);
 		setOfferImage(offer17, "/static/img/book-offers/don-quijote-3.jpg");
 		offerRepository.save(offer17);	
 
-		Offer offer18 = new Offer(new Date(), "Minotauro", "This is a test description", 13f, book11, user5);
+		Offer offer18 = new Offer(new Date(), "Minotauro", "This is a test description", 13f, book11, user5, false, null);
 		setOfferImage(offer18, "/static/img/book-offers/don-quijote-4.jpg");
 		offerRepository.save(offer18);	
 
-		Offer offer19 = new Offer(new Date(), "Minotauro", "This is a test description", 15f, book11, user6);
+		Offer offer19 = new Offer(new Date(), "Minotauro", "This is a test description", 15f, book11, user6, false, null);
 		setOfferImage(offer19, "/static/img/book-offers/don-quijote-5.jpg");
 		offerRepository.save(offer19);	
 
-		Offer offer20 = new Offer(new Date(), "Minotauro", "This is a test description", 16f, book11, user7);
+		Offer offer20 = new Offer(new Date(), "Minotauro", "This is a test description", 16f, book11, user7, false, null);
 		setOfferImage(offer20, "/static/img/book-offers/don-quijote-6.jpeg");
 		offerRepository.save(offer20);
 
-		Offer offer21 = new Offer(new Date(), "Minotauro", "This is a test description", 16f, book11, user4);
+		Offer offer21 = new Offer(new Date(), "Minotauro", "This is a test description", 16f, book11, user4, false, null);
 		setOfferImage(offer21, "/static/img/book-offers/don-quijote-7.jpg");
 		offerRepository.save(offer21);
 
-		Offer offer22 = new Offer(new Date(), "Minotauro", "This is a test description", 16f, book11, user6);
+		Offer offer22 = new Offer(new Date(), "Minotauro", "This is a test description", 16f, book11, user6, false, null);
 		setOfferImage(offer22, "/static/img/book-offers/don-quijote-8.jpg");
 		offerRepository.save(offer22);
+
+		// Sample offers sold
+		Offer offer1s = new Offer(new Date(), "Seix Barral", "This is a test description", 10f, book0, user2, true, user3);
+		setOfferImage(offer1s, "/static/img/book-offers/savolta-1.jpg");
+		offerRepository.save(offer1s);
+
+		Offer offer3s = new Offer(new Date(), "TOR BOOKS", "This is a test description", 10f, book1, user5, true, user3);
+		setOfferImage(offer3s, "/static/img/book-offers/elantris-1.jpg");
+		offerRepository.save(offer3s);
+
+		Offer offer5s = new Offer(new Date(), "Nova", "This is a test description", 15f, book2, user4, true, user3);
+		setOfferImage(offer5s, "/static/img/book-offers/nacidos-de-la-bruma-1.jpg");
+		offerRepository.save(offer5s);
+		
+		Offer offer7s = new Offer(new Date(), "Nova", "This is a test description", 15f, book3, user7, true, user3);
+		setOfferImage(offer7s, "/static/img/book-offers/el-archivo-de-las-tormentas-1.jpg");
+		offerRepository.save(offer7s);
+
+		Offer offer9s = new Offer(new Date(), "Minotauro", "This is a test description", 10f, book4, user2, true, user3);
+		setOfferImage(offer9s, "/static/img/book-offers/el-señor-de-los-anillos-1.jpg");
+		offerRepository.save(offer9s);
+
+		Offer offer16s = new Offer(new Date(), "Minotauro", "This is a test description", 12f, book11, user3, true, user3);
+		setOfferImage(offer16s, "/static/img/book-offers/don-quijote-2.jpg");
+		offerRepository.save(offer16s);
 
 	}
 

@@ -53,7 +53,7 @@ public class OfferController {
         User user = userRepository.findByName(username).orElseThrow();
         Date date = new Date();
 
-        Offer offer = new Offer(date, edition, text, price, book, user);
+        Offer offer = new Offer(date, edition, text, price, book, user, false, null);
 
         if (!imageField.isEmpty()) {
             offer.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
