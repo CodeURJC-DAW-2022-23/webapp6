@@ -168,4 +168,18 @@ Page to upload new books to the database and manage all the application data.
 </details>
 
 
+##PHASE 2
+
+### Technology description and development run instructions
+- Java version: 17
+- SpringBoot version: 3.0.2
+- Database: MySQL
+   - Scheme: `books`
+   - User: `root`
+   - Password: `password`
+
+To start the application run the `ReadmeBookstoreApplication.java` and go to `https://localhost:8443/` on your browser.
+
+
+
 
