@@ -142,10 +142,10 @@ public class DatabaseInitializer {
 
 		User user3 = new User("jose", passwordEncoder.encode("jose"), "jose@gmail.com", "USER");
 		setUserImage(user3, "/static/img/user-profiles/example-profile.png");
-		user3.setFavouriteBooks(book0);
 		user3.setFavouriteBooks(book8);
 		user3.setFavouriteBooks(book13);
 		user3.setFavouriteBooks(book15);
+		user3.setFavouriteBooks(book16);
 		user3.setFavouriteBooks(book19);
 		userRepository.save(user3);
 

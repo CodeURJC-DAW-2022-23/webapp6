@@ -890,6 +890,12 @@ ol {
 
 .img-responsive {
 	max-width: 50%;
+	height: auto;
+	align-items: right;
+}
+
+.img-responsive-search {
+	max-width: 20%;
 	height: auto
 }
 

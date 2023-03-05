@@ -53,11 +53,11 @@ public class BookController extends AlgorithmController {
 
 	/**
 	 * @return List with the recomended books using the recomendation algorithm.
+	 * @throws Exception
 	 */
-	private List<Book> getRecommendedBooks() {
-		// Long [] recommendedBooks = recommendationAlgorithm (model, request);
-		Long[] recommendedBooksIds = { (long) 1, (long) 2, (long) 3, (long) 4, (long) 5, (long) 6 };
-
+	private List<Book> getRecommendedBooks(Model model, HttpServletRequest request) throws Exception {
+		Long [] recommendedBooksIds = recommendationAlgorithm (model, request);
+		
 		List<Book> recommendedBooks = new ArrayList<Book>();
 
 		for (int i = 0; i < recommendedBooksIds.length; i++) {
@@ -68,8 +68,8 @@ public class BookController extends AlgorithmController {
 	}
 
 	@GetMapping("/")
-	public String mainPage(Model model) {
-		List<Book> recommendedBooks = getRecommendedBooks();
+	public String mainPage(Model model, HttpServletRequest request) throws Exception {
+		List<Book> recommendedBooks = getRecommendedBooks(model, request);
 
 		model.addAttribute("bestPick", recommendedBooks.get(0));
 		model.addAttribute("recommendedBooks", recommendedBooks);
@@ -78,10 +78,15 @@ public class BookController extends AlgorithmController {
 	}
 
 	@GetMapping("/books")
-	public String showBooks(Model model) {
-		model.addAttribute("bestPick", getRecommendedBooks().get(0));
+	public String showBooks(Model model,@RequestParam(required = false) List<Book> searchbooks, HttpServletRequest request) throws Exception {
+		model.addAttribute("bestPick", getRecommendedBooks(model, request).get(0));
 
-		model.addAttribute("books", bookService.findAll(0));
+		if (searchbooks == null) {
+			model.addAttribute("books", bookService.findAll(0));
+		} else {
+			model.addAttribute("books", searchbooks);
+		}
+		
 		model.addAttribute("isbooksempty", bookService.findAll(0).isEmpty());
 
 		model.addAttribute("currentPage", 0);
@@ -136,15 +141,15 @@ public class BookController extends AlgorithmController {
 		if (result != "false") {
 			return result;
 		} else {
-			result = doSearchAuthor(model, searchtext);
+			result = doSearchAuthor(model, searchtext, request);
 			if (result != "false") {
 				return result;
 			} else {
-				result = doSearchGenre(model, searchtext);
+				result = doSearchGenre(model, searchtext, request);
 				if (result != "false") {
 					return result;
 				} else {
-					result = doSearchPartial(model, searchtext);
+					result = doSearchPartial(model, searchtext, request);
 					if (result != "false") {
 						return result;
 					} else {
@@ -172,13 +177,13 @@ public class BookController extends AlgorithmController {
 		return result;
 	}
 
-	private String doSearchAuthor(Model model, @RequestParam String author) {
+	private String doSearchAuthor(Model model, @RequestParam String author, HttpServletRequest request) {
 		String result = "false";
 		try {
 			List<Book> bookauthor = bookService.findByAuthor(author);
 			if (bookauthor.size() > 0) {
 				model.addAttribute("books", bookauthor);
-				return "books-general-page";
+				return showBooks(model, bookauthor, request);
 			} else {
 				return "false";
 			}
@@ -189,13 +194,13 @@ public class BookController extends AlgorithmController {
 		return result;
 	}
 
-	private String doSearchGenre(Model model, @RequestParam String genre) {
+	private String doSearchGenre(Model model, @RequestParam String genre, HttpServletRequest request) {
 		String result = "false";
 		try {
 			List<Book> bookgenre = bookService.findByPartial(genre);
 			if (bookgenre.size() > 0) {
 				model.addAttribute("books", bookgenre);
-				return "books-general-page";
+				return showBooks(model, bookgenre, request);
 			} else {
 				return "false";
 			}
@@ -206,13 +211,13 @@ public class BookController extends AlgorithmController {
 		return result;
 	}
 
-	private String doSearchPartial(Model model, @RequestParam String partial) {
+	private String doSearchPartial(Model model, @RequestParam String partial, HttpServletRequest request) {
 		String result = "false";
 		try {
 			List<Book> bookpartial = bookService.findByGenre(partial);
 			if (bookpartial.size() > 0) {
 				model.addAttribute("books", bookpartial);
-				return "books-general-page";
+				return showBooks(model, bookpartial, request);
 			} else {
 				return "false";
 			}
