@@ -1,6 +1,7 @@
 package es.codeurjc.readmebookstore.model;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -46,6 +47,9 @@ public class Book {
 	@ManyToMany
 	private List<User> user;
 
+	@ManyToMany
+	private List<Categories> categories;
+
 	public Book() {
 	}
 
@@ -54,6 +58,7 @@ public class Book {
 		this.title = title;
 		this.author = author;
 		this.genre = genre;
+		this.categories = new ArrayList<>();
 	}
 
 	public String getTitle() {
@@ -130,6 +135,18 @@ public class Book {
 
 	public void setUser(List<User> user) {
 		this.user = user;
+	}
+
+	public List<Categories> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Categories> categories) {
+		this.categories = categories;
+	}
+	
+	public void setCategories(Categories categories) {
+		this.categories.add((Categories) categories);
 	}
 
 	@Override
