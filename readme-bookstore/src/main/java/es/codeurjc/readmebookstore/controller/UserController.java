@@ -28,7 +28,6 @@ import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.OfferService;
 
 import javax.servlet.http.HttpServletRequest;
-import es.codeurjc.readmebookstore.repository.UserRepository;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,9 +43,6 @@ public class UserController {
 
     @Autowired
     private OfferService offerService;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private BookService bookService;
@@ -100,7 +96,7 @@ public class UserController {
     public String updateProfile(Model model, @RequestParam String email, HttpServletRequest request,
             MultipartFile imageField) throws IOException {
         String username = request.getUserPrincipal().getName();
-        User user = userRepository.findByName(username).orElseThrow();
+        User user = userService.findByName(username);
         user.setEmail(email);
         userService.save(user);
         try {
@@ -150,7 +146,7 @@ public class UserController {
         String sessionName = request.getUserPrincipal().getName();
         Optional<User> user = userService.findByNameopt(sessionName);
         user.get().setFavouriteBooks(book);
-        userRepository.save(user.get());
+        userService.save(user.get());
         return "redirect:/book/" + bookid;
     }
 

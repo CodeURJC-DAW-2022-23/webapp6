@@ -21,7 +21,6 @@ import org.springframework.ui.Model;
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.UserService;
 import es.codeurjc.readmebookstore.service.OfferService;
-import es.codeurjc.readmebookstore.repository.BookRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,8 +38,6 @@ public class BookController extends AlgorithmController {
 	@Autowired
 	private OfferService offerService;
 
-	@Autowired
-	private BookRepository bookRepository;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -93,10 +90,10 @@ public class BookController extends AlgorithmController {
 
 	@GetMapping("/book/{id}")
 	public String showBook(Model model, @PathVariable long id, HttpServletRequest request) {
-		Optional<Book> book = bookRepository.findById(id);
+		Book book = bookService.findById(id).get();
 		List<Offer> offers = offerService.findOffersNotSoldByBook(id);
-		model.addAttribute("book", book.get());
-		model.addAttribute("reviews", book.get().getReviews());
+		model.addAttribute("book", book);
+		model.addAttribute("reviews", book.getReviews());
 		model.addAttribute("offers", offers);
 		try {
 			Principal principal = request.getUserPrincipal();

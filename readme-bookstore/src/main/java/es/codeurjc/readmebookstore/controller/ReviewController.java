@@ -1,6 +1,5 @@
 package es.codeurjc.readmebookstore.controller;
 
-import java.util.Optional;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import es.codeurjc.readmebookstore.model.User;
@@ -9,9 +8,9 @@ import es.codeurjc.readmebookstore.model.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import es.codeurjc.readmebookstore.repository.ReviewRepository;
-import es.codeurjc.readmebookstore.repository.UserRepository;
-import es.codeurjc.readmebookstore.repository.BookRepository;
+import es.codeurjc.readmebookstore.service.BookService;
+import es.codeurjc.readmebookstore.service.UserService;
+import es.codeurjc.readmebookstore.service.ReviewService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,56 +21,55 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ReviewController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    private BookRepository bookRepository;
+    private BookService bookService;
 
     @Autowired
-    private ReviewRepository reviewRepository;
+    private ReviewService reviewService;
 
 
- 
 	@PostMapping("/uploaded-review/{id}")
 	public String uploadedReview(Model model, @PathVariable long id, @RequestParam String text, HttpServletRequest request) {
-        Optional<Book> book = bookRepository.findById(id);
+        Book book = bookService.findById(id).get();
         String username = request.getUserPrincipal().getName();
-		User user = userRepository.findByName(username).orElseThrow();
+		User user = userService.findByName(username);
         Date date = new Date();
-        Review review = new Review(text, date, book.get(), user);
-		reviewRepository.save(review);
-		return "redirect:/book/"+ book.get().getId();
+        Review review = new Review(text, date, book, user);
+		reviewService.save(review);
+		return "redirect:/book/"+ book.getId();
 	}
 
 
     @GetMapping("/upload-review/{id}")
 	public String uploadReview(Model model, @PathVariable long id) {
-        Optional<Book> book = bookRepository.findById(id);
-        model.addAttribute("book", book.get());
+        Book book = bookService.findById(id).get();
+        model.addAttribute("book", book);
 		return "upload-review-page";
 	}
 
     @GetMapping("/modify-review/{id}")
 	public String modifyReview(Model model, @PathVariable long id) {
-        Optional<Review> review = reviewRepository.findById(id);
-        model.addAttribute("review", review.get());
+        Review review = reviewService.findById(id).get();
+        model.addAttribute("review", review);
 		return "update-review-page";
 	}
 
     @PostMapping("/updated-review/{id}")
 	public String updatedReview(Model model, @PathVariable long id, @RequestParam String text) {
-        Optional<Review> review = reviewRepository.findById(id);
+        Review review = reviewService.findById(id).get();
         Date date = new Date();
-        review.get().setDate(date);
-        review.get().setText(text);
-		reviewRepository.save(review.get());
+        review.setDate(date);
+        review.setText(text);
+		reviewService.save(review);
 		return "redirect:/user-page";
 	}
   
 
     @GetMapping("/delete-review/{id}")
 	public String deleteReview(Model model, @PathVariable long id) {
-        reviewRepository.deleteById(id);
+        reviewService.delete(id);
 		return "redirect:/user-page";
 	}
 }
