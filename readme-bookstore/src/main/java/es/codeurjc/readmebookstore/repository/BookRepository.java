@@ -32,6 +32,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
         @Query(value = "SELECT * FROM books.book b where b.id in (select favourite_book_id from books.user_favourite_book f  where f.user_id = :userid)", nativeQuery = true)
         List<Book> favoritesbooks(Long userid);
+
+        @Query(value = "SELECT * FROM books.book b where b.id in (select favourite_book_id from books.user_favourite_book f  where f.user_id = :userid)", nativeQuery = true)
+        Page<Book> favoriteBooks(Long userid, Pageable page);
         
         public Page<Book> findAll(Pageable page);
 

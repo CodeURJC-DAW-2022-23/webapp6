@@ -8,17 +8,20 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Offer;
+import es.codeurjc.readmebookstore.model.Review;
 import es.codeurjc.readmebookstore.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import es.codeurjc.readmebookstore.service.BookService;
+import es.codeurjc.readmebookstore.service.ReviewService;
 import es.codeurjc.readmebookstore.service.UserService;
 import es.codeurjc.readmebookstore.service.OfferService;
 import es.codeurjc.readmebookstore.repository.BookRepository;
@@ -41,6 +44,10 @@ public class BookController extends AlgorithmController {
 
 	@Autowired
 	private BookRepository bookRepository;
+
+	@Autowired
+	private ReviewService reviewService;
+
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -81,7 +88,7 @@ public class BookController extends AlgorithmController {
 	}
 
 	@GetMapping("/books")
-	public String showBooks(Model model,@RequestParam(required = false) List<Book> searchbooks, HttpServletRequest request) throws Exception {
+	public String showBooks(Model model, @RequestParam(required = false) List<Book> searchbooks, HttpServletRequest request, @RequestParam(defaultValue = "0") int currentPage) throws Exception {
 		model.addAttribute("bestPick", getRecommendedBooks(model, request).get(0));
 
 		if (searchbooks == null) {
@@ -89,19 +96,25 @@ public class BookController extends AlgorithmController {
 		} else {
 			model.addAttribute("books", searchbooks);
 		}
-		
-		model.addAttribute("isbooksempty", bookService.findAll(0).isEmpty());
 
-		model.addAttribute("currentPage", 0);
+		Page<Book> booksPage = bookService.findAll(currentPage);
+		model.addAttribute("books", booksPage);
+		model.addAttribute("isbooksempty", booksPage.isEmpty());
+
+		model.addAttribute("currentPage", currentPage);
 		return "books-general-page";
 	}
 
+
+
 	@GetMapping("/book/{id}")
-	public String showBook(Model model, @PathVariable long id, HttpServletRequest request) {
-		Optional<Book> book = bookRepository.findById(id);
-		List<Offer> offers = offerService.findOffersNotSoldByBook(id);
-		model.addAttribute("book", book.get());
-		model.addAttribute("reviews", book.get().getReviews());
+
+	public String showBook(Model model, @PathVariable long id, HttpServletRequest request, @RequestParam(defaultValue = "0") int currentReviewsPage,  @RequestParam(defaultValue = "0") int currentOffersPage) {
+		Book book = bookService.findById(id).get();
+		Page<Offer> offers = offerService.findOffersNotSoldByBook(id, currentOffersPage);
+		Page<Review> reviews = reviewService.findAllReviewsByBook(id, currentReviewsPage);
+		model.addAttribute("book", book);
+		model.addAttribute("reviews", reviews);
 		model.addAttribute("offers", offers);
 		try {
 			Principal principal = request.getUserPrincipal();
@@ -169,7 +182,7 @@ public class BookController extends AlgorithmController {
 		try {
 			Optional<Book> booktitle = bookService.findByTitle(title);
 			if (booktitle.get().getId() != null) {
-				return showBook(model, booktitle.get().getId(), request);
+				return showBook(model, booktitle.get().getId(), request, 0, 0);
 			} else {
 				result = "false";
 			}
@@ -186,7 +199,7 @@ public class BookController extends AlgorithmController {
 			List<Book> bookauthor = bookService.findByAuthor(author);
 			if (bookauthor.size() > 0) {
 				model.addAttribute("books", bookauthor);
-				return showBooks(model, bookauthor, request);
+				return showBooks(model, bookauthor, request, 0);
 			} else {
 				return "false";
 			}
@@ -203,7 +216,7 @@ public class BookController extends AlgorithmController {
 			List<Book> bookgenre = bookService.findByPartial(genre);
 			if (bookgenre.size() > 0) {
 				model.addAttribute("books", bookgenre);
-				return showBooks(model, bookgenre, request);
+				return showBooks(model, bookgenre, request, 0);
 			} else {
 				return "false";
 			}
@@ -220,7 +233,7 @@ public class BookController extends AlgorithmController {
 			List<Book> bookpartial = bookService.findByGenre(partial);
 			if (bookpartial.size() > 0) {
 				model.addAttribute("books", bookpartial);
-				return showBooks(model, bookpartial, request);
+				return showBooks(model, bookpartial, request, 0);
 			} else {
 				return "false";
 			}

@@ -35,18 +35,19 @@
 <!-- Favourites Section Begin -->
 <section class="featured spad">
 
-    <div class="container">
+    <div class="container" id="favoritesContainer">
         <div class="checkout__form">
             <h4>Tus libros favoritos</h4>
         </div>
-        <div class="row featured__filter" id="Books">
+        <div class="row featured__filter" id="favoriteBooks">
             {{#favourites}}
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg">
                         <a href="/book/{{id}}"><img src="/books/{{id}}/image"></a>
                         <ul class="featured__item__pic__hover">
-                            <li><a title="Eliminar de favoritos" href="/delete-favourite-user-page/{{id}}"><i class="fa fa-heart"></i></a></li>
+                            <li><a title="Eliminar de favoritos" href="/delete-favourite-user-page/{{id}}"><i
+                                        class="fa fa-heart"></i></a></li>
                         </ul>
                     </div>
                     <div class="featured__item__text">
@@ -57,12 +58,13 @@
             {{/favourites}}
 
             {{^favourites}}
-            <p>Actualmente no tienes libros favoritos</p>
+            <p id="noMoreFavorites">Actualmente no tienes libros favoritos</p>
             {{/favourites}}
         </div>
-        <div class="blog__item__text">
-            <a href="#" class="primary-btn">Cargar más libros <span class="arrow_right"></span></a>
-        </div>
+        <button type="button" class="primary-btn" id="moreContentButton" onClick=moreUserFavorites()>
+            <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                style="display: none"></span>
+            <span id="moreContentText">Cargar más...</span></button>
     </div>
 </section>
 <!-- Favourites Section End -->
@@ -73,7 +75,7 @@
         <div class="checkout__form">
             <h4>Tus anuncios</h4>
         </div>
-        <div class="row featured__filter" id="Books">
+        <div class="row featured__filter" id="userOffers">
             {{#offers}}
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
@@ -93,13 +95,14 @@
             {{/offers}}
 
             {{^offers}}
-            <p>Actualmente no tienes anuncios subidos</p>
+            <p id="noMoreUserOffers">Actualmente no tienes anuncios subidos</p>
             {{/offers}}
 
         </div>
-        <div class="blog__item__text">
-            <a href="#" class="primary-btn">Cargar más anuncios <span class="arrow_right"></span></a>
-        </div>
+        <button type="button" class="primary-btn" id="moreContentButton" onClick=moreUserOffers()>
+            <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                style="display: none"></span>
+            <span id="moreContentText">Cargar más...</span></button>
     </div>
 </section>
 <!-- Offers Section End -->
@@ -122,8 +125,10 @@
                         {{text}}
                     </div>
                     <div class="blog__item__text text-center">
-                        <a title="Editar" href="/modify-review/{{id}}" class="blog__btn"><i class="fa fa-pencil"></i></a>
-                        <a title="Eliminar" href="/delete-review/{{id}}" class="blog__btn"><i class="fa fa-trash"></i></a>
+                        <a title="Editar" href="/modify-review/{{id}}" class="blog__btn"><i
+                                class="fa fa-pencil"></i></a>
+                        <a title="Eliminar" href="/delete-review/{{id}}" class="blog__btn"><i
+                                class="fa fa-trash"></i></a>
                     </div>
                 </div>
             </div>
@@ -136,7 +141,7 @@
             <a href="#" class="primary-btn">Cargar más reseñas <span class="arrow_right"></span></a>
         </div>
     </div>
-    
+
 </section>
 <!-- Reviews Section End -->
 

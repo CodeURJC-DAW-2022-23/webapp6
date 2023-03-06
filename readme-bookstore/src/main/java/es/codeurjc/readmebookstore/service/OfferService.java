@@ -26,19 +26,23 @@ public class OfferService {
 	}
 
 	public Page<Offer> findAll(int n) {
-		return repository.findAll( PageRequest.of(n, 5));
+		return repository.findAll( PageRequest.of(n, 4));
 	}
 
 	public List<Offer> findAll() {
 		return repository.findAll();
 	}
 
-	public List<Offer> findOffersNotSoldByBook(long id) {
-		return repository.findByOffersNotSoldByBook(id);
+	public Page<Offer> findOffersNotSoldByBook(long id, int n) {
+		return repository.findByOffersNotSoldByBook(id, PageRequest.of(n, 4));
 	}
 
 	public List<Offer> findOffersNotSoldByUser(long id) {
 		return repository.findByOffersNotSoldByUser(id);
+	}
+
+	public Page<Offer> findOffersNotSoldByUser(long id, int n) {
+		return repository.findByOffersNotSoldByUser(id, PageRequest.of(n, 4));
 	}
 
 	public List<Offer> findShoppingHistorial(long id) {

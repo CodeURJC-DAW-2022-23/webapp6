@@ -20,13 +20,13 @@ public class BookService {
 	public Optional<Book> findById(long id) {
 		return repository.findById(id);
 	}
-	
+
 	public boolean exist(long id) {
 		return repository.existsById(id);
 	}
 
 	public Page<Book> findAll(int n) {
-		return repository.findAll( PageRequest.of(n, 5));
+		return repository.findAll(PageRequest.of(n, 4));
 	}
 
 	public List<Book> findAll() {
@@ -41,32 +41,36 @@ public class BookService {
 		repository.deleteById(id);
 	}
 
-	public Optional<Book> findByTitle (String title) {
+	public Optional<Book> findByTitle(String title) {
 		return repository.findByTitle(title);
 	}
 
-	public List<Book> findByAuthor (String author) {
+	public List<Book> findByAuthor(String author) {
 		return repository.findByAuthor(author);
 	}
 
-	public List<Book> findByGenre (String genre) {
+	public List<Book> findByGenre(String genre) {
 		return repository.findByGenre(genre);
 	}
 
-	public List<Book> findByPartial (String genre) {
+	public List<Book> findByPartial(String genre) {
 		return repository.findByPartial(genre);
 	}
 
-	public Book BookfindById (long id) {
+	public Book BookfindById(long id) {
 		return repository.BookfindById(id);
 	}
 
-	public List<Book> isFavorite (Long userid, Long bookid) {
+	public List<Book> isFavorite(Long userid, Long bookid) {
 		return repository.isFavorite(userid, bookid);
 	}
 
-	public List<Book> favoritesbooks (Long userid) {
+	public List<Book> favoritesbooks(Long userid) {
 		return repository.favoritesbooks(userid);
+	}
+
+	public Page<Book> favoriteBooks(Long userid, int n) {
+		return repository.favoriteBooks(userid, PageRequest.of(n, 4));
 	}
 
 }

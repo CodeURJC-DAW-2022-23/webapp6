@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -59,16 +60,16 @@ public class UserController {
         if (principal != null) {
             User user = userService.findByName(principal.getName());
 
-            List<Offer> offers = offerService.findOffersNotSoldByUser(user.getId());
+            
             List<Offer> historial = offerService.findShoppingHistorial(user.getId());
 
             model.addAttribute("logged", true);
             model.addAttribute("id", request.getRequestedSessionId());
             model.addAttribute("name", principal.getName());
             model.addAttribute("email", user.getEmail());
-            model.addAttribute("favourites", user.getFavouriteBooks());
+
             model.addAttribute("reviews", user.getReadedReviews());
-            model.addAttribute("offers", offers);
+            
             model.addAttribute("historial", historial);
             model.addAttribute("hasImage", user.hasImage());
             if (user.hasImage()) {
@@ -82,12 +83,14 @@ public class UserController {
     }
 
     @GetMapping("/user-page")
-    public String user(Model model) {
-        return "user-page";
-    }
+    public String user(Model model, HttpServletRequest request,
+            @RequestParam(defaultValue = "0") int currentFavoritesPage, @RequestParam(defaultValue = "0") int currentOffersPage) {
 
-    @RequestMapping("/user-page")
-    public String userLoad(Model model) {
+        User user = userService.findByName(request.getUserPrincipal().getName());
+        
+        model.addAttribute("favourites", bookService.favoriteBooks(user.getId(), currentFavoritesPage));
+        model.addAttribute("offers", offerService.findOffersNotSoldByUser(user.getId(), currentOffersPage));
+
         return "user-page";
     }
 

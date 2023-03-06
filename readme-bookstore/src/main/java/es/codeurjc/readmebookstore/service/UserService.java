@@ -19,10 +19,8 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-
     public User findByName(String name) {
         return userRepository.findByName(name).orElseThrow();
-
     }
 
     public Optional findByNameopt(String name) {
@@ -52,6 +50,5 @@ public class UserService {
     public void deletefavorite(long id) {
         userRepository.deletefavorite(id);
     }
-
 
 }

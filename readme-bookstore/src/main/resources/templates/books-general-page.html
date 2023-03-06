@@ -22,8 +22,12 @@
                 </div>
             </div>
             {{/books}}
+
+            {{^books}}
+            <p id="noMoreBooks">Actualmente no tienes libros favoritos</p>
+            {{/books}}
         </div>
-        <button type="button" class="primary-btn" id="moreContentButton" onclick="moreContent()">
+        <button type="button" class="primary-btn" id="moreContentButton" onClick="moreContent()">
             <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
             <span id="moreContentText">Cargar más...</span></button>
     </div>

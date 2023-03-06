@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.service.BookService;
 
-@RestController
-@RequestMapping("/api/books")
+/* @RestController
+@RequestMapping("/books")
 public class BookRestController {
     
 
@@ -39,4 +39,4 @@ public class BookRestController {
 
     }
 
-}
+} */

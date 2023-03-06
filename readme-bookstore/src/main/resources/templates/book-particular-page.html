@@ -44,7 +44,7 @@
         <div class="checkout__form">
             <h4>Reseñas</h4>
         </div>
-        <div class="row featured__filter" id="Books">
+        <div class="row featured__filter" id="Reviews">
             {{#reviews}}
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
@@ -59,7 +59,7 @@
         </div>
 
         {{^reviews}}
-        <p>Actualmente no hay reseñas de este libro</p>
+        <p id="noMoreReviews">Actualmente no hay reseñas de este libro</p>
         {{/reviews}}
 
         <div class="blog__item__text">
@@ -70,8 +70,11 @@
             <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu reseña<span
                     class="fa fa-user"></span></a>
             {{/logged}}
-            <a href="#" class="primary-btn">Cargar más reseñas <span class="arrow_right"></span></a>
         </div>
+        <button type="button" class="primary-btn" id="moreBookReviewsButton" onClick=moreBookReviews({{book.id}})>
+            <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                style="display: none"></span>
+            <span id="moreContentText">Cargar más...</span></button>
     </div>
 </section>
 <!-- Reviews Section End -->
@@ -84,7 +87,7 @@
         <div class="checkout__form">
             <h4>Anuncios</h4>
         </div>
-        <div class="row featured__filter" id="Books">
+        <div class="row featured__filter" id="Offers">
             {{#offers}}
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
@@ -100,7 +103,7 @@
             {{/offers}}
 
             {{^offers}}
-            <p>Actualmente no hay anuncios de este libro</p>
+            <p id="noMoreOffers">Actualmente no hay anuncios de este libro</p>
             {{/offers}}
 
         </div>
@@ -113,14 +116,14 @@
             <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu anuncio<span
                     class="fa fa-user"></span></a>
             {{/logged}}
-            <a href="#" class="primary-btn">Cargar más anuncios <span class="arrow_right"></span></a>
         </div>
+        <button type="button" class="primary-btn" id="moreBookOffersButton" onClick=moreBookOffers({{book.id}})>
+            <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                style="display: none"></span>
+            <span id="moreContentText">Cargar más...</span></button>
     </div>
 </section>
 <!-- Offers Section End -->
-
-
-
 
 <!-- Footer -->
 {{>footer}}
