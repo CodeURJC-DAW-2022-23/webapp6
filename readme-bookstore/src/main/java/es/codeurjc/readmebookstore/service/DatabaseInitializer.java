@@ -12,12 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.codeurjc.readmebookstore.model.Book;
-import es.codeurjc.readmebookstore.model.Categories;
 import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.model.User;
 import es.codeurjc.readmebookstore.model.Review;
 import es.codeurjc.readmebookstore.repository.BookRepository;
-import es.codeurjc.readmebookstore.repository.CategoriesRepository;
 import es.codeurjc.readmebookstore.repository.UserRepository;
 import es.codeurjc.readmebookstore.repository.ReviewRepository;
 import es.codeurjc.readmebookstore.repository.OfferRepository;
@@ -41,232 +39,93 @@ public class DatabaseInitializer {
 	@Autowired
 	private OfferRepository offerRepository;
 
-	@Autowired
-	private CategoriesRepository categoriesRepository;
-
 	@PostConstruct
 	public void init() throws IOException, URISyntaxException {
-
-		//Categories
-
-		Categories categories0 = new Categories("Policiaca");
-		categoriesRepository.save(categories0);
-
-		Categories categories1 = new Categories("Misterio");
-		categoriesRepository.save(categories1);
-
-		Categories categories2 = new Categories("Drama");
-		categoriesRepository.save(categories2);
-
-		Categories categories3 = new Categories("Novela");
-		categoriesRepository.save(categories3);
-
-		Categories categories4 = new Categories("Fantasia");
-		categoriesRepository.save(categories4);
-
-		Categories categories5 = new Categories("Alta Fantasia");
-		categoriesRepository.save(categories5);
-
-		Categories categories6 = new Categories("Fantasia Epica");
-		categoriesRepository.save(categories6);
-
-		Categories categories7 = new Categories("Aventuras");
-		categoriesRepository.save(categories7);
-
-		Categories categories8 = new Categories("Juvenil");
-		categoriesRepository.save(categories8);
-
-		Categories categories9 = new Categories("Literatura clásica");
-		categoriesRepository.save(categories9);
-
-		Categories categories10 = new Categories("Epopeya");
-		categoriesRepository.save(categories10);
-
-		Categories categories11 = new Categories("Poesia");
-		categoriesRepository.save(categories11);
-
-		Categories categories12 = new Categories("Politica");
-		categoriesRepository.save(categories12);
-
-		Categories categories13 = new Categories("Filosofia");
-		categoriesRepository.save(categories13);
-
-		Categories categories14 = new Categories("Elegia");
-		categoriesRepository.save(categories14);
-
-		Categories categories15 = new Categories("Literatura universal");
-		categoriesRepository.save(categories15);
-
-		Categories categories16 = new Categories("Satira");
-		categoriesRepository.save(categories16);
-
-		Categories categories17 = new Categories("Comedia");
-		categoriesRepository.save(categories17);
-
-		Categories categories18 = new Categories("Tragedia");
-		categoriesRepository.save(categories18);
-
-		Categories categories19 = new Categories("Romance");
-		categoriesRepository.save(categories19);
-
-		Categories categories20 = new Categories("Novela histórica");
-		categoriesRepository.save(categories20);
-
-		Categories categories21 = new Categories("Ficcion");
-		categoriesRepository.save(categories21);
 
 		// Sample books
 
 		Book book0 = new Book("La verdad sobre el caso Savolta", "Eduardo Mendoza", "Policiaca");
 		setBookImage(book0, "/static/img/book-covers/la-verdad-sobre-el-caso-savolta.png");
-		book0.setCategories(categories0);
-		book0.setCategories(categories1);
-		book0.setCategories(categories2);
-		book0.setCategories(categories3);
 		bookRepository.save(book0);
 
 		Book book1 = new Book("Elantris", "Brandon Sanderson", "Fantasia");
 		setBookImage(book1, "/static/img/book-covers/elantris.jpg");
-		book1.setCategories(categories3);
-		book1.setCategories(categories4);
-		book1.setCategories(categories5);
 		bookRepository.save(book1);
 
 		Book book2 = new Book("Nacidos de la bruma", "Brandon Sanderson", "Fantasia");
 		setBookImage(book2, "/static/img/book-covers/nacidos-de-la-bruma.jpg");
-		book2.setCategories(categories3);
-		book2.setCategories(categories4);
 		bookRepository.save(book2);
 
 		Book book3 = new Book("El Archivo de las Tormentas", "Brandon Sanderson", "Fantasia");
 		setBookImage(book3, "/static/img/book-covers/el-archivo-de-las-tormentas.jpg");
-		book3.setCategories(categories3);
-		book3.setCategories(categories4);
-		book3.setCategories(categories6);
 		bookRepository.save(book3);
 
 		Book book4 = new Book("El Señor de los Anillos", "J. R. R. Tolkien", "Fantasía");
 		setBookImage(book4, "/static/img/book-covers/el-señor-de-los-anillos.jpeg");
-		book4.setCategories(categories3);
-		book4.setCategories(categories4);
-		book4.setCategories(categories5);
-		book4.setCategories(categories7);
 		bookRepository.save(book4);
 
 		Book book5 = new Book("Harry Potter", "J. K. Rowling", "Fantasía");
 		setBookImage(book5, "/static/img/book-covers/harry-potter.jpg");
-		book5.setCategories(categories3);
-		book5.setCategories(categories4);
-		book5.setCategories(categories7);
-		book5.setCategories(categories8);
 		bookRepository.save(book5);
 		
 		Book book6 = new Book("La Ilíada", "Homero", "Literatura clásica");
 		setBookImage(book6, "/static/img/book-covers/la-iliada.jpg");
-		book6.setCategories(categories9);
-		book6.setCategories(categories10);
-		book6.setCategories(categories11);
 		bookRepository.save(book6);
 		
 		Book book7 = new Book("La Odisea", "Homero", "Literatura clásica");
 		setBookImage(book7, "/static/img/book-covers/la-odisea.png");
-		book7.setCategories(categories9);
-		book7.setCategories(categories10);
 		bookRepository.save(book7);
 		
 		Book book8 = new Book("La Eneida", "Virgilio", "Literatura clásica");
 		setBookImage(book8, "/static/img/book-covers/la-eneida.jpg");
-		book8.setCategories(categories9);
-		book8.setCategories(categories10);
-		book8.setCategories(categories4);
 		bookRepository.save(book8);
 		
 		Book book9 = new Book("La República", "Platón", "Literatura clásica");
 		setBookImage(book9, "/static/img/book-covers/la-republica.jpg");
-		book9.setCategories(categories9);
-		book9.setCategories(categories12);
-		book9.setCategories(categories13);
 		bookRepository.save(book9);
 		
 		Book book10 = new Book("Arte de amar", "Ovidio", "Literatura clásica");
 		setBookImage(book10, "/static/img/book-covers/el-arte-de-amar.jpg");
-		book10.setCategories(categories9);
-		book10.setCategories(categories11);
-		book10.setCategories(categories14);
 		bookRepository.save(book10);
 
 		Book book11 = new Book("Don Quijote de la Mancha", "Miguel de Cervantes", "Literatura universal");
 		setBookImage(book11, "/static/img/book-covers/don-quijote.png");
-		book11.setCategories(categories3);
-		book11.setCategories(categories15);
-		book11.setCategories(categories16);
 		bookRepository.save(book11);
 		
 		Book book12 = new Book("Romeo y Julieta", "William Shakespeare", "Literatura universal");
 		setBookImage(book12, "/static/img/book-covers/romeo-y-julieta.jpg");
-		book12.setCategories(categories15);
-		book12.setCategories(categories17);
-		book12.setCategories(categories2);
-		book12.setCategories(categories18);
-		book12.setCategories(categories14);
-		book12.setCategories(categories19);
 		bookRepository.save(book12);
 		
 		Book book13 = new Book("Cumbres borrascosas", "Emily Bronte", "Literatura universal");
 		setBookImage(book13, "/static/img/book-covers/cumbres-borrascosas.jpg");
-		book13.setCategories(categories15);
-		book13.setCategories(categories3);
-		book13.setCategories(categories18);
 		bookRepository.save(book13);
 		
 		Book book14 = new Book("El retrato de Dorian Gray", "Oscar Wilde", "Literatura universal");
 		setBookImage(book14, "/static/img/book-covers/el-retrato-de-Dorian-Gray.jpg");
-		book14.setCategories(categories15);
-		book14.setCategories(categories1);
-		book14.setCategories(categories7);
-		book14.setCategories(categories13);
 		bookRepository.save(book14);
 		
 		Book book15 = new Book("El Conde de Montecristo", "Alejandro Dumas", "Literatura universal");
 		setBookImage(book15, "/static/img/book-covers/el-conde-de-Montecristo.jpg");
-		book15.setCategories(categories15);
-		book15.setCategories(categories3);
-		book15.setCategories(categories7);
 		bookRepository.save(book15);
 		
 		Book book16 = new Book("El primer hombre de Roma", "Colleen McCullough", "Novela histórica");
 		setBookImage(book16, "/static/img/book-covers/el-primer-hombre-de-Roma.jpg");
-		book16.setCategories(categories20);
-		book16.setCategories(categories3);
-		book16.setCategories(categories21);
 		bookRepository.save(book16);
 		
 		Book book17 = new Book("Trilogía de Trajano", "Santiago Posteguillo", "Novela histórica");
 		setBookImage(book17, "/static/img/book-covers/trilogia-de-trajano.jpg");
-		book16.setCategories(categories20);
-		book16.setCategories(categories3);
-		book16.setCategories(categories21);
 		bookRepository.save(book17);
 		
 		Book book18 = new Book("Los pilares de la Tierra", "Ken Follett", "Novela histórica");
 		setBookImage(book18, "/static/img/book-covers/los-pilares-de-la-tierra.jpg");
-		book16.setCategories(categories20);
-		book16.setCategories(categories3);
-		book16.setCategories(categories21);
 		bookRepository.save(book18);
 		
 		Book book19 = new Book("El médico", "Noah Gordon", "Novela histórica");
 		setBookImage(book19, "/static/img/book-covers/el-medico.jpg");
-		book16.setCategories(categories20);
-		book16.setCategories(categories7);
-		book16.setCategories(categories21);
 		bookRepository.save(book19);
 		
 		Book book20 = new Book("Episodios Nacionales", "Benito Pérez Galdos", "Novela histórica");
 		setBookImage(book20, "/static/img/book-covers/episodios-nacionales.jpg");
-		book16.setCategories(categories20);
-		book16.setCategories(categories3);
-		book16.setCategories(categories21);
 		bookRepository.save(book20);
 
 		// Sample users
