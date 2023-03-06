@@ -176,9 +176,9 @@ public class DatabaseInitializer {
 		
 		Book book8 = new Book("La Eneida", "Virgilio", "Literatura clásica");
 		setBookImage(book8, "/static/img/book-covers/la-eneida.jpg");
+		book8.setCategories(categories4);
 		book8.setCategories(categories9);
 		book8.setCategories(categories10);
-		book8.setCategories(categories4);
 		bookRepository.save(book8);
 		
 		Book book9 = new Book("La República", "Platón", "Literatura clásica");
@@ -204,69 +204,69 @@ public class DatabaseInitializer {
 		
 		Book book12 = new Book("Romeo y Julieta", "William Shakespeare", "Literatura universal");
 		setBookImage(book12, "/static/img/book-covers/romeo-y-julieta.jpg");
+		book12.setCategories(categories2);
+		book12.setCategories(categories14);
 		book12.setCategories(categories15);
 		book12.setCategories(categories17);
-		book12.setCategories(categories2);
 		book12.setCategories(categories18);
-		book12.setCategories(categories14);
 		book12.setCategories(categories19);
 		bookRepository.save(book12);
 		
 		Book book13 = new Book("Cumbres borrascosas", "Emily Bronte", "Literatura universal");
 		setBookImage(book13, "/static/img/book-covers/cumbres-borrascosas.jpg");
-		book13.setCategories(categories15);
 		book13.setCategories(categories3);
+		book13.setCategories(categories15);
 		book13.setCategories(categories18);
 		bookRepository.save(book13);
 		
 		Book book14 = new Book("El retrato de Dorian Gray", "Oscar Wilde", "Literatura universal");
 		setBookImage(book14, "/static/img/book-covers/el-retrato-de-Dorian-Gray.jpg");
-		book14.setCategories(categories15);
 		book14.setCategories(categories1);
 		book14.setCategories(categories7);
 		book14.setCategories(categories13);
+		book14.setCategories(categories15);
 		bookRepository.save(book14);
 		
 		Book book15 = new Book("El Conde de Montecristo", "Alejandro Dumas", "Literatura universal");
 		setBookImage(book15, "/static/img/book-covers/el-conde-de-Montecristo.jpg");
-		book15.setCategories(categories15);
 		book15.setCategories(categories3);
 		book15.setCategories(categories7);
+		book15.setCategories(categories15);
 		bookRepository.save(book15);
 		
 		Book book16 = new Book("El primer hombre de Roma", "Colleen McCullough", "Novela histórica");
 		setBookImage(book16, "/static/img/book-covers/el-primer-hombre-de-Roma.jpg");
-		book16.setCategories(categories20);
 		book16.setCategories(categories3);
+		book16.setCategories(categories20);
 		book16.setCategories(categories21);
 		bookRepository.save(book16);
 		
 		Book book17 = new Book("Trilogía de Trajano", "Santiago Posteguillo", "Novela histórica");
 		setBookImage(book17, "/static/img/book-covers/trilogia-de-trajano.jpg");
-		book16.setCategories(categories20);
-		book16.setCategories(categories3);
-		book16.setCategories(categories21);
+		book17.setCategories(categories3);
+		book17.setCategories(categories20);
+		book17.setCategories(categories21);
 		bookRepository.save(book17);
 		
 		Book book18 = new Book("Los pilares de la Tierra", "Ken Follett", "Novela histórica");
 		setBookImage(book18, "/static/img/book-covers/los-pilares-de-la-tierra.jpg");
-		book16.setCategories(categories20);
-		book16.setCategories(categories3);
-		book16.setCategories(categories21);
+		book18.setCategories(categories3);
+		book18.setCategories(categories20);
+		book18.setCategories(categories21);
 		bookRepository.save(book18);
 		
 		Book book19 = new Book("El médico", "Noah Gordon", "Novela histórica");
 		setBookImage(book19, "/static/img/book-covers/el-medico.jpg");
-		book16.setCategories(categories20);
-		book16.setCategories(categories7);
-		book16.setCategories(categories21);
+		book19.setCategories(categories7);
+		book19.setCategories(categories20);
+		book19.setCategories(categories21);
 		bookRepository.save(book19);
 		
 		Book book20 = new Book("Episodios Nacionales", "Benito Pérez Galdos", "Novela histórica");
 		setBookImage(book20, "/static/img/book-covers/episodios-nacionales.jpg");
-		book16.setCategories(categories20);
-		book16.setCategories(categories3);
-		book16.setCategories(categories21);
+		book20.setCategories(categories3);
+		book20.setCategories(categories20);
+		book20.setCategories(categories21);
 		bookRepository.save(book20);
 
 		// Sample users

@@ -1,22 +1,23 @@
 package es.codeurjc.readmebookstore.controller;
 
-import java.io.*;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import es.codeurjc.readmebookstore.model.Book;
+import es.codeurjc.readmebookstore.model.Categories;
 import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.service.BookService;
+import es.codeurjc.readmebookstore.service.CategoriesService;
 import es.codeurjc.readmebookstore.service.OfferService;
 import es.codeurjc.readmebookstore.service.UserService;
 
@@ -32,213 +33,236 @@ public class AlgorithmController {
     @Autowired
     private OfferService offerService;
 
-    public Long[] recommendationAlgorithm(Model model, HttpServletRequest request) throws Exception {
-        Long[] recommendedBooks = new Long[6];
-        String[][] categoriesMatrix = ponderationMatrix();
+    @Autowired
+    private CategoriesService categoriesService;
+
+    public List<Long> recommendationAlgorithm(Model model, HttpServletRequest request) throws Exception {
+        List<Long> recommendedBooks = new ArrayList<>();
         Principal principal = request.getUserPrincipal();
         if (principal != null) {
+            List<List<String>> categoriesMatrix = ponderationMatrix();
             String sessionName = principal.getName();
-            String[][] userMatrix = userMatrix(sessionName);
-            String[][] userponderationMatrix = userponderationMatrix(categoriesMatrix, userMatrix);
-            String[][] userProfile = userProfile(userponderationMatrix);
-            String[][] bookPonder = bookPonder(categoriesMatrix, userProfile);
-            String[][] booksRanking = booksRanking(bookPonder);
+            List<List<String>> userMatrix = userMatrix(sessionName);
+            List<List<String>> userponderationMatrix = userponderationMatrix(categoriesMatrix, userMatrix);
+            List<List<String>> userProfile = userProfile(userponderationMatrix);
+            List<List<String>> bookPonder = bookPonder(categoriesMatrix, userProfile);
+            List<List<String>> booksRanking = booksRanking(bookPonder);
             recommendedBooks = recommendedBooks(booksRanking);
             return recommendedBooks;
         } else {
-            // not ended
-            //return recommendedBooks;
-            Long[] recommendedBooksIds = { (long) 3, (long) 2, (long) 3, (long) 4, (long) 5, (long) 6, (long) 16 };
-            return recommendedBooksIds;
+            recommendedBooks = recommendedBooksNotLogged();
+            return recommendedBooks;
         }
     }
 
-    private String[][] ponderationMatrix() throws Exception {
-        String st;
-        int i, j, k, l, catlen, count;
-        String[] headermatrix = { "bookid", "title", "Policiaca", "Misterio", "Drama", "Novela", "Fantasia",
-                "Alta Fantasia", "Fantasia Epica", "Aventuras", "Juvenil", "Literatura clásica", "Epopeya", "Poesia",
-                "Politica", "Filosofia", "Elegia", "Literatura universal", "Satira", "Comedia", "Tragedia", "Romance",
-                "Novela histórica", "Ficcion" };
-        String[][] categoriesMatrix = new String[22][headermatrix.length];
-        for (l = 0; l < headermatrix.length; l++) {
-            categoriesMatrix[0][l] = headermatrix[l];
+    private List<List<String>> ponderationMatrix() throws Exception {
+        int i, j;
+        List<Categories> categories = categoriesService.findAll();
+        List<Book> books = bookService.findAll();
+        List<List<String>> categoriesMatrix = new ArrayList<>();
+        categoriesMatrix.add(new ArrayList<>());
+        categoriesMatrix.get(0).add("bookid");
+        for (j=0; j< categories.size();j++) {
+            categoriesMatrix.get(0).add(categories.get(j).getCategorie());
         }
-        Resource filetxt = new ClassPathResource("/static/Categoria_Libros.txt");
-        File file = filetxt.getFile();
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        i = 0;
-        Boolean compare;
-        while ((st = br.readLine()) != null) {
-            if (i > 0) {
-                String[] linepart = st.split(",");
-                String[] categories = linepart[2].split(";");
-                count = 0;
-                for (j = 0; j < headermatrix.length; j++) {
-                    if (j < 2) {
-                        categoriesMatrix[i][j] = linepart[j];
-                    } else {
-                        k = 0;
-                        catlen = categories.length;
-                        compare = true;
-                        while ((count < catlen) && compare && k < headermatrix.length) {
-                            if ((k < catlen) && headermatrix[j].equals(categories[k])) {
-                                compare = false;
-                                count++;
-                            }
-                            k++;
-                        }
-                        if (compare) {
-                            categoriesMatrix[i][j] = "0";
-                        } else {
-                            categoriesMatrix[i][j] = "1";
-                        }
-                    }
+        for (i = 0;i<books.size();i++){
+            categoriesMatrix.add(new ArrayList<>());
+            categoriesMatrix.get(i+1).add(books.get(i).getId().toString());
+            for (j=1; j< categoriesMatrix.get(0).size();j++) {
+                if (books.get(i).getCategories().contains(categoriesService.findByName(categoriesMatrix.get(0).get(j)))) {
+                    categoriesMatrix.get(i+1).add("1");
+                } else {
+                    categoriesMatrix.get(i+1).add("0");
                 }
             }
-            i++;
         }
-        br.close();
         return categoriesMatrix;
     }
 
-    private String[][] userMatrix(String sessionName) throws Exception {
+    private List<List<String>> userMatrix(String sessionName) throws Exception {
         Long loggedUserId = userService.findByName(sessionName).getId();
         List<Offer> offersbought = offerService.findBooksBought(loggedUserId);
         List<Book> favbooks = bookService.favoritesbooks(loggedUserId);
-        String[][] userMatrix = new String[offersbought.size() + favbooks.size()][2];
+        List<List<String>> userMatrix = new ArrayList<>();
         int i, j;
         for (i = 0; i < offersbought.size(); i++) {
-            Long boughtbookId = offersbought.get(i).getBook().getId();
-            userMatrix[i][0] = boughtbookId.toString();
-            userMatrix[i][1] = "66";
+            userMatrix.add(new ArrayList<>());
+            userMatrix.get(i).add(offersbought.get(i).getBook().getId().toString());
+            userMatrix.get(i).add("66");
         }
         for (j = 0; j < favbooks.size(); j++) {
-            Long favbookId = favbooks.get(j).getId();
-            userMatrix[i + j][0] = favbookId.toString();
-            userMatrix[i + j][1] = "34";
+            userMatrix.add(new ArrayList<>());
+            userMatrix.get(i + j).add(favbooks.get(j).getId().toString());
+            userMatrix.get(i + j).add("34");
         }
         return userMatrix;
     }
 
-    private String[][] userponderationMatrix(String[][] categoriesMatrix, String[][] userMatrix) throws Exception {
+    private List<List<String>> userponderationMatrix(List<List<String>> categoriesMatrix, List<List<String>> userMatrix) throws Exception {
         int i, j, k, l;
         Boolean match;
-        String[][] userponderationMatrix = new String[userMatrix.length + 1][categoriesMatrix[0].length - 1];
-        for (l = 0; l < categoriesMatrix[0].length; l++) {
-            if (l < 1) {
-                userponderationMatrix[0][l] = categoriesMatrix[0][l];
-            } else {
-                if (l > 1) {
-                    userponderationMatrix[0][l - 1] = categoriesMatrix[0][l];
-                }
-            }
+        List<List<String>> userponderationMatrix = new ArrayList<>();
+        userponderationMatrix.add(new ArrayList<>());
+        for (j=0; j< categoriesMatrix.get(0).size();j++) {
+            userponderationMatrix.get(0).add(categoriesMatrix.get(0).get(j));
         }
-        for (i = 1; i < userMatrix.length + 1; i++) {
+        for (i = 1;i<userMatrix.size() + 1;i++){
+            userponderationMatrix.add(new ArrayList<>());
+            userponderationMatrix.get(i).add(userMatrix.get(i-1).get(0));
+            //optimizable
+            k = 0;
             match = true;
-            userponderationMatrix[i][0] = userMatrix[i - 1][0];
-            j = 0;
             while (match) {
-                j++;
-                if (userponderationMatrix[i][0].equals(categoriesMatrix[j][0])) {
+                k++;
+                if (userponderationMatrix.get(i).get(0).equals(categoriesMatrix.get(k).get(0))) {
                     match = false;
                 }
             }
-            for (k = 2; k < categoriesMatrix[0].length; k++) {
-                if (categoriesMatrix[j][k].equals("0")) {
-                    userponderationMatrix[i][k - 1] = "0";
+            //optimizable
+            for (j=1; j< categoriesMatrix.get(0).size();j++) {
+                if (categoriesMatrix.get(k).get(j).equals("0")) {
+                    userponderationMatrix.get(i).add("0");
                 } else {
-                    userponderationMatrix[i][k - 1] = userMatrix[i - 1][1];
+                    userponderationMatrix.get(i).add(userMatrix.get(i-1).get(1));
                 }
             }
         }
         return userponderationMatrix;
     }
 
-    private String[][] userProfile(String[][] userponderationMatrix) throws Exception {
+    private List<List<String>> userProfile(List<List<String>> userponderationMatrix) throws Exception {
         int i, j, k, l;
         int count, totalcount, aux, aux2;
         double pondercount, aux3, totalaux;
-        String[][] userProfile = new String[userponderationMatrix[0].length - 1][2];
-        for (j = 0; j < userProfile.length; j++) {
-            userProfile[j][0] = userponderationMatrix[0][j + 1];
+        List<List<String>> userProfile = new ArrayList<>();
+        List<List<String>> userProfileaux = new ArrayList<>();
+        for (j = 0; j < userponderationMatrix.get(0).size() - 1; j++) {
+            userProfileaux.add(new ArrayList<>());
+            userProfileaux.get(j).add(userponderationMatrix.get(0).get(j+1));
             count = 0;
-            for (i = 0; i < userponderationMatrix.length - 1; i++) {
-                aux = Integer.parseInt(userponderationMatrix[i + 1][j + 1]);
+            for (i = 0; i < userponderationMatrix.size() - 1; i++) {
+                aux = Integer.parseInt(userponderationMatrix.get(i+1).get(j+1));
                 count = count + aux;
             }
-            userProfile[j][1] = Integer.toString(count);
+            userProfileaux.get(j).add(Integer.toString(count));
         }
         totalcount = 0;
-        for (k = 0; k < userProfile.length; k++) {
-            aux2 = Integer.parseInt(userProfile[k][1]);
+        for (k = 0; k < userProfileaux.size(); k++) {
+            aux2 = Integer.parseInt(userProfileaux.get(k).get(1));
             totalcount = totalcount + aux2;
         }
         pondercount = 0.0;
         totalaux = Double.parseDouble(Integer.toString(totalcount));
-        for (l = 0; l < userProfile.length; l++) {
-            aux3 = Double.parseDouble(userProfile[l][1]);
+        for (l = 0; l < userProfileaux.size(); l++) {
+            aux3 = Double.parseDouble(userProfileaux.get(l).get(1));
             pondercount = aux3 / totalaux;
-            userProfile[l][1] = Double.toString(pondercount);
+            userProfile.add(new ArrayList<>());
+            userProfile.get(l).add(userProfileaux.get(l).get(0));
+            userProfile.get(l).add(Double.toString(pondercount));
         }
         return userProfile;
     }
 
-    private String[][] bookPonder(String[][] categoriesMatrix, String[][] userProfile) throws Exception {
+    private List<List<String>> bookPonder(List<List<String>> categoriesMatrix, List<List<String>> userProfile) throws Exception {
         int i, j;
-        String[][] bookPonder = new String[categoriesMatrix.length - 1][categoriesMatrix[0].length - 1];
-        for (i = 1; i < categoriesMatrix.length; i++) {
-            bookPonder[i - 1][0] = categoriesMatrix[i][0];
-            for (j = 2; j < categoriesMatrix[0].length; j++) {
-                if (categoriesMatrix[i][j].equals("0")) {
-                    bookPonder[i - 1][j - 1] = "0";
+        List<List<String>> bookPonder = new ArrayList<>();
+        for (i = 1; i < categoriesMatrix.size(); i++) {
+            bookPonder.add(new ArrayList<>());
+            bookPonder.get(i - 1).add(categoriesMatrix.get(i).get(0));
+            for (j = 1; j < categoriesMatrix.get(0).size(); j++) {
+                if (categoriesMatrix.get(i).get(j).equals("0")) {
+                    bookPonder.get(i - 1).add("0");
                 } else {
-                    bookPonder[i - 1][j - 1] = userProfile[j - 2][1];
+                    bookPonder.get(i - 1).add(userProfile.get(j - 1).get(1));
                 }
             }
         }
         return bookPonder;
     }
 
-    private String[][] booksRanking(String[][] bookPonder) throws Exception {
+    private List<List<String>> booksRanking(List<List<String>> bookPonder) throws Exception {
         int i, j;
         Double count;
-        String[][] booksRanking = new String[bookPonder.length][2];
-        for (i = 0; i < bookPonder.length; i++) {
-            booksRanking[i][0] = bookPonder[i][0];
+        List<List<String>> booksRanking = new ArrayList<>();
+        for (i = 0; i < bookPonder.size(); i++) {
+            booksRanking.add(new ArrayList<>());
+            booksRanking.get(i).add(bookPonder.get(i).get(0));
             count = 0.0;
-            for (j = 1; j < bookPonder[0].length; j++) {
-                count = count + Double.parseDouble(bookPonder[i][j]);
+            for (j = 1; j < bookPonder.get(0).size(); j++) {
+                count = count + Double.parseDouble(bookPonder.get(i).get(j));
             }
-            booksRanking[i][1] = count.toString();
+            booksRanking.get(i).add(count.toString());
         }
         return booksRanking;
     }
 
-    private Long[] recommendedBooks(String[][] booksRanking) throws Exception {
+    private List<Long> recommendedBooks(List<List<String>> booksRanking) throws Exception {
         int i, j;
-        Double[] booksRankingforsort = new Double[booksRanking.length];
+        Double[] booksRankingforsort = new Double[booksRanking.size()];
         for (i = 0; i < booksRankingforsort.length; i++) {
-            booksRankingforsort[i] = Double.parseDouble(booksRanking[i][1]);
+            booksRankingforsort[i] = Double.parseDouble(booksRanking.get(i).get(1));
         }
         Arrays.sort(booksRankingforsort, Collections.reverseOrder());
-        String[][] booksRankingsorted = new String[booksRanking.length][2];
+        List<List<String>> booksRankingsorted = new ArrayList<>();
+        List<List<String>> booksRankingaux = new ArrayList<>(booksRanking);
         Boolean match;
         for (i = 0; i < booksRankingforsort.length; i++) {
+            //optimizable
             match = true;
             j = 0;
-            while (match && (j < booksRanking.length)) {
-                if (booksRankingforsort[i].toString().equals(booksRanking[j][1])) {
+            while (match && (j < booksRanking.size())) {
+                if (booksRankingforsort[i].toString().equals(booksRankingaux.get(j).get(1))) {
+                    match = false;
+                    booksRankingaux.get(j).set(1,"9999");
+                }
+                j++;
+            }
+            //optimizable
+            booksRankingsorted.add(new ArrayList<>());
+            booksRankingsorted.get(i).add(booksRanking.get(j-1).get(0));
+            booksRankingsorted.get(i).add(booksRanking.get(j-1).get(1));
+        }
+        List<Long> recommendedBooks = new ArrayList<>();
+        for (i = 0; i < 6; i++) {
+            recommendedBooks.add(Long.parseLong(booksRankingsorted.get(i).get(0)));
+        }
+        return recommendedBooks;
+    }
+
+    private List<Long> recommendedBooksNotLogged() throws Exception {
+        int i, j;
+        List<Book> books = bookService.findAll();
+        Double[] booksRankingforsort = new Double[books.size()];
+        List<List<String>> booksaux = new ArrayList<>();
+        for (i = 0; i < booksRankingforsort.length; i++) {
+            Random r = new Random();
+            booksRankingforsort[i] = r.nextDouble();
+            booksaux.add(new ArrayList<>());
+            booksaux.get(i).add(books.get(i).getId().toString());
+            booksaux.get(i).add(booksRankingforsort[i].toString());
+        }
+
+        Arrays.sort(booksRankingforsort, Collections.reverseOrder());
+        List<List<String>> booksRankingsorted = new ArrayList<>();
+        Boolean match;
+        for (i = 0; i < booksRankingforsort.length; i++) {
+            //optimizable
+            match = true;
+            j = 0;
+            while (match && (j < books.size())) {
+                if (booksRankingforsort[i].toString().equals(booksaux.get(j).get(1))) {
                     match = false;
                 }
-                j++;  
-            }  
-            booksRankingsorted[i][0] = booksRanking[j-1][0];
-            booksRankingsorted[i][1] = booksRanking[j-1][1];
+                j++;
+            }
+            //optimizable
+            booksRankingsorted.add(new ArrayList<>());
+            booksRankingsorted.get(i).add(booksaux.get(j-1).get(0));
+            booksRankingsorted.get(i).add(booksaux.get(j-1).get(1));
         }
-        Long[] recommendedBooks = new Long[6];
+        List<Long> recommendedBooks = new ArrayList<>();
         for (i = 0; i < 6; i++) {
-            recommendedBooks[i] = Long.parseLong(booksRankingsorted[i][0]);
+            recommendedBooks.add(Long.parseLong(booksRankingsorted.get(i).get(0)));
         }
         return recommendedBooks;
     }

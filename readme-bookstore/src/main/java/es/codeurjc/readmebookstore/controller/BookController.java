@@ -62,12 +62,11 @@ public class BookController extends AlgorithmController {
 	 * @throws Exception
 	 */
 	private List<Book> getRecommendedBooks(Model model, HttpServletRequest request) throws Exception {
-		Long [] recommendedBooksIds = recommendationAlgorithm (model, request);
-		
+		List<Long> recommendedBooksIds = recommendationAlgorithm (model, request);
 		List<Book> recommendedBooks = new ArrayList<Book>();
 
-		for (int i = 0; i < recommendedBooksIds.length; i++) {
-			Book book = bookService.findById(recommendedBooksIds[i]).get();
+		for (int i = 0; i < recommendedBooksIds.size(); i++) {
+			Book book = bookService.findById(recommendedBooksIds.get(i)).get();
 			recommendedBooks.add(book);
 		}
 		return recommendedBooks;
