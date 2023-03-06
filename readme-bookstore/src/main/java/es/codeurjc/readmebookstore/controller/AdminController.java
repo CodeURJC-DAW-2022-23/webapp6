@@ -21,10 +21,6 @@ import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.model.Review;
 import es.codeurjc.readmebookstore.model.User;
-import es.codeurjc.readmebookstore.repository.BookRepository;
-import es.codeurjc.readmebookstore.repository.OfferRepository;
-import es.codeurjc.readmebookstore.repository.ReviewRepository;
-import es.codeurjc.readmebookstore.repository.UserRepository;
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.OfferService;
 import es.codeurjc.readmebookstore.service.ReviewService;
@@ -32,18 +28,6 @@ import es.codeurjc.readmebookstore.service.UserService;
 
 @Controller
 public class AdminController {
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private BookRepository bookRepository;
-
-    @Autowired
-    private ReviewRepository reviewRepository;
-
-    @Autowired
-    private OfferRepository offerRepository;
 
     @Autowired
     private UserService userService;
@@ -90,7 +74,7 @@ public class AdminController {
             newBook.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
             newBook.setImage(true);
         }
-        bookRepository.save(newBook);
+        bookService.save(newBook);
         return "redirect:/admin";
     }
 
@@ -101,14 +85,14 @@ public class AdminController {
     public String editUser(Model model, @PathVariable long id, @RequestParam String email, MultipartFile imageField) {
         User user = userService.findById(id).get();
         user.setEmail(email);
-        userRepository.save(user);
+        userService.save(user);
 
         try {
             updateImage(user, false, imageField);
         } catch (Exception e) {
             return "redirect:/admin";
         }
-        userRepository.save(user);
+        userService.save(user);
 
         return "redirect:/admin";
     }
@@ -122,14 +106,14 @@ public class AdminController {
         offer.setEdition(edition);
         offer.setDescription(description);
         offer.setPrice(price);
-        offerRepository.save(offer);
+        offerService.save(offer);
 
         try {
             updateImage(offer, false, imageField);
         } catch (Exception e) {
             return "redirect:/admin";
         }
-        offerRepository.save(offer);
+        offerService.save(offer);
 
         return "redirect:/admin";
     }
@@ -140,7 +124,7 @@ public class AdminController {
         Review review = reviewService.findById(id).get();
         review.setDate(date);
         review.setText(text);
-        reviewRepository.save(review);
+        reviewService.save(review);
         return "redirect:/admin";
     }
 
@@ -151,14 +135,14 @@ public class AdminController {
         book.setTitle(title);
         book.setGenre(genre);
         book.setAuthor(author);
-        bookRepository.save(book);
+        bookService.save(book);
 
         try {
             updateImage(book, false, imageField);
         } catch (Exception e) {
             return "redirect:/admin";
         }
-        bookRepository.save(book);
+        bookService.save(book);
 
         return "redirect:/admin";
     }
@@ -168,25 +152,25 @@ public class AdminController {
 
     @RequestMapping("/admin/delete-user/{id}")
     public String deleteUser(Model model, @PathVariable long id) {
-        userRepository.deleteById(id);
+        userService.delete(id);
         return "redirect:/admin";
     }
 
     @RequestMapping("/admin/delete-offer/{id}")
     public String deleteOffer(Model model, @PathVariable long id) {
-        offerRepository.deleteById(id);
+        offerService.delete(id);
         return "redirect:/admin";
     }
 
     @RequestMapping("/admin/delete-review/{id}")
     public String deleteReview(Model model, @PathVariable long id) {
-        reviewRepository.deleteById(id);
+        reviewService.delete(id);
         return "redirect:/admin";
     }
 
     @RequestMapping("/admin/delete-book/{id}")
     public String deleteBook(Model model, @PathVariable long id) {
-        bookRepository.deleteById(id);
+        bookService.delete(id);
         return "redirect:/admin";
     }
 

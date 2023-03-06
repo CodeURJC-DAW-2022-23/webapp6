@@ -23,7 +23,7 @@ public class UserService {
         return userRepository.findByName(name).orElseThrow();
     }
 
-    public Optional findByNameopt(String name) {
+    public Optional<User> findByNameopt(String name) {
         return userRepository.findByNameopt(name);
     }
 

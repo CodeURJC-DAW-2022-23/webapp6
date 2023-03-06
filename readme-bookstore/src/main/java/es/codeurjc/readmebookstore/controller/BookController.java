@@ -24,7 +24,6 @@ import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.ReviewService;
 import es.codeurjc.readmebookstore.service.UserService;
 import es.codeurjc.readmebookstore.service.OfferService;
-import es.codeurjc.readmebookstore.repository.BookRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,9 +40,6 @@ public class BookController extends AlgorithmController {
 
 	@Autowired
 	private OfferService offerService;
-
-	@Autowired
-	private BookRepository bookRepository;
 
 	@Autowired
 	private ReviewService reviewService;

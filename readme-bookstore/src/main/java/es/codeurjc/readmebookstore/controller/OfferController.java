@@ -19,10 +19,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import es.codeurjc.readmebookstore.repository.UserRepository;
 import es.codeurjc.readmebookstore.service.OfferService;
-import es.codeurjc.readmebookstore.repository.BookRepository;
-import es.codeurjc.readmebookstore.repository.OfferRepository;
+import es.codeurjc.readmebookstore.service.UserService;
+import es.codeurjc.readmebookstore.service.BookService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,22 +35,19 @@ public class OfferController {
     private OfferService offerService;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    private BookRepository bookRepository;
-
-    @Autowired
-    private OfferRepository offerRepository;
+    private BookService bookService;
 
     @PostMapping("/upload-offer/{id}")
     public String uploadedReview(Model model, @PathVariable long id, @RequestParam String edition,
             @RequestParam String text, @RequestParam float price, MultipartFile imageField,
             HttpServletRequest request) throws IOException {
 
-        Book book = bookRepository.findById(id).get();
+        Book book = bookService.findById(id).get();
         String username = request.getUserPrincipal().getName();
-        User user = userRepository.findByName(username).orElseThrow();
+        User user = userService.findByName(username);
         Date date = new Date();
 
         Offer offer = new Offer(date, edition, text, price, book, user, false, null);
@@ -61,13 +57,13 @@ public class OfferController {
             offer.setImage(true);
         }
 
-        offerRepository.save(offer);
+        offerService.save(offer);
         return "redirect:/book/" + book.getId();
     }
 
     @GetMapping("/upload-offer-page/{id}")
     public String uploadOffer(Model model, @PathVariable long id) {
-        Book book = bookRepository.findById(id).get();
+        Book book = bookService.findById(id).get();
         model.addAttribute("book", book);
         return "upload-offer-page";
     }
@@ -75,7 +71,7 @@ public class OfferController {
     @GetMapping("/offer-page/{id}")
     public String offerPage(Model model, @PathVariable long id, HttpServletRequest request) {
 
-        Offer offer = offerRepository.findById(id).get();
+        Offer offer = offerService.findById(id).get();
 
         String vendorName = offer.getSeller().getName();
         Boolean ownOffer = false;
@@ -95,7 +91,7 @@ public class OfferController {
 
     @GetMapping("/update-offer/{id}")
     public String loadUpdateOferPage(Model model, @PathVariable long id) {
-        Optional<Offer> offer = offerRepository.findById(id);
+        Optional<Offer> offer = offerService.findById(id);
         model.addAttribute("offer", offer.get());
         return "update-offer-page";
     }
@@ -103,45 +99,45 @@ public class OfferController {
     @PostMapping("/updated-offer/{id}")
     public String updatedReview(Model model, @PathVariable long id, @RequestParam String edition,
             @RequestParam String text, @RequestParam float price, MultipartFile imageField) throws IOException {
-        Offer offer = offerRepository.findById(id).get();
+        Offer offer = offerService.findById(id).get();
         Date date = new Date();
         offer.setDate(date);
         offer.setDescription(text);
         offer.setEdition(edition);
         offer.setPrice(price);
-        offerRepository.save(offer);
+        offerService.save(offer);
         try {
             AdminController admin = new AdminController();
             admin.updateImage(offer, false, imageField);
         } catch (Exception e) {
             return "redirect:/offer-page/" + offer.getId();
         }
-        offerRepository.save(offer);
+        offerService.save(offer);
         return "redirect:/offer-page/" + offer.getId();
     }
 
     @GetMapping("/delete-offer/{id}")
     public String deleteReview(Model model, @PathVariable long id) {
-        offerRepository.deleteById(id);
+        offerService.delete(id);
         return "redirect:/user-page";
     }
 
     @GetMapping("/checkout/{id}")
     public String loadCheckoutPage(Model model, @PathVariable long id) {
-        Offer offer = offerRepository.findById(id).get();
+        Offer offer = offerService.findById(id).get();
         model.addAttribute("offer", offer);
         return "checkout-page";
     }
 
     @GetMapping("/buy-offer/{id}")
     public String buyOffer(Model model, @PathVariable long id, HttpServletRequest request) {
-        Offer offer = offerRepository.findById(id).get();
-        User buyer = userRepository.findByName(request.getUserPrincipal().getName()).get();
+        Offer offer = offerService.findById(id).get();
+        User buyer = userService.findByName(request.getUserPrincipal().getName());
 
         offer.setSold(true);
 
         offer.setBuyer(buyer);
-        offerRepository.save(offer);
+        offerService.save(offer);
 
         return "redirect:/user-page";
     }
