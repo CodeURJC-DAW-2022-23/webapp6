@@ -210,107 +210,149 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 ## 🙋‍♂️ Member participation
 
 <details><summary>Gonzalo Ortega Carpintero.</summary>
-   
-   - 📂 Completed tasks
+ 
+   - 📂 Completed tasks:
+ 
       - a
       - b
       - c
-   - 📤 Most significant commits
-      - a
-      - b
-      - c
-      - d
-      - e
-   - 📝 Files with more participation
-      - a
-      - b
-      - c
-      - d
-      - e
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]() 
+      - [Commit 2]()
+      - [Commit 3]()
+      - [Commit 4]()
+      - [Commit 5]()
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]()
+      - [File 2]()
+      - [File 3]()
+      - [File 4]()
+      - [File 5]()
 
 </details>
 
 <details><summary>Sergio Hernández Sandoval.</summary>
    
-   - 📂 Completed tasks
-      - a
-      - b
-      - c
-   - 📤´Most significant commits
-      - a
-      - b
-      - c
-      - d
-      - e
-   - 📝 Files with more participation
-      - a
-      - b
-      - c
-      - d
-      - e
+   - 📂 Completed tasks:
+ 
+      - Header and footer unification for templates.
+      - Model, Service and Repository of reviews, including improvements and changes in the rest of the models.
+      - Review controller and high participation in user, book and offer controller.
+      - Initialization of part of the data in the databaseInitializer.
+      - Implemented the funcionality of show/modify/delete the offers not sold from a user in his profile.
+      - Implemented the funcionality of show/modify/delete the reviews from a user in his profile.
+      - Implemented the funcionality of show/delete the favorite books from a user in his profile.
+      - Implemented the funcionality of show the buy and sell historial from a user in his profile.
+      - Some searchs with querys in repositorys.
+      - Show the books in book general page.
+      - Show the offers and reviews in particular book page.
+      - Participation in the pagination.
+      - Upload offers and upload reviews in a book.
+      - Delete or modify reviews in the profile.
+      - Modify the image of an offer.
+      - Pages of error, including the controller and the template.
+      - Changes in the style of the screens.
+      - Improvements and bug fixes.
+      - Drawing diagrams for documentation.
+      
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f67665f9359539683d14647b3647a062bef61a80) Upload the classes related to reviews.
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/cf0a8a6574aa549515d62e9ad24789a1ce960b9b) Show books and the offers and reviews of a book.
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/3c993095deb14e63eea3fb2e4cca244eaffae7ad) Upload offers.
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/6761d884f74ff745fc9e0da5b1611ff2113782b3) Upload reviews.
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/57d13b1eaedcec21c55242bd424481c13d366a37#diff-ae449e0b1f8ad774bb28b01895ca5dc5c4e6c722ea5706b49acdcc9405656b4f) User profile.
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/BookController.java) BookController.java
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/OfferController.java) OfferController.java
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/ReviewController.java) ReviewController.java
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/UserController.java) UserController.java
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/templates/user-page.html) User-page.html
 
 </details>
 
 <details><summary>Markos Aguirre Elorza .</summary>
    
-   - 📂 Completed tasks
+   - 📂 Completed tasks:
+ 
       - a
       - b
       - c
-   - 📤´Most significant commits
-      - a
-      - b
-      - c
-      - d
-      - e
-   - 📝 Files with more participation
-      - a
-      - b
-      - c
-      - d
-      - e
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]()
+      - [Commit 2]()
+      - [Commit 3]()
+      - [Commit 4]()
+      - [Commit 5]()
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]()
+      - [File 2]()
+      - [File 3]()
+      - [File 4]()
+      - [File 5]()
 
 </details>
 
 <details><summary>Manuel Martin Alaez.</summary>
    
-   - 📂 Completed tasks
+   - 📂 Completed tasks:
+ 
       - a
       - b
       - c
-   - 📤´Most significant commits
-      - a
-      - b
-      - c
-      - d
-      - e
-   - 📝 Files with more participation
-      - a
-      - b
-      - c
-      - d
-      - e
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]()
+      - [Commit 2]()
+      - [Commit 3]()
+      - [Commit 4]()
+      - [Commit 5]()
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]()
+      - [File 2]()
+      - [File 3]()
+      - [File 4]()
+      - [File 5]()
 
 </details>
 
 <details><summary> Alberto Jiménez Gómez.</summary>
    
-   - 📂 Completed tasks
+   - 📂 Completed tasks:
+ 
       - a
       - b
       - c
-   - 📤´Most significant commits
-      - a
-      - b
-      - c
-      - d
-      - e
-   - 📝 Files with more participation
-      - a
-      - b
-      - c
-      - d
-      - e
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]()
+      - [Commit 2]()
+      - [Commit 3]()
+      - [Commit 4]()
+      - [Commit 5]()
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]()
+      - [File 2]()
+      - [File 3]()
+      - [File 4]()
+      - [File 5]()
 
 </details>
 
