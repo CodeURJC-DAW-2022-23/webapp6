@@ -99,7 +99,7 @@ public class AlgorithmController {
     }
 
     private List<List<String>> userponderationMatrix(List<List<String>> categoriesMatrix, List<List<String>> userMatrix) throws Exception {
-        int i, j, k, l;
+        int i, j, k;
         Boolean match;
         List<List<String>> userponderationMatrix = new ArrayList<>();
         userponderationMatrix.add(new ArrayList<>());
