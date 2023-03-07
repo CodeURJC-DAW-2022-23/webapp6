@@ -18,15 +18,6 @@ Web application made for the Web Applications Developement course from Universid
 ### Trello board
 To organice the team tasks we will be using the following [Trello board](https://trello.com/invite/b/AfoK9mBL/ATTI96f3e1b8aaf8c3c26c3bd2a450f9f137B4F49542/tareas).
 
-### Technology description and development run instructions
-- Java version: 17
-- SpringBoot version: 3.0.2
-- Database: MySQL
-   - Scheme: `books`
-   - User: `root`
-   - Password: `password`
-
-To start the application run the `ReadmeBookstoreApplication.java` and go to `https://localhost:8443/` on your browser.
 
 ## 🌟 Main web features
 <details><summary> Features that our page will have once the develpoment is complete. </summary>
@@ -161,18 +152,24 @@ Page to upload new books to the database and manage all the application data.
 ![Pages diagram drawio](https://user-images.githubusercontent.com/66415975/219658345-556ecc2a-fcca-4785-b695-70ebc885aaf9.png)
 </details>
     
-## 🏛️ Back-end design
 
-<details><summary>Database entities diagram.</summary>
-![Database entities diagram](https://user-images.githubusercontent.com/66415975/220188452-d654cd89-2a4a-4287-9366-38f570ef6d8d.png)
+
+## 🚀 PHASE 2
+
+### 📱 Screens
+
+<details><summary>Updated screens.</summary>
+
+</details>
+
+<details><summary>Screen navigation diagram.</summary>
+
 </details>
 
 
-##PHASE 2
-
-### Technology description and development run instructions
+### 🛠 Technology description and development run instructions
 - Java version: 17
-- SpringBoot version: 3.0.2
+- SpringBoot version: 2.4.4
 - Database: MySQL
    - Scheme: `books`
    - User: `root`
@@ -181,5 +178,139 @@ Page to upload new books to the database and manage all the application data.
 To start the application run the `ReadmeBookstoreApplication.java` and go to `https://localhost:8443/` on your browser.
 
 
+## 📊 Diagrams
 
+<details><summary>Database entity diagram.</summary>
+   
+   Diagram in which the different entities in the database are related.
+   
+![Database entities diagram](https://user-images.githubusercontent.com/80122593/223448947-4ba30519-b7fa-48e7-8114-8e7b7f37c408.png)
+
+</details>
+
+<details><summary>Java class diagram.</summary>
+   
+   Diagram in which the different java classes are related.
+   
+![Java class diagram](https://user-images.githubusercontent.com/80122593/223449581-fdffcbea-90c6-43d9-ab10-16498201dda4.jpg)
+
+
+</details>
+
+<details><summary>Java class diagram and templates.</summary>
+   
+   Diagram in which all the java classes of the application and the templates are related.
+   
+![Diagram of classes and templates](https://user-images.githubusercontent.com/80122593/223449590-5b0e14ba-deba-4596-a68b-6a8959a63b33.jpg)
+
+
+</details>
+
+
+## 🙋‍♂️ Member participation
+
+<details><summary>Gonzalo Ortega Carpintero.</summary>
+   
+   - 📂 Completed tasks
+      - a
+      - b
+      - c
+   - 📤 Most significant commits
+      - a
+      - b
+      - c
+      - d
+      - e
+   - 📝 Files with more participation
+      - a
+      - b
+      - c
+      - d
+      - e
+
+</details>
+
+<details><summary>Sergio Hernández Sandoval.</summary>
+   
+   - 📂 Completed tasks
+      - a
+      - b
+      - c
+   - 📤´Most significant commits
+      - a
+      - b
+      - c
+      - d
+      - e
+   - 📝 Files with more participation
+      - a
+      - b
+      - c
+      - d
+      - e
+
+</details>
+
+<details><summary>Markos Aguirre Elorza .</summary>
+   
+   - 📂 Completed tasks
+      - a
+      - b
+      - c
+   - 📤´Most significant commits
+      - a
+      - b
+      - c
+      - d
+      - e
+   - 📝 Files with more participation
+      - a
+      - b
+      - c
+      - d
+      - e
+
+</details>
+
+<details><summary>Manuel Martin Alaez.</summary>
+   
+   - 📂 Completed tasks
+      - a
+      - b
+      - c
+   - 📤´Most significant commits
+      - a
+      - b
+      - c
+      - d
+      - e
+   - 📝 Files with more participation
+      - a
+      - b
+      - c
+      - d
+      - e
+
+</details>
+
+<details><summary> Alberto Jiménez Gómez.</summary>
+   
+   - 📂 Completed tasks
+      - a
+      - b
+      - c
+   - 📤´Most significant commits
+      - a
+      - b
+      - c
+      - d
+      - e
+   - 📝 Files with more participation
+      - a
+      - b
+      - c
+      - d
+      - e
+
+</details>
 
