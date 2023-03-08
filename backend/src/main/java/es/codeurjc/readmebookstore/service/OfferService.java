@@ -45,8 +45,8 @@ public class OfferService {
 		return repository.findByOffersNotSoldByUser(id, PageRequest.of(n, 4));
 	}
 
-	public List<Offer> findShoppingHistorial(long id) {
-		return repository.findByShoppingHistorial(id);
+	public Page<Offer> findShoppingHistorial(long id, int n) {
+		return repository.findByShoppingHistorial(id, PageRequest.of(n, 4));
 	}
 
 	public List<Offer> findBooksBought(long id) {

@@ -12,7 +12,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query(value = "SELECT * FROM REVIEWS where book_id = :bookid",nativeQuery = true)
     Page<Review> findByAllReviewsByBook(long bookid, Pageable pageable);
 
-    @Query(value = "SELECT * FROM REVIEWS where user_id = :userid",nativeQuery = true)
+    @Query(value = "SELECT * FROM REVIEWS where author_id = :userid",nativeQuery = true)
     Page<Review> findByAllReviewsByUser(long userid, Pageable pageable);
 
 }

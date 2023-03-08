@@ -25,6 +25,7 @@ import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.service.UserService;
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.OfferService;
+import es.codeurjc.readmebookstore.service.ReviewService;
 
 import javax.servlet.http.HttpServletRequest;
 import es.codeurjc.readmebookstore.repository.UserRepository;
@@ -50,6 +51,9 @@ public class UserController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private ReviewService reviewService;
+
     @ModelAttribute
     public void addAttributes(Model model, HttpServletRequest request) {
 
@@ -59,16 +63,16 @@ public class UserController {
             User user = userService.findByName(principal.getName());
 
             
-            List<Offer> historial = offerService.findShoppingHistorial(user.getId());
+            //List<Offer> historial = offerService.findShoppingHistorial(user.getId());
 
             model.addAttribute("logged", true);
             model.addAttribute("id", request.getRequestedSessionId());
             model.addAttribute("name", principal.getName());
             model.addAttribute("email", user.getEmail());
 
-            model.addAttribute("reviews", user.getReadedReviews());
+            //model.addAttribute("reviews", user.getReadedReviews());
             
-            model.addAttribute("historial", historial);
+            //model.addAttribute("historial", historial);
             model.addAttribute("hasImage", user.hasImage());
             if (user.hasImage()) {
                 model.addAttribute("imageField", user.getImageFile());
@@ -82,12 +86,15 @@ public class UserController {
 
     @GetMapping("/user-page")
     public String user(Model model, HttpServletRequest request,
-            @RequestParam(defaultValue = "0") int currentFavoritesPage, @RequestParam(defaultValue = "0") int currentOffersPage) {
+            @RequestParam(defaultValue = "0") int currentFavoritesPage, @RequestParam(defaultValue = "0") int currentOffersPage, @RequestParam(defaultValue = "0") int currentReviewsPage, @RequestParam(defaultValue = "0") int currentHistoryPage) {
 
         User user = userService.findByName(request.getUserPrincipal().getName());
         
         model.addAttribute("favourites", bookService.favoriteBooks(user.getId(), currentFavoritesPage));
         model.addAttribute("offers", offerService.findOffersNotSoldByUser(user.getId(), currentOffersPage));
+        model.addAttribute("reviews", reviewService.findAllReviewsByUser(user.getId(), currentReviewsPage));
+        model.addAttribute("historial", offerService.findShoppingHistorial(user.getId(), currentHistoryPage));
+        ;
 
         return "user-page";
     }

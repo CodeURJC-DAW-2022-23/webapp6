@@ -115,7 +115,7 @@
         <div class="checkout__form">
             <h4>Tus reseñas</h4>
         </div>
-        <div class="row featured__filter" id="Books">
+        <div class="row featured__filter" id="userReviews">
             {{#reviews}}
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
@@ -133,13 +133,16 @@
                 </div>
             </div>
             {{/reviews}}
+        
+            {{^reviews}}
+            <p id="noMoreUserReviews">Actualmente no tienes reseñas publicadas</p>
+            {{/reviews}}
         </div>
-        {{^reviews}}
-        <p>Actualmente no tienes reseñas publicadas</p>
-        {{/reviews}}
-        <div class="blog__item__text">
-            <a href="#" class="primary-btn">Cargar más reseñas <span class="arrow_right"></span></a>
-        </div>
+        
+        <button type="button" class="primary-btn" id="moreContentButton" onClick=moreUserReviews()>
+            <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                style="display: none"></span>
+            <span id="moreContentText">Cargar más...</span></button>
     </div>
 
 </section>
@@ -153,7 +156,7 @@
         <div class="checkout__form">
             <h4>Tus historial de compraventa</h4>
         </div>
-        <div class="row featured__filter" id="Books">
+        <div class="row featured__filter" id="userHistory">
             {{#historial}}
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
@@ -169,12 +172,13 @@
             {{/historial}}
 
             {{^historial}}
-            <p>Actualmente no tienes historial de compra-venta</p>
+            <p id="noMoreUserHistory">Actualmente no tienes historial de compra-venta</p>
             {{/historial}}
         </div>
-        <div class="blog__item__text">
-            <a href="#" class="primary-btn">Cargar más historial de compra-venta <span class="arrow_right"></span></a>
-        </div>
+        <button type="button" class="primary-btn" id="moreContentButton" onClick=moreUserHistory()>
+            <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                style="display: none"></span>
+            <span id="moreContentText">Cargar más...</span></button>
     </div>
 </section>
 <!-- Shopping history Section End -->

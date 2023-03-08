@@ -120,7 +120,54 @@ function moreUserOffers() {
     })
 }
 
+var currentReviewsPage = 0
+function moreUserReviews() {
+    console.log('hola?')
+    switchMoreContentButtonActivation(true)
+    currentReviewsPage = currentReviewsPage + 1;
+    $.ajax({
+        type: 'GET',
+        url: '/user-page?currentReviewsPage=' + currentReviewsPage,
+        error: function () {
+            console.log('Something went wrong')
+            switchMoreContentButtonActivation(false)
+        },
+        success: function (data) {
+            var userReviews = $(data).find('#userReviews').html();
+            var noMoreUserReviews = $(data).find('#noMoreUserReviews').html();
+            if (noMoreUserReviews == undefined) {
+                $('#userReviews').append(userReviews)
+                switchMoreContentButtonActivation(false)
+            } else {
+                $('#moreContentButton').css("display", "none");
+            }
+        }
+    })
+}
 
+var currentHistoryPage = 0
+function moreUserHistory() {
+    switchMoreContentButtonActivation(true)
+    currentHistoryPage = currentHistoryPage + 1;
+    $.ajax({
+        type: 'GET',
+        url: '/user-page?currentHistoryPage=' + currentHistoryPage,
+        error: function () {
+            console.log('Something went wrong')
+            switchMoreContentButtonActivation(false)
+        },
+        success: function (data) {
+            var userHistory = $(data).find('#userHistory').html();
+            var noMoreUserHistory = $(data).find('#noMoreUserHistory').html();
+            if (noMoreUserHistory == undefined) {
+                $('#userHistory').append(userHistory)
+                switchMoreContentButtonActivation(false)
+            } else {
+                $('#moreContentButton').css("display", "none");
+            }
+        }
+    })
+}
 
 
 function switchMoreContentButtonActivation(disabled) {
