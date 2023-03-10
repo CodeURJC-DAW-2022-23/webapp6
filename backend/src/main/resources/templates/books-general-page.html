@@ -27,7 +27,7 @@
             <p id="noMoreBooks">Actualmente no hay libros</p>
             {{/books}}
         </div>
-        <button type="button" class="primary-btn" id="moreContentButton" onClick="moreContent()">
+        <button type="button" class="primary-btn" id="moreContentButton" onClick=moreContent({{searchtext}})>
             <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
             <span id="moreContentText">Cargar más...</span></button>
     </div>
