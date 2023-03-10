@@ -21,7 +21,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
         @Query(value = "select * from books.book  where genre = :genre", nativeQuery = true)
         List<Book> findByGenre (String genre);
         
-        @Query(value = "select * from books.book  where (genre like  %:partial%) or (title like  %:partial%) or (author like  %:partial%);", nativeQuery = true)
+        @Query(value = "select * from books.book  where (genre like  %:partial%) or (title like  %:partial%) or (author like  %:partial%)", nativeQuery = true)
         List<Book> findByPartial (String partial);
 
         @Query(value = "select * from books.book  where id = :id", nativeQuery = true)
@@ -37,5 +37,15 @@ public interface BookRepository extends JpaRepository<Book, Long> {
         Page<Book> favoriteBooks(Long userid, Pageable page);
         
         public Page<Book> findAll(Pageable page);
+
+        @Query(value = "select * from books.book  where author = :author", nativeQuery = true)
+        Page<Book> findPageAuthor (String author, Pageable page);
+
+        @Query(value = "select * from books.book  where genre = :genre", nativeQuery = true)
+        Page<Book> findPageGenre (String genre, Pageable page);
+        
+        @Query(value = "select * from books.book  where (genre like  %:partial%) or (title like  %:partial%) or (author like  %:partial%)", nativeQuery = true)
+        Page<Book> findPagePartial (String partial, Pageable page);
+
 
 }

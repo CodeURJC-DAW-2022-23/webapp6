@@ -1,11 +1,11 @@
 var currentPage = 0;
 
-function moreContent() {
+function moreContent(searchtext) {
     switchMoreContentButtonActivation(true)
     currentPage = currentPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/books?currentPage=' + currentPage,
+        url: '/books?searchtext=' + searchtext + '&currentPage=' + currentPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -25,7 +25,6 @@ function moreContent() {
 
 var currentReviewsPage = 0
 function moreBookReviews(id) {
-    console.log('hola?')
     switchMoreContentButtonActivation(true)
     currentReviewsPage  = currentReviewsPage  + 1;
     $.ajax({
@@ -122,7 +121,6 @@ function moreUserOffers() {
 
 var currentReviewsPage = 0
 function moreUserReviews() {
-    console.log('hola?')
     switchMoreContentButtonActivation(true)
     currentReviewsPage = currentReviewsPage + 1;
     $.ajax({

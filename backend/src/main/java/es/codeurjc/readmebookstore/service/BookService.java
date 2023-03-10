@@ -72,5 +72,18 @@ public class BookService {
 	public Page<Book> favoriteBooks(Long userid, int n) {
 		return repository.favoriteBooks(userid, PageRequest.of(n, 4));
 	}
+	
+	public Page<Book> findPageAuthor(String author, int n) {
+		return repository.findPageAuthor(author, PageRequest.of(n, 3));
+	}
 
+	public Page<Book> findPageGenre(String genre, int n) {
+		return repository.findPageGenre(genre, PageRequest.of(n, 3));
+	}
+
+	public Page<Book> findPagePartial(String genre, int n) {
+		return repository.findPagePartial(genre, PageRequest.of(n, 3));
+	}
+
+	
 }

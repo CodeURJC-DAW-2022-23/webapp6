@@ -83,20 +83,40 @@ public class BookController extends AlgorithmController {
 	}
 
 	@GetMapping("/books")
-	public String showBooks(Model model, @RequestParam(required = false) List<Book> searchbooks, HttpServletRequest request, @RequestParam(defaultValue = "0") int currentPage) throws Exception {
+	public String showBooks(Model model, HttpServletRequest request, @RequestParam(defaultValue = "0") int currentPage, @RequestParam(required = false) String searchtext) throws Exception {
 		model.addAttribute("bestPick", getRecommendedBooks(model, request).get(0));
 
-		if (searchbooks == null) {
-			model.addAttribute("books", bookService.findAll(0));
-		} else {
-			model.addAttribute("books", searchbooks);
-		}
 
-		Page<Book> booksPage = bookService.findAll(currentPage);
-		model.addAttribute("books", booksPage);
-		model.addAttribute("isbooksempty", booksPage.isEmpty());
+		if (searchtext != null) {
+			String result = "false";
+			result = doSearchTitle(model, searchtext, request);
+			if (result != "false") {
+				return result;
+			} else {
+				result = doSearchAuthor(model, searchtext, request);
+				if (result != "false") {
+					model.addAttribute("books", bookService.findPageAuthor(searchtext, currentPage));
+				} else {
+					result = doSearchGenre(model, searchtext, request);
+					if (result != "false") {
+						model.addAttribute("books", bookService.findPageGenre(searchtext, currentPage));
+					} else {
+						result = doSearchPartial(model, searchtext, request);
+						if (result != "false") {
+							model.addAttribute("books", bookService.findPagePartial(searchtext, currentPage));
+						} else {
+							
+							return "error-page";
+						}
+					}
+				}
+			}
+	
+			}
+			else {
+				model.addAttribute("books", bookService.findAll(currentPage));
+			}
 
-		model.addAttribute("currentPage", currentPage);
 		return "books-general-page";
 	}
 
@@ -146,7 +166,7 @@ public class BookController extends AlgorithmController {
 	}
 
 	@GetMapping("/search")
-	public String doSearch(Model model, @RequestParam String searchtext, HttpServletRequest request) {
+	public String doSearch(Model model, @RequestParam String searchtext, @RequestParam(defaultValue = "0") int currentPage, HttpServletRequest request) {
 		String result = "false";
 		result = doSearchTitle(model, searchtext, request);
 		if (result != "false") {
@@ -193,8 +213,7 @@ public class BookController extends AlgorithmController {
 		try {
 			List<Book> bookauthor = bookService.findByAuthor(author);
 			if (bookauthor.size() > 0) {
-				model.addAttribute("books", bookauthor);
-				return showBooks(model, bookauthor, request, 0);
+				return "true";
 			} else {
 				return "false";
 			}
@@ -208,10 +227,9 @@ public class BookController extends AlgorithmController {
 	private String doSearchGenre(Model model, @RequestParam String genre, HttpServletRequest request) {
 		String result = "false";
 		try {
-			List<Book> bookgenre = bookService.findByPartial(genre);
+			List<Book> bookgenre = bookService.findByGenre(genre);
 			if (bookgenre.size() > 0) {
-				model.addAttribute("books", bookgenre);
-				return showBooks(model, bookgenre, request, 0);
+				return "true";
 			} else {
 				return "false";
 			}
@@ -225,10 +243,9 @@ public class BookController extends AlgorithmController {
 	private String doSearchPartial(Model model, @RequestParam String partial, HttpServletRequest request) {
 		String result = "false";
 		try {
-			List<Book> bookpartial = bookService.findByGenre(partial);
+			List<Book> bookpartial = bookService.findByPartial(partial);
 			if (bookpartial.size() > 0) {
-				model.addAttribute("books", bookpartial);
-				return showBooks(model, bookpartial, request, 0);
+				return "true";
 			} else {
 				return "false";
 			}
