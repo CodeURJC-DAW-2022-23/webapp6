@@ -280,27 +280,34 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 
 <details><summary>Markos Aguirre Elorza .</summary>
    
+      
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Elemental funtionalities of the User entityModel, Service and  Repository
+      - Login
+      - Register (uploading/updating text and image for the first time to the server)
+      - User information display in the user-page (in collaboration with Sergio)
+      - Everything regarding to security
+      - Email sending additional technology implementation
+      
  
    - 📤 Most significant commits:
  
-      - [Commit 1]()
-      - [Commit 2]()
-      - [Commit 3]()
-      - [Commit 4]()
-      - [Commit 5]()
+      - [Commit 1] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/d75173db7d2b6464450b46bf088d08b95e69c4e2) Login and Register
+      - [Commit 2] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/b5babf57ad5c516280f3071ea84a273eb3abe32a
+      - [Commit 3] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f068e7238f96c670206f7aba0676584c075ab25c
+      - [Commit 4] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f2283ca3e59e9a8a66499c7f5e1564dd9a796fa9
+      - [Commit 5] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/724fb0bb8aad783aafde0bce6c89f3d3d6beb7e5
+     
  
    - 📝 Files with more participation:
  
-      - [File 1]()
-      - [File 2]()
-      - [File 3]()
-      - [File 4]()
-      - [File 5]()
+      - [File 1] https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/templates/user-page.html
+      - [File 2] https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/security/SecurityConfiguration.java
+      - [File 3] https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/service/MailService.java
+      - [File 4] https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/LoginController.java
+      - [File 5] https://github.com/CodeURJC-DAW-2022-23/webapp6/blame/main/backend/src/main/java/es/codeurjc/readmebookstore/model/User.java
+     
 
 </details>
 
