@@ -5,8 +5,11 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,20 +50,21 @@ public class AdminController {
     }
 
     @GetMapping("/admin")
-    public String admin(Model model) {
+    public String admin(Model model,  @RequestParam(defaultValue = "0") int currentUsersPage, @RequestParam(defaultValue = "0") int currentBooksPage, 
+            @RequestParam(defaultValue = "0") int currentReviewsPage, @RequestParam(defaultValue = "0") int currentOffersPage, HttpServletRequest request) {
 
-        List<User> userList = userService.findAll();
-        userList.remove(0); // The admin is removed so it displays diferently.
+        long id =  44;
+
+        Page<User> userList = userService.findAll(id, currentUsersPage);
+        //userList.remove(0); // The admin is removed so it displays diferently.
+
         model.addAttribute("userList", userList);
+        
+        model.addAttribute("bookList", bookService.findAll(currentBooksPage));
 
-        List<Book> bookList = bookService.findAll();
-        model.addAttribute("bookList", bookList);
+        model.addAttribute("reviewList", reviewService.findAll(currentReviewsPage));
 
-        List<Review> reviewList = reviewService.findAll();
-        model.addAttribute("reviewList", reviewList);
-
-        List<Offer> offerList = offerService.findAll();
-        model.addAttribute("offerList", offerList);
+        model.addAttribute("offerList", offerService.findAll(currentOffersPage));
 
         return "admin-page";
     }

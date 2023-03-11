@@ -4,13 +4,13 @@
 <section class="checkout spad">
     <div class="container">
         <div class="section-title">
-            <h2>Página de amdinistrador</h2>
+            <h2>Página de administrador</h2>
         </div>
         <div class="checkout__form">
 
             <!-------------------------------------------- Users -------------------------------------------->
             <h4>Usuarios</h4>
-            <table class="admin_table">
+            <table class="admin_table" >
                 <tr>
                     <th>id</th>
                     <th>Usuario</th>
@@ -27,32 +27,44 @@
                     <td>-</td>
                     <td>-</td>
                 </tr>
-                {{#userList}}
-                <tr class="blog__item__text">
-                    <form action="/admin/edit-user/{{id}}" method="post" enctype="multipart/form-data">
-                        <td>{{id}}</td>
-                        <td>{{name}}</td>
-                        <td class="checkout__input"><input type="text" name="email" value="{{email}}"></td>
-                        <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
-                        <td title="Editar imagen" class="checkout__input">
-                            <a href="#"><img src="/users/{{name}}/image" height="100"></a>
-                            <input type='file' name='imageField' accept=".jpg, .jpeg" />
-                        </td>
-                        <td class="checkout__input">
-                            <button title="Guardar cambios" type="submit" class="blog__btn"><i
-                                    class="fa fa-save"></i></button>
-                            <input type="hidden" name="_csrf" value="{{token}}" />
-                            <a title="Eliminar usuario" href="/admin/delete-user/{{id}}" class="blog__btn"><i
-                                    class="fa fa-trash"></i></a>
-                        </td>
-                    </form>
-                </tr>
-                {{/userList}}
+                <table class="admin_table" id ="adminUsers">
+                    {{#userList}}
+                    <tr class="blog__item__text" >
+                        <form action="/admin/edit-user/{{id}}" method="post" enctype="multipart/form-data">
+                            <td>{{id}}</td>
+                            <td>{{name}}</td>
+                            <td class="checkout__input"><input type="text" name="email" value="{{email}}"></td>
+                            <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
+                            <td title="Editar imagen" class="checkout__input">
+                                <a href="#"><img src="/users/{{name}}/image" height="100"></a>
+                                <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                            </td>
+                            <td class="checkout__input">
+                                <button title="Guardar cambios" type="submit" class="blog__btn"><i
+                                        class="fa fa-save"></i></button>
+                                <input type="hidden" name="_csrf" value="{{token}}" />
+                                <a title="Eliminar usuario" href="/admin/delete-user/{{id}}" class="blog__btn"><i
+                                        class="fa fa-trash"></i></a>
+                            </td>
+                        </form>
+                    </tr>
+                    {{/userList}}
+                    {{^userList}}
+                    <p id="noMoreAdminUsers"></p>
+                    {{/userList}}
+                </table>
             </table>
+            
+            <button type="button" class="primary-btn" id="moreContentButton" onClick=moreAdminUsers()>
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                    style="display: none"></span>
+                <span id="moreContentText">Cargar más...</span></button>
+            
+        
 
             <!------------------------------------------- Offers -------------------------------------------->
             <h4>Anuncios</h4>
-            <table class="admin_table">
+            <table class="admin_table" >
                 <tr>
                     <th>id</th>
                     <th>Libro</th>
@@ -64,32 +76,41 @@
                     <th>Imagen</th>
                     <th></th>
                 </tr>
-                {{#offerList}}
-                <tr class="blog__item__text">
-                    <form action="/admin/edit-offer/{{id}}" method="post" enctype="multipart/form-data">
-                        <td>{{id}}</td>
-                        <td>{{book.title}}</td>
-                        <td>{{seller.name}}</td>
-                        <td class="checkout__input"><input type="date" name="date" value="{{date}}"></td>
-                        <td class="checkout__input"><input type="text" name="edition" value="{{edition}}"></td>
-                        <td class="checkout__input"><input type="text" name="description" value="{{description}}"></td>
-                        <td class="checkout__input"><input type="number" step="0.01" name="price" value={{price}}></td>
-                        <td title="Editar imagen" class="checkout__input">
-                            <a href="#"><img src="/offers/{{id}}/image" height="100"></a>
-                            <input type='file' name='imageField' accept=".jpg, .jpeg" />
-                        </td>
+                <table class="admin_table" id = "adminOffers">
+                    {{#offerList}}
+                    <tr class="blog__item__text" >
+                        <form action="/admin/edit-offer/{{id}}" method="post" enctype="multipart/form-data">
+                            <td>{{id}}</td>
+                            <td>{{book.title}}</td>
+                            <td>{{seller.name}}</td>
+                            <td class="checkout__input"><input type="date" name="date" value="{{date}}"></td>
+                            <td class="checkout__input"><input type="text" name="edition" value="{{edition}}"></td>
+                            <td class="checkout__input"><input type="text" name="description" value="{{description}}"></td>
+                            <td class="checkout__input"><input type="number" step="0.01" name="price" value={{price}}></td>
+                            <td title="Editar imagen" class="checkout__input">
+                                <a href="#"><img src="/offers/{{id}}/image" height="100"></a>
+                                <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                            </td>
 
-                        <td class="checkout__input">
-                            <button title="Guardar cambios" type="submit" class="blog__btn"><i
-                                    class="fa fa-save"></i></button>
-                            <input type="hidden" name="_csrf" value="{{token}}" />
-                            <a title="Eliminar anuncio" href="/admin/delete-offer/{{id}}" class="blog__btn"><i
-                                    class="fa fa-trash"></i></a>
-                        </td>
-                    </form>
-                </tr>
-                {{/offerList}}
+                            <td class="checkout__input">
+                                <button title="Guardar cambios" type="submit" class="blog__btn"><i
+                                        class="fa fa-save"></i></button>
+                                <input type="hidden" name="_csrf" value="{{token}}" />
+                                <a title="Eliminar anuncio" href="/admin/delete-offer/{{id}}" class="blog__btn"><i
+                                        class="fa fa-trash"></i></a>
+                            </td>
+                        </form>
+                    </tr>
+                    {{/offerList}}
+                    {{^offerList}}
+                    <p id="noMoreAdminOffers"></p>
+                    {{/offerList}}
+                </table>
             </table>
+            <button type="button" class="primary-btn" id="moreContentButton" onClick=moreAdminOffers()>
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                    style="display: none"></span>
+                <span id="moreContentText">Cargar más...</span></button>
 
             <!----------------------------------------- Reviews ------------------------------------------->
             <h4>Reseñas</h4>
@@ -102,26 +123,35 @@
                     <th>Texto</th>
                     <th></th>
                 </tr>
-                {{#reviewList}}
-                <tr class="blog__item__text">
-                    <form action="/admin/edit-review/{{id}}" method="post" enctype="multipart/form-data">
-                        <td>{{id}}</td>
-                        <td>{{book.title}}</td>
-                        <td>{{author.name}}</td>
-                        <td class="checkout__input"><input type="date" name="date" value="{{date}}"></td>
-                        <td class="checkout__input"><input type="text" name="text" value="{{text}}"></td>
+                <table class="admin_table" id = "adminReviews">
+                    {{#reviewList}}
+                    <tr class="blog__item__text" >
+                        <form action="/admin/edit-review/{{id}}" method="post" enctype="multipart/form-data">
+                            <td>{{id}}</td>
+                            <td>{{book.title}}</td>
+                            <td>{{author.name}}</td>
+                            <td class="checkout__input"><input type="date" name="date" value="{{date}}"></td>
+                            <td class="checkout__input"><input type="text" name="text" value="{{text}}"></td>
 
-                        <td class="checkout__input">
-                            <button title="Guardar cambios" type="submit" class="blog__btn"><i
-                                    class="fa fa-save"></i></button>
-                            <input type="hidden" name="_csrf" value="{{token}}" />
-                            <a title="Eliminar reseña" href="/admin/delete-review/{{id}}" class="blog__btn"><i
-                                    class="fa fa-trash"></i></a>
-                        </td>
-                    </form>
-                </tr>
-                {{/reviewList}}
+                            <td class="checkout__input">
+                                <button title="Guardar cambios" type="submit" class="blog__btn"><i
+                                        class="fa fa-save"></i></button>
+                                <input type="hidden" name="_csrf" value="{{token}}" />
+                                <a title="Eliminar reseña" href="/admin/delete-review/{{id}}" class="blog__btn"><i
+                                        class="fa fa-trash"></i></a>
+                            </td>
+                        </form>
+                    </tr>
+                    {{/reviewList}}
+                    {{^reviewList}}
+                    <p id="noMoreAdminReviews"></p>
+                    {{/reviewList}}
+                </table>
             </table>
+            <button type="button" class="primary-btn" id="moreContentButton" onClick=moreAdminReviews()>
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                    style="display: none"></span>
+                <span id="moreContentText">Cargar más...</span></button>
 
             <!------------------------------------------- Books ------------------------------------------->
             <h4>Libros</h4>
@@ -134,29 +164,37 @@
                     <th>Imágen</th>
                     <th></th>
                 </tr>
-                {{#bookList}}
-                <tr class="blog__item__text">
-                    <form action="/admin/edit-book/{{id}}" method="post" enctype="multipart/form-data">
-                        <td>{{id}}</td>
-                        <td class="checkout__input"><input type="text" name="title" value="{{title}}"></td>
-                        <td class="checkout__input"><input type="text" name="author" value="{{author}}"></td>
-                        <td class="checkout__input"><input type="text" name="genre" value="{{genre}}"></td>
-                        <td title="Editar imagen" class="checkout__input">
-                            <a href="#"><img src="/books/{{id}}/image" height="100"></a>
-                            <input type='file' name='imageField' accept=".jpg, .jpeg" />
-                        </td>
+                <table class="admin_table" id = "adminBooks">
+                    {{#bookList}}
+                    <tr class="blog__item__text" >
+                        <form action="/admin/edit-book/{{id}}" method="post" enctype="multipart/form-data">
+                            <td>{{id}}</td>
+                            <td class="checkout__input"><input type="text" name="title" value="{{title}}"></td>
+                            <td class="checkout__input"><input type="text" name="author" value="{{author}}"></td>
+                            <td class="checkout__input"><input type="text" name="genre" value="{{genre}}"></td>
+                            <td title="Editar imagen" class="checkout__input">
+                                <a href="#"><img src="/books/{{id}}/image" height="100"></a>
+                                <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                            </td>
 
-                        <td class="checkout__input">
-                            <button title="Guardar cambios" type="submit" class="blog__btn"><i
-                                    class="fa fa-save"></i></button>
-                            <input type="hidden" name="_csrf" value="{{token}}" />
-                            <a title="Eliminar libro" href="/admin/delete-book/{{id}}" class="blog__btn"><i
-                                    class="fa fa-trash"></i></a>
-                        </td>
-                    </form>
-                </tr>
-                {{/bookList}}
+                            <td class="checkout__input">
+                                <button title="Guardar cambios" type="submit" class="blog__btn"><i
+                                        class="fa fa-save"></i></button>
+                                <input type="hidden" name="_csrf" value="{{token}}" />
+                                <a title="Eliminar libro" href="/admin/delete-book/{{id}}" class="blog__btn"><i
+                                        class="fa fa-trash"></i></a>
+                            </td>
+                        </form>
+                    </tr>
+                    {{/bookList}}
+                    {{^bookList}}
+                    <p id="noMoreAdminBooks">Actualmente no hay anuncios de este libro</p>
+                    {{/bookList}}
+                </table>
             </table>
+            <button type="button" class="primary-btn" id="moreContentButton" onClick=moreAdminBooks()>
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
+                <span id="moreContentText">Cargar más...</span></button>
 
             <!-- Add new book -->
             <div class="checkout__order">

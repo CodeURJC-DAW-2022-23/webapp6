@@ -29,6 +29,10 @@ public class ReviewService {
 		return repository.existsById(id);
 	}
 
+	public Page<Review> findAll(int n) {
+		return repository.findAll( PageRequest.of(n, 4));
+	}
+
 	public List<Review> findAll() {
 		return repository.findAll();
 	}

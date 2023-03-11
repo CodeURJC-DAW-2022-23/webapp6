@@ -120,8 +120,6 @@ public class BookController extends AlgorithmController {
 		return "books-general-page";
 	}
 
-
-
 	@GetMapping("/book/{id}")
 
 	public String showBook(Model model, @PathVariable long id, HttpServletRequest request, @RequestParam(defaultValue = "0") int currentReviewsPage,  @RequestParam(defaultValue = "0") int currentOffersPage) {
@@ -162,33 +160,6 @@ public class BookController extends AlgorithmController {
 
 		} else {
 			return ResponseEntity.notFound().build();
-		}
-	}
-
-	@GetMapping("/search")
-	public String doSearch(Model model, @RequestParam String searchtext, @RequestParam(defaultValue = "0") int currentPage, HttpServletRequest request) {
-		String result = "false";
-		result = doSearchTitle(model, searchtext, request);
-		if (result != "false") {
-			return result;
-		} else {
-			result = doSearchAuthor(model, searchtext, request);
-			if (result != "false") {
-				return result;
-			} else {
-				result = doSearchGenre(model, searchtext, request);
-				if (result != "false") {
-					return result;
-				} else {
-					result = doSearchPartial(model, searchtext, request);
-					if (result != "false") {
-						return result;
-					} else {
-						// return "error-search"; No has encontrado nada
-						return "error-page";
-					}
-				}
-			}
 		}
 	}
 

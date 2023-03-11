@@ -191,6 +191,101 @@ function moreUserHistory() {
     })
 }
 
+var currentOffersPage = 0
+function moreAdminOffers() {
+    switchMoreContentButtonActivation(true)
+    currentOffersPage = currentOffersPage + 1;
+    $.ajax({
+        type: 'GET',
+        url: '/admin?currentOffersPage=' + currentOffersPage,
+        error: function () {
+            console.log('Something went wrong')
+            switchMoreContentButtonActivation(false)
+        },
+        success: function (data) {
+            var adminOffers = $(data).find('#adminOffers').html();
+            var noMoreAdminOffers = $(data).find('#noMoreAdminOffers').html();
+            if (noMoreAdminOffers == undefined) {
+                $('#adminOffers').append(adminOffers)
+                switchMoreContentButtonActivation(false)
+            } else {
+                $('#moreContentButton').css("display", "none");
+            }
+        }
+    })
+}
+
+var currentReviewsPage = 0
+function moreAdminReviews() {
+    switchMoreContentButtonActivation(true)
+    currentReviewsPage = currentReviewsPage + 1;
+    $.ajax({
+        type: 'GET',
+        url: '/admin?currentReviewsPage=' + currentReviewsPage,
+        error: function () {
+            console.log('Something went wrong')
+            switchMoreContentButtonActivation(false)
+        },
+        success: function (data) {
+            var adminReviews = $(data).find('#adminReviews').html();
+            var noMoreAdminReviews = $(data).find('#noMoreAdminReviews').html();
+            if (noMoreAdminReviews == undefined) {
+                $('#adminReviews').append(adminReviews)
+                switchMoreContentButtonActivation(false)
+            } else {
+                $('#moreContentButton').css("display", "none");
+            }
+        }
+    })
+}
+
+var currentUsersPage = 0
+function moreAdminUsers() {
+    switchMoreContentButtonActivation(true)
+    currentUsersPage = currentUsersPage + 1;
+    $.ajax({
+        type: 'GET',
+        url: '/admin?currentUsersPage=' + currentUsersPage,
+        error: function () {
+            console.log('Something went wrong')
+            switchMoreContentButtonActivation(false)
+        },
+        success: function (data) {
+            var adminUsers = $(data).find('#adminUsers').html();
+            var noMoreAdminUsers = $(data).find('#noMoreAdminUsers').html();
+            if (noMoreAdminUsers == undefined) {
+                $('#adminUsers').append(adminUsers)
+                switchMoreContentButtonActivation(false)
+            } else {
+                $('#moreContentButton').css("display", "none");
+            }
+        }
+    })
+}
+
+var currentBooksPage = 0
+function moreAdminBooks() {
+    switchMoreContentButtonActivation(true)
+    currentBooksPage = currentBooksPage + 1;
+    $.ajax({
+        type: 'GET',
+        url: '/admin?currentBooksPage=' + currentBooksPage,
+        error: function () {
+            console.log('Something went wrong')
+            switchMoreContentButtonActivation(false)
+        },
+        success: function (data) {
+            var adminBooks = $(data).find('#adminBooks').html();
+            var noMoreAdminBooks = $(data).find('#noMoreAdminBooks').html();
+            if (noMoreAdminBooks == undefined) {
+                $('#adminBooks').append(adminBooks)
+                switchMoreContentButtonActivation(false)
+            } else {
+                $('#moreContentButton').css("display", "none");
+            }
+        }
+    })
+}
 
 function switchMoreContentButtonActivation(disabled) {
     $('#moreContentButton').attr('disabled', disabled);

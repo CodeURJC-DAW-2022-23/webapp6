@@ -74,15 +74,15 @@ public class BookService {
 	}
 	
 	public Page<Book> findPageAuthor(String author, int n) {
-		return repository.findPageAuthor(author, PageRequest.of(n, 3));
+		return repository.findPageAuthor(author, PageRequest.of(n, 4));
 	}
 
 	public Page<Book> findPageGenre(String genre, int n) {
-		return repository.findPageGenre(genre, PageRequest.of(n, 3));
+		return repository.findPageGenre(genre, PageRequest.of(n, 4));
 	}
 
 	public Page<Book> findPagePartial(String genre, int n) {
-		return repository.findPagePartial(genre, PageRequest.of(n, 3));
+		return repository.findPagePartial(genre, PageRequest.of(n, 4));
 	}
 
 	

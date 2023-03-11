@@ -31,8 +31,8 @@ public class UserService {
         return userRepository.existsById(id);
     }
 
-    public Page<User> findAll(int n) {
-        return userRepository.findAll( PageRequest.of(n, 5));
+    public Page<User> findAll(Long id, int n) {
+        return userRepository.findAll(id, PageRequest.of(n, 4));
     }
 
     public void save(User user) {
