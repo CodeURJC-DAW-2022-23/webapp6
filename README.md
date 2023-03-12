@@ -296,20 +296,20 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
  
    - 📤 Most significant commits:
  
-      - [Commit 1] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/d75173db7d2b6464450b46bf088d08b95e69c4e2) Login and Register
-      - [Commit 2] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/b5babf57ad5c516280f3071ea84a273eb3abe32a
-      - [Commit 3] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f068e7238f96c670206f7aba0676584c075ab25c
-      - [Commit 4] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f2283ca3e59e9a8a66499c7f5e1564dd9a796fa9
-      - [Commit 5] https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/724fb0bb8aad783aafde0bce6c89f3d3d6beb7e5
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/d75173db7d2b6464450b46bf088d08b95e69c4e2) Login and Register
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/b5babf57ad5c516280f3071ea84a273eb3abe32a)
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f068e7238f96c670206f7aba0676584c075ab25c)
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f2283ca3e59e9a8a66499c7f5e1564dd9a796fa9)
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/724fb0bb8aad783aafde0bce6c89f3d3d6beb7e5)
      
  
    - 📝 Files with more participation:
  
-      - [File 1] https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/templates/user-page.html
-      - [File 2] https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/security/SecurityConfiguration.java
-      - [File 3] https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/service/MailService.java
-      - [File 4] https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/LoginController.java
-      - [File 5] https://github.com/CodeURJC-DAW-2022-23/webapp6/blame/main/backend/src/main/java/es/codeurjc/readmebookstore/model/User.java
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/templates/user-page.html)
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/security/SecurityConfiguration.java)
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/service/MailService.java)
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/LoginController.java)
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blame/main/backend/src/main/java/es/codeurjc/readmebookstore/model/User.java)
      
 
 </details>
@@ -344,25 +344,30 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
    
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Database initialization. 
+      - Data of books, categories, favorite books, and bought books.
+      - Searchtool, it is possible to search a book looking for the title, or a list of books looking for author, genre or a partial part of those properties.
+      - Dropdown categories by genre using search controller.
+      - Add or remove a book to favorites from the particular book page.
+      - Algorithm of recomendation made in static.
+      - Categories entity used in the recommendation algorithm.
+      - Update of algorithm to dynamic using the database data.
  
    - 📤 Most significant commits:
  
-      - [Commit 1]()
-      - [Commit 2]()
-      - [Commit 3]()
-      - [Commit 4]()
-      - [Commit 5]()
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/80d9669ae6ffa1fa6b651a263b9ed3a49a7dab49) Initialize database
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/c5d387c1d845a7f997e3719ae7eab1dd11bdb9c0) Search books
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/827767a00ee39158f53914db24dad8a9d9619048) Add books to favorites
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/56430068d85ffca01fa039fe533546ffb6ae866e) Static Search Algorithm
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/948c0683288322c1cfbc72173285d8d72f5653eb) Dynamic Search Algorithm
  
    - 📝 Files with more participation:
  
-      - [File 1]()
-      - [File 2]()
-      - [File 3]()
-      - [File 4]()
-      - [File 5]()
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/AlgorithmController.java) AlgorithmController.java
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/BookController.java) BookController.java
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/repository/BookRepository.java) BookRepository.java
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/UserController.java) UserController.java
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/templates/book-particular-page.html) book-particular-page.html
 
 </details>
 
