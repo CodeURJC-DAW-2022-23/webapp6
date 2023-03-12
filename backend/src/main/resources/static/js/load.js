@@ -74,7 +74,7 @@ function moreBookReviews(id) {
 var currentOffersPage = 0
 function moreBookOffers(id) {
     switchMoreContentButtonActivation(true)
-    currentOffersPage = currentFavoritesPage + 1;
+    currentOffersPage = currentOffersPage + 1;
     $.ajax({
         type: 'GET',
         url: '/book/' + id + '?currentOffersPage=' + currentOffersPage,
@@ -137,7 +137,7 @@ function moreUserOffers() {
                 $('#userOffers').append(userOffers)
                 switchMoreContentButtonActivation(false)
             } else {
-                $('#moreContentButton').css("display", "none");
+                $('#moreOfferContentButton').css("display", "none");
             }
         }
     })
@@ -161,7 +161,7 @@ function moreUserReviews() {
                 $('#userReviews').append(userReviews)
                 switchMoreContentButtonActivation(false)
             } else {
-                $('#moreContentButton').css("display", "none");
+                $('#moreReviewsContentButton').css("display", "none");
             }
         }
     })
@@ -185,7 +185,7 @@ function moreUserHistory() {
                 $('#userHistory').append(userHistory)
                 switchMoreContentButtonActivation(false)
             } else {
-                $('#moreContentButton').css("display", "none");
+                $('#moreHistorialContentButton').css("display", "none");
             }
         }
     })

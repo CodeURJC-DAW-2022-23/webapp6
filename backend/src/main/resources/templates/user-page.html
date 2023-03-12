@@ -61,10 +61,11 @@
             <p id="noMoreFavorites">Actualmente no tienes libros favoritos</p>
             {{/favourites}}
         </div>
-        <button type="button" class="primary-btn" id="moreContentButton" onClick=moreUserFavorites()>
+        <button type="button" class="site-btn" id="moreContentButton" onClick=moreUserFavorites()>
             <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
                 style="display: none"></span>
-            <span id="moreContentText">Cargar más...</span></button>
+            <span id="moreContentText">Cargar más</span>
+        </button>
     </div>
 </section>
 <!-- Favourites Section End -->
@@ -99,10 +100,11 @@
             {{/offers}}
 
         </div>
-        <button type="button" class="primary-btn" id="moreContentButton" onClick=moreUserOffers()>
+        <button type="button" class="site-btn" id="moreOfferContentButton" onClick=moreUserOffers()>
             <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
                 style="display: none"></span>
-            <span id="moreContentText">Cargar más...</span></button>
+            <span id="moreContentText">Cargar más</span>
+        </button>
     </div>
 </section>
 <!-- Offers Section End -->
@@ -139,10 +141,11 @@
             {{/reviews}}
         </div>
         
-        <button type="button" class="primary-btn" id="moreContentButton" onClick=moreUserReviews()>
+        <button type="button" class="site-btn" id="moreReviewsContentButton" onClick=moreUserReviews()>
             <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
                 style="display: none"></span>
-            <span id="moreContentText">Cargar más...</span></button>
+            <span id="moreContentText">Cargar más</span>
+        </button>
     </div>
 
 </section>
@@ -175,16 +178,14 @@
             <p id="noMoreUserHistory">Actualmente no tienes historial de compra-venta</p>
             {{/historial}}
         </div>
-        <button type="button" class="primary-btn" id="moreContentButton" onClick=moreUserHistory()>
+        <button type="button" class="site-btn" id="moreHistorialContentButton" onClick=moreUserHistory()>
             <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
                 style="display: none"></span>
-            <span id="moreContentText">Cargar más...</span></button>
+            <span id="moreContentText">Cargar más</span>
+        </button>
     </div>
 </section>
 <!-- Shopping history Section End -->
-
-
-
 
 <!-- Footer -->
 {{>footer}}

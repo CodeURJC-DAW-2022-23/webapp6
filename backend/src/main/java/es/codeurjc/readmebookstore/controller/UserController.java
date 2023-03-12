@@ -3,7 +3,6 @@ package es.codeurjc.readmebookstore.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.User;
 import es.codeurjc.readmebookstore.model.Book;
-import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.service.UserService;
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.OfferService;

@@ -1,11 +1,10 @@
 {{>header}}
+<div class="section-title">
+    <h2>Página de administrador</h2>
+</div>
 
 <!-- Admin Section Begin -->
-<section class="checkout spad">
     <div class="container">
-        <div class="section-title">
-            <h2>Página de administrador</h2>
-        </div>
         <div class="checkout__form">
 
             <!-------------------------------------------- Users -------------------------------------------->
@@ -15,14 +14,12 @@
                     <th>id</th>
                     <th>Usuario</th>
                     <th>Correo</th>
-                    <th>Libros favoritos</th>
                     <th>Imagen</th>
                     <th></th>
                 </tr>
                 <tr>
                     <td>1</td>
                     <td>Administrator</td>
-                    <td>-</td>
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
@@ -34,7 +31,6 @@
                             <td>{{id}}</td>
                             <td>{{name}}</td>
                             <td class="checkout__input"><input type="text" name="email" value="{{email}}"></td>
-                            <td class="checkout__input"><a href="#" class="blog__btn"><i class="fa fa-trash"></a></td>
                             <td title="Editar imagen" class="checkout__input">
                                 <a href="#"><img src="/users/{{name}}/image" height="100"></a>
                                 <input type='file' name='imageField' accept=".jpg, .jpeg" />
@@ -58,7 +54,8 @@
             <button type="button" class="primary-btn" id="moreContentButton" onClick=moreAdminUsers()>
                 <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
                     style="display: none"></span>
-                <span id="moreContentText">Cargar más...</span></button>
+                <span id="moreContentText">Cargar más</span>
+            </button>
             
         
 
@@ -107,10 +104,11 @@
                     {{/offerList}}
                 </table>
             </table>
-            <button type="button" class="primary-btn" id="moreContentButton" onClick=moreAdminOffers()>
+            <button type="button" class="site-btn" id="moreContentButton" onClick=moreAdminOffers()>
                 <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
                     style="display: none"></span>
-                <span id="moreContentText">Cargar más...</span></button>
+                <span id="moreContentText">Cargar más</span>
+            </button>
 
             <!----------------------------------------- Reviews ------------------------------------------->
             <h4>Reseñas</h4>
@@ -148,10 +146,11 @@
                     {{/reviewList}}
                 </table>
             </table>
-            <button type="button" class="primary-btn" id="moreContentButton" onClick=moreAdminReviews()>
+            <button type="button" class="site-btn" id="moreContentButton" onClick=moreAdminReviews()>
                 <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
                     style="display: none"></span>
-                <span id="moreContentText">Cargar más...</span></button>
+                <span id="moreContentText">Cargar más</span>
+            </button>
 
             <!------------------------------------------- Books ------------------------------------------->
             <h4>Libros</h4>
@@ -192,9 +191,10 @@
                     {{/bookList}}
                 </table>
             </table>
-            <button type="button" class="primary-btn" id="moreContentButton" onClick=moreAdminBooks()>
+            <button type="button" class="site-btn" id="moreContentButton" onClick=moreAdminBooks()>
                 <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
-                <span id="moreContentText">Cargar más...</span></button>
+                <span id="moreContentText">Cargar más</span>
+            </button>
 
             <!-- Add new book -->
             <div class="checkout__order">
@@ -222,7 +222,6 @@
             </div>
         </div>
     </div>
-</section>
 <!-- Admin Section End -->
 
 <!-- Footer -->

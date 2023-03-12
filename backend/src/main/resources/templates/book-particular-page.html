@@ -1,13 +1,17 @@
 {{>header}}
+<div class="section-title">
+    <h2>{{book.title}}</h2>
+</div>
 
 <section class="container">
     <div class="row">
         <div class="col-lg-6">
-            <div class="section-title">
-                <h2>{{book.title}}</h2>
-            </div>
-            {{#logged}}
+
+
             <div class="sidebar__fav">
+                <p><strong>Autor: </strong>{{book.author}}</p>
+                <p><strong>Género: </strong>{{book.genre}}</p>
+                {{#logged}}
                 {{#isfav}}
                 <div class="blog__item__text">
                     <a href="/removefavorite/{{book.id}}" class="blog__btn">Quitar de Favoritos<span
@@ -20,8 +24,9 @@
                             class="icon_heart_alt"></span></a>
                 </div>
                 {{/isfav}}
+                {{/logged}}
             </div>
-            {{/logged}}
+
             {{^logged}}
             <div class="blog__item__text">
                 <a href="/user-page" class="blog__btn">Inicia sesión para añadir a favoritos<span
@@ -70,11 +75,12 @@
             <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu reseña<span
                     class="fa fa-user"></span></a>
             {{/logged}}
+            <button type="button" class="site-btn" id="moreBookReviewsButton" onClick="moreBookReviews('{{book.id}}')">
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                    style="display: none"></span>
+                <span id="moreContentText">Cargar más</span>
+            </button>
         </div>
-        <button type="button" class="primary-btn" id="moreBookReviewsButton" onClick=moreBookReviews({{book.id}})>
-            <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
-                style="display: none"></span>
-            <span id="moreContentText">Cargar más...</span></button>
     </div>
 </section>
 <!-- Reviews Section End -->
@@ -116,11 +122,12 @@
             <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu anuncio<span
                     class="fa fa-user"></span></a>
             {{/logged}}
+            <button type="button" class="site-btn" id="moreBookOffersButton" onClick="moreBookOffers('{{book.id}}')">
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                    style="display: none"></span>
+                <span id="moreContentText">Cargar más</span>
+            </button>
         </div>
-        <button type="button" class="primary-btn" id="moreBookOffersButton" onClick=moreBookOffers({{book.id}})>
-            <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
-                style="display: none"></span>
-            <span id="moreContentText">Cargar más...</span></button>
     </div>
 </section>
 <!-- Offers Section End -->

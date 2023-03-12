@@ -2,6 +2,7 @@ package es.codeurjc.readmebookstore.security;
 
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.Nullable;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +25,7 @@ class CSRFHandlerInterceptor implements HandlerInterceptor {
 
 	@Override
 	public void postHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler,
-			final ModelAndView modelAndView) throws Exception {
+			@Nullable final ModelAndView modelAndView) throws Exception {
 
 		if (modelAndView != null) {
 

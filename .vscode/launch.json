@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ReadmeBookstoreApplication",
+            "request": "launch",
+            "mainClass": "es.codeurjc.readmebookstore.ReadmeBookstoreApplication",
+            "projectName": "backend"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "readme-bookstore/src/main/java/es/codeurjc/readmebookstore/ReadmeBookstoreApplication.java"
