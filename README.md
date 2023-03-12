@@ -213,25 +213,28 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
  
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Spring project initialization.
+      - Admin page HTML and funcionalities, including visualizing, editing and deleting, all data from models.
+      - Upload books and its images as an admin funcionality.
+      - Upload and buy offers funtionalities.
+      - Statistics page with dinamic bar diagram.
+      - General style and dessign changes.
  
    - 📤 Most significant commits:
  
-      - [Commit 1]() 
-      - [Commit 2]()
-      - [Commit 3]()
-      - [Commit 4]()
-      - [Commit 5]()
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/9df20a0ad8345938ae5cc57aee1c55c778aa50fb) Spring project initialized.
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/c122b0668aee6804e66840218e9caf11a35bc2bb) Upload books and edit data from admin page.
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/9868bedb6e66ff8913c62c4255b35136b445d045) Upload offers functionality.
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/bc9959d2367621bfe4242b0b1abdd674cda9191d) Statistic page.
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/6edd943e35a1c769a25ac8bdbbabf5cc42fc6976) Admin funtionalities complete.
  
    - 📝 Files with more participation:
  
-      - [File 1]()
-      - [File 2]()
-      - [File 3]()
-      - [File 4]()
-      - [File 5]()
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/templates/admin-page.html) admin-page.html
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/AdminController.java) AdminController.java
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/OfferController.java) OfferController.java
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/StatisticsController.java) StatisticsController.java
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/static/js/statistics.js) statistics.js
 
 </details>
 
