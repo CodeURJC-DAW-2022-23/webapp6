@@ -207,6 +207,49 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 </details>
 
 
+<details><summary>Templates and navegation diagram.</summary>
+   
+   Images of the templates and diagram of the web navegation.
+ 
+![inicio](https://user-images.githubusercontent.com/49288214/224589396-da27f2a9-ca4b-431c-bf34-88d070eda88a.png)
+ 
+![libros](https://user-images.githubusercontent.com/49288214/224589416-648fe8cd-35b8-455a-bf01-17541f0f9eed.png)
+ 
+![contacto](https://user-images.githubusercontent.com/49288214/224589422-f72feee6-8560-455b-9746-f879e074964b.png)
+
+![estadisticas](https://user-images.githubusercontent.com/49288214/224589429-b2c0b17c-1118-41b3-9f46-5d254f6a1e91.png)
+ 
+ ![inicio_sesion](https://user-images.githubusercontent.com/49288214/224589500-ef8d300f-119d-454f-9d02-dfc1708397ce.png)
+
+![registro](https://user-images.githubusercontent.com/49288214/224589515-b2d3196c-32cb-4d6d-aaa4-e2864d907522.png)
+
+ ![user-page](https://user-images.githubusercontent.com/49288214/224589552-cd04e3bb-2853-43f8-927b-df86a6eec8a0.png)
+![user-page2](https://user-images.githubusercontent.com/49288214/224589566-7f455628-4328-4ef4-ab16-9c9089ab7618.png)
+![user-page3](https://user-images.githubusercontent.com/49288214/224589575-f72b6a88-2bb2-43f7-beaf-00ad87a48f0e.png)
+ 
+ ![modificar_usuario](https://user-images.githubusercontent.com/49288214/224589618-bf580ef5-7122-435d-ae86-1e2c415a76ef.png)
+
+
+![admin1](https://user-images.githubusercontent.com/49288214/224589585-992c30f2-ec37-4aef-a504-2c74ebfd5f69.png)
+![admin2](https://user-images.githubusercontent.com/49288214/224589590-f16f66ed-1b87-462d-9b80-b8287ed57538.png)
+![admin3 (2)](https://user-images.githubusercontent.com/49288214/224590246-7e260a02-ebd0-4e89-a5a6-b5da29eb2096.png)
+
+
+ ![libro](https://user-images.githubusercontent.com/49288214/224589604-96960197-1c31-4862-bd84-cee37d8c57b0.png)
+
+ ![publicar reseña](https://user-images.githubusercontent.com/49288214/224589654-c99f94b1-4bcd-45ee-8a6a-a6fbf755cfb6.png)
+
+ ![vender libro](https://user-images.githubusercontent.com/49288214/224589660-e3f85dff-7145-41dc-b71d-8a3dcd50c9f6.png)
+
+ ![reseña](https://user-images.githubusercontent.com/49288214/224589671-3bfb00ef-e0bd-4238-a0f9-4e9f1deea203.png)
+
+ ![comprar](https://user-images.githubusercontent.com/49288214/224589684-6c046f52-79b7-4bd1-9416-ef01c4388d51.png)
+ 
+ 
+ ![diagrama navegacion](https://user-images.githubusercontent.com/49288214/224589368-d600796a-c852-4b06-a6b2-955b29822902.jpg)
+
+</details>
+
 ## 🙋‍♂️ Member participation
 
 <details><summary>Gonzalo Ortega Carpintero.</summary>
@@ -318,9 +361,14 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
    
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Load images from database
+      - Load more button in books
+      - Load more button for partial search
+      - Load more buttons for admin page
+      - Load more buttons for user page
+      - Load more buttons for offers and reviews
+      - Bugs and improvements
+      - Navegation diagram
  
    - 📤 Most significant commits:
  
