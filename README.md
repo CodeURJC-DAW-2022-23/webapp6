@@ -364,27 +364,26 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
       - Load images from database
       - Load more button in books
       - Load more button for partial search
-      - Load more buttons for admin page
-      - Load more buttons for user page
+      - Load more buttons for admin page and user page
       - Load more buttons for offers and reviews
       - Bugs and improvements
       - Navegation diagram
  
    - 📤 Most significant commits:
  
-      - [Commit 1]()
-      - [Commit 2]()
-      - [Commit 3]()
-      - [Commit 4]()
-      - [Commit 5]()
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/8f9731eb2479b627a5ca76e3d8d61c27543983ca) Images
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/990d2f620c862dfe9c3bd3751c9bb0ace85a4001) Load more
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/6866f4d9ce69808df59c6be7e995d57032638918) Load more user
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/eeae7ca68632e579528c3bb92debf049905ba690) Load more search functional
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/234c66adf197acb8a9a12fc2482f6259884f7619) Admin load more and bug corrections
  
    - 📝 Files with more participation:
  
-      - [File 1]()
-      - [File 2]()
-      - [File 3]()
-      - [File 4]()
-      - [File 5]()
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/static/js/load.js)
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/BookController.java)
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/model/Offer.java)
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/templates/admin-page.html)
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/service/OfferService.java)
 
 </details>
 
