@@ -1,4 +1,4 @@
-package es.codeurjc.readmebookstore.controller;
+package es.codeurjc.readmebookstore.controller.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.http.HttpStatus;

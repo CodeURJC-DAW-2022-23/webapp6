@@ -1,4 +1,4 @@
-package es.codeurjc.readmebookstore.controller;
+package es.codeurjc.readmebookstore.controller.web;
 
 import java.util.Optional;
 import java.util.Date;

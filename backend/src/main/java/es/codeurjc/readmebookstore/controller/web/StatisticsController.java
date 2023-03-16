@@ -1,4 +1,4 @@
-package es.codeurjc.readmebookstore.controller;
+package es.codeurjc.readmebookstore.controller.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

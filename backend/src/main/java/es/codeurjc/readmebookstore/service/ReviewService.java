@@ -45,6 +45,10 @@ public class ReviewService {
 		repository.deleteById(id);
 	}
 
+	public List<Review> findAllReviewsByBook(Long bookid) {
+		return repository.findByAllReviewsByBook(bookid);
+	}
+
 	public Page<Review> findAllReviewsByBook(Long bookid, int n) {
 		return repository.findByAllReviewsByBook(bookid, PageRequest.of(n, 4));
 	}

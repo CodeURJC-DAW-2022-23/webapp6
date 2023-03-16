@@ -62,20 +62,20 @@ GETS - (DELETE)
 #### API ##################################################################
 GETS
 
-/api/books
+/api/books/
 /api/books?page=_
 /api/books/{id}
-/api/books/{id}/reviews
+/api/books/{id}/reviews/
 /api/books/{id}/reviews?page=_
-/api/books/{id}/offers
+/api/books/{id}/offers/
 /api/books/{id}/offers?page=_
-/api/books/{id}/image
+/api/books/{id}/image/
 
 /api/books/algorithim
 /api/books/search?text=
 /api/books/search?text=_?page=_
 
-/api/reviews
+/api/reviews/
 /api/reviews?page=_
 /api/reviews/{id}
 
@@ -86,7 +86,7 @@ GETS
 
 /api/user
 
-/api/users
+/api/users/
 /api/users?page=_
 /api/users/{id}
 /api/users/{id}/reviews
@@ -104,7 +104,7 @@ POSTS
 /api/login
 /api/logout
 
-/api/users
+/api/users/
 /api/user/favorites/{id}
 /api/user/image
 
@@ -112,7 +112,7 @@ POSTS
 /api/books/{id}/offers
 /api/books/{id}/offers/{id}/image
 
-/api/admin/books
+/api/admin/books/
 /api/admin/books/{id}/image
 /api/admin/users/{id}/image
 /api/admin/ofers/{id}/image

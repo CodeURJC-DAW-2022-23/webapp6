@@ -137,6 +137,7 @@ public class Book {
 		this.user = user;
 	}
 
+	@JsonIgnore
 	public List<Categories> getCategories() {
 		return categories;
 	}
