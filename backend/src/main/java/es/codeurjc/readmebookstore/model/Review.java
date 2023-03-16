@@ -4,6 +4,9 @@ import java.util.Date;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -66,6 +69,7 @@ public class Review {
 		this.date = date;
 	}
 
+	@JsonIgnoreProperties(value = {"imageFile", "offer", "review", "user", "categories"})
 	public Book getBook() {
 		return book;
 	}
@@ -74,6 +78,7 @@ public class Review {
 		this.book = book;
 	}
 
+	@JsonIgnore
 	public User getAuthor() {
 		return author;
 	}
