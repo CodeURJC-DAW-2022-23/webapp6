@@ -44,14 +44,14 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg">
-                        <a href="/book/{{id}}"><img src="/books/{{id}}/image"></a>
+                        <a href="/books/{{id}}"><img src="/books/{{id}}/image"></a>
                         <ul class="featured__item__pic__hover">
-                            <li><a title="Eliminar de favoritos" href="/delete-favourite-user-page/{{id}}"><i
+                            <li><a title="Eliminar de favoritos" href="/user/favorites/{{id}}/delete"><i
                                         class="fa fa-heart"></i></a></li>
                         </ul>
                     </div>
                     <div class="featured__item__text">
-                        <h6><a href="/book/{{id}}">{{title}}</a></h6>
+                        <h6><a href="/books/{{id}}">{{title}}</a></h6>
                     </div>
                 </div>
             </div>
@@ -81,14 +81,14 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg">
-                        <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
+                        <a href="/offers/{{id}}"><img src="/offers/{{id}}/image"></a>
                         <ul class="featured__item__pic__hover">
                             <li><a title="Editar" href="/update-offer/{{id}}"><i class="fa fa-pencil"></i></a></li>
-                            <li><a title="Eliminar" href="/delete-offer/{{id}}"><i class="fa fa-trash"></i></a></li>
+                            <li><a title="Eliminar" href="/offers/{{id}}/delete"><i class="fa fa-trash"></i></a></li>
                         </ul>
                     </div>
                     <div class="featured__item__text">
-                        <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
+                        <h6><a href="/offers/{{id}}">{{book.title}}</a></h6>
                         <h5>{{price}}</h5>
                     </div>
                 </div>
@@ -123,13 +123,13 @@
                 <div class="featured__item">
                     <div class="featured__item__text">
                         <i class="fa fa-calendar-o"></i> {{date}}
-                        <h6 class="bold"><a href="/book/{{book.id}}">{{book.title}}</a></h6>
+                        <h6 class="bold"><a href="/books/{{book.id}}">{{book.title}}</a></h6>
                         {{text}}
                     </div>
                     <div class="blog__item__text text-center">
-                        <a title="Editar" href="/modify-review/{{id}}" class="blog__btn"><i
+                        <a title="Editar" href="/update-review/{{id}}" class="blog__btn"><i
                                 class="fa fa-pencil"></i></a>
-                        <a title="Eliminar" href="/delete-review/{{id}}" class="blog__btn"><i
+                        <a title="Eliminar" href="/reviews/{{id}}/delete" class="blog__btn"><i
                                 class="fa fa-trash"></i></a>
                     </div>
                 </div>
@@ -164,10 +164,10 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg">
-                        <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
+                        <a href="/offers/{{id}}"><img src="/offers/{{id}}/image"></a>
                     </div>
                     <div class="featured__item__text">
-                        <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
+                        <h6><a href="/offers/{{id}}">{{book.title}}</a></h6>
                         <h5>{{price}}</h5>
                     </div>
                 </div>

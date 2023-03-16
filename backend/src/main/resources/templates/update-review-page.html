@@ -7,12 +7,12 @@
 </section>
 
 
-<!-- Upload review Section Begin -->
+<!-- Update review Section Begin -->
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
             <h4>Modifica tu reseña de este libro</h4>
-            <form action="/updated-review/{{review.id}}" method="post">
+            <form action="/reviews/{{review.id}}/update" method="post">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout__input">
@@ -26,7 +26,7 @@
         </div>
     </div>
 </section>
-<!-- Upload review Section End -->
+<!-- Update review Section End -->
 
 <!-- Footer -->
 {{>footer}}

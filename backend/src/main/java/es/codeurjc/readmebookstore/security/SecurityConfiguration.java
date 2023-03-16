@@ -36,20 +36,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/loginerror").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
         // Private pages
-        http.authorizeRequests().antMatchers("/user-page").hasAnyRole("USER", "ADMIN");
+        http.authorizeRequests().antMatchers("/user").hasAnyRole("USER", "ADMIN");
         http.authorizeRequests().antMatchers("/checkout-page/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/statistics-page/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/update-offer/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/update-review/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/update-user/*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/upload-offer-page/*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/upload-offer/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/upload-review-page/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN");
         // Login form
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/user-page");
+        http.formLogin().defaultSuccessUrl("/user");
         http.formLogin().failureUrl("/loginerror-page");
         // Logout
         http.logout().logoutUrl("/logout");

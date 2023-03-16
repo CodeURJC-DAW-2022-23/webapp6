@@ -40,7 +40,7 @@ public class OfferController {
     @Autowired
     private BookService bookService;
 
-    @PostMapping("/upload-offer/{id}")
+    @PostMapping("/books/{id}/offers")
     public String uploadedReview(Model model, @PathVariable long id, @RequestParam String edition,
             @RequestParam String text, @RequestParam float price, MultipartFile imageField,
             HttpServletRequest request) throws IOException {
@@ -61,14 +61,14 @@ public class OfferController {
         return "redirect:/book/" + book.getId();
     }
 
-    @GetMapping("/upload-offer-page/{id}")
+    @GetMapping("/upload-offer/{id}")
     public String uploadOffer(Model model, @PathVariable long id) {
         Book book = bookService.findById(id).get();
         model.addAttribute("book", book);
         return "upload-offer-page";
     }
 
-    @GetMapping("/offer-page/{id}")
+    @GetMapping("/offers/{id}")
     public String offerPage(Model model, @PathVariable long id, HttpServletRequest request) {
 
         Offer offer = offerService.findById(id).get();
@@ -96,7 +96,7 @@ public class OfferController {
         return "update-offer-page";
     }
 
-    @PostMapping("/updated-offer/{id}")
+    @PostMapping("/offers/{id}/update")
     public String updatedReview(Model model, @PathVariable long id, @RequestParam String edition,
             @RequestParam String text, @RequestParam float price, MultipartFile imageField) throws IOException {
         Offer offer = offerService.findById(id).get();
@@ -110,16 +110,16 @@ public class OfferController {
             AdminController admin = new AdminController();
             admin.updateImage(offer, false, imageField);
         } catch (Exception e) {
-            return "redirect:/offer-page/" + offer.getId();
+            return "redirect:/offers/" + offer.getId();
         }
         offerService.save(offer);
-        return "redirect:/offer-page/" + offer.getId();
+        return "redirect:/offers/" + offer.getId();
     }
 
-    @GetMapping("/delete-offer/{id}")
+    @GetMapping("/offers/{id}/delete")
     public String deleteReview(Model model, @PathVariable long id) {
         offerService.delete(id);
-        return "redirect:/user-page";
+        return "redirect:/user";
     }
 
     @GetMapping("/checkout/{id}")
@@ -139,7 +139,7 @@ public class OfferController {
         offer.setBuyer(buyer);
         offerService.save(offer);
 
-        return "redirect:/user-page";
+        return "redirect:/user";
     }
 
     @GetMapping("/offers/{id}/image")

@@ -120,7 +120,7 @@ public class BookController extends AlgorithmController {
 		return "books-general-page";
 	}
 
-	@GetMapping("/book/{id}")
+	@GetMapping("/books/{id}")
 
 	public String showBook(Model model, @PathVariable long id, HttpServletRequest request, @RequestParam(defaultValue = "0") int currentReviewsPage,  @RequestParam(defaultValue = "0") int currentOffersPage) {
 		Book book = bookService.findById(id).get();

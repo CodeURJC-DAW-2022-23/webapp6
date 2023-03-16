@@ -101,7 +101,7 @@ function moreUserFavorites() {
     currentFavoritesPage = currentFavoritesPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/user-page?currentFavoritesPage=' + currentFavoritesPage,
+        url: '/user?currentFavoritesPage=' + currentFavoritesPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -125,7 +125,7 @@ function moreUserOffers() {
     currentOffersPage = currentOffersPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/user-page?currentOffersPage=' + currentOffersPage,
+        url: '/user?currentOffersPage=' + currentOffersPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -149,7 +149,7 @@ function moreUserReviews() {
     currentReviewsPage = currentReviewsPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/user-page?currentReviewsPage=' + currentReviewsPage,
+        url: '/user?currentReviewsPage=' + currentReviewsPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -173,7 +173,7 @@ function moreUserHistory() {
     currentHistoryPage = currentHistoryPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/user-page?currentHistoryPage=' + currentHistoryPage,
+        url: '/user?currentHistoryPage=' + currentHistoryPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)

@@ -82,7 +82,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user-page")
+    @GetMapping("/user")
     public String user(Model model, HttpServletRequest request,
             @RequestParam(defaultValue = "0") int currentFavoritesPage, @RequestParam(defaultValue = "0") int currentOffersPage, @RequestParam(defaultValue = "0") int currentReviewsPage, @RequestParam(defaultValue = "0") int currentHistoryPage) {
 
@@ -131,7 +131,7 @@ public class UserController {
 
         userService.save(loggedUser);
 
-        return "/user-page/";
+        return "/user/";
     }
 
     @GetMapping("/users/{name}/image")
@@ -149,7 +149,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/addfavorite/{bookid}")
+    @GetMapping("/user/favorites/{bookid}")
     public String addFavorite(Model model, @PathVariable long bookid, HttpServletRequest request) throws IOException {
         Book book = bookService.BookfindById(bookid);
 
@@ -160,15 +160,10 @@ public class UserController {
         return "redirect:/book/" + bookid;
     }
 
-    @GetMapping("/removefavorite/{bookid}")
-    public String removeFavorite(Model model, @PathVariable long bookid) {
+    @GetMapping("/user/favorites/{bookid}/delete")
+    public String removeFavorite(Model model, @PathVariable long bookid, HttpServletRequest request) {
         userService.deletefavorite(bookid);
-        return "redirect:/book/" + bookid;
+        return "redirect:"+ request.getHeader("Referer");
     }
 
-    @GetMapping("/delete-favourite-user-page/{bookid}")
-    public String deleteFavoriteUserPage(Model model, @PathVariable long bookid) {
-        userService.deletefavorite(bookid);
-        return "redirect:/user-page";
-    }
 }

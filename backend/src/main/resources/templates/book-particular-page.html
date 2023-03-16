@@ -14,13 +14,13 @@
                 {{#logged}}
                 {{#isfav}}
                 <div class="blog__item__text">
-                    <a href="/removefavorite/{{book.id}}" class="blog__btn">Quitar de Favoritos<span
+                    <a href="/user/favorites/{{book.id}}/delete" class="blog__btn">Quitar de Favoritos<span
                             class="icon_heart"></span></a>
                 </div>
                 {{/isfav}}
                 {{^isfav}}
                 <div class="blog__item__text">
-                    <a href="/addfavorite/{{book.id}}" class="blog__btn">Añadir a Favoritos<span
+                    <a href="/user/favorites/{{book.id}}" class="blog__btn">Añadir a Favoritos<span
                             class="icon_heart_alt"></span></a>
                 </div>
                 {{/isfav}}
@@ -29,7 +29,7 @@
 
             {{^logged}}
             <div class="blog__item__text">
-                <a href="/user-page" class="blog__btn">Inicia sesión para añadir a favoritos<span
+                <a href="/user" class="blog__btn">Inicia sesión para añadir a favoritos<span
                         class="fa fa-user"></span></a>
             </div>
             {{/logged}}
@@ -55,7 +55,7 @@
                 <div class="featured__item">
                     <div class="featured__item__text">
                         <i class="fa fa-calendar-o"></i> {{date}}
-                        <h6 class="bold"><a href="/book/{{book.id}}">{{author.name}}</a></h6>
+                        <h6 class="bold"><a href="/books/{{book.id}}">{{author.name}}</a></h6>
                         {{text}}
                     </div>
                 </div>
@@ -72,7 +72,7 @@
             <a href="/upload-review/{{book.id}}" class="blog__btn">Publica tu reseña</a>
             {{/logged}}
             {{^logged}}
-            <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu reseña<span
+            <a href="/user" class="blog__btn">Inicia sesión para publicar tu reseña<span
                     class="fa fa-user"></span></a>
             {{/logged}}
             <button type="button" class="site-btn" id="moreBookReviewsButton" onClick="moreBookReviews('{{book.id}}')">
@@ -98,10 +98,10 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg">
-                        <a href="/offer-page/{{id}}"><img src="/offers/{{id}}/image"></a>
+                        <a href="/offers/{{id}}"><img src="/offers/{{id}}/image"></a>
                     </div>
                     <div class="featured__item__text">
-                        <h6><a href="/offer-page/{{id}}">{{book.title}}</a></h6>
+                        <h6><a href="/offers/{{id}}">{{book.title}}</a></h6>
                         <h5>{{price}} euros</h5>
                     </div>
                 </div>
@@ -116,10 +116,10 @@
 
         <div class="blog__item__text">
             {{#logged}}
-            <a href="/upload-offer-page/{{book.id}}" class="blog__btn">Vende tu libro</a>
+            <a href="/upload-offer/{{book.id}}" class="blog__btn">Vende tu libro</a>
             {{/logged}}
             {{^logged}}
-            <a href="/user-page" class="blog__btn">Inicia sesión para publicar tu anuncio<span
+            <a href="/user" class="blog__btn">Inicia sesión para publicar tu anuncio<span
                     class="fa fa-user"></span></a>
             {{/logged}}
             <button type="button" class="site-btn" id="moreBookOffersButton" onClick="moreBookOffers('{{book.id}}')">
