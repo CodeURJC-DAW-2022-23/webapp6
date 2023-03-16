@@ -33,8 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll();
-        http.authorizeRequests().antMatchers("/loginerror").permitAll();
-        http.authorizeRequests().antMatchers("/logout").permitAll();
+
         // Private pages
         http.authorizeRequests().antMatchers("/user").hasAnyRole("USER", "ADMIN");
         http.authorizeRequests().antMatchers("/checkout-page/*").hasAnyRole("USER");
@@ -45,14 +44,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/upload-offer/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/upload-review-page/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN");
+
         // Login form
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/user");
-        http.formLogin().failureUrl("/loginerror-page");
+        http.formLogin().failureUrl("/login?error=true");
+        
         // Logout
-        http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
     }
 }

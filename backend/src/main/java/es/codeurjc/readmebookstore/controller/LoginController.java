@@ -2,6 +2,7 @@ package es.codeurjc.readmebookstore.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,24 +30,9 @@ public class LoginController {
 	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("/login")
-	public String login(Model model) {
+	public String login(Model model, @RequestParam(required = false) String error) {
+		model.addAttribute("loginerError", (error != null));
 		return "login-page";
-	}
-
-	@RequestMapping("/loginerror-page")
-	public String loginerror(Model model) {
-		model.addAttribute("loginererror", true);
-
-		return "login-page";
-	}
-
-	@RequestMapping("/logout") // Is not used I think
-	public String logout(Model model) {
-
-		model.addAttribute("loginerror", false);
-		model.addAttribute("registererror", false);
-
-		return "register";
 	}
 
 	@GetMapping("/register")
@@ -54,70 +40,39 @@ public class LoginController {
 		return "register-page";
 	}
 
-	@GetMapping("/newUser")
-	public String newUser(Model model) {
-
-		model.addAttribute("loginerror", false);
-		model.addAttribute("registererror", false);
-
-		return "register";
-	}
-
-	
-	@PostMapping("/newUser")
+	@PostMapping("/users")
 	public String newUserProcess(Model model, User user, MultipartFile imageField) throws IOException {
 
-		model.addAttribute("loginerror", false);
-
-		boolean existe = false;
 		List<User> users = userService.findAll();
+
+		// Checks if the user already exists:
 		for (User u : users) {
 			if (user.getName().equals(u.getName())) {
-				existe = true;
+				model.addAttribute("registerError", true);
+				return "register-page";
 			}
 		}
-		if (existe) {
 
-			model.addAttribute("registererror", true);
-			return "register-error";
-		}
-
+		// Saves the profile image if it has been upoaded:
 		if (!imageField.isEmpty()) {
 			user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
 			user.setImage(true);
 		}
 
+		// Saves the new user:
 		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
 		userService.save(user);
 
-		model.addAttribute("registererror", false);
-
+		// Sends a coonfirmation mail:
 		String subject = "Confirmación de registro";
-        String body = "Hola " + user.getName() + ",";
-
-		try{
+		String body = "Hola " + user.getName() + ",";
+		try {
 			mailService.sendConfirmationEmail(user.getEmail(), subject, body);
-		}catch(MessagingException e){
-			System.out.println("El error de senConfitmationEmail es: " + e);
-			return "register-error";
+		} catch (MessagingException e) {
+
+			return "register-page";
 		}
 
-		return "register-success";
-	}
-
-	@RequestMapping("/register-success")
-	public String showDishesSuccess(Model model) {
-
-		model.addAttribute("registererror", false);
-
 		return "login-page";
-	}
-
-	@RequestMapping("/register-error")
-	public String showDishes(Model model) {
-
-		model.addAttribute("registererror", true);
-
-		return "register-page";
 	}
 }

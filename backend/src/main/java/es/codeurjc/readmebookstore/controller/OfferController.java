@@ -122,14 +122,14 @@ public class OfferController {
         return "redirect:/user";
     }
 
-    @GetMapping("/checkout/{id}")
+    @GetMapping("/offers/{id}/checkout")
     public String loadCheckoutPage(Model model, @PathVariable long id) {
         Offer offer = offerService.findById(id).get();
         model.addAttribute("offer", offer);
         return "checkout-page";
     }
 
-    @GetMapping("/buy-offer/{id}")
+    @GetMapping("/offers/{id}/sold")
     public String buyOffer(Model model, @PathVariable long id, HttpServletRequest request) {
         Offer offer = offerService.findById(id).get();
         User buyer = userService.findByName(request.getUserPrincipal().getName());

@@ -68,7 +68,7 @@ public class AdminController {
         return "admin-page";
     }
 
-    @PostMapping("/admin/add-book")
+    @PostMapping("/admin/books")
     public String addBook(Model model, @RequestParam String title, @RequestParam String genre,
             @RequestParam String author, MultipartFile imageField) throws IOException {
         Book newBook = new Book(title, author, genre);
@@ -84,7 +84,7 @@ public class AdminController {
     // EDIT DATA
     ////////////////////////////////////////////////////////////////////////////////////////////
 
-    @PostMapping("/admin/edit-user/{id}")
+    @PostMapping("/admin/users/{id}/update")
     public String editUser(Model model, @PathVariable long id, @RequestParam String email, MultipartFile imageField) {
         User user = userService.findById(id).get();
         user.setEmail(email);
@@ -100,7 +100,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/admin/edit-offer/{id}")
+    @PostMapping("/admin/offers/{id}/update")
     public String editOffer(Model model, @PathVariable long id, @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
             @RequestParam String edition, @RequestParam String description, @RequestParam Float price,
             MultipartFile imageField) {
@@ -121,7 +121,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/admin/edit-review/{id}")
+    @PostMapping("/admin/reviews/{id}/update")
     public String editReview(Model model, @PathVariable long id, @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
             @RequestParam String text) {
         Review review = reviewService.findById(id).get();
@@ -131,7 +131,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/admin/edit-book/{id}")
+    @PostMapping("/admin/books/{id}/update")
     public String editBook(Model model, @PathVariable long id, @RequestParam String title, @RequestParam String genre,
             @RequestParam String author, MultipartFile imageField) {
         Book book = bookService.findById(id).get();
@@ -153,25 +153,25 @@ public class AdminController {
     // DELETE DATA
     // ///////////////////////////////////////////////////////////////////////////////////
 
-    @RequestMapping("/admin/delete-user/{id}")
+    @RequestMapping("/admin/users/{id}/delete")
     public String deleteUser(Model model, @PathVariable long id) {
         userService.delete(id);
         return "redirect:/admin";
     }
 
-    @RequestMapping("/admin/delete-offer/{id}")
+    @RequestMapping("/admin/offers/{id}/delete")
     public String deleteOffer(Model model, @PathVariable long id) {
         offerService.delete(id);
         return "redirect:/admin";
     }
 
-    @RequestMapping("/admin/delete-review/{id}")
+    @RequestMapping("/admin/reviews/{id}/delete")
     public String deleteReview(Model model, @PathVariable long id) {
         reviewService.delete(id);
         return "redirect:/admin";
     }
 
-    @RequestMapping("/admin/delete-book/{id}")
+    @RequestMapping("/admin/books/{id}/delete")
     public String deleteBook(Model model, @PathVariable long id) {
         bookService.delete(id);
         return "redirect:/admin";

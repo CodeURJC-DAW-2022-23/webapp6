@@ -5,13 +5,13 @@
     <div class="container">
         <div class="checkout__form">
             <h4>Crea una cuenta</h4>
-            <form action="/newUser" method="post" enctype="multipart/form-data" class="appointment-form">
+            <form action="/users" method="post" enctype="multipart/form-data" class="appointment-form">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout__input">
-                            {{#registererror}}
+                            {{#registerError}}
                             <p style="color:rgb(255, 0, 0);">Credenciales inválidas. Elige otro nombre de usuario.</p>
-                            {{/registererror}}
+                            {{/registerError}}
                             <p>Nombre de usuario<span>*</span></p>
                             <input type="text" name="name" class="form-control" placeholder="Nombre" required>
                         </div>
@@ -27,12 +27,6 @@
                         </div>
 
                         <input type='file' name='imageField' accept=".jpg, .jpeg" />
-
-                        <!-- <div class="col-lg-4 col-md-6">
-                            <div class="checkout__order">
-                                <button type="button" name="image" class="site-btn">Foto de Perfil<span>*</span></button>
-                            </div>
-                        </div> --> 
             </form>
             <div class="blog__item__text">
                 <div class="blog__item__text">
@@ -40,7 +34,6 @@
                     <input type="hidden" name="_csrf" value="{{token}}"/>
                     <input type="hidden" name="roles" value="USER"/>
                 </div>                
-                <!-- <a href="./user.html" class="blog__btn">Crear cuenta<span class="arrow_right"></span></a> -->
             </div>
         </div>
     </div>

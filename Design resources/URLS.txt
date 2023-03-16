@@ -1,4 +1,5 @@
-GETS
+#### WEB ##################################################################
+GETS - NAVIGATION
 
 /
 /contact
@@ -11,28 +12,129 @@ GETS
 /upload-review/{id}
 /update-review/{id}
 
-/offers/{id}
 /upload-offer/{id}
 /update-offer/{id}
+/offers/{id}
+/offers/{id}/checkout
+/offers/{id}/image
+
+/login
+/logout
+/register
 
 /user
+/admin
+/error
 
 
+POSTS - CREATE
 
-
-POSTS
+/admin/books
 /books/{id}/reviews
 /books/{id}/offers
-
 /user/favorites/{id}
+/users
 
 
+POSTS - (PUTS) 
 
-PUTS
 /reviews/{id}/update
 /offers/{id}/update
+/offers/{id}/sold
 
-DELETE
+/admin/users/{id}/update
+/admin/offers/{id}/upate
+/admin/reviews/{id}/update
+/admin/books/{id}/update
+
+
+GETS - (DELETE)
+
 /reviews/{id}/delete
 /offers/{id}/delete
 /user/favorites/{id}/delete
+
+/admin/users/{id}/delete
+/admin/offers/{id}/delete
+/admin/reviews/{id}/delete
+/admin/books/{id}/delete
+
+#### API ##################################################################
+GETS
+
+/api/books
+/api/books?page=_
+/api/books/{id}
+/api/books/{id}/reviews
+/api/books/{id}/reviews?page=_
+/api/books/{id}/offers
+/api/books/{id}/offers?page=_
+/api/books/{id}/image
+
+/api/books/algorithim
+/api/books/search?text=
+/api/books/search?text=_?page=_
+
+/api/reviews
+/api/reviews?page=_
+/api/reviews/{id}
+
+/api/offers
+/api/offers?page=_
+/api/offers/{id}
+/api/offers/{id}/image
+
+/api/user
+
+/api/users
+/api/users?page=_
+/api/users/{id}
+/api/users/{id}/reviews
+/api/users/{id}/reviews?page=_
+/api/users/{id}/offers
+/api/users/{id}/offers?page=_
+/api/users/{id}/favorites
+/api/users/{id}/favorites?page=_
+/api/users/{id}/record
+/api/users/{id}/record?page=_
+
+
+POSTS
+
+/api/login
+/api/logout
+
+/api/users
+/api/user/favorites/{id}
+/api/user/image
+
+/api/books/{id}/reviews
+/api/books/{id}/offers
+/api/books/{id}/offers/{id}/image
+
+/api/admin/books
+/api/admin/books/{id}/image
+/api/admin/users/{id}/image
+/api/admin/ofers/{id}/image
+
+
+PUT
+
+/api/reviews/{id}
+/api/offers/{id} (Sirve tanto para editar como para marcar como vendido)
+
+/api/admin/users/{id}
+/api/admin/offers/{id}
+/api/admin/reviews/{id}
+/api/admin/books/{id}
+
+DELETE
+
+/api/reviews/{id}
+/api/offers/{id}
+/api/user/favorites/{id}
+
+/api/admin/users/{id}
+/api/admin/offers/{id}
+/api/admin/reviews/{id}
+/api/admin/books/{id}

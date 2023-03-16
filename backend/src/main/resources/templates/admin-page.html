@@ -27,7 +27,7 @@
                 <table class="admin_table" id ="adminUsers">
                     {{#userList}}
                     <tr class="blog__item__text" >
-                        <form action="/admin/edit-user/{{id}}" method="post" enctype="multipart/form-data">
+                        <form action="/admin/users/{{id}}/update" method="post" enctype="multipart/form-data">
                             <td>{{id}}</td>
                             <td>{{name}}</td>
                             <td class="checkout__input"><input type="text" name="email" value="{{email}}"></td>
@@ -39,7 +39,7 @@
                                 <button title="Guardar cambios" type="submit" class="blog__btn"><i
                                         class="fa fa-save"></i></button>
                                 <input type="hidden" name="_csrf" value="{{token}}" />
-                                <a title="Eliminar usuario" href="/admin/delete-user/{{id}}" class="blog__btn"><i
+                                <a title="Eliminar usuario" href="/admin/users/{{id}}/delete" class="blog__btn"><i
                                         class="fa fa-trash"></i></a>
                             </td>
                         </form>
@@ -76,7 +76,7 @@
                 <table class="admin_table" id = "adminOffers">
                     {{#offerList}}
                     <tr class="blog__item__text" >
-                        <form action="/admin/edit-offer/{{id}}" method="post" enctype="multipart/form-data">
+                        <form action="/admin/offers/{{id}}/update" method="post" enctype="multipart/form-data">
                             <td>{{id}}</td>
                             <td>{{book.title}}</td>
                             <td>{{seller.name}}</td>
@@ -93,7 +93,7 @@
                                 <button title="Guardar cambios" type="submit" class="blog__btn"><i
                                         class="fa fa-save"></i></button>
                                 <input type="hidden" name="_csrf" value="{{token}}" />
-                                <a title="Eliminar anuncio" href="/admin/delete-offer/{{id}}" class="blog__btn"><i
+                                <a title="Eliminar anuncio" href="/admin/offers/{{id}}/delete" class="blog__btn"><i
                                         class="fa fa-trash"></i></a>
                             </td>
                         </form>
@@ -124,7 +124,7 @@
                 <table class="admin_table" id = "adminReviews">
                     {{#reviewList}}
                     <tr class="blog__item__text" >
-                        <form action="/admin/edit-review/{{id}}" method="post" enctype="multipart/form-data">
+                        <form action="/admin/reviews/{{id}}/update" method="post" enctype="multipart/form-data">
                             <td>{{id}}</td>
                             <td>{{book.title}}</td>
                             <td>{{author.name}}</td>
@@ -135,7 +135,7 @@
                                 <button title="Guardar cambios" type="submit" class="blog__btn"><i
                                         class="fa fa-save"></i></button>
                                 <input type="hidden" name="_csrf" value="{{token}}" />
-                                <a title="Eliminar reseña" href="/admin/delete-review/{{id}}" class="blog__btn"><i
+                                <a title="Eliminar reseña" href="/admin/reviews/{{id}}/delete" class="blog__btn"><i
                                         class="fa fa-trash"></i></a>
                             </td>
                         </form>
@@ -166,7 +166,7 @@
                 <table class="admin_table" id = "adminBooks">
                     {{#bookList}}
                     <tr class="blog__item__text" >
-                        <form action="/admin/edit-books/{{id}}" method="post" enctype="multipart/form-data">
+                        <form action="/admin/books/{{id}}/update" method="post" enctype="multipart/form-data">
                             <td>{{id}}</td>
                             <td class="checkout__input"><input type="text" name="title" value="{{title}}"></td>
                             <td class="checkout__input"><input type="text" name="author" value="{{author}}"></td>
@@ -180,7 +180,7 @@
                                 <button title="Guardar cambios" type="submit" class="blog__btn"><i
                                         class="fa fa-save"></i></button>
                                 <input type="hidden" name="_csrf" value="{{token}}" />
-                                <a title="Eliminar libro" href="/admin/delete-books/{{id}}" class="blog__btn"><i
+                                <a title="Eliminar libro" href="/admin/books/{{id}}/delete" class="blog__btn"><i
                                         class="fa fa-trash"></i></a>
                             </td>
                         </form>
@@ -199,7 +199,7 @@
             <!-- Add new book -->
             <div class="checkout__order">
                 <h4>Añadir un libro nuevo</h4>
-                <form action="/admin/add-book" method="post" enctype="multipart/form-data">
+                <form action="/admin/books" method="post" enctype="multipart/form-data">
                     <div class="checkout__input">
                         <p>Introduzca el título del libro:</p>
                         <input type="text" name="title" placeholder="Titulo" required>
