@@ -69,7 +69,7 @@ public class Review {
 		this.date = date;
 	}
 
-	@JsonIgnoreProperties(value = {"imageFile", "offer", "review", "user", "categories"})
+	@JsonIgnoreProperties(value = {"imageFile", "image", "offer", "review", "user", "categories"})
 	public Book getBook() {
 		return book;
 	}
@@ -78,7 +78,7 @@ public class Review {
 		this.book = book;
 	}
 
-	@JsonIgnore
+	@JsonIgnoreProperties(value = {"roles", "image", "encodedPassword", "imageFile", "readedReviews", "offers", "favouriteBooks"})
 	public User getAuthor() {
 		return author;
 	}
