@@ -6,25 +6,17 @@
 <!-- Admin Section Begin -->
     <div class="container">
         <div class="checkout__form">
-
             <!-------------------------------------------- Users -------------------------------------------->
-            <h4>Usuarios</h4>
-            <table class="admin_table" >
-                <tr>
-                    <th>id</th>
-                    <th>Usuario</th>
-                    <th>Correo</th>
-                    <th>Imagen</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Administrator</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <table class="admin_table" id ="adminUsers">
+            <h4>Usuarios</h4>                
+                <table class="admin_table">
+                    <tr>
+                        <th>id</th>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                        <th>Imagen</th>
+                        <th>Opciones</th>
+                    </tr>
+                    <tbody  id ="adminUsers">
                     {{#userList}}
                     <tr class="blog__item__text" >
                         <form action="/admin/users/{{id}}/update" method="post" enctype="multipart/form-data">
@@ -45,6 +37,7 @@
                         </form>
                     </tr>
                     {{/userList}}
+                    </tbody>
                     {{^userList}}
                     <p id="noMoreAdminUsers"></p>
                     {{/userList}}
@@ -52,12 +45,12 @@
             </table>
             
             <button type="button" class="site-btn" id="moreAdminUsersContentButton" onClick=moreAdminUsers()>
-                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinnerAdminUsers" role="status" aria-hidden="true"
                     style="display: none"></span>
-                <span id="moreContentText">Cargar más</span>
+                <span id="moreContentTextAdminUsers">Cargar más</span>
             </button>
             
-        
+            <br> <br> <br> <br>
 
             <!------------------------------------------- Offers -------------------------------------------->
             <h4>Anuncios</h4>
@@ -71,9 +64,9 @@
                     <th>Descripción</th>
                     <th>Precio</th>
                     <th>Imagen</th>
-                    <th></th>
+                    <th>Opciones</th>
                 </tr>
-                <table class="admin_table" id = "adminOffers">
+                <tbody id = "adminOffers">
                     {{#offerList}}
                     <tr class="blog__item__text" >
                         <form action="/admin/offers/{{id}}/update" method="post" enctype="multipart/form-data">
@@ -99,16 +92,19 @@
                         </form>
                     </tr>
                     {{/offerList}}
+                    </tbody>
                     {{^offerList}}
                     <p id="noMoreAdminOffers"></p>
                     {{/offerList}}
                 </table>
             </table>
             <button type="button" class="site-btn" id="moreAdminOffersContentButton" onClick=moreAdminOffers()>
-                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinnerAdminOffers" role="status" aria-hidden="true"
                     style="display: none"></span>
-                <span id="moreContentText">Cargar más</span>
+                <span id="moreContentTextAdminOffers">Cargar más</span>
             </button>
+
+            <br> <br> <br> <br>
 
             <!----------------------------------------- Reviews ------------------------------------------->
             <h4>Reseñas</h4>
@@ -119,9 +115,9 @@
                     <th>Autor</th>
                     <th>Fecha</th>
                     <th>Texto</th>
-                    <th></th>
+                    <th>Opciones</th>
                 </tr>
-                <table class="admin_table" id = "adminReviews">
+                <tbody id = "adminReviews">
                     {{#reviewList}}
                     <tr class="blog__item__text" >
                         <form action="/admin/reviews/{{id}}/update" method="post" enctype="multipart/form-data">
@@ -141,16 +137,19 @@
                         </form>
                     </tr>
                     {{/reviewList}}
+                    </tbody>
                     {{^reviewList}}
                     <p id="noMoreAdminReviews"></p>
                     {{/reviewList}}
                 </table>
             </table>
             <button type="button" class="site-btn" id="moreAdminReviewsContentButton" onClick=moreAdminReviews()>
-                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true"
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinnerAdminReviews" role="status" aria-hidden="true"
                     style="display: none"></span>
-                <span id="moreContentText">Cargar más</span>
+                <span id="moreContentTextAdminReviews">Cargar más</span>
             </button>
+
+            <br> <br> <br> <br>
 
             <!------------------------------------------- Books ------------------------------------------->
             <h4>Libros</h4>
@@ -161,9 +160,9 @@
                     <th>Autor</th>
                     <th>Género</th>
                     <th>Imágen</th>
-                    <th></th>
+                    <th>Opciones</th>
                 </tr>
-                <table class="admin_table" id = "adminBooks">
+                <tbody id = "adminBooks">
                     {{#bookList}}
                     <tr class="blog__item__text" >
                         <form action="/admin/books/{{id}}/update" method="post" enctype="multipart/form-data">
@@ -186,15 +185,18 @@
                         </form>
                     </tr>
                     {{/bookList}}
+                    </tbody>
                     {{^bookList}}
                     <p id="noMoreAdminBooks">Actualmente no hay anuncios de este libro</p>
                     {{/bookList}}
                 </table>
             </table>
             <button type="button" class="site-btn" id="moreAdminBooksContentButton" onClick=moreAdminBooks()>
-                <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
-                <span id="moreContentText">Cargar más</span>
+                <span class="spinner-border spinner-border-sm" id="moreContentSpinnerAdminBooks" role="status" aria-hidden="true" style="display: none"></span>
+                <span id="moreContentTextAdminBooks">Cargar más</span>
             </button>
+
+            <br> <br> <br> <br>
 
             <!-- Add new book -->
             <div class="checkout__order">

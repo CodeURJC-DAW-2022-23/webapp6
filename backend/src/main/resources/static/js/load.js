@@ -2,7 +2,10 @@ var currentPage = 0;
 const valores = window.location.search;
 
 function moreContent() {
-    switchMoreContentButtonActivation(true)
+    const div = "moreContentButton";
+    const spinner = "moreContentSpinner";
+    const text = "moreContentText";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentPage = currentPage + 1;
     console.log(valores);
     const urlParams = new URLSearchParams(valores);
@@ -13,14 +16,14 @@ function moreContent() {
             url: '/books?currentPage=' + currentPage,
             error: function () {
                 console.log('Something went wrong')
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             },
             success: function (data) {
                 var books = $(data).find('#Books').html();
                 var noMoreBooks = $(data).find('#noMoreBooks').html();
                 if (noMoreBooks == undefined) {
                     $('#Books').append(books)
-                    switchMoreContentButtonActivation(false)
+                    switchMoreContentButtonActivation(false, div, spinner, text)
                 } else {
                     $('#moreContentButton').css("display", "none");
                 }
@@ -32,14 +35,14 @@ function moreContent() {
             url: '/books?searchtext=' + searchtext + '&currentPage=' + currentPage,
             error: function () {
                 console.log('Something went wrong')
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             },
             success: function (data) {
                 var books = $(data).find('#Books').html();
                 var noMoreBooks = $(data).find('#noMoreBooks').html();
                 if (noMoreBooks == undefined) {
                     $('#Books').append(books)
-                    switchMoreContentButtonActivation(false)
+                    switchMoreContentButtonActivation(false, div, spinner, text)
                 } else {
                     $('#moreContentButton').css("display", "none");
                 }
@@ -49,21 +52,24 @@ function moreContent() {
 
 var currentReviewsPage = 0
 function moreBookReviews(id) {
-    switchMoreContentButtonActivation(true)
+    const div = "moreBookReviewsButton";
+    const spinner = "moreContentSpinnerBookReviews";
+    const text = "moreContentTextBookReviews";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentReviewsPage  = currentReviewsPage  + 1;
     $.ajax({
         type: 'GET',
         url: '/books/' + id + '?currentReviewsPage=' + currentReviewsPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var bookReviews = $(data).find('#Reviews').html();
             var noMoreBookReviews = $(data).find('#noMoreReviews').html();
             if (noMoreBookReviews == undefined) {
                 $('#Reviews').append(bookReviews)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
                 $('#moreBookReviewsButton').css("display", "none");
             }
@@ -73,21 +79,24 @@ function moreBookReviews(id) {
 
 var currentOffersPage = 0
 function moreBookOffers(id) {
-    switchMoreContentButtonActivation(true)
+    const div = "moreBookOffersButton";
+    const spinner = "moreContentSpinnerBookOffers";
+    const text = "moreContentTextBookOffers";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentOffersPage = currentOffersPage + 1;
     $.ajax({
         type: 'GET',
         url: '/books/' + id + '?currentOffersPage=' + currentOffersPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var bookOffers = $(data).find('#Offers').html();
             var noMoreBookOffers = $(data).find('#noMoreOffers').html();
             if (noMoreBookOffers == undefined) {
                 $('#Offers').append(bookOffers)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
                 $('#moreBookOffersButton').css("display", "none");
             }
@@ -97,23 +106,26 @@ function moreBookOffers(id) {
 
 var currentFavoritesPage = 0
 function moreUserFavorites() {
-    switchMoreContentButtonActivation(true)
+    const div = "moreContentButtonUserFavorites";
+    const spinner = "moreContentSpinnerUserFavorites";
+    const text = "moreContentTextUserFavorites";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentFavoritesPage = currentFavoritesPage + 1;
     $.ajax({
         type: 'GET',
         url: '/user?currentFavoritesPage=' + currentFavoritesPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var favoriteBooks = $(data).find('#favoriteBooks').html();
             var noMoreFavoriteBooks = $(data).find('#noMoreFavorites').html();
             if (noMoreFavoriteBooks == undefined) {
                 $('#favoriteBooks').append(favoriteBooks)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
-                $('#moreContentButton').css("display", "none");
+                $('#moreContentButtonUserFavorites').css("display", "none");
             }
         }
     })
@@ -121,21 +133,24 @@ function moreUserFavorites() {
 
 var currentOffersPage = 0
 function moreUserOffers() {
-    switchMoreContentButtonActivation(true)
+    const div = "moreOfferContentButton";
+    const spinner = "moreContentSpinnerUserOffers";
+    const text = "moreContentTextUserOffers";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentOffersPage = currentOffersPage + 1;
     $.ajax({
         type: 'GET',
         url: '/user?currentOffersPage=' + currentOffersPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var userOffers = $(data).find('#userOffers').html();
             var noMoreUserOffers = $(data).find('#noMoreUserOffers').html();
             if (noMoreUserOffers == undefined) {
                 $('#userOffers').append(userOffers)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
                 $('#moreOfferContentButton').css("display", "none");
             }
@@ -145,21 +160,24 @@ function moreUserOffers() {
 
 var currentReviewsPage = 0
 function moreUserReviews() {
-    switchMoreContentButtonActivation(true)
+    const div = "moreReviewsContentButton";
+    const spinner = "moreContentSpinnerUserReviews";
+    const text = "moreContentTextUserReviews";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentReviewsPage = currentReviewsPage + 1;
     $.ajax({
         type: 'GET',
         url: '/user?currentReviewsPage=' + currentReviewsPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var userReviews = $(data).find('#userReviews').html();
             var noMoreUserReviews = $(data).find('#noMoreUserReviews').html();
             if (noMoreUserReviews == undefined) {
                 $('#userReviews').append(userReviews)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
                 $('#moreReviewsContentButton').css("display", "none");
             }
@@ -169,21 +187,24 @@ function moreUserReviews() {
 
 var currentHistoryPage = 0
 function moreUserHistory() {
-    switchMoreContentButtonActivation(true)
+    const div = "moreHistorialContentButton";
+    const spinner = "moreContentSpinnerUserHistory";
+    const text = "moreContentTextUserHistory";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentHistoryPage = currentHistoryPage + 1;
     $.ajax({
         type: 'GET',
         url: '/user?currentHistoryPage=' + currentHistoryPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var userHistory = $(data).find('#userHistory').html();
             var noMoreUserHistory = $(data).find('#noMoreUserHistory').html();
             if (noMoreUserHistory == undefined) {
                 $('#userHistory').append(userHistory)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
                 $('#moreHistorialContentButton').css("display", "none");
             }
@@ -193,21 +214,24 @@ function moreUserHistory() {
 
 var currentAdminOffersPage = 0
 function moreAdminOffers() {
-    switchMoreContentButtonActivation(true)
+    const div = "moreAdminOffersContentButton";
+    const spinner = "moreContentSpinnerAdminOffers";
+    const text = "moreContentTextAdminOffers";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentAdminOffersPage = currentAdminOffersPage + 1;
     $.ajax({
         type: 'GET',
         url: '/admin?currentOffersPage=' + currentAdminOffersPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var adminOffers = $(data).find('#adminOffers').html();
             var noMoreAdminOffers = $(data).find('#noMoreAdminOffers').html();
             if (noMoreAdminOffers == undefined) {
                 $('#adminOffers').append(adminOffers)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
                 $('#moreAdminOffersContentButton').css("display", "none");
             }
@@ -217,21 +241,24 @@ function moreAdminOffers() {
 
 var currentAdminReviewsPage = 0
 function moreAdminReviews() {
-    switchMoreContentButtonActivation(true)
+    const div = "moreAdminReviewsContentButton";
+    const spinner = "moreContentSpinnerAdminReviews";
+    const text = "moreContentTextAdminReviews";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentAdminReviewsPage = currentAdminReviewsPage + 1;
     $.ajax({
         type: 'GET',
         url: '/admin?currentReviewsPage=' + currentAdminReviewsPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var adminReviews = $(data).find('#adminReviews').html();
             var noMoreAdminReviews = $(data).find('#noMoreAdminReviews').html();
             if (noMoreAdminReviews == undefined) {
                 $('#adminReviews').append(adminReviews)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
                 $('#moreAdminReviewsContentButton').css("display", "none");
             }
@@ -241,21 +268,24 @@ function moreAdminReviews() {
 
 var currentAdminUsersPage = 0
 function moreAdminUsers() {
-    switchMoreContentButtonActivation(true)
+    const div = "moreAdminUsersContentButton";
+    const spinner = "moreContentSpinnerAdminUsers";
+    const text = "moreContentTextAdminUsers";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentAdminUsersPage = currentAdminUsersPage + 1;
     $.ajax({
         type: 'GET',
         url: '/admin?currentUsersPage=' + currentAdminUsersPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var adminUsers = $(data).find('#adminUsers').html();
             var noMoreAdminUsers = $(data).find('#noMoreAdminUsers').html();
             if (noMoreAdminUsers == undefined) {
                 $('#adminUsers').append(adminUsers)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
                 $('#moreAdminUsersContentButton').css("display", "none");
             }
@@ -265,21 +295,24 @@ function moreAdminUsers() {
 
 var currentAdminBooksPage = 0
 function moreAdminBooks() {
-    switchMoreContentButtonActivation(true)
+    const div = "moreAdminBooksContentButton";
+    const spinner = "moreContentSpinnerAdminBooks";
+    const text = "moreContentTextAdminBooks";
+    switchMoreContentButtonActivation(true, div, spinner, text)
     currentAdminBooksPage = currentAdminBooksPage + 1;
     $.ajax({
         type: 'GET',
         url: '/admin?currentBooksPage=' + currentAdminBooksPage,
         error: function () {
             console.log('Something went wrong')
-            switchMoreContentButtonActivation(false)
+            switchMoreContentButtonActivation(false, div, spinner, text)
         },
         success: function (data) {
             var adminBooks = $(data).find('#adminBooks').html();
             var noMoreAdminBooks = $(data).find('#noMoreAdminBooks').html();
             if (noMoreAdminBooks == undefined) {
                 $('#adminBooks').append(adminBooks)
-                switchMoreContentButtonActivation(false)
+                switchMoreContentButtonActivation(false, div, spinner, text)
             } else {
                 $('#moreAdminBooksContentButton').css("display", "none");
             }
@@ -287,13 +320,13 @@ function moreAdminBooks() {
     })
 }
 
-function switchMoreContentButtonActivation(disabled) {
-    $('#moreContentButton').attr('disabled', disabled);
+function switchMoreContentButtonActivation(disabled, div, spinner, text) {
+    $('#'+div).attr('disabled', disabled);
     if (disabled) {
-        $('#moreContentSpinner').css("display", "block");
-        $('#moreContentText').css("display", "none");
+        $('#'+spinner).css("display", "block");
+        $('#'+text).css("display", "none");
     } else {
-        $('#moreContentSpinner').css("display", "none");
-        $('#moreContentText').css("display", "block");
+        $('#'+spinner).css("display", "none");
+        $('#'+text).css("display", "block");
     }
 }
