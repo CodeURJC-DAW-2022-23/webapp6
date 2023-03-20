@@ -53,7 +53,7 @@ function moreBookReviews(id) {
     currentReviewsPage  = currentReviewsPage  + 1;
     $.ajax({
         type: 'GET',
-        url: '/book/' + id + '?currentReviewsPage=' + currentReviewsPage,
+        url: '/books/' + id + '?currentReviewsPage=' + currentReviewsPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -77,7 +77,7 @@ function moreBookOffers(id) {
     currentOffersPage = currentOffersPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/book/' + id + '?currentOffersPage=' + currentOffersPage,
+        url: '/books/' + id + '?currentOffersPage=' + currentOffersPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -191,13 +191,13 @@ function moreUserHistory() {
     })
 }
 
-var currentOffersPage = 0
+var currentAdminOffersPage = 0
 function moreAdminOffers() {
     switchMoreContentButtonActivation(true)
-    currentOffersPage = currentOffersPage + 1;
+    currentAdminOffersPage = currentAdminOffersPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/admin?currentOffersPage=' + currentOffersPage,
+        url: '/admin?currentOffersPage=' + currentAdminOffersPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -209,19 +209,19 @@ function moreAdminOffers() {
                 $('#adminOffers').append(adminOffers)
                 switchMoreContentButtonActivation(false)
             } else {
-                $('#moreContentButton').css("display", "none");
+                $('#moreAdminOffersContentButton').css("display", "none");
             }
         }
     })
 }
 
-var currentReviewsPage = 0
+var currentAdminReviewsPage = 0
 function moreAdminReviews() {
     switchMoreContentButtonActivation(true)
-    currentReviewsPage = currentReviewsPage + 1;
+    currentAdminReviewsPage = currentAdminReviewsPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/admin?currentReviewsPage=' + currentReviewsPage,
+        url: '/admin?currentReviewsPage=' + currentAdminReviewsPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -233,19 +233,19 @@ function moreAdminReviews() {
                 $('#adminReviews').append(adminReviews)
                 switchMoreContentButtonActivation(false)
             } else {
-                $('#moreContentButton').css("display", "none");
+                $('#moreAdminReviewsContentButton').css("display", "none");
             }
         }
     })
 }
 
-var currentUsersPage = 0
+var currentAdminUsersPage = 0
 function moreAdminUsers() {
     switchMoreContentButtonActivation(true)
-    currentUsersPage = currentUsersPage + 1;
+    currentAdminUsersPage = currentAdminUsersPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/admin?currentUsersPage=' + currentUsersPage,
+        url: '/admin?currentUsersPage=' + currentAdminUsersPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -257,19 +257,19 @@ function moreAdminUsers() {
                 $('#adminUsers').append(adminUsers)
                 switchMoreContentButtonActivation(false)
             } else {
-                $('#moreContentButton').css("display", "none");
+                $('#moreAdminUsersContentButton').css("display", "none");
             }
         }
     })
 }
 
-var currentBooksPage = 0
+var currentAdminBooksPage = 0
 function moreAdminBooks() {
     switchMoreContentButtonActivation(true)
-    currentBooksPage = currentBooksPage + 1;
+    currentAdminBooksPage = currentAdminBooksPage + 1;
     $.ajax({
         type: 'GET',
-        url: '/admin?currentBooksPage=' + currentBooksPage,
+        url: '/admin?currentBooksPage=' + currentAdminBooksPage,
         error: function () {
             console.log('Something went wrong')
             switchMoreContentButtonActivation(false)
@@ -281,7 +281,7 @@ function moreAdminBooks() {
                 $('#adminBooks').append(adminBooks)
                 switchMoreContentButtonActivation(false)
             } else {
-                $('#moreContentButton').css("display", "none");
+                $('#moreAdminBooksContentButton').css("display", "none");
             }
         }
     })

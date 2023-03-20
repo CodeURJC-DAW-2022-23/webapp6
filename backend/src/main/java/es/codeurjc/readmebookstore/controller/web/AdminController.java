@@ -1,7 +1,6 @@
 package es.codeurjc.readmebookstore.controller.web;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,7 +90,7 @@ public class AdminController {
         userService.save(user);
 
         try {
-            updateImage(user, false, imageField);
+            userService.updateImage(user, false, imageField);
         } catch (Exception e) {
             return "redirect:/admin";
         }
@@ -112,7 +111,7 @@ public class AdminController {
         offerService.save(offer);
 
         try {
-            updateImage(offer, false, imageField);
+            offerService.updateImage(offer, false, imageField);
         } catch (Exception e) {
             return "redirect:/admin";
         }
@@ -141,7 +140,7 @@ public class AdminController {
         bookService.save(book);
 
         try {
-            updateImage(book, false, imageField);
+            bookService.updateImage(book, false, imageField);
         } catch (Exception e) {
             return "redirect:/admin";
         }
@@ -177,7 +176,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    public void updateImage(User user, boolean removeImage, MultipartFile imageField)
+    /*public void updateImage(User user, boolean removeImage, MultipartFile imageField)
             throws IOException, SQLException {
         if (!imageField.isEmpty()) {
             user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
@@ -195,9 +194,9 @@ public class AdminController {
                 }
             }
         }
-    }
+    }*/
 
-    public void updateImage(Offer offer, boolean removeImage, MultipartFile imageField)
+    /*public void updateImage(Offer offer, boolean removeImage, MultipartFile imageField)
             throws IOException, SQLException {
         if (!imageField.isEmpty()) {
             offer.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
@@ -215,9 +214,9 @@ public class AdminController {
                 }
             }
         }
-    }
+    }*/
 
-    public void updateImage(Book book, boolean removeImage, MultipartFile imageField)
+    /*public void updateImage(Book book, boolean removeImage, MultipartFile imageField)
             throws IOException, SQLException {
         if (!imageField.isEmpty()) {
             book.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
@@ -235,6 +234,6 @@ public class AdminController {
                 }
             }
         }
-    }
+    }*/
 
 }

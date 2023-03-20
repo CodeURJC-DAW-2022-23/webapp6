@@ -110,6 +110,10 @@ public class Book {
 		this.image = image;
 	}
 
+	public boolean hasImage() {
+		return this.image;
+	}
+
 	@JsonIgnore
 	public List<Offer> getOffers() {
 		return offer;

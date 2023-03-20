@@ -1,12 +1,16 @@
 package es.codeurjc.readmebookstore.service;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.repository.BookRepository;
@@ -84,6 +88,26 @@ public class BookService {
 	public Page<Book> findPagePartial(String genre, int n) {
 		return repository.findPagePartial(genre, PageRequest.of(n, 4));
 	}
+
+	public void updateImage(Book book, boolean removeImage, MultipartFile imageField)
+            throws IOException, SQLException {
+        if (!imageField.isEmpty()) {
+            book.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+            book.setImage(true);
+        } else {
+            if (removeImage) {
+                book.setImageFile(null);
+                book.setImage(false);
+            } else {
+                Book dbBook = findById(book.getId()).orElseThrow();
+                if (dbBook.hasImage()) {
+                    book.setImageFile(BlobProxy.generateProxy(dbBook.getImageFile().getBinaryStream(),
+                            dbBook.getImageFile().length()));
+                    book.setImage(true);
+                }
+            }
+        }
+    }
 
 	
 }

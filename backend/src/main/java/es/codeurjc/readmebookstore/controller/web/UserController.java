@@ -110,14 +110,13 @@ public class UserController {
         user.setEmail(email);
         userService.save(user);
         try {
-            AdminController admin = new AdminController();
-            admin.updateImage(user, false, imageField);
+            userService.updateImage(user, false, imageField);
         } catch (Exception e) {
-            return "user-page";
+            return "redirect:/user";
         }
         userService.save(user);
 
-        return "user-page";
+        return "redirect:/user";
     }
 
     @PostMapping("/updateUser")
@@ -157,7 +156,7 @@ public class UserController {
         Optional<User> user = userService.findByNameopt(sessionName);
         user.get().setFavouriteBooks(book);
         userRepository.save(user.get());
-        return "redirect:/book/" + bookid;
+        return "redirect:/books/" + bookid;
     }
 
     @GetMapping("/user/favorites/{bookid}/delete")

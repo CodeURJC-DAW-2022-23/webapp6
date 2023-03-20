@@ -59,19 +59,26 @@ public class ReviewController {
 	}
 
     @PostMapping("/reviews/{id}/update")
-	public String updatedReview(Model model, @PathVariable long id, @RequestParam String text) {
+	public String updatedReview(Model model, @PathVariable long id, @RequestParam String text, HttpServletRequest request) {
         Review review = reviewService.findById(id).get();
-        Date date = new Date();
-        review.setDate(date);
-        review.setText(text);
-		reviewService.save(review);
+		User user = userService.findByName(request.getUserPrincipal().getName());
+        if (user.getId()== review.getAuthor().getId()){
+            Date date = new Date();
+            review.setDate(date);
+            review.setText(text);
+		    reviewService.save(review);
+        }
 		return "redirect:/user";
 	}
   
 
     @GetMapping("/reviews/{id}/delete")
-	public String deleteReview(Model model, @PathVariable long id) {
-        reviewService.delete(id);
+	public String deleteReview(Model model, @PathVariable long id, HttpServletRequest request) {
+        Review review = reviewService.findById(id).get();
+		User user = userService.findByName(request.getUserPrincipal().getName());
+        if (user.getId() == review.getAuthor().getId()){
+            reviewService.delete(id);
+        }
 		return "redirect:/user";
 	}
 }

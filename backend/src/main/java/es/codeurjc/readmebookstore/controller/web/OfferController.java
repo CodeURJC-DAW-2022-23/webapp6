@@ -90,35 +90,41 @@ public class OfferController {
     }
 
     @GetMapping("/update-offer/{id}")
-    public String loadUpdateOferPage(Model model, @PathVariable long id) {
+    public String loadUpdateOfferPage(Model model, @PathVariable long id) {
         Optional<Offer> offer = offerService.findById(id);
         model.addAttribute("offer", offer.get());
         return "update-offer-page";
     }
 
     @PostMapping("/offers/{id}/update")
-    public String updatedReview(Model model, @PathVariable long id, @RequestParam String edition,
-            @RequestParam String text, @RequestParam float price, MultipartFile imageField) throws IOException {
+    public String updatedOffer(Model model, @PathVariable long id, @RequestParam String edition,
+            @RequestParam String text, @RequestParam float price, MultipartFile imageField, HttpServletRequest request) throws IOException {
         Offer offer = offerService.findById(id).get();
-        Date date = new Date();
-        offer.setDate(date);
-        offer.setDescription(text);
-        offer.setEdition(edition);
-        offer.setPrice(price);
-        offerService.save(offer);
-        try {
-            AdminController admin = new AdminController();
-            admin.updateImage(offer, false, imageField);
-        } catch (Exception e) {
-            return "redirect:/offers/" + offer.getId();
+        User user = userService.findByName(request.getUserPrincipal().getName());
+        if (user.getId()== offer.getSeller().getId()){
+            Date date = new Date();
+            offer.setDate(date);
+            offer.setDescription(text);
+            offer.setEdition(edition);
+            offer.setPrice(price);
+            offerService.save(offer);
+            try {
+                offerService.updateImage(offer, false, imageField);
+            } catch (Exception e) {
+                return "redirect:/offers/" + offer.getId();
+            }
+            offerService.save(offer);
         }
-        offerService.save(offer);
         return "redirect:/offers/" + offer.getId();
     }
 
     @GetMapping("/offers/{id}/delete")
-    public String deleteReview(Model model, @PathVariable long id) {
-        offerService.delete(id);
+    public String deleteOffer(Model model, @PathVariable long id, HttpServletRequest request) {
+        Offer offer = offerService.findById(id).get();
+        User user = userService.findByName(request.getUserPrincipal().getName());
+        if (user.getId()== offer.getSeller().getId()){
+            offerService.delete(id);
+        }
         return "redirect:/user";
     }
 
@@ -132,13 +138,12 @@ public class OfferController {
     @GetMapping("/offers/{id}/sold")
     public String buyOffer(Model model, @PathVariable long id, HttpServletRequest request) {
         Offer offer = offerService.findById(id).get();
-        User buyer = userService.findByName(request.getUserPrincipal().getName());
-
-        offer.setSold(true);
-
-        offer.setBuyer(buyer);
-        offerService.save(offer);
-
+        if (!offer.getSold()){
+            User buyer = userService.findByName(request.getUserPrincipal().getName());
+            offer.setSold(true);
+            offer.setBuyer(buyer);
+            offerService.save(offer);
+        }
         return "redirect:/user";
     }
 
