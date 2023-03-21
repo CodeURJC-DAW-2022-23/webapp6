@@ -6,6 +6,7 @@ import java.util.Date;
 import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -117,6 +118,7 @@ public class Offer {
 		this.imageFile = image;
 	}
 
+	@JsonIgnore
 	public boolean getImage() {
 		return this.image;
 	}
@@ -137,6 +139,7 @@ public class Offer {
 		this.sold= sold;
 	}
 
+	@JsonIgnoreProperties(value = {"imageFile", "image", "offer", "review", "user", "categories"})
 	public Book getBook() {
 		return book;
 	}
@@ -145,6 +148,7 @@ public class Offer {
 		this.book = book;
 	}
 
+	@JsonIgnoreProperties(value = {"roles", "image", "encodedPassword", "imageFile", "readedReviews", "offers", "favouriteBooks"})
 	public User getSeller() {
 		return seller;
 	}
@@ -153,6 +157,7 @@ public class Offer {
 		this.seller = user;
 	}
 
+	@JsonIgnoreProperties(value = {"roles", "image", "encodedPassword", "imageFile", "readedReviews", "offers", "favouriteBooks"})
 	public User getBuyer() {
 		return buyer;
 	}

@@ -38,24 +38,24 @@ public class AdminRestController {
     @Autowired
     private UserService userService;
 
-    // DOES NOT WORK YET
-    @PostMapping("/books/")
+    ///////////////// BOOKS //////////////////////////////////////////////////
+    @PostMapping("books/")
     @ResponseStatus(HttpStatus.CREATED)
     public Book createBook(@RequestBody Book book) {
-
         bookService.save(book);
-
         return book;
     }
 
-    // DOES NOT WORK YET
-    @DeleteMapping("/books/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String deleteBook(@PathVariable long id) {
-
-        bookService.delete(id);
-
-        return "Book deleted";
+    @DeleteMapping("books/{id}")
+    public ResponseEntity<Book> deleteBook(@PathVariable long id) {
+        Optional<Book> op = bookService.findById(id);
+        if (op.isPresent()) {
+            Book book = op.get();
+            bookService.delete(id);
+            return ResponseEntity.ok(book);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

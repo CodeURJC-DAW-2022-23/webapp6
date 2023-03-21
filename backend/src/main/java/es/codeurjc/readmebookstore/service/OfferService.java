@@ -41,6 +41,10 @@ public class OfferService {
 		return repository.findByOffersNotSoldByBook(id, PageRequest.of(n, 4));
 	}
 
+	public List<Offer> findOffersNotSoldByBook(long id) {
+		return repository.findByOffersNotSoldByBook(id);
+	}
+
 	public List<Offer> findOffersNotSoldByUser(long id) {
 		return repository.findByOffersNotSoldByUser(id);
 	}

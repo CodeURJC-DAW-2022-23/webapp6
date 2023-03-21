@@ -12,6 +12,9 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
     @Query(value = "SELECT * FROM OFFERS WHERE (SOLD= 0) AND (BOOK_ID = :id)", nativeQuery = true)
     Page<Offer> findByOffersNotSoldByBook(long id, Pageable pageable);
 
+    @Query(value = "SELECT * FROM OFFERS WHERE (SOLD= 0) AND (BOOK_ID = :id)", nativeQuery = true)
+    List<Offer> findByOffersNotSoldByBook(long id);
+
     @Query(value = "SELECT * FROM OFFERS WHERE (SOLD= 0) AND (SELLER_ID = :id)", nativeQuery = true)
     List<Offer> findByOffersNotSoldByUser(long id);
 
