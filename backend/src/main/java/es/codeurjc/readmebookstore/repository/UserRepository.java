@@ -16,6 +16,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByName(String username);
 
+    public Page<User> findAll(Pageable page);
+
     @Query(value = "SELECT * FROM books.user where user.id <> :adminid", nativeQuery = true)
     public Page<User> findAll(long adminid, Pageable page);
 

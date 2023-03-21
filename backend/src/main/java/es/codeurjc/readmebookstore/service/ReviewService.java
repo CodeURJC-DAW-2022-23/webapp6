@@ -56,5 +56,9 @@ public class ReviewService {
 	public Page<Review> findAllReviewsByUser(Long userid, int n) {
 		return repository.findByAllReviewsByUser(userid, PageRequest.of(n, 4));
 	}
+
+	public List<Review> findAllReviewsByUser(Long userid) {
+		return repository.findByAllReviewsByUser(userid);
+	}
 	
 }

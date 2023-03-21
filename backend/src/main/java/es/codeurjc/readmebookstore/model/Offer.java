@@ -5,6 +5,10 @@ import java.util.Date;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,6 +50,7 @@ public class Offer {
 	@ManyToOne
 	private User seller;
 
+	@JsonInclude(Include.NON_NULL)
 	@ManyToOne
 	private User buyer;
 
@@ -103,6 +108,7 @@ public class Offer {
 		this.price = price;
 	}
 
+	@JsonIgnore
 	public Blob getImageFile() {
 		return imageFile;
 	}

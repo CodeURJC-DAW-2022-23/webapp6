@@ -20,5 +20,8 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query(value = "SELECT * FROM REVIEWS where author_id = :userid", nativeQuery = true)
     Page<Review> findByAllReviewsByUser(long userid, Pageable pageable);
 
+    @Query(value = "SELECT * FROM REVIEWS where author_id = :userid", nativeQuery = true)
+    List<Review> findByAllReviewsByUser(long userid);
+
     public Page<Review> findAll(Pageable page);
 }

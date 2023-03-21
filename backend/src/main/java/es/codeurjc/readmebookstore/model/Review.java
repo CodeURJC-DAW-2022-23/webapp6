@@ -37,6 +37,10 @@ public class Review {
 
     public Review() {}
 
+	public Review (String text){
+		this.text = text;
+	}
+
 	public Review(String text, Date date, Book book, User author) {
 		this.text = text;
 		this.date = date;

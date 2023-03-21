@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.sql.Blob;
 
 import javax.persistence.*;
@@ -21,7 +23,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 @DynamicUpdate
-
 public class User {
 
 	@Override
@@ -81,22 +82,27 @@ public class User {
 		return email;
 	}
 
+	@JsonIgnore
 	public String getEncodedPassword() {
 		return encodedPassword;
 	}
 
+	@JsonIgnore
 	public List<String> getRoles() {
 		return roles;
 	}
 
+	@JsonIgnore
 	public List<Review> getReadedReviews() {
 		return readedReview;
 	}
 
+	@JsonIgnore
 	public List<Book> getFavouriteBooks() {
 		return favouriteBook;
 	}
 
+	@JsonIgnore
 	public List<Offer> getOffers() {
 		return offer;
 	}
@@ -133,6 +139,7 @@ public class User {
 		this.offer = offer;
 	}
 
+	@JsonIgnore
 	public Blob getImageFile() {
 		return imageFile;
 	}

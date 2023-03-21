@@ -53,6 +53,10 @@ public class OfferService {
 		return repository.findByShoppingHistorial(id, PageRequest.of(n, 4));
 	}
 
+	public List<Offer> findShoppingHistorial(long id) {
+		return repository.findByShoppingHistorial(id);
+	}
+
 	public List<Offer> findBooksBought(long id) {
 		return repository.findBooksBought(id);
 	}

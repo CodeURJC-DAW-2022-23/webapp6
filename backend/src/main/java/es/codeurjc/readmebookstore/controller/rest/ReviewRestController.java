@@ -1,5 +1,6 @@
 package es.codeurjc.readmebookstore.controller.rest;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -112,11 +113,15 @@ public class ReviewRestController {
     })
     @PutMapping("/{id}")
     public ResponseEntity<Review> updateReview(@PathVariable long id,
-            @RequestBody String text) {
+            @RequestBody Review newReview) {
         Review review = reviewService.findById(id).get();
         if (review != null) {
-            review.setText(text);
-            reviewService.save(review);
+            newReview.setId(id);
+            newReview.setAuthor(review.getAuthor());
+            newReview.setBook(review.getBook());
+            Date date = new Date();
+            newReview.setDate(date);
+            reviewService.save(newReview);
             return ResponseEntity.ok(review);
         } else {
             return ResponseEntity.notFound().build();

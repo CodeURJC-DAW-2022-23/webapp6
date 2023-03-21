@@ -52,6 +52,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public Page<User> findAll(int n) {
+		return userRepository.findAll( PageRequest.of(n, 4));
+	}
+
     public void deletefavorite(long id) {
         userRepository.deletefavorite(id);
     }
