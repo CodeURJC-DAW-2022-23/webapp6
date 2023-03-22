@@ -62,6 +62,10 @@ public class User {
 	public User() {
 	}
 
+	public User(String email){
+		this.email = email;
+	}
+
 	public User(String name, String encodedPassword, String email, String... roles) {
 		this.name = name;
 		this.encodedPassword = encodedPassword;
@@ -105,6 +109,10 @@ public class User {
 	@JsonIgnore
 	public List<Offer> getOffers() {
 		return offer;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setName(String name) {

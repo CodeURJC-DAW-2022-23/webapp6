@@ -55,7 +55,12 @@ public class Offer {
 	@ManyToOne
 	private User buyer;
 
-	public Offer() {
+	public Offer() {}
+
+	public Offer (String edition, String description, Float price){
+		this.edition = edition;
+		this.description = description;
+		this.price = price;
 	}
 
 	public Offer(Date date, String edition, String description, Float price, Book book, User seller, Boolean sold, User buyer) {

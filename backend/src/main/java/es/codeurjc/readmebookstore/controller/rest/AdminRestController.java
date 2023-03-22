@@ -58,17 +58,18 @@ public class AdminRestController {
         }
     }
 
-
     ///////////////// USERS //////////////////////////////////////////////////7
-     
-     @Operation(summary = "Get a user by its id")
-     @ApiResponses(value = {
-             @ApiResponse(responseCode = "200", description = "Found the user", content = {
-                     @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
-             @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
-     })
+
+    @Operation(summary = "Get a user by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the user", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    })
     @GetMapping("/users/{idUser}")
-     public ResponseEntity<User> getUser(@PathVariable long idUser) {
+    public ResponseEntity<User> getUser(@PathVariable long idUser) {
         Optional<User> op = userService.findById(idUser);
         if (op.isPresent()) {
             User user = op.get();
@@ -77,30 +78,31 @@ public class AdminRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
- 
-    
+
     @Operation(summary = "Get all users")
-     @ApiResponses(value = {
-             @ApiResponse(responseCode = "200", description = "Found the users", content = {
-                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class))) }),
-             @ApiResponse(responseCode = "404", description = "Users not found", content = @Content)
-     })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the users", content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class))) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Users not found", content = @Content)
+    })
     @GetMapping("/users/")
-     public List<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.findAll();
     }
- 
-    
-    @Operation(summary = "Get a page of all users")
+
+    @Operation(summary = "Get a users page")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the user page", content = {
+            @ApiResponse(responseCode = "200", description = "Found the users page", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class, subTypes = {
                             User.class })) }),
-            @ApiResponse(responseCode = "400", description = "Invalid page supplied", content = @Content),
-            @ApiResponse(responseCode = "404", description = "User page not found", content = @Content)
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Users page not found", content = @Content)
     })
     @GetMapping("/users")
-    public Page<User> getUsersPaged(@RequestParam int page) {
+    public Page<User> getUsersPaged(@RequestParam(defaultValue = "0") int page) {
         return userService.findAll(page);
     }
 }
