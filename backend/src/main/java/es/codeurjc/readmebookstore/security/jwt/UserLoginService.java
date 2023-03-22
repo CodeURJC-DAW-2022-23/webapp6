@@ -15,12 +15,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import es.codeurjc.readmebookstore.model.User;
+import es.codeurjc.readmebookstore.service.UserService;
+import es.codeurjc.readmebookstore.repository.UserRepository;
 
 @Service
 public class UserLoginService {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -138,4 +144,6 @@ public class UserLoginService {
 		httpHeaders.add(HttpHeaders.SET_COOKIE,
 				cookieUtil.createRefreshTokenCookie(token.getTokenValue(), token.getDuration()).toString());
 	}
+
+	
 }

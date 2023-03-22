@@ -66,6 +66,7 @@ public class User {
 		this.email = email;
 	}
 
+
 	public User(String name, String encodedPassword, String email, String... roles) {
 		this.name = name;
 		this.encodedPassword = encodedPassword;
