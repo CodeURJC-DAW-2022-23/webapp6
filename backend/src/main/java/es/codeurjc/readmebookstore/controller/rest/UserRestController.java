@@ -375,8 +375,7 @@ public class UserRestController {
             updatedReview.setId(id);
             updatedReview.setAuthor(review.getAuthor());
             updatedReview.setBook(review.getBook());
-            Date date = new Date();
-            updatedReview.setDate(date);
+            updatedReview.setDate(new Date());
             reviewService.save(updatedReview);
             return ResponseEntity.ok(updatedReview);
         } else {
@@ -403,8 +402,7 @@ public class UserRestController {
             updatedOffer.setSeller(offer.getSeller());
             updatedOffer.setBook(offer.getBook());
             updatedOffer.setSold(offer.getSold());
-            Date date = new Date();
-            updatedOffer.setDate(date);
+            updatedOffer.setDate(new Date());
             updatedOffer.setImage(offer.getImage());
             updatedOffer.setImageFile(offer.getImageFile());
             offerService.save(updatedOffer);

@@ -1,5 +1,6 @@
 package es.codeurjc.readmebookstore.controller.rest;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -130,14 +131,13 @@ public class AdminRestController {
         return userService.findAll(page);
     }
 
-    @Operation(summary = "Delete a user")
+    @Operation(summary = "Delete a user by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the users", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class, subTypes = {
-                            User.class })) }),
+            @ApiResponse(responseCode = "200", description = "Delete the user", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
             @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
             @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Users not found", content = @Content)
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
     })
     @DeleteMapping("/users/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
@@ -146,6 +146,36 @@ public class AdminRestController {
             User user = op.get();
             userService.delete(id);
             return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Operation(summary = "Update a user profile by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User profile updated", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    })
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable long id,
+            @RequestBody User updatedUser) throws SQLException {
+        Optional<User> user = userService.findById(id);
+        if (user.isPresent()) {
+            User userSession = user.get();
+            updatedUser.setId(userSession.getId());
+            updatedUser.setName(userSession.getName());
+            updatedUser.setEncodedPassword(userSession.getEncodedPassword());
+            updatedUser.setListFavouriteBooks(userSession.getFavouriteBooks());
+            updatedUser.setOffers(userSession.getOffers());
+            updatedUser.setReadedReviews(userSession.getReadedReviews());
+            updatedUser.setRoles(userSession.getRoles());
+            updatedUser.setImage(userSession.getImage());
+            updatedUser.setImageFile(userSession.getImageFile());
+            userService.save(updatedUser);
+            return ResponseEntity.ok(updatedUser);
         } else {
             return ResponseEntity.notFound().build();
         }
