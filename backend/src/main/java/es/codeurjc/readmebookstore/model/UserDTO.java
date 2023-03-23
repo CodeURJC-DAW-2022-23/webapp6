@@ -1,7 +1,4 @@
 package es.codeurjc.readmebookstore.model;
-import javax.persistence.Lob;
-import java.sql.Blob;
-
 
 public class UserDTO {
     private String name;

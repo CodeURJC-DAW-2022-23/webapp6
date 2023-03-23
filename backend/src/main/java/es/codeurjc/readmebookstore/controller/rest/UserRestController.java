@@ -284,10 +284,11 @@ public class UserRestController {
             @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
             @ApiResponse(responseCode = "404", description = "Favorite book not found", content = @Content)
     })
-    @DeleteMapping("/books/{id}")
-    public ResponseEntity<Book> deleteFavoriteBook(@PathVariable long id) {
+    @DeleteMapping("/favorites/{id}")
+    public ResponseEntity<Book> deleteFavoriteBook(@PathVariable long id, HttpServletRequest request) {
+        User user = userService.findByName(request.getUserPrincipal().getName());
         Optional <Book> opBook = bookService.findById(id);
-        if (opBook.isPresent()) {
+        if (opBook.isPresent() && !(bookService.isFavorite(user.getId(), id).isEmpty())) {
             Book book = opBook.get();
             userService.deletefavorite(id);
             return ResponseEntity.ok(book);
@@ -471,6 +472,28 @@ public class UserRestController {
             userUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
             userService.save(userUpdate);
             return ResponseEntity.created(location).build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Operation(summary = "Add book to fav")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Book added to fav", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Book.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Book not found", content = @Content)
+    })
+    @PostMapping("/favorites/{id}")
+    public ResponseEntity<Book> addFavorite(@PathVariable long id, HttpServletRequest request) {
+        User user = userService.findByName(request.getUserPrincipal().getName());
+        Optional <Book> opBook = bookService.findById(id);
+        if (opBook.isPresent()) {
+            Book book = opBook.get();
+            user.setFavouriteBooks(book);
+            userService.save(user);
+            return ResponseEntity.ok(book);
         } else {
             return ResponseEntity.notFound().build();
         }

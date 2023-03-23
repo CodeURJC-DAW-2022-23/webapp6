@@ -1,6 +1,7 @@
 package es.codeurjc.readmebookstore.controller.rest;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.model.Review;
+import es.codeurjc.readmebookstore.service.AlgorithmService;
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.OfferService;
 import es.codeurjc.readmebookstore.service.ReviewService;
@@ -54,6 +56,9 @@ public class BookRestController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AlgorithmService algorithmService;
+
     @Operation(summary = "Get all books")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the books", content = {
@@ -68,10 +73,9 @@ public class BookRestController {
     @Operation(summary = "Get a page of searched books or all books if no seachtext is inserted")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the books page", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class, subTypes = {
-                            Book.class })) }),
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class, subTypes = {Book.class })) }),
             @ApiResponse(responseCode = "400", description = "Invalid page supplied", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Book page not found", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Books page not found", content = @Content)
     })
     @GetMapping("")
     public ResponseEntity<Page<Book>> getSearchedBooks(@RequestParam(required = false) String searchtext, @RequestParam(defaultValue = "0") int page) {
@@ -105,6 +109,29 @@ public class BookRestController {
         } else {
             Page<Book> books = bookService.findAll(page);
             return new ResponseEntity<>(books, HttpStatus.OK);
+        }
+    }
+
+    @Operation(summary = "Get the list of books recommended to a user")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Found the books to recommend", content = {
+                                        @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class, subTypes = {Book.class })) }),
+                        @ApiResponse(responseCode = "400", description = "Invalid page supplied", content = @Content),
+                        @ApiResponse(responseCode = "404", description = "Recommended books not found", content = @Content)
+        })
+    @GetMapping("/algorithm")
+    private ResponseEntity<List<Book>> recommendationAlgorithm(HttpServletRequest request) throws Exception {
+		List<Long> recommendedBooksIds = algorithmService.recommendationAlgorithm (request);
+		List<Book> recommendedBooks = new ArrayList<Book>();
+
+		for (int i = 0; i < recommendedBooksIds.size(); i++) {
+			Book book = bookService.findById(recommendedBooksIds.get(i)).get();
+			recommendedBooks.add(book);
+		}
+        if (recommendedBooks.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(recommendedBooks, HttpStatus.OK);
         }
     }
 

@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import es.codeurjc.readmebookstore.service.AlgorithmService;
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.ReviewService;
 import es.codeurjc.readmebookstore.service.UserService;
@@ -30,7 +31,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class BookController extends AlgorithmController {
+public class BookController {
 
 	@Autowired
 	private UserService userService;
@@ -44,6 +45,8 @@ public class BookController extends AlgorithmController {
 	@Autowired
 	private ReviewService reviewService;
 
+	@Autowired
+	private AlgorithmService algorithmService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -62,7 +65,7 @@ public class BookController extends AlgorithmController {
 	 * @throws Exception
 	 */
 	private List<Book> getRecommendedBooks(Model model, HttpServletRequest request) throws Exception {
-		List<Long> recommendedBooksIds = recommendationAlgorithm (model, request);
+		List<Long> recommendedBooksIds = algorithmService.recommendationAlgorithm (request);
 		List<Book> recommendedBooks = new ArrayList<Book>();
 
 		for (int i = 0; i < recommendedBooksIds.size(); i++) {

@@ -1,25 +1,20 @@
 package es.codeurjc.readmebookstore.service;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
-import org.hibernate.engine.jdbc.BlobProxy;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Categories;
 import es.codeurjc.readmebookstore.model.Offer;
-import es.codeurjc.readmebookstore.repository.BookRepository;
 
 @Service
 public class AlgorithmService {
@@ -35,6 +30,25 @@ public class AlgorithmService {
 
     @Autowired
     private CategoriesService categoriesService;
+
+    public List<Long> recommendationAlgorithm(HttpServletRequest request) throws Exception {
+        List<Long> recommendedBooks = new ArrayList<>();
+        Principal principal = request.getUserPrincipal();
+        if (principal != null) {
+            List<List<String>> categoriesMatrix = ponderationMatrix();
+            String sessionName = principal.getName();
+            List<List<String>> userMatrix = userMatrix(sessionName);
+            List<List<String>> userponderationMatrix = userponderationMatrix(categoriesMatrix, userMatrix);
+            List<List<String>> userProfile = userProfile(userponderationMatrix);
+            List<List<String>> bookPonder = bookPonder(categoriesMatrix, userProfile);
+            List<List<String>> booksRanking = booksRanking(bookPonder);
+            recommendedBooks = recommendedBooks(booksRanking);
+            return recommendedBooks;
+        } else {
+            recommendedBooks = recommendedBooksNotLogged();
+            return recommendedBooks;
+        }
+    }
 
     public List<List<String>> ponderationMatrix() throws Exception {
         int i, j;
