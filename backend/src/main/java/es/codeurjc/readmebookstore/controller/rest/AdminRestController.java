@@ -145,7 +145,7 @@ public class AdminRestController {
             @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
             @ApiResponse(responseCode = "404", description = "Review not found", content = @Content)
     })
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/reviews/{id}")
     public ResponseEntity<Review> deleteReview(@PathVariable long id) {
         Optional <Review> opReview = reviewService.findById(id);
         if (opReview.isPresent()) {
