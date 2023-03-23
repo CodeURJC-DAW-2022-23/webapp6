@@ -62,7 +62,7 @@ public class LoginController {
 		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
 		userService.save(user);
 
-		// Sends a coonfirmation mail:
+		// Sends a confirmation mail:
 		String subject = "Confirmación de registro";
 		String body = "Hola " + user.getName() + ",";
 		try {

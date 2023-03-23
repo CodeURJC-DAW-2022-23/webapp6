@@ -21,9 +21,10 @@ import es.codeurjc.readmebookstore.model.User;
 import es.codeurjc.readmebookstore.model.UserDTO;
 import es.codeurjc.readmebookstore.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import es.codeurjc.readmebookstore.service.MailService;
 import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -31,6 +32,8 @@ public class AuthRestController {
 
 	@Autowired
 	private UserLoginService userLoginService;
+	@Autowired
+	private MailService mailService;
     @Autowired
 	private UserService userService;
 	@Autowired
@@ -77,6 +80,15 @@ public class AuthRestController {
 		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
 		
 		userService.save(user);
+
+		// Sends a confirmation mail:
+		String subject = "Confirmación de registro";
+		String body = "Hola " + user.getName() + ",";
+		try {
+			mailService.sendConfirmationEmail(user.getEmail(), subject, body);
+		} catch (MessagingException e) {
+			
+		}
 
 		return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
 	} 
