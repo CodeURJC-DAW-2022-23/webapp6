@@ -261,6 +261,54 @@ public class AdminRestController {
         }
     }
 
+    @Operation(summary = "Upload the user image ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Image upload", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+    })
+    @PostMapping("/users/{id}/image")
+    public ResponseEntity<Object> uploadImageUser(@PathVariable long id, @RequestParam MultipartFile imageFile)
+            throws IOException {
+        Optional<User> user = userService.findById(id);
+        if (user.isPresent()) {
+            User userUpdate = user.get();
+            URI location = fromCurrentRequest().build().toUri();
+
+            userUpdate.setImage(true);
+            userUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+            userService.save(userUpdate);
+
+            return ResponseEntity.created(location).build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Operation(summary = "Delete a user's image")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Image deleted", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+    })
+    @DeleteMapping("/users/{id}/image")
+    public ResponseEntity<Object> deleteImageUser(@PathVariable long id) throws IOException {
+        Optional<User> user = userService.findById(id);
+        if (user.isPresent()) {
+            User userUpdate = user.get();
+            userUpdate.setImageFile(null);
+            userUpdate.setImage(false);
+            userService.save(userUpdate);
+            return ResponseEntity.ok("Imagen eliminada");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     /////////////////////// REVIEWS //////////////////////////////////////////////
 
     @Operation(summary = "Delete a review by its id")

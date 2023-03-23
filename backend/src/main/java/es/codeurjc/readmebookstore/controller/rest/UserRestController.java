@@ -347,12 +347,18 @@ public class UserRestController {
             @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
     })
     @DeleteMapping("/image")
-    public ResponseEntity<String> deleteImage(HttpServletRequest request) throws IOException {
-        User user = userService.findByName(request.getUserPrincipal().getName());
-        user.setImageFile(null);
-        user.setImage(false);
-        userService.save(user);
-        return ResponseEntity.ok("Imagen eliminada");
+    public ResponseEntity<Object> deleteImageUser(HttpServletRequest request) throws IOException {
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional<User> user = userService.findById(userSession.getId());
+        if (user.isPresent()) {
+            User userUpdate = user.get();
+            userUpdate.setImageFile(null);
+            userUpdate.setImage(false);
+            userService.save(userUpdate);
+            return ResponseEntity.ok("Imagen eliminada");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     /////////////////////////// PUTS //////////////////////////////////////////
@@ -456,16 +462,18 @@ public class UserRestController {
     @PostMapping("/image")
     public ResponseEntity<Object> uploadImage(@RequestParam MultipartFile imageFile, HttpServletRequest request)
             throws IOException {
-
-        User user = userService.findByName(request.getUserPrincipal().getName());
-
-        URI location = fromCurrentRequest().build().toUri();
-
-        user.setImage(true);
-        user.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-        userService.save(user);
-
-        return ResponseEntity.created(location).build();
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional<User> user = userService.findById(userSession.getId());
+        if (user.isPresent()) {
+            User userUpdate = user.get();
+            URI location = fromCurrentRequest().build().toUri();
+            userUpdate.setImage(true);
+            userUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+            userService.save(userUpdate);
+            return ResponseEntity.created(location).build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
