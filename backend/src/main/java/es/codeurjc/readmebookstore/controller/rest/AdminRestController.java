@@ -156,7 +156,7 @@ public class AdminRestController {
             @ApiResponse(responseCode = "200", description = "User profile updated", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
             @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
     })
     @PutMapping("/users/{id}")
