@@ -65,9 +65,9 @@ GETS
 /api/books/
 /api/books?page=_
 /api/books/{id}
-/api/books/{id}/reviews/
+/api/books/{id}/reviews/all
 /api/books/{id}/reviews?page=_
-/api/books/{id}/offers/
+/api/books/{id}/offers/all
 /api/books/{id}/offers?page=_
 /api/books/{id}/image/
 
@@ -101,16 +101,17 @@ GETS
 
 POSTS
 
-/api/login
-/api/logout
+/api/auth/login
+/api/auth/logout
+/api/auth/register
 
-/api/users/
 /api/user/favorites/{id}
 /api/user/image
 
 /api/books/{id}/reviews
 /api/books/{id}/offers
-/api/books/{id}/offers/{id}/image
+
+/api/offers/{id}/image
 
 /api/admin/books/
 /api/admin/books/{id}/image
@@ -132,9 +133,14 @@ DELETE
 
 /api/reviews/{id}
 /api/offers/{id}
+/api/offers/{id}/image
 /api/user/favorites/{id}
 
 /api/admin/users/{id}
 /api/admin/offers/{id}
 /api/admin/reviews/{id}
 /api/admin/books/{id}
+
+/api/admin/users/{id}/image
+/api/admin/offers/{id}/image
+/api/admin/books/{id}/image

@@ -216,6 +216,15 @@ public class BookRestController {
         }
     }
 
+    
+    @Operation(summary = "Add a new review")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Review created", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Book not found", content = @Content)
+    })
     @PostMapping("/{id}/reviews")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> createReview(@PathVariable long id, @RequestBody Review newReview,
@@ -235,6 +244,14 @@ public class BookRestController {
         }
     }
 
+    @Operation(summary = "Add a new offer")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Offer created", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Offer.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Book not found", content = @Content)
+    })
     @PostMapping("/{id}/offers")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Offer> createOffer(@PathVariable long id, @RequestBody Offer newOffer,

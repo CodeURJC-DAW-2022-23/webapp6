@@ -1,11 +1,17 @@
 package es.codeurjc.readmebookstore.controller.rest;
 
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+
+import java.io.IOException;
+import java.net.URI;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Review;
@@ -26,6 +33,7 @@ import es.codeurjc.readmebookstore.model.User;
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.ReviewService;
 import es.codeurjc.readmebookstore.service.UserService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -47,6 +55,14 @@ public class AdminRestController {
     private ReviewService reviewService;
 
     ///////////////// BOOKS //////////////////////////////////////////////////
+    
+    @Operation(summary = "Add a new book")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Book created", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Book.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content)
+    })
     @PostMapping("/books/")
     @ResponseStatus(HttpStatus.CREATED)
     public Book createBook(@RequestBody Book newBook) {
@@ -54,6 +70,40 @@ public class AdminRestController {
         return newBook;
     }
 
+    @Operation(summary = "Add book's image")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Image upload", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+    })
+    @PostMapping("/books/{id}/image")
+    public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile)
+            throws IOException {
+        Optional<Book> book = bookService.findById(id);
+        if (book.isPresent()) {
+            Book bookUpdate = book.get();
+            URI location = fromCurrentRequest().build().toUri();
+
+            bookUpdate.setImage(true);
+            bookUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+            bookService.save(bookUpdate);
+
+            return ResponseEntity.created(location).build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Operation(summary = "Update a book data")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Book data updated", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Book.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Book not found", content = @Content)
+    })
     @PutMapping("/books/{id}")
     public ResponseEntity<Book> editBook(@PathVariable long id, @RequestBody Book newData) {
         Optional<Book> book = bookService.findById(id);
@@ -63,7 +113,7 @@ public class AdminRestController {
             bookUpdate.setTitle(newData.getTitle());
             bookUpdate.setAuthor(newData.getAuthor());
             bookUpdate.setGenre(newData.getGenre());
-            
+
             bookService.save(bookUpdate);
             return ResponseEntity.ok(bookUpdate);
         } else {
@@ -71,13 +121,43 @@ public class AdminRestController {
         }
     }
 
+    @Operation(summary = "Delete a book")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Book deleted", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Book.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Book not found", content = @Content)
+    })
     @DeleteMapping("/books/{id}")
     public ResponseEntity<Book> deleteBook(@PathVariable long id) {
-        Optional<Book> op = bookService.findById(id);
-        if (op.isPresent()) {
-            Book book = op.get();
+        Optional<Book> book = bookService.findById(id);
+        if (book.isPresent()) {
             bookService.delete(id);
-            return ResponseEntity.ok(book);
+            Book deletedBook = book.get();
+            return ResponseEntity.ok(deletedBook);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Operation(summary = "Delete a book's image")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Image deleted", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+    })
+    @DeleteMapping("/books/{id}/image")
+    public ResponseEntity<Object> deleteImage(@PathVariable long id) throws IOException {
+        Optional<Book> book = bookService.findById(id);
+        if (book.isPresent()) {
+            Book bookUpdate = book.get();
+            bookUpdate.setImageFile(null);
+            bookUpdate.setImage(false);
+            bookService.save(bookUpdate);
+            return ResponseEntity.ok("Imagen eliminada");
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -181,7 +261,6 @@ public class AdminRestController {
         }
     }
 
-
     /////////////////////// REVIEWS //////////////////////////////////////////////
 
     @Operation(summary = "Delete a review by its id")
@@ -194,7 +273,7 @@ public class AdminRestController {
     })
     @DeleteMapping("/reviews/{id}")
     public ResponseEntity<Review> deleteReview(@PathVariable long id) {
-        Optional <Review> opReview = reviewService.findById(id);
+        Optional<Review> opReview = reviewService.findById(id);
         if (opReview.isPresent()) {
             Review review = opReview.get();
             reviewService.delete(id);
@@ -215,7 +294,7 @@ public class AdminRestController {
     @PutMapping("/reviews/{id}")
     public ResponseEntity<Review> updateReview(@PathVariable long id,
             @RequestBody Review updatedReview) {
-        Optional <Review> opReview = reviewService.findById(id);
+        Optional<Review> opReview = reviewService.findById(id);
         if (opReview.isPresent()) {
             Review review = opReview.get();
             updatedReview.setId(id);
