@@ -109,5 +109,68 @@ public class BookService {
         }
     }
 
+	public Boolean doSearchTitle(String title) {
+		Boolean result = false;
+		try {
+			Optional<Book> booktitle = repository.findByTitle(title);
+			if (booktitle.get().getId() != null) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		return result;
+	}
+
+	public Boolean doSearchAuthor(String author) {
+		Boolean result = false;
+		try {
+			List<Book> bookauthor = repository.findByAuthor(author);
+			if (bookauthor.size() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		return result;
+	}
+
+	public Boolean doSearchGenre(String genre) {
+		Boolean result = false;
+		try {
+			List<Book> bookgenre = repository.findByGenre(genre);
+			if (bookgenre.size() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		return result;
+	}
+
+	public Boolean doSearchPartial(String partial) {
+		Boolean result = false;
+		try {
+			List<Book> bookpartial = repository.findByPartial(partial);
+			if (bookpartial.size() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		return result;
+	}
 	
 }

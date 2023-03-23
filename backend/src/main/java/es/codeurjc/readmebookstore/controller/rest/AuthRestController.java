@@ -27,7 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthResController {
+public class AuthRestController {
 
 	@Autowired
 	private UserLoginService userLoginService;
