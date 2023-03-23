@@ -38,6 +38,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
         
         public Page<Book> findAll(Pageable page);
 
+        @Query(value = "select * from books.book  where title = :title", nativeQuery = true)
+        Page<Book> findPageTitle (String title, Pageable page);
+
         @Query(value = "select * from books.book  where author = :author", nativeQuery = true)
         Page<Book> findPageAuthor (String author, Pageable page);
 

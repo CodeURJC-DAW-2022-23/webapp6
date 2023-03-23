@@ -65,7 +65,7 @@ public class BookRestController {
         return bookService.findAll();
     }
 
-    @Operation(summary = "Get a page of books")
+    @Operation(summary = "Get a page of searched books or all books if no seachtext is inserted")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the books page", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class, subTypes = {
@@ -74,8 +74,38 @@ public class BookRestController {
             @ApiResponse(responseCode = "404", description = "Book page not found", content = @Content)
     })
     @GetMapping("")
-    public Page<Book> getBooks(@RequestParam int page) {
-        return bookService.findAll(page);
+    public ResponseEntity<Page<Book>> getSearchedBooks(@RequestParam(required = false) String searchtext, @RequestParam(defaultValue = "0") int page) {
+        if (searchtext != null) {
+            Boolean result = false;
+            result = bookService.doSearchTitle(searchtext);
+            if (result) {
+                Page<Book> books = bookService.findPageTitle(searchtext, page);
+                return new ResponseEntity<>(books, HttpStatus.OK);
+            } else {
+                result = bookService.doSearchAuthor(searchtext);
+                if (result) {
+                    Page<Book> books = bookService.findPageAuthor(searchtext, page);
+                    return new ResponseEntity<>(books, HttpStatus.OK);
+                } else {
+                    result = bookService.doSearchGenre(searchtext);
+                    if (result) {
+                        Page<Book> books = bookService.findPageGenre(searchtext, page);
+                        return new ResponseEntity<>(books, HttpStatus.OK);
+                    } else {
+                        result = bookService.doSearchPartial(searchtext);
+                        if (result) {
+                            Page<Book> books = bookService.findPagePartial(searchtext, page);
+                            return new ResponseEntity<>(books, HttpStatus.OK);
+                        } else {
+                            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                        }
+                    }
+                }
+            }
+        } else {
+            Page<Book> books = bookService.findAll(page);
+            return new ResponseEntity<>(books, HttpStatus.OK);
+        }
     }
 
     @Operation(summary = "Get a book by its id")
