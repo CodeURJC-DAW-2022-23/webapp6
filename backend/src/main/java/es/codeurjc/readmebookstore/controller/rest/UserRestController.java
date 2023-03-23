@@ -286,8 +286,9 @@ public class UserRestController {
     })
     @DeleteMapping("/books/{id}")
     public ResponseEntity<Book> deleteFavoriteBook(@PathVariable long id) {
-        Book book = bookService.findById(id).get();
-        if (book != null) {
+        Optional <Book> opBook = bookService.findById(id);
+        if (opBook.isPresent()) {
+            Book book = opBook.get();
             userService.deletefavorite(id);
             return ResponseEntity.ok(book);
         } else {
@@ -304,9 +305,11 @@ public class UserRestController {
             @ApiResponse(responseCode = "404", description = "Review not found", content = @Content)
     })
     @DeleteMapping("/reviews/{id}")
-    public ResponseEntity<Review> deleteReview(@PathVariable long id) {
-        Review review = reviewService.findById(id).get();
-        if (review != null) {
+    public ResponseEntity<Review> deleteReview(@PathVariable long id, HttpServletRequest request) {
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional <Review> opReview = reviewService.findById(id);
+        if (opReview.isPresent() && (userSession.getId() == opReview.get().getAuthor().getId())) {
+            Review review = opReview.get();
             reviewService.delete(id);
             return ResponseEntity.ok(review);
         } else {
@@ -323,9 +326,11 @@ public class UserRestController {
             @ApiResponse(responseCode = "404", description = "Offer not found", content = @Content)
     })
     @DeleteMapping("/offers/{id}")
-    public ResponseEntity<Offer> deleteOffer(@PathVariable long id) {
-        Offer offer = offerService.findById(id).get();
-        if (offer != null) {
+    public ResponseEntity<Offer> deleteOffer(@PathVariable long id, HttpServletRequest request) {
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional<Offer> opOffer = offerService.findById(id);
+        if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId()) ){
+            Offer offer = opOffer.get();
             offerService.delete(id);
             return ResponseEntity.ok(offer);
         } else {
@@ -362,9 +367,11 @@ public class UserRestController {
     })
     @PutMapping("/reviews/{id}")
     public ResponseEntity<Review> updateReview(@PathVariable long id,
-            @RequestBody Review updatedReview) {
-        Review review = reviewService.findById(id).get();
-        if (review != null) {
+            @RequestBody Review updatedReview, HttpServletRequest request) {
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional <Review> opReview = reviewService.findById(id);
+        if (opReview.isPresent() && (userSession.getId() == opReview.get().getAuthor().getId())) {
+            Review review = opReview.get();
             updatedReview.setId(id);
             updatedReview.setAuthor(review.getAuthor());
             updatedReview.setBook(review.getBook());
@@ -387,22 +394,19 @@ public class UserRestController {
     })
     @PutMapping("/offers/{id}")
     public ResponseEntity<Offer> updateOffer(@PathVariable long id,
-            @RequestBody Offer updatedOffer) throws SQLException {
-        Offer offer = offerService.findById(id).get();
-        if (offer != null) {
-            if (updatedOffer.getImage()) {
-                Offer dbOffer = offerService.findById(id).orElseThrow();
-                if (dbOffer.getImage()) {
-                    updatedOffer.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
-                            dbOffer.getImageFile().length()));
-                }
-            }
+            @RequestBody Offer updatedOffer, HttpServletRequest request) throws SQLException {
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional <Offer> opOffer = offerService.findById(id);
+        if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId())) {
+            Offer offer = opOffer.get();
             updatedOffer.setId(id);
             updatedOffer.setSeller(offer.getSeller());
             updatedOffer.setBook(offer.getBook());
             updatedOffer.setSold(offer.getSold());
             Date date = new Date();
             updatedOffer.setDate(date);
+            updatedOffer.setImage(offer.getImage());
+            updatedOffer.setImageFile(offer.getImageFile());
             offerService.save(updatedOffer);
             return ResponseEntity.ok(updatedOffer);
         } else {
@@ -421,22 +425,18 @@ public class UserRestController {
     @PutMapping("/")
     public ResponseEntity<User> updateUser(
             @RequestBody User updatedUser, HttpServletRequest request) throws SQLException {
-        User user = userService.findByName(request.getUserPrincipal().getName());
-        if (user != null) {
-            if (updatedUser.getImage()) {
-                User dbUser = userService.findById(user.getId()).orElseThrow();
-                if (dbUser.getImage()) {
-                    updatedUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
-                            dbUser.getImageFile().length()));
-                }
-            }
-            updatedUser.setId(user.getId());
-            updatedUser.setName(user.getName());
-            updatedUser.setEncodedPassword(user.getEncodedPassword());
-            updatedUser.setListFavouriteBooks(user.getFavouriteBooks());
-            updatedUser.setOffers(user.getOffers());
-            updatedUser.setReadedReviews(user.getReadedReviews());
-            updatedUser.setRoles(user.getRoles());
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional<User> user = userService.findById(userSession.getId());
+        if (user.isPresent()) {
+            updatedUser.setId(userSession.getId());
+            updatedUser.setName(userSession.getName());
+            updatedUser.setEncodedPassword(userSession.getEncodedPassword());
+            updatedUser.setListFavouriteBooks(userSession.getFavouriteBooks());
+            updatedUser.setOffers(userSession.getOffers());
+            updatedUser.setReadedReviews(userSession.getReadedReviews());
+            updatedUser.setRoles(userSession.getRoles());
+            updatedUser.setImage(userSession.getImage());
+            updatedUser.setImageFile(userSession.getImageFile());
             userService.save(updatedUser);
             return ResponseEntity.ok(updatedUser);
         } else {
