@@ -1,6 +1,5 @@
 package es.codeurjc.readmebookstore.controller.rest;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,12 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,7 +52,7 @@ public class ReviewRestController {
             @ApiResponse(responseCode = "404", description = "Review page not found", content = @Content)
     })
     @GetMapping("")
-    public Page<Review> getReviewsPaged(@RequestParam int page) {
+    public Page<Review> getReviewsPaged(@RequestParam(defaultValue = "0")  int page) {
         return reviewService.findAll(page);
     }
 
@@ -78,54 +74,5 @@ public class ReviewRestController {
         }
     }
 
-    ///////////////////// DELETES ////////////////////////////////////
-
-    // DOES NOT WORK YET (method not allowed)
-    @Operation(summary = "Delete a review by its id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Review deleted", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Review not found", content = @Content)
-    })
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Review> deleteReview(@PathVariable long id) {
-        Optional <Review> opReview = reviewService.findById(id);
-        if (opReview.isPresent()) {
-            Review review = opReview.get();
-            reviewService.delete(id);
-            return ResponseEntity.ok(review);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    ///////////////////// PUTS ////////////////////////////////////
-
-    @Operation(summary = "Update a review by its id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Review updated", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Review not found", content = @Content)
-    })
-    @PutMapping("/{id}")
-    public ResponseEntity<Review> updateReview(@PathVariable long id,
-            @RequestBody Review newReview) {
-        Review review = reviewService.findById(id).get();
-        if (review != null) {
-            newReview.setId(id);
-            newReview.setAuthor(review.getAuthor());
-            newReview.setBook(review.getBook());
-            Date date = new Date();
-            newReview.setDate(date);
-            reviewService.save(newReview);
-            return ResponseEntity.ok(review);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
 }
