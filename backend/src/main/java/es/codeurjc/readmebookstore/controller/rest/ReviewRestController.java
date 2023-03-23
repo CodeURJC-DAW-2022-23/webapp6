@@ -33,13 +33,13 @@ public class ReviewRestController {
     @Autowired
     private ReviewService reviewService;
 
-
-    /////////////////////   GETS  ////////////////////////////////////
+    ///////////////////// GETS ////////////////////////////////////
 
     @Operation(summary = "Get all reviews")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the reviews", content = {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Review.class))) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
             @ApiResponse(responseCode = "404", description = "Reviews not found", content = @Content)
     })
     @GetMapping("/")
@@ -52,7 +52,7 @@ public class ReviewRestController {
             @ApiResponse(responseCode = "200", description = "Found the review page", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class, subTypes = {
                             Review.class })) }),
-            @ApiResponse(responseCode = "400", description = "Invalid page supplied", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
             @ApiResponse(responseCode = "404", description = "Review page not found", content = @Content)
     })
     @GetMapping("")
@@ -64,7 +64,7 @@ public class ReviewRestController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the review ", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
             @ApiResponse(responseCode = "404", description = "Review not found", content = @Content)
     })
     @GetMapping("/{id}")
@@ -78,21 +78,22 @@ public class ReviewRestController {
         }
     }
 
-
-    /////////////////////   DELETES  ////////////////////////////////////
+    ///////////////////// DELETES ////////////////////////////////////
 
     // DOES NOT WORK YET (method not allowed)
     @Operation(summary = "Delete a review by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Review deleted", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
             @ApiResponse(responseCode = "404", description = "Review not found", content = @Content)
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Review> deleteReview(@PathVariable long id) {
-        Review review = reviewService.findById(id).get();
-        if (review != null) {
+        Optional <Review> opReview = reviewService.findById(id);
+        if (opReview.isPresent()) {
+            Review review = opReview.get();
             reviewService.delete(id);
             return ResponseEntity.ok(review);
         } else {
@@ -100,15 +101,14 @@ public class ReviewRestController {
         }
     }
 
+    ///////////////////// PUTS ////////////////////////////////////
 
-    /////////////////////   PUTS  ////////////////////////////////////
-
-    // DOES NOT WORK YET (method not allowed)
     @Operation(summary = "Update a review by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Review updated", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as admin", content = @Content),
             @ApiResponse(responseCode = "404", description = "Review not found", content = @Content)
     })
     @PutMapping("/{id}")
@@ -127,6 +127,5 @@ public class ReviewRestController {
             return ResponseEntity.notFound().build();
         }
     }
-
 
 }
