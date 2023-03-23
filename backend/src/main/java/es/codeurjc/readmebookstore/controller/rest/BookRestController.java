@@ -1,8 +1,11 @@
 package es.codeurjc.readmebookstore.controller.rest;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -14,8 +17,10 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.codeurjc.readmebookstore.model.Book;
@@ -24,9 +29,10 @@ import es.codeurjc.readmebookstore.model.Review;
 import es.codeurjc.readmebookstore.service.BookService;
 import es.codeurjc.readmebookstore.service.OfferService;
 import es.codeurjc.readmebookstore.service.ReviewService;
-
+import es.codeurjc.readmebookstore.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -44,6 +50,9 @@ public class BookRestController {
 
     @Autowired
     private OfferService offerService;
+
+    @Autowired
+    private UserService userService;
 
     @Operation(summary = "Get all books")
     @ApiResponses(value = {
@@ -176,4 +185,43 @@ public class BookRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/{id}/reviews")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> createReview(@PathVariable long id, @RequestBody Review newReview,
+            HttpServletRequest request) throws SQLException {
+        Optional<Book> book = bookService.findById(id);
+        if (book.isPresent()) {
+            String username = request.getUserPrincipal().getName();
+
+            newReview.setAuthor(userService.findByName(username));
+            newReview.setBook(book.get());
+            newReview.setDate(new Date());
+
+            reviewService.save(newReview);
+            return ResponseEntity.ok(newReview.getText());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/{id}/offers")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Offer> createOffer(@PathVariable long id, @RequestBody Offer newOffer,
+            HttpServletRequest request) throws SQLException {
+        Optional<Book> book = bookService.findById(id);
+        if (book.isPresent()) {
+
+            String username = request.getUserPrincipal().getName();
+            newOffer.setSeller(userService.findByName(username));
+            newOffer.setBook(book.get());
+            newOffer.setDate(new Date());
+
+            offerService.save(newOffer);
+            return ResponseEntity.ok(newOffer);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

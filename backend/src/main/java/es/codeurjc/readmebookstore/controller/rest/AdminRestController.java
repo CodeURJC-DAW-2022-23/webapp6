@@ -46,14 +46,31 @@ public class AdminRestController {
     private ReviewService reviewService;
 
     ///////////////// BOOKS //////////////////////////////////////////////////
-    @PostMapping("books/")
+    @PostMapping("/books/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Book createBook(@RequestBody Book book) {
-        bookService.save(book);
-        return book;
+    public Book createBook(@RequestBody Book newBook) {
+        bookService.save(newBook);
+        return newBook;
     }
 
-    @DeleteMapping("books/{id}")
+    @PutMapping("/books/{id}")
+    public ResponseEntity<Book> editBook(@PathVariable long id, @RequestBody Book newData) {
+        Optional<Book> book = bookService.findById(id);
+        if (book.isPresent()) {
+            Book bookUpdate = book.get();
+
+            bookUpdate.setTitle(newData.getTitle());
+            bookUpdate.setAuthor(newData.getAuthor());
+            bookUpdate.setGenre(newData.getGenre());
+            
+            bookService.save(bookUpdate);
+            return ResponseEntity.ok(bookUpdate);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/books/{id}")
     public ResponseEntity<Book> deleteBook(@PathVariable long id) {
         Optional<Book> op = bookService.findById(id);
         if (op.isPresent()) {
