@@ -86,36 +86,33 @@ public class BookController extends AlgorithmController {
 	public String showBooks(Model model, HttpServletRequest request, @RequestParam(defaultValue = "0") int currentPage, @RequestParam(required = false) String searchtext) throws Exception {
 		model.addAttribute("bestPick", getRecommendedBooks(model, request).get(0));
 
-
 		if (searchtext != null) {
-			String result = "false";
-			result = doSearchTitle(model, searchtext, request);
-			if (result != "false") {
-				return result;
+			Boolean result = false;
+			result = bookService.doSearchTitle(searchtext);
+			if (result) {
+				return showBook(model, bookService.findByTitle(searchtext).get().getId(), request, 0, 0);
 			} else {
-				result = doSearchAuthor(model, searchtext, request);
-				if (result != "false") {
+				result = bookService.doSearchAuthor(searchtext);
+				if (result) {
 					model.addAttribute("books", bookService.findPageAuthor(searchtext, currentPage));
 				} else {
-					result = doSearchGenre(model, searchtext, request);
-					if (result != "false") {
+					result = bookService.doSearchGenre(searchtext);
+					if (result) {
 						model.addAttribute("books", bookService.findPageGenre(searchtext, currentPage));
 					} else {
-						result = doSearchPartial(model, searchtext, request);
-						if (result != "false") {
+						result = bookService.doSearchPartial(searchtext);
+						if (result) {
 							model.addAttribute("books", bookService.findPagePartial(searchtext, currentPage));
 						} else {
-							
 							return "error-page";
 						}
 					}
 				}
 			}
-	
-			}
-			else {
-				model.addAttribute("books", bookService.findAll(currentPage));
-			}
+		}
+		else {
+			model.addAttribute("books", bookService.findAll(currentPage));
+		}
 
 		return "books-general-page";
 	}
@@ -161,70 +158,6 @@ public class BookController extends AlgorithmController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
-	}
-
-	private String doSearchTitle(Model model, @RequestParam String title, HttpServletRequest request) {
-		String result = "false";
-		try {
-			Optional<Book> booktitle = bookService.findByTitle(title);
-			if (booktitle.get().getId() != null) {
-				return showBook(model, booktitle.get().getId(), request, 0, 0);
-			} else {
-				result = "false";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			result = "false";
-		}
-		return result;
-	}
-
-	private String doSearchAuthor(Model model, @RequestParam String author, HttpServletRequest request) {
-		String result = "false";
-		try {
-			List<Book> bookauthor = bookService.findByAuthor(author);
-			if (bookauthor.size() > 0) {
-				return "true";
-			} else {
-				return "false";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			result = "false";
-		}
-		return result;
-	}
-
-	private String doSearchGenre(Model model, @RequestParam String genre, HttpServletRequest request) {
-		String result = "false";
-		try {
-			List<Book> bookgenre = bookService.findByGenre(genre);
-			if (bookgenre.size() > 0) {
-				return "true";
-			} else {
-				return "false";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			result = "false";
-		}
-		return result;
-	}
-
-	private String doSearchPartial(Model model, @RequestParam String partial, HttpServletRequest request) {
-		String result = "false";
-		try {
-			List<Book> bookpartial = bookService.findByPartial(partial);
-			if (bookpartial.size() > 0) {
-				return "true";
-			} else {
-				return "false";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			result = "false";
-		}
-		return result;
 	}
 
 }
