@@ -41,7 +41,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-
 @RestController
 @RequestMapping("/api/offers")
 public class OfferRestController {
@@ -112,10 +111,8 @@ public class OfferRestController {
         }
     }
 
+    ///////////////////// DELETES ////////////////////////////////////
 
-        /////////////////////   DELETES  ////////////////////////////////////
-
-    // DOES NOT WORK YET (method not allowed)
     @Operation(summary = "Delete a offer by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Offer deleted", content = {
@@ -127,7 +124,7 @@ public class OfferRestController {
     public ResponseEntity<Offer> deleteOffer(@PathVariable long id, HttpServletRequest request) {
         User userSession = userService.findByName(request.getUserPrincipal().getName());
         Optional<Offer> opOffer = offerService.findById(id);
-        if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId()) ){
+        if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId())) {
             Offer offer = opOffer.get();
             offerService.delete(id);
             return ResponseEntity.ok(offer);
@@ -136,10 +133,31 @@ public class OfferRestController {
         }
     }
 
+    @Operation(summary = "Delete a offer's image")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Image deleted", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+    })
+    @DeleteMapping("/{id}/image")
+    public ResponseEntity<Object> deleteImageOffer(@PathVariable long id, HttpServletRequest request) throws IOException {
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional<Offer> opOffer = offerService.findById(id);
+        if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId())) {
+            Offer offerUpdate = opOffer.get();
+            offerUpdate.setImageFile(null);
+            offerUpdate.setImage(false);
+            offerService.save(offerUpdate);
+            return ResponseEntity.ok("Imagen eliminada");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-    /////////////////////   PUTS  ////////////////////////////////////
+    ///////////////////// PUTS ////////////////////////////////////
 
-    // DOES NOT WORK YET (method not allowed)R
     @Operation(summary = "Update a offer ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Offer updated", content = {
@@ -152,27 +170,21 @@ public class OfferRestController {
     public ResponseEntity<Offer> updateOffer(@PathVariable long id,
             @RequestBody Offer updatedOffer, HttpServletRequest request) throws SQLException {
 
-        
         User userSession = userService.findByName(request.getUserPrincipal().getName());
-        Optional <Offer> opOffer = offerService.findById(id);
+        Optional<Offer> opOffer = offerService.findById(id);
 
         if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId())) {
-                if (updatedOffer.getImage()) {
-                    Offer dbOffer = offerService.findById(id).orElseThrow();
-                    if (dbOffer.getImage()) {
-                        updatedOffer.setImageFile(BlobProxy.generateProxy(dbOffer.getImageFile().getBinaryStream(),
-                                dbOffer.getImageFile().length()));
-                    }
-                }
-                Offer offer = opOffer.get();
-                updatedOffer.setId(id);
-                updatedOffer.setSeller(offer.getSeller());
-                updatedOffer.setBook(offer.getBook());
-                updatedOffer.setSold(offer.getSold());
-                Date date = new Date();
-                updatedOffer.setDate(date);
-                offerService.save(updatedOffer);
-                return ResponseEntity.ok(updatedOffer);
+            Offer offer = opOffer.get();
+            updatedOffer.setId(id);
+            updatedOffer.setSeller(offer.getSeller());
+            updatedOffer.setBook(offer.getBook());
+            updatedOffer.setSold(offer.getSold());
+            Date date = new Date();
+            updatedOffer.setDate(date);
+            updatedOffer.setImage(offer.getImage());
+            updatedOffer.setImageFile(offer.getImageFile());
+            offerService.save(updatedOffer);
+            return ResponseEntity.ok(updatedOffer);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -191,45 +203,45 @@ public class OfferRestController {
             @RequestBody Offer updatedOffer, HttpServletRequest request) throws SQLException {
         Offer offer = offerService.findById(id).get();
 
-        if (!offer.getSold()){
+        if (!offer.getSold()) {
             User buyer = userService.findByName(request.getUserPrincipal().getName());
             offer.setSold(true);
             offer.setBuyer(buyer);
             offerService.save(offer);
             return ResponseEntity.ok(offer);
-        }
-        else {
+        } else {
             return ResponseEntity.notFound().build();
         }
-    
+
     }
 
     @Operation(summary = "Add offers's image")
-   @ApiResponses(value = {
-           @ApiResponse(responseCode = "200", description = "Image upload", content = {
-                   @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
-           @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
-           @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
-           @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
-   })
-   @PostMapping("/{id}/image")
-   public ResponseEntity<Object> uploadImageOffer(@PathVariable long id, @RequestParam MultipartFile imageFile, HttpServletRequest request)
-           throws IOException {
-       Optional<Offer> offer = offerService.findById(id);
-       User userSession = userService.findByName(request.getUserPrincipal().getName());
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Image upload", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+    })
+    @PostMapping("/{id}/image")
+    public ResponseEntity<Object> uploadImageOffer(@PathVariable long id, @RequestParam MultipartFile imageFile,
+            HttpServletRequest request)
+            throws IOException {
+        Optional<Offer> offer = offerService.findById(id);
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
 
-       if (offer.isPresent() && (userSession.getId() == offer.get().getSeller().getId())) {
-           Offer offerUpdate = offer.get();
-           URI location = fromCurrentRequest().build().toUri();
+        if (offer.isPresent() && (userSession.getId() == offer.get().getSeller().getId())) {
+            Offer offerUpdate = offer.get();
+            URI location = fromCurrentRequest().build().toUri();
 
-           offerUpdate.setImage(true);
-           offerUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-           offerService.save(offerUpdate);
+            offerUpdate.setImage(true);
+            offerUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+            offerService.save(offerUpdate);
 
-           return ResponseEntity.created(location).build();
-       } else {
-           return ResponseEntity.notFound().build();
-       }
-   }
+            return ResponseEntity.created(location).build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }

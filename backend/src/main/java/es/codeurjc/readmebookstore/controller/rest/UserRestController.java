@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,7 +90,7 @@ public class UserRestController {
             @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
     })
-    @GetMapping("/books/")
+    @GetMapping("/favorites/")
     public ResponseEntity<List<Book>> getUserFavoriteBooks(HttpServletRequest request) {
         User user = userService.findByName(request.getUserPrincipal().getName());
         Optional<User> op = userService.findById(user.getId());
@@ -112,7 +111,7 @@ public class UserRestController {
             @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
     })
-    @GetMapping("/books")
+    @GetMapping("/favorites")
     public ResponseEntity<Page<Book>> getUserFavoriteBooksPaginated(@RequestParam(defaultValue = "0") int page,
             HttpServletRequest request) {
         User user = userService.findByName(request.getUserPrincipal().getName());
@@ -297,47 +296,6 @@ public class UserRestController {
         }
     }
 
-    @Operation(summary = "Delete a user review by its id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Review deleted", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Review not found", content = @Content)
-    })
-    @DeleteMapping("/reviews/{id}")
-    public ResponseEntity<Review> deleteReview(@PathVariable long id, HttpServletRequest request) {
-        User userSession = userService.findByName(request.getUserPrincipal().getName());
-        Optional <Review> opReview = reviewService.findById(id);
-        if (opReview.isPresent() && (userSession.getId() == opReview.get().getAuthor().getId())) {
-            Review review = opReview.get();
-            reviewService.delete(id);
-            return ResponseEntity.ok(review);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @Operation(summary = "Delete a user offer by its id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Offer deleted", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Offer.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Offer not found", content = @Content)
-    })
-    @DeleteMapping("/offers/{id}")
-    public ResponseEntity<Offer> deleteOffer(@PathVariable long id, HttpServletRequest request) {
-        User userSession = userService.findByName(request.getUserPrincipal().getName());
-        Optional<Offer> opOffer = offerService.findById(id);
-        if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId()) ){
-            Offer offer = opOffer.get();
-            offerService.delete(id);
-            return ResponseEntity.ok(offer);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     @Operation(summary = "Delete the user image")
     @ApiResponses(value = {
@@ -364,60 +322,6 @@ public class UserRestController {
 
     /////////////////////////// PUTS //////////////////////////////////////////
 
-    @Operation(summary = "Update a user review ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Review updated", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Review not found", content = @Content)
-    })
-    @PutMapping("/reviews/{id}")
-    public ResponseEntity<Review> updateReview(@PathVariable long id,
-            @RequestBody Review updatedReview, HttpServletRequest request) {
-        User userSession = userService.findByName(request.getUserPrincipal().getName());
-        Optional <Review> opReview = reviewService.findById(id);
-        if (opReview.isPresent() && (userSession.getId() == opReview.get().getAuthor().getId())) {
-            Review review = opReview.get();
-            updatedReview.setId(id);
-            updatedReview.setAuthor(review.getAuthor());
-            updatedReview.setBook(review.getBook());
-            updatedReview.setDate(new Date());
-            reviewService.save(updatedReview);
-            return ResponseEntity.ok(updatedReview);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @Operation(summary = "Update a user offer ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Offer updated", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Offer.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Offer not found", content = @Content)
-    })
-    @PutMapping("/offers/{id}")
-    public ResponseEntity<Offer> updateOffer(@PathVariable long id,
-            @RequestBody Offer updatedOffer, HttpServletRequest request) throws SQLException {
-        User userSession = userService.findByName(request.getUserPrincipal().getName());
-        Optional <Offer> opOffer = offerService.findById(id);
-        if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId())) {
-            Offer offer = opOffer.get();
-            updatedOffer.setId(id);
-            updatedOffer.setSeller(offer.getSeller());
-            updatedOffer.setBook(offer.getBook());
-            updatedOffer.setSold(offer.getSold());
-            updatedOffer.setDate(new Date());
-            updatedOffer.setImage(offer.getImage());
-            updatedOffer.setImageFile(offer.getImageFile());
-            offerService.save(updatedOffer);
-            return ResponseEntity.ok(updatedOffer);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     @Operation(summary = "Update the user profile ")
     @ApiResponses(value = {
@@ -477,7 +381,7 @@ public class UserRestController {
         }
     }
 
-    @Operation(summary = "Add book to fav")
+    @Operation(summary = "Add book to fav by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Book added to fav", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Book.class)) }),

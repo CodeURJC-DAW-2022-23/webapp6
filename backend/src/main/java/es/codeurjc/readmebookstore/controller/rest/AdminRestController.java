@@ -410,6 +410,8 @@ public class AdminRestController {
                 updatedOffer.setBook(offer.getBook());
                 updatedOffer.setSold(offer.getSold());
                 Date date = new Date();
+                updatedOffer.setImage(offer.getImage());
+                updatedOffer.setImageFile(offer.getImageFile());
                 updatedOffer.setDate(date);
                 offerService.save(updatedOffer);
                 return ResponseEntity.ok(updatedOffer);
