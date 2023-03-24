@@ -1,5 +1,9 @@
 package es.codeurjc.readmebookstore.controller.rest;
 
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+
+import java.io.IOException;
+import java.net.URI;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -18,11 +22,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.model.User;
@@ -197,5 +203,33 @@ public class OfferRestController {
         }
     
     }
+
+    @Operation(summary = "Add offers's image")
+   @ApiResponses(value = {
+           @ApiResponse(responseCode = "200", description = "Image upload", content = {
+                   @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+           @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+           @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+           @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+   })
+   @PostMapping("/{id}/image")
+   public ResponseEntity<Object> uploadImageOffer(@PathVariable long id, @RequestParam MultipartFile imageFile, HttpServletRequest request)
+           throws IOException {
+       Optional<Offer> offer = offerService.findById(id);
+       User userSession = userService.findByName(request.getUserPrincipal().getName());
+
+       if (offer.isPresent() && (userSession.getId() == offer.get().getSeller().getId())) {
+           Offer offerUpdate = offer.get();
+           URI location = fromCurrentRequest().build().toUri();
+
+           offerUpdate.setImage(true);
+           offerUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+           offerService.save(offerUpdate);
+
+           return ResponseEntity.created(location).build();
+       } else {
+           return ResponseEntity.notFound().build();
+       }
+   }
 
 }
