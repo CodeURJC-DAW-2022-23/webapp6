@@ -28,9 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.Book;
+import es.codeurjc.readmebookstore.model.Offer;
 import es.codeurjc.readmebookstore.model.Review;
 import es.codeurjc.readmebookstore.model.User;
 import es.codeurjc.readmebookstore.service.BookService;
+import es.codeurjc.readmebookstore.service.OfferService;
 import es.codeurjc.readmebookstore.service.ReviewService;
 import es.codeurjc.readmebookstore.service.UserService;
 
@@ -53,6 +55,9 @@ public class AdminRestController {
 
     @Autowired
     private ReviewService reviewService;
+
+    @Autowired
+    private OfferService offerService;
 
     ///////////////// BOOKS //////////////////////////////////////////////////
     
@@ -357,4 +362,101 @@ public class AdminRestController {
         }
     }
 
+
+           /////////////////////// Offers //////////////////////////////////////////////
+
+   @Operation(summary = "Add offers's image")
+   @ApiResponses(value = {
+           @ApiResponse(responseCode = "200", description = "Image upload", content = {
+                   @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+           @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+           @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+           @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+   })
+   @PostMapping("/offers/{id}/image")
+   public ResponseEntity<Object> uploadImageOffer(@PathVariable long id, @RequestParam MultipartFile imageFile)
+           throws IOException {
+       Optional<Offer> offer = offerService.findById(id);
+       if (offer.isPresent()) {
+           Offer offerUpdate = offer.get();
+           URI location = fromCurrentRequest().build().toUri();
+
+           offerUpdate.setImage(true);
+           offerUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+           offerService.save(offerUpdate);
+
+           return ResponseEntity.created(location).build();
+       } else {
+           return ResponseEntity.notFound().build();
+       }
+   }
+
+   @Operation(summary = "Update a offer data")
+   @ApiResponses(value = {
+           @ApiResponse(responseCode = "200", description = "Offer data updated", content = {
+                   @Content(mediaType = "application/json", schema = @Schema(implementation = Offer.class)) }),
+           @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+           @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+           @ApiResponse(responseCode = "404", description = "Offer not found", content = @Content)
+   })
+   @PutMapping("/offers/{id}")
+   public ResponseEntity<Offer> updateOffer(@PathVariable long id,
+            @RequestBody Offer updatedOffer) throws SQLException {
+        Optional <Offer> opOffer = offerService.findById(id);
+        if (opOffer.isPresent()) {
+                Offer offer = opOffer.get();
+                updatedOffer.setId(id);
+                updatedOffer.setSeller(offer.getSeller());
+                updatedOffer.setBook(offer.getBook());
+                updatedOffer.setSold(offer.getSold());
+                Date date = new Date();
+                updatedOffer.setDate(date);
+                offerService.save(updatedOffer);
+                return ResponseEntity.ok(updatedOffer);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+   @Operation(summary = "Delete a offer")
+   @ApiResponses(value = {
+           @ApiResponse(responseCode = "200", description = "Offer deleted", content = {
+                   @Content(mediaType = "application/json", schema = @Schema(implementation = Offer.class)) }),
+           @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+           @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+           @ApiResponse(responseCode = "404", description = "Offer not found", content = @Content)
+   })
+   @DeleteMapping("/offers/{id}")
+   public ResponseEntity<Offer> deleteOffer(@PathVariable long id) {
+       Optional<Offer> offer = offerService.findById(id);
+       if (offer.isPresent()) {
+           offerService.delete(id);
+           Offer deletedOffer = offer.get();
+           return ResponseEntity.ok(deletedOffer);
+       } else {
+           return ResponseEntity.notFound().build();
+       }
+   }
+
+   @Operation(summary = "Delete a offer's image")
+   @ApiResponses(value = {
+           @ApiResponse(responseCode = "200", description = "Image deleted", content = {
+                   @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+           @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+           @ApiResponse(responseCode = "403", description = "Unauthorized action, login as an admin", content = @Content),
+           @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+   })
+   @DeleteMapping("/offers/{id}/image")
+   public ResponseEntity<Object> deleteImageOffer(@PathVariable long id) throws IOException {
+       Optional<Offer> offer = offerService.findById(id);
+       if (offer.isPresent()) {
+           Offer offerUpdate = offer.get();
+           offerUpdate.setImageFile(null);
+           offerUpdate.setImage(false);
+           offerService.save(offerUpdate);
+           return ResponseEntity.ok("Imagen eliminada");
+       } else {
+           return ResponseEntity.notFound().build();
+       }
+   }
 }

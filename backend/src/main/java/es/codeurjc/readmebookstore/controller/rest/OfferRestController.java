@@ -118,9 +118,11 @@ public class OfferRestController {
             @ApiResponse(responseCode = "404", description = "Offer not found", content = @Content)
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<Offer> deleteOffer(@PathVariable long id) {
-        Offer offer = offerService.findById(id).get();
-        if (offer != null) {
+    public ResponseEntity<Offer> deleteOffer(@PathVariable long id, HttpServletRequest request) {
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional<Offer> opOffer = offerService.findById(id);
+        if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId()) ){
+            Offer offer = opOffer.get();
             offerService.delete(id);
             return ResponseEntity.ok(offer);
         } else {
@@ -142,10 +144,13 @@ public class OfferRestController {
     })
     @PutMapping("/{id}")
     public ResponseEntity<Offer> updateOffer(@PathVariable long id,
-            @RequestBody Offer updatedOffer) throws SQLException {
-        Offer offer = offerService.findById(id).get();
+            @RequestBody Offer updatedOffer, HttpServletRequest request) throws SQLException {
 
-        if (offer != null) {
+        
+        User userSession = userService.findByName(request.getUserPrincipal().getName());
+        Optional <Offer> opOffer = offerService.findById(id);
+
+        if (opOffer.isPresent() && (userSession.getId() == opOffer.get().getSeller().getId())) {
                 if (updatedOffer.getImage()) {
                     Offer dbOffer = offerService.findById(id).orElseThrow();
                     if (dbOffer.getImage()) {
@@ -153,6 +158,7 @@ public class OfferRestController {
                                 dbOffer.getImageFile().length()));
                     }
                 }
+                Offer offer = opOffer.get();
                 updatedOffer.setId(id);
                 updatedOffer.setSeller(offer.getSeller());
                 updatedOffer.setBook(offer.getBook());
@@ -179,22 +185,17 @@ public class OfferRestController {
             @RequestBody Offer updatedOffer, HttpServletRequest request) throws SQLException {
         Offer offer = offerService.findById(id).get();
 
-        if (offer != null) {
-            if (!offer.getSold()){
-                User buyer = userService.findByName(request.getUserPrincipal().getName());
-                offer.setSold(true);
-                offer.setBuyer(buyer);
-                offerService.save(offer);
-                return ResponseEntity.ok(offer);
-            }
-            else{
-                return ResponseEntity.notFound().build();
-            }
+        if (!offer.getSold()){
+            User buyer = userService.findByName(request.getUserPrincipal().getName());
+            offer.setSold(true);
+            offer.setBuyer(buyer);
+            offerService.save(offer);
+            return ResponseEntity.ok(offer);
         }
         else {
             return ResponseEntity.notFound().build();
         }
     
-        }
+    }
 
 }
