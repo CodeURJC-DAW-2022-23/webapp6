@@ -201,10 +201,13 @@ public class OfferRestController {
     @PutMapping("/{id}/sold")
     public ResponseEntity<Offer> SoldOffer(@PathVariable long id,
             @RequestBody Offer updatedOffer, HttpServletRequest request) throws SQLException {
-        Offer offer = offerService.findById(id).get();
 
-        if (!offer.getSold()) {
-            User buyer = userService.findByName(request.getUserPrincipal().getName());
+        Optional<Offer> opOffer = offerService.findById(id);
+        User buyer = userService.findByName(request.getUserPrincipal().getName());
+        
+
+        if (opOffer.isPresent() && !opOffer.get().getSold() && (buyer.getId() != opOffer.get().getSeller().getId()) && ( !request.isUserInRole("ADMIN"))) {
+            Offer offer = opOffer.get();
             offer.setSold(true);
             offer.setBuyer(buyer);
             offerService.save(offer);
