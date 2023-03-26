@@ -156,7 +156,7 @@ Pages diagram:
     
 
 
-## 🚀 PHASE 2
+# 🚀 PHASE 2
 
 ### 📱 Screens
 
@@ -410,6 +410,167 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
       - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/repository/BookRepository.java) BookRepository.java
       - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/UserController.java) UserController.java
       - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/templates/book-particular-page.html) book-particular-page.html
+
+</details>
+
+# 🚀 PHASE 3
+
+### ✒ API Rest documentation
+
+### ✒ Docker instructions
+
+## 📊 Diagrams
+
+<details><summary>Java class diagram of web and rest controllers.</summary>
+   
+   Updated diagram in which the java classes of the application and the templates are related.
+   
+![diagrama](https://user-images.githubusercontent.com/80122593/227806030-8cacd206-a192-4852-8a1c-11372e8ce6bc.png)
+
+</details>
+
+
+
+
+## 🙋‍♂️ Member participation
+
+<details><summary>Gonzalo Ortega Carpintero.</summary>
+ 
+   - 📂 Completed tasks:
+ 
+      - a
+      - b
+      - c
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]() 
+      - [Commit 2]() 
+      - [Commit 3]()
+      - [Commit 4]() 
+      - [Commit 5]() 
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]() 
+      - [File 2]() 
+      - [File 3]() 
+      - [File 4]() 
+      - [File 5]() 
+
+</details>
+
+<details><summary>Sergio Hernández Sandoval.</summary>
+   
+   - 📂 Completed tasks:
+ 
+      - APIs related to reviews by user.
+      - APIs related to reviews by admin.
+      - APIs related to user by session user.
+      - APIs related to user by admin.
+      - APIs related to show statistics.
+      - Passing duplicate code used in web and rest from controllers to services.
+      - Improvements and bug fixes.
+      - Updated class diagram.
+      - Readme structuring.
+      
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/843d5a76c659a2e63dcd1c4c95a83ec27fc31ba0) ReviewRestController initialized.
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/55d1c99930edfb1fadacad80a1706bf9a33582d4) UserRestController finished.
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/7963c381376baa346f8a559555061ce2909b17b1) StatisticsRestController started and completed.
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/fbd13385042709c03d79f567b16becf190b36e8d) Added the postman petition collection.
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/83097e82911bb03d185fddc5bcf3b19801ef504c) Added documentation of APIs.
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/AdminRestController.java) AdminRestController
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/ReviewRestController.java) ReviewRestController
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/StatisticsRestController.java) StatisticsRestController
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/UserRestController.java) UserRestController
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/model/Review.java) Review.java
+
+</details>
+
+<details><summary>Markos Aguirre Elorza .</summary>
+   
+      
+   - 📂 Completed tasks:
+ 
+      - a
+      - b
+      - c
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]() 
+      - [Commit 2]() 
+      - [Commit 3]()
+      - [Commit 4]() 
+      - [Commit 5]() 
+     
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]() 
+      - [File 2]() 
+      - [File 3]() 
+      - [File 4]() 
+      - [File 5]() 
+     
+
+</details>
+
+<details><summary>Manuel Martin Alaez.</summary>
+   
+   - 📂 Completed tasks:
+ 
+      - a
+      - b
+      - c
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]() 
+      - [Commit 2]() 
+      - [Commit 3]()
+      - [Commit 4]() 
+      - [Commit 5]() 
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]() 
+      - [File 2]() 
+      - [File 3]() 
+      - [File 4]() 
+      - [File 5]() 
+
+</details>
+
+<details><summary> Alberto Jiménez Gómez.</summary>
+   
+   - 📂 Completed tasks:
+ 
+      - a
+      - b
+      - c
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]() 
+      - [Commit 2]() 
+      - [Commit 3]()
+      - [Commit 4]() 
+      - [Commit 5]() 
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]() 
+      - [File 2]() 
+      - [File 3]() 
+      - [File 4]() 
+      - [File 5]() 
 
 </details>
 
