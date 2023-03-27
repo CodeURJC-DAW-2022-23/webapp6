@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -34,7 +35,6 @@ import es.codeurjc.readmebookstore.service.ReviewService;
 import es.codeurjc.readmebookstore.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -252,11 +252,11 @@ public class BookRestController {
             @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
             @ApiResponse(responseCode = "404", description = "Book not found", content = @Content)
     })
-    @PostMapping("/{id}/reviews")
+    @PostMapping("/{bookId}/reviews")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createReview(@PathVariable long id, @RequestBody Review newReview,
+    public ResponseEntity<Review> createReview(@PathVariable long bookId, @RequestBody Review newReview,
             HttpServletRequest request) throws SQLException {
-        Optional<Book> book = bookService.findById(id);
+        Optional<Book> book = bookService.findById(bookId);
         if (book.isPresent()) {
             String username = request.getUserPrincipal().getName();
 
@@ -265,7 +265,7 @@ public class BookRestController {
             newReview.setDate(new Date());
 
             reviewService.save(newReview);
-            return ResponseEntity.ok(newReview.getText());
+            return ResponseEntity.ok(newReview);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -279,11 +279,11 @@ public class BookRestController {
             @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
             @ApiResponse(responseCode = "404", description = "Book not found", content = @Content)
     })
-    @PostMapping("/{id}/offers")
+    @PostMapping("/{bookId}/offers")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Offer> createOffer(@PathVariable long id, @RequestBody Offer newOffer,
+    public ResponseEntity<Offer> createOffer(@PathVariable long bookId, @RequestBody Offer newOffer,
             HttpServletRequest request) throws SQLException {
-        Optional<Book> book = bookService.findById(id);
+        Optional<Book> book = bookService.findById(bookId);
         if (book.isPresent()) {
 
             String username = request.getUserPrincipal().getName();
