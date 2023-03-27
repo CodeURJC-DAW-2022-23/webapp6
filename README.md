@@ -502,16 +502,14 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 
 </details>
 
-<details><summary>Markos Aguirre Elorza .</summary>
+<details><summary>Markos Aguirre Elorza.</summary>
    
-      
-    - 📂 Completed tasks:
+   - 📂 Completed tasks:
  
       - Login API
       - Register API (email sending)
       - Security
       - Access permissions
-      
  
    - 📤 Most significant commits:
  
@@ -536,25 +534,26 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
    
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - APIs related to offers.
+      - APIs related to offers by admin.
+      - OpenApi documentation.
+      - Bugs fixes.
  
    - 📤 Most significant commits:
  
-      - [Commit 1]() 
-      - [Commit 2]() 
-      - [Commit 3]()
-      - [Commit 4]() 
-      - [Commit 5]() 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/91199caacf53714904567906f73d8f146237b52e) 
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/7a44bce0b6ca5c817deb79e3b145e93013ca5649) 
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f421a964154a20b68fe20097c243bb3ee268b02b)
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/dbdd6d7f19e18bb7442eb81f03bf3e8b1b3154b9) 
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/d75cdde413996be41b21736c8401d00378d63ac1) 
  
    - 📝 Files with more participation:
  
-      - [File 1]() 
-      - [File 2]() 
-      - [File 3]() 
-      - [File 4]() 
-      - [File 5]() 
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/OfferRestController.java) OfferRestController.java
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/AdminRestController.java) AdminRestController.java
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/pom.xml) pom.xml
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/api-docs/api-docs.html) api-docs.html
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/api-docs/api-docs.yaml) api-docs.yaml
 
 </details>
 
@@ -562,25 +561,31 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
    
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - AlgorithmService.
+      - Insert search functions in BookService.
+      - Api for pageable searched books and find all books.
+      - Api for Algorithm.
+      - Api to add favorite books.
+      - Modify api to remove favorite books.
+      - Move principal algorithm function to AlgorithmService.
+      - Removing Algorithm web and rest controller files.
+      - Modify book web and rest controller to launch the algorithm directly.
+      - Remove duplicated and unused code.
  
    - 📤 Most significant commits:
  
-      - [Commit 1]() 
-      - [Commit 2]() 
-      - [Commit 3]()
-      - [Commit 4]() 
-      - [Commit 5]() 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/c4637a5fe677ffb0418a5b5437261e6ef5f4e8f5) Change Algorithm functions to a Service.
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/da0e3a5aa643025b92048cfe1b3aa5eada653e8a) Change Searcg functions to a Service.
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/10f5439189db1cca740d22e53622cce333e5fd2f) Api for pageable searched books and findall books.
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/653a71aff7467f942eafc50d06b9b605f3337904) Functional algorithm api.
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/e33767696955417ac18da22b80d45515425a00db) Api for add favorites and remove duplicated code in algorithm api.
  
    - 📝 Files with more participation:
  
-      - [File 1]() 
-      - [File 2]() 
-      - [File 3]() 
-      - [File 4]() 
-      - [File 5]() 
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/BookRestController.java) BookRestController.java
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/UserRestController.java) UserRestController.java
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/service/AlgorithmService.java) AlgorithmService.java
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/service/BookService.java) BookService.java
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/web/BookController.java) BookController.java
 
 </details>
-
