@@ -1,0 +1,1784 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8443
+  description: Generated server url
+paths:
+  /api/user/:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get the information of the user in the session
+      operationId: me
+      responses:
+        "200":
+          description: Found user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: User not found
+    put:
+      tags:
+      - user-rest-controller
+      summary: 'Update the user profile '
+      operationId: updateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "200":
+          description: User profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: User not found
+  /api/reviews/{id}:
+    get:
+      tags:
+      - review-rest-controller
+      summary: Get a review by its id
+      operationId: getReview
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: 'Found the review '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Review not found
+    put:
+      tags:
+      - review-rest-controller
+      summary: 'Update a review '
+      operationId: updateReview
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      responses:
+        "200":
+          description: Review updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: Review not found
+    delete:
+      tags:
+      - review-rest-controller
+      summary: Delete a review by its id
+      operationId: deleteReview
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "200":
+          description: Review deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        "404":
+          description: Review not found
+  /api/offers/{id}:
+    get:
+      tags:
+      - offer-rest-controller
+      summary: Get a Offer by its id
+      operationId: getOffer
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Found the offer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+        "400":
+          description: Invalid id supplied
+        "404":
+          description: Offernot found
+    put:
+      tags:
+      - offer-rest-controller
+      summary: 'Update a offer '
+      operationId: updateOffer
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Offer'
+        required: true
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Offer not found
+        "200":
+          description: Offer updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+        "403":
+          description: "Unauthorized action, login"
+    delete:
+      tags:
+      - offer-rest-controller
+      summary: Delete a offer by its id
+      operationId: deleteOffer
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Offer deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+        "404":
+          description: Offer not found
+        "400":
+          description: Invalid id supplied
+  /api/offers/{id}/sold:
+    put:
+      tags:
+      - offer-rest-controller
+      summary: 'Update a offer '
+      operationId: SoldOffer
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Offer'
+        required: true
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Offer not found
+        "200":
+          description: Offer updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+        "403":
+          description: "Unauthorized action, login"
+  /api/admin/users/{id}:
+    put:
+      tags:
+      - admin-rest-controller
+      summary: Update a user profile by id
+      operationId: updateUser_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login as admin"
+        "200":
+          description: User profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: User not found
+    delete:
+      tags:
+      - admin-rest-controller
+      summary: Delete a user by id
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Delete the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login as admin"
+        "404":
+          description: User not found
+  /api/admin/reviews/{id}:
+    put:
+      tags:
+      - admin-rest-controller
+      summary: Update a review by its id
+      operationId: updateReview_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      responses:
+        "200":
+          description: Review updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login as admin"
+        "404":
+          description: Review not found
+    delete:
+      tags:
+      - admin-rest-controller
+      summary: Delete a review by its id
+      operationId: deleteReview_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login as admin"
+        "200":
+          description: Review deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        "404":
+          description: Review not found
+  /api/admin/offers/{id}:
+    put:
+      tags:
+      - admin-rest-controller
+      summary: Update a offer data
+      operationId: updateOffer_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Offer'
+        required: true
+      responses:
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+        "200":
+          description: Offer data updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+        "404":
+          description: Offer not found
+    delete:
+      tags:
+      - admin-rest-controller
+      summary: Delete a offer
+      operationId: deleteOffer_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "200":
+          description: Offer deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Offer not found
+  /api/admin/books/{id}:
+    put:
+      tags:
+      - admin-rest-controller
+      summary: Update a book data
+      operationId: editBook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+        required: true
+      responses:
+        "404":
+          description: Book not found
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "200":
+          description: Book data updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        "400":
+          description: "Bad request, try again"
+    delete:
+      tags:
+      - admin-rest-controller
+      summary: Delete a book
+      operationId: deleteBook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Book deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        "404":
+          description: Book not found
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+  /api/user/image:
+    get:
+      tags:
+      - user-rest-controller
+      summary: The image of the user in the session
+      operationId: downloadImage
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: Image not found
+        "200":
+          description: Found the image
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+    post:
+      tags:
+      - user-rest-controller
+      summary: 'Upload the user image '
+      operationId: uploadImage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - imageFile
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: Image not found
+        "200":
+          description: Image upload
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+    delete:
+      tags:
+      - user-rest-controller
+      summary: Delete the user image
+      operationId: deleteImageUser
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: Image not found
+        "200":
+          description: image deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+  /api/user/favorites/{id}:
+    post:
+      tags:
+      - user-rest-controller
+      summary: Add book to fav by id
+      operationId: addFavorite
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Book not found
+        "400":
+          description: "Bad request, try again"
+        "200":
+          description: Book added to fav
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        "403":
+          description: "Unauthorized action, login"
+    delete:
+      tags:
+      - user-rest-controller
+      summary: Delete a user favorite book by its id
+      operationId: deleteFavoriteBook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Favorite book not found
+        "403":
+          description: "Unauthorized action, login"
+        "200":
+          description: Favorite book deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+  /api/offers/{id}/image:
+    get:
+      tags:
+      - offer-rest-controller
+      summary: The image of a specified offer
+      operationId: downloadImage_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Found the image
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: binary
+        "404":
+          description: Image not found
+    post:
+      tags:
+      - offer-rest-controller
+      summary: Add offers's image
+      operationId: uploadImageOffer
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - imageFile
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+      responses:
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Image not found
+        "200":
+          description: Image upload
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+    delete:
+      tags:
+      - offer-rest-controller
+      summary: Delete a offer's image
+      operationId: deleteImageOffer
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Image not found
+        "200":
+          description: Image deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+  /api/books/{id}/reviews:
+    get:
+      tags:
+      - book-rest-controller
+      summary: Get a page of the reviews of a specified book
+      operationId: getBookReviews
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "400":
+          description: Invalid page supplied
+        "404":
+          description: Book not found
+        "200":
+          description: Found the reviews page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+    post:
+      tags:
+      - book-rest-controller
+      summary: Add a new review
+      operationId: createReview
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+      responses:
+        "404":
+          description: Book not found
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "200":
+          description: Review created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+  /api/books/{id}/offers:
+    get:
+      tags:
+      - book-rest-controller
+      summary: Get a page of the offers of a specified book
+      operationId: getBookOffers
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "400":
+          description: Invalid page supplied
+        "404":
+          description: Book not found
+        "200":
+          description: Found the offers page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+    post:
+      tags:
+      - book-rest-controller
+      summary: Add a new offer
+      operationId: createOffer
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Offer'
+      responses:
+        "404":
+          description: Book not found
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "200":
+          description: Offer created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+  /api/auth/register:
+    post:
+      tags:
+      - auth-rest-controller
+      summary: Register a new user
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/refresh:
+    post:
+      tags:
+      - auth-rest-controller
+      summary: Refresh the authenticated users
+      operationId: refreshToken
+      parameters:
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/auth/logout:
+    post:
+      tags:
+      - auth-rest-controller
+      summary: Logout user
+      operationId: logOut
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/auth/login:
+    post:
+      tags:
+      - auth-rest-controller
+      summary: Login a user
+      operationId: login
+      parameters:
+      - name: accessToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/admin/users/{id}/image:
+    post:
+      tags:
+      - admin-rest-controller
+      summary: 'Upload the user image '
+      operationId: uploadImageUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - imageFile
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: Image not found
+        "200":
+          description: Image upload
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+    delete:
+      tags:
+      - admin-rest-controller
+      summary: Delete a user's image
+      operationId: deleteImageUser_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Image not found
+        "200":
+          description: Image deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+  /api/admin/offers/{id}/image:
+    post:
+      tags:
+      - admin-rest-controller
+      summary: Add offers's image
+      operationId: uploadImageOffer_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - imageFile
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+      responses:
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Image not found
+        "200":
+          description: Image upload
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+    delete:
+      tags:
+      - admin-rest-controller
+      summary: Delete a offer's image
+      operationId: deleteImageOffer_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Image not found
+        "200":
+          description: Image deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+  /api/admin/books/{id}/image:
+    post:
+      tags:
+      - admin-rest-controller
+      summary: Add book's image
+      operationId: uploadImage_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - imageFile
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+      responses:
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Image not found
+        "200":
+          description: Image upload
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+    delete:
+      tags:
+      - admin-rest-controller
+      summary: Delete a book's image
+      operationId: deleteImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Image not found
+        "200":
+          description: Image deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+  /api/admin/books/:
+    post:
+      tags:
+      - admin-rest-controller
+      summary: Add a new book
+      operationId: createBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+        required: true
+      responses:
+        "200":
+          description: Book created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        "403":
+          description: "Unauthorized action, login as an admin"
+        "400":
+          description: "Bad request, try again"
+  /api/user/reviews:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get user reviews page
+      operationId: getUserReviewsPaginated
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        "200":
+          description: Found user reviews page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: User not found
+  /api/user/reviews/:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get user reviews
+      operationId: getUserReviews
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "200":
+          description: Found user reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        "404":
+          description: User not found
+  /api/user/offers:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get user offers page
+      operationId: getUserOffersPaginated
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "200":
+          description: Found user offers page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: User not found
+  /api/user/offers/:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get user offers
+      operationId: getUserOffers
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "200":
+          description: Found user offers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Offer'
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: User not found
+  /api/user/historial:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get user buy-sell historial page
+      operationId: getUserHistorialPaginated
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "200":
+          description: Found user historial page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        "404":
+          description: User not found
+  /api/user/historial/:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get user buy-sell historial
+      operationId: getUserHistorial
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "200":
+          description: Found user historial
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Offer'
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: User not found
+  /api/user/favorites:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get user favorite books page
+      operationId: getUserFavoriteBooksPaginated
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login"
+        "200":
+          description: Found user favorite books page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        "404":
+          description: User not found
+  /api/user/favorites/:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get user favorite books
+      operationId: getUserFavoriteBooks
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "200":
+          description: Found user favorite books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        "403":
+          description: "Unauthorized action, login"
+        "404":
+          description: User not found
+  /api/statistics/:
+    get:
+      tags:
+      - statistics-rest-controller
+      summary: Get the statistics
+      operationId: getStatistics
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "404":
+          description: Statistics not found
+        "200":
+          description: Found the statistics
+          content:
+            application/json: {}
+  /api/reviews:
+    get:
+      tags:
+      - review-rest-controller
+      summary: Get a page of all reviews
+      operationId: getReviewsPaged
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        "404":
+          description: Review page not found
+        "400":
+          description: "Bad request, try again"
+        "200":
+          description: Found the review page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+  /api/reviews/:
+    get:
+      tags:
+      - review-rest-controller
+      summary: Get all reviews
+      operationId: getReviews
+      responses:
+        "404":
+          description: Reviews not found
+        "400":
+          description: "Bad request, try again"
+        "200":
+          description: Found the reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+  /api/offers:
+    get:
+      tags:
+      - offer-rest-controller
+      summary: Get a page of offers
+      operationId: getOffers
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "400":
+          description: Invalid page supplied
+        "200":
+          description: Found the offers page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        "404":
+          description: Offer page not found
+  /api/offers/:
+    get:
+      tags:
+      - offer-rest-controller
+      summary: Get all Offers
+      operationId: getOffers_1
+      responses:
+        "200":
+          description: Found the offers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Offer'
+        "404":
+          description: Offers not found
+  /api/books:
+    get:
+      tags:
+      - book-rest-controller
+      summary: Get a page of searched books or all books if no seachtext is inserted
+      operationId: getSearchedBooks
+      parameters:
+      - name: searchtext
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        "200":
+          description: Found the books page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        "400":
+          description: Invalid page supplied
+        "404":
+          description: Books page not found
+  /api/books/{id}:
+    get:
+      tags:
+      - book-rest-controller
+      summary: Get a book by its id
+      operationId: getBook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Book not found
+        "400":
+          description: Invalid id supplied
+        "200":
+          description: Found the book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+  /api/books/{id}/reviews/all:
+    get:
+      tags:
+      - book-rest-controller
+      summary: Get all the reviews of a specified book
+      operationId: getBookReviews_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Book not found
+        "200":
+          description: Found the reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+  /api/books/{id}/offers/all:
+    get:
+      tags:
+      - book-rest-controller
+      summary: Get all the offers of a specified book
+      operationId: getBookOffers_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Book not found
+        "200":
+          description: Found the offers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Offer'
+  /api/books/{id}/image:
+    get:
+      tags:
+      - book-rest-controller
+      summary: The image of a specified book
+      operationId: downloadImage_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Found the image
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: binary
+        "404":
+          description: Image not found
+  /api/books/algorithm:
+    get:
+      tags:
+      - book-rest-controller
+      summary: Get the list of books recommended to a user
+      operationId: recommendationAlgorithm
+      responses:
+        "400":
+          description: Invalid page supplied
+        "404":
+          description: Recommended books not found
+        "200":
+          description: Found the books to recommend
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+  /api/books/:
+    get:
+      tags:
+      - book-rest-controller
+      summary: Get all books
+      operationId: getBooks
+      responses:
+        "200":
+          description: Found the books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        "404":
+          description: Books not found
+  /api/admin/users:
+    get:
+      tags:
+      - admin-rest-controller
+      summary: Get a users page
+      operationId: getUsersPaged
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        "404":
+          description: Users page not found
+        "200":
+          description: Found the users page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login as admin"
+  /api/admin/users/{idUser}:
+    get:
+      tags:
+      - admin-rest-controller
+      summary: Get a user by its id
+      operationId: getUser
+      parameters:
+      - name: idUser
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Found the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login as admin"
+        "404":
+          description: User not found
+  /api/admin/users/:
+    get:
+      tags:
+      - admin-rest-controller
+      summary: Get all users
+      operationId: getAllUsers
+      responses:
+        "400":
+          description: "Bad request, try again"
+        "403":
+          description: "Unauthorized action, login as admin"
+        "200":
+          description: Found the users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        "404":
+          description: Users not found
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        author:
+          type: string
+        genre:
+          type: string
+        image:
+          type: boolean
+        user:
+          type: array
+          writeOnly: true
+          items:
+            $ref: '#/components/schemas/User'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        image:
+          type: boolean
+        listFavouriteBooks:
+          type: array
+          writeOnly: true
+          items:
+            $ref: '#/components/schemas/Book'
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        text:
+          type: string
+        date:
+          type: string
+          format: date-time
+        book:
+          $ref: '#/components/schemas/Book'
+        author:
+          $ref: '#/components/schemas/User'
+    Offer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date-time
+        edition:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          format: float
+        sold:
+          type: boolean
+        book:
+          $ref: '#/components/schemas/Book'
+        seller:
+          $ref: '#/components/schemas/User'
+        buyer:
+          $ref: '#/components/schemas/User'
+    UserDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    Page:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        empty:
+          type: boolean
+    Pageable:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/Sort'
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+    Sort:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
