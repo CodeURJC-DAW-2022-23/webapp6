@@ -1,5 +1,6 @@
 package es.codeurjc.readmebookstore.controller.rest;
 
+import java.net.URI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Offer;
@@ -265,7 +267,9 @@ public class BookRestController {
             newReview.setDate(new Date());
 
             reviewService.save(newReview);
-            return ResponseEntity.ok(newReview);
+            URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/reviews/{id}")
+                .buildAndExpand(newReview.getId()).toUri();
+            return ResponseEntity.created(location).body(newReview);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -292,7 +296,9 @@ public class BookRestController {
             newOffer.setDate(new Date());
 
             offerService.save(newOffer);
-            return ResponseEntity.ok(newOffer);
+            URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/offers/{id}")
+                .buildAndExpand(newOffer.getId()).toUri();
+            return ResponseEntity.created(location).body(newOffer);
         } else {
             return ResponseEntity.notFound().build();
         }

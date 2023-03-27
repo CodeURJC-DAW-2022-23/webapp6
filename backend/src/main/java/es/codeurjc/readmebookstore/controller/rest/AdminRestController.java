@@ -11,8 +11,10 @@ import java.util.Optional;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import es.codeurjc.readmebookstore.model.Book;
 import es.codeurjc.readmebookstore.model.Offer;
@@ -70,9 +73,11 @@ public class AdminRestController {
     })
     @PostMapping("/books/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Book createBook(@RequestBody Book newBook) {
+    public ResponseEntity <Book> createBook(@RequestBody Book newBook) {
         bookService.save(newBook);
-        return newBook;
+        URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/books/{id}")
+                .buildAndExpand(newBook.getId()).toUri();
+        return ResponseEntity.created(location).body(newBook);
     }
 
     @Operation(summary = "Add book's image")
@@ -89,7 +94,8 @@ public class AdminRestController {
         Optional<Book> book = bookService.findById(id);
         if (book.isPresent()) {
             Book bookUpdate = book.get();
-            URI location = fromCurrentRequest().build().toUri();
+            URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/books/{id}/image")
+            .buildAndExpand(bookUpdate.getId()).toUri();
 
             bookUpdate.setImage(true);
             bookUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
@@ -314,6 +320,26 @@ public class AdminRestController {
         }
     }
 
+    @Operation(summary = "The image user by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the image", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Image not found", content = @Content)
+    })
+    @GetMapping("/users/{id}/image")
+    public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+        Optional<User> user = userService.findById(id);
+        if (user.isPresent() && user.get().getImageFile() != null) {
+            Resource file = new InputStreamResource(user.get().getImageFile().getBinaryStream());
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+                    .contentLength(user.get().getImageFile().length()).body(file);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     /////////////////////// REVIEWS //////////////////////////////////////////////
 
     @Operation(summary = "Delete a review by its id")
@@ -379,7 +405,8 @@ public class AdminRestController {
        Optional<Offer> offer = offerService.findById(id);
        if (offer.isPresent()) {
            Offer offerUpdate = offer.get();
-           URI location = fromCurrentRequest().build().toUri();
+           URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/offers/{id}/image")
+                .buildAndExpand(offerUpdate.getId()).toUri();
 
            offerUpdate.setImage(true);
            offerUpdate.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));

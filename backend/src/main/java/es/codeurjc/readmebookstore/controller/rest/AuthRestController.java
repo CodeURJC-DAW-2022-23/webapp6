@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import es.codeurjc.readmebookstore.security.jwt.AuthResponse;
 import es.codeurjc.readmebookstore.security.jwt.LoginRequest;
@@ -22,6 +24,8 @@ import es.codeurjc.readmebookstore.model.UserDTO;
 import es.codeurjc.readmebookstore.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import es.codeurjc.readmebookstore.service.MailService;
+
+import java.net.URI;
 import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.mail.MessagingException;
@@ -65,6 +69,7 @@ public class AuthRestController {
 	}
 
     @Operation(summary = "Register a new user")
+	@ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
 	public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO) {
         List<User> users = userService.findAll();
@@ -90,7 +95,10 @@ public class AuthRestController {
 			
 		}
 
-		return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/admin/users/{id}")
+                .buildAndExpand(user.getId()).toUri();
+        return ResponseEntity.created(location).body("User registered successfully");
+
 	} 
 
 }
