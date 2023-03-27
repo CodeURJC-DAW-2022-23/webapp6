@@ -505,6 +505,35 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 <details><summary>Markos Aguirre Elorza .</summary>
    
       
+    - 📂 Completed tasks:
+ 
+      - Login API
+      - Register API (email sending)
+      - Security
+      - Access permissions
+      
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/63f6dbfc638b383d176008a2a4e06607aa3f3ae5) Security.
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/03aee5cefc1b012bbd4c91d828b0045bcfd2cc11) Register.
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/ab59f5783e9a44920b10f550e17c3ca03b84ae2b) Relevant DTO pattern.
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/aae7bf9d261ed9f7b5168d0fd948a8cb804cf841) Email sending.
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/535e99fbbf2a02cb81e7aa1161af193002ebd420) Permissions.
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/AuthRestController.java) AuthRestController
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/model/UserDTO.java) UserDTO
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/security/SecurityConfiguration.java) SecurityConfiguration
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/security/RestSecurityConfig.java) RestSecurityConfig.java
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/security/jwt/UserLoginService.java) UserLoginService
+     
+
+</details>
+
+<details><summary>Manuel Martin Alaez.</summary>
+   
    - 📂 Completed tasks:
  
       - a
@@ -518,7 +547,6 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
       - [Commit 3]()
       - [Commit 4]() 
       - [Commit 5]() 
-     
  
    - 📝 Files with more participation:
  
@@ -527,34 +555,6 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
       - [File 3]() 
       - [File 4]() 
       - [File 5]() 
-     
-
-</details>
-
-<details><summary>Manuel Martin Alaez.</summary>
-   
-   - 📂 Completed tasks:
- 
-      - APIs related to offers.
-      - APIs related to offers by admin.
-      - OpenApi documentation.
-      - Bugs fixes.
- 
-   - 📤 Most significant commits:
- 
-      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/91199caacf53714904567906f73d8f146237b52e) 
-      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/7a44bce0b6ca5c817deb79e3b145e93013ca5649) 
-      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f421a964154a20b68fe20097c243bb3ee268b02b)
-      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/dbdd6d7f19e18bb7442eb81f03bf3e8b1b3154b9) 
-      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/d75cdde413996be41b21736c8401d00378d63ac1) 
- 
-   - 📝 Files with more participation:
- 
-      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/OfferRestController.java) 
-      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/AdminRestController.java) 
-      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/pom.xml) 
-      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/api-docs/api-docs.html) 
-      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/api-docs/api-docs.yaml) 
 
 </details>
 
