@@ -96,25 +96,3 @@ public class AuthRestController {
 }
 
 
-/* PARA QUE SE REGISTRE CON LA CONTRASEÑA "pass"
-@Operation(summary = "Register a new user")
-    @PostMapping("/register")
-	public ResponseEntity<?> registerUser(@RequestBody User user, HttpServletRequest request) {
-        List<User> users = userService.findAll();
-
-		// Checks if the user already exists:
-		for (User u : users) {
-			if (user.getName().equals(u.getName())) {				
-				return new ResponseEntity<>("User is already taken!", HttpStatus.BAD_REQUEST);
-			}
-		}
-		if(user.getEncodedPassword() == null) {
-			user.setEncodedPassword("pass");
-		}
-		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
-		
-		//user.setRoles("USER");
-		userService.save(user);
-
-		return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
-	} */
