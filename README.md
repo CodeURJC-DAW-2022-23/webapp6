@@ -417,6 +417,15 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 
 ### ✒ API Rest documentation
 
+<details><summary>Open API specification.</summary>
+
+ - [Link to yaml file](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/api-docs/api-docs.yaml)
+ 
+ - [Link to html file](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp6/34cef72e0849b41e0397cc2d5f623f591249c2d6/backend/api-docs/api-docs.html)
+ 
+ 
+ </details>
+
 ### ✒ Docker instructions
 
 ## 📊 Diagrams
