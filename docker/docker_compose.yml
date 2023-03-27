@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8.0.32
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=readmebookstore
+    restart: always
+  web:
+    build: .
+    ports:
+      - "8443:8443"
+    environment:
+      - SPRING_PROFILES_ACTIVE=sql
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/readmebookstore
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+    depends_on:
+      - db
+    restart: always
