@@ -447,25 +447,25 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
  
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Web URLs reformat to facilizate the API implementation.
+      - Book related APIs.
+      - Doker files added (althogh not working).
  
    - 📤 Most significant commits:
  
-      - [Commit 1]() 
-      - [Commit 2]() 
-      - [Commit 3]()
-      - [Commit 4]() 
-      - [Commit 5]() 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/e92b1328c09aa2f053023c72468f37caa1c177ad) URL reformat. 
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/7c497dbef610485dc11b4789e4420426722d655a) Book GET operations.
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/040e0ef71e99e332028946058a7f9b9aefc827ec) Book POST, PUT and DELETE operations.
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/a240ba87e104c3a66fa0c04bc223e30d39624342) Books images POSTS and DELETES.
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/1eef5cddb418e632855a185e5be75daf1a62c67b) Docker directory files.
  
    - 📝 Files with more participation:
  
-      - [File 1]() 
-      - [File 2]() 
-      - [File 3]() 
-      - [File 4]() 
-      - [File 5]() 
+      - [File 1](backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/BookRestController.java) BookRestContoller.java
+      - [File 2](backend/src/main/java/es/codeurjc/readmebookstore/controller/rest/AdminRestController.java) AdminRestController.java
+      - [File 3](backend/src/main/java/es/codeurjc/readmebookstore/controller/LoginController.java) LoginController.java
+      - [File 4](docker/Dockerfile) Dockerfile
+      - [File 5](docker/docker_compose.yml) docker_compose.yml
 
 </details>
 
