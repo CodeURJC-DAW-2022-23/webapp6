@@ -66,7 +66,6 @@ public class User {
 		this.email = email;
 	}
 
-
 	public User(String name, String encodedPassword, String email, String... roles) {
 		this.name = name;
 		this.encodedPassword = encodedPassword;
@@ -137,7 +136,11 @@ public class User {
 	}
 
 	public void setFavouriteBooks(Book favouriteBook) {
-		this.favouriteBook.add((Book) favouriteBook);
+		this.favouriteBook.add(favouriteBook);
+	}
+
+	public void deleteFavouriteBooks(Book favouriteBook) {
+		this.favouriteBook.remove(favouriteBook);
 	}
 
 	public void setListFavouriteBooks(List<Book> favouriteBooks) {

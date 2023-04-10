@@ -289,7 +289,8 @@ public class UserRestController {
         Optional <Book> opBook = bookService.findById(id);
         if (opBook.isPresent() && !(bookService.isFavorite(user.getId(), id).isEmpty())) {
             Book book = opBook.get();
-            userService.deletefavorite(id);
+            user.deleteFavouriteBooks(book);
+            userService.save(user);
             return ResponseEntity.ok(book);
         } else {
             return ResponseEntity.notFound().build();

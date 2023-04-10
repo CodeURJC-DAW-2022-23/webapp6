@@ -13,9 +13,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.readmebookstore.model.User;
@@ -148,7 +148,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user/favorites/{bookid}")
+    @RequestMapping("/user/favorites/{bookid}")
     public String addFavorite(Model model, @PathVariable long bookid, HttpServletRequest request) throws IOException {
         Book book = bookService.BookfindById(bookid);
         User user = userService.findByName(request.getUserPrincipal().getName());
@@ -157,9 +157,12 @@ public class UserController {
         return "redirect:/books/" + bookid;
     }
 
-    @DeleteMapping("/user/favorites/{bookid}/delete")
+    @RequestMapping("/user/favorites/{bookid}/delete")
     public String removeFavorite(Model model, @PathVariable long bookid, HttpServletRequest request) {
-        userService.deletefavorite(bookid);
+        User user = userService.findByName(request.getUserPrincipal().getName());
+        Book book = bookService.BookfindById(bookid);
+        user.deleteFavouriteBooks(book);
+        userService.save(user);
         return "redirect:"+ request.getHeader("Referer");
     }
 

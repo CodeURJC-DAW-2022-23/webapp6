@@ -56,10 +56,6 @@ public class UserService {
 		return userRepository.findAll( PageRequest.of(n, 4));
 	}
 
-    public void deletefavorite(long id) {
-        userRepository.deletefavorite(id);
-    }
-
     public void updateImage(User user, boolean removeImage, MultipartFile imageField)
             throws IOException, SQLException {
         if (!imageField.isEmpty()) {

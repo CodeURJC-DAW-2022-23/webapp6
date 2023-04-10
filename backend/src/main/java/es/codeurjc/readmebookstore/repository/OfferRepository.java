@@ -9,25 +9,25 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface OfferRepository extends JpaRepository<Offer, Long> {
 
-    @Query(value = "SELECT * FROM OFFERS WHERE (SOLD= 0) AND (BOOK_ID = :id)", nativeQuery = true)
+    @Query(value = "SELECT * FROM offers WHERE (sold = 0) AND (book_id = :id)", nativeQuery = true)
     Page<Offer> findByOffersNotSoldByBook(long id, Pageable pageable);
 
-    @Query(value = "SELECT * FROM OFFERS WHERE (SOLD= 0) AND (BOOK_ID = :id)", nativeQuery = true)
+    @Query(value = "SELECT * FROM offers WHERE (sold = 0) AND (book_id = :id)", nativeQuery = true)
     List<Offer> findByOffersNotSoldByBook(long id);
 
-    @Query(value = "SELECT * FROM OFFERS WHERE (SOLD= 0) AND (SELLER_ID = :id)", nativeQuery = true)
+    @Query(value = "SELECT * FROM offers WHERE (sold= 0) AND (seller_id = :id)", nativeQuery = true)
     List<Offer> findByOffersNotSoldByUser(long id);
 
-    @Query(value = "SELECT * FROM OFFERS WHERE (SOLD= 0) AND (SELLER_ID = :id)", nativeQuery = true)
+    @Query(value = "SELECT * FROM offers WHERE (sold= 0) AND (seller_id = :id)", nativeQuery = true)
     Page<Offer> findByOffersNotSoldByUser(long id, Pageable page);
 
-    @Query(value = "SELECT * FROM OFFERS WHERE (SOLD= 1) AND ((SELLER_ID = :id) OR (BUYER_ID = :id))", nativeQuery = true)
+    @Query(value = "SELECT * FROM offers WHERE (sold= 1) AND ((seller_id = :id) OR (buyer_id = :id))", nativeQuery = true)
     Page<Offer> findByShoppingHistorial(long id, Pageable page);
 
-    @Query(value = "SELECT * FROM OFFERS WHERE (SOLD= 1) AND ((SELLER_ID = :id) OR (BUYER_ID = :id))", nativeQuery = true)
+    @Query(value = "SELECT * FROM offers WHERE (sold= 1) AND ((seller_id = :id) OR (buyer_id = :id))", nativeQuery = true)
     List <Offer> findByShoppingHistorial(long id);
 
-    @Query(value = "SELECT * FROM books.offers where buyer_id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM offers WHERE buyer_id = :id", nativeQuery = true)
     List<Offer> findBooksBought(long id);
 
     public Page<Offer> findAll(Pageable page);

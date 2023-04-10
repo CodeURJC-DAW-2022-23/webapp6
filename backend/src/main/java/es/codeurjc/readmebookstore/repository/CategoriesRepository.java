@@ -7,7 +7,7 @@ import es.codeurjc.readmebookstore.model.Categories;
 
 public interface CategoriesRepository extends JpaRepository<Categories, Long> {
 
-    @Query(value = "SELECT * FROM books.categories where categorie = :name", nativeQuery = true)
+    @Query(value = "SELECT * FROM categories WHERE categorie = :name", nativeQuery = true)
     Categories findByName (String name);
 
 }

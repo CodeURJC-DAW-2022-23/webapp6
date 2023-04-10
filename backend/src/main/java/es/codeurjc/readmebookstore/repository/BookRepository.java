@@ -12,43 +12,42 @@ import es.codeurjc.readmebookstore.model.Book;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-        @Query(value = "select * from books.book  where title = :title", nativeQuery = true)
+        @Query(value = "SELECT * FROM book WHERE title = :title", nativeQuery = true)
         Optional<Book> findByTitle (String title);
 
-        @Query(value = "select * from books.book  where author = :author", nativeQuery = true)
+        @Query(value = "SELECT * FROM book WHERE author = :author", nativeQuery = true)
         List<Book> findByAuthor (String author);
 
-        @Query(value = "select * from books.book  where genre = :genre", nativeQuery = true)
+        @Query(value = "SELECT * FROM book  WHERE genre = :genre", nativeQuery = true)
         List<Book> findByGenre (String genre);
         
-        @Query(value = "select * from books.book  where (genre like  %:partial%) or (title like  %:partial%) or (author like  %:partial%)", nativeQuery = true)
+        @Query(value = "SELECT * FROM book  WHERE (genre LIKE %:partial%) OR (title LIKE  %:partial%) OR (author LIKE %:partial%)", nativeQuery = true)
         List<Book> findByPartial (String partial);
 
-        @Query(value = "select * from books.book  where id = :id", nativeQuery = true)
+        @Query(value = "SELECT * FROM book  WHERE id = :id", nativeQuery = true)
         Book BookfindById (long id);
 
-        @Query(value = "SELECT * FROM (SELECT * FROM books.book b where b.id in (select favourite_book_id from books.user_favourite_book f  where f.user_id = :userid)) c WHERE c.id = :bookid", nativeQuery = true)
+        @Query(value = "SELECT * FROM (SELECT * FROM book b WHERE b.id in (SELECT favourite_book_id FROM user_favourite_book f WHERE f.user_id = :userid)) c WHERE c.id = :bookid", nativeQuery = true)
         List<Book> isFavorite(Long userid, Long bookid);
 
-        @Query(value = "SELECT * FROM books.book b where b.id in (select favourite_book_id from books.user_favourite_book f  where f.user_id = :userid)", nativeQuery = true)
+        @Query(value = "SELECT * FROM book b WHERE b.id in (SELECT favourite_book_id FROM user_favourite_book f WHERE f.user_id = :userid)", nativeQuery = true)
         List<Book> favoritesbooks(Long userid);
 
-        @Query(value = "SELECT * FROM books.book b where b.id in (select favourite_book_id from books.user_favourite_book f  where f.user_id = :userid)", nativeQuery = true)
+        @Query(value = "SELECT * FROM book b WHERE b.id in (SELECT favourite_book_id FROM user_favourite_book f WHERE f.user_id = :userid)", nativeQuery = true)
         Page<Book> favoriteBooks(Long userid, Pageable page);
         
         public Page<Book> findAll(Pageable page);
 
-        @Query(value = "select * from books.book  where title = :title", nativeQuery = true)
+        @Query(value = "SELECT * FROM book WHERE title = :title", nativeQuery = true)
         Page<Book> findPageTitle (String title, Pageable page);
 
-        @Query(value = "select * from books.book  where author = :author", nativeQuery = true)
+        @Query(value = "SELECT * FROM book WHERE author = :author", nativeQuery = true)
         Page<Book> findPageAuthor (String author, Pageable page);
 
-        @Query(value = "select * from books.book  where genre = :genre", nativeQuery = true)
+        @Query(value = "SELECT * FROM book WHERE genre = :genre", nativeQuery = true)
         Page<Book> findPageGenre (String genre, Pageable page);
         
-        @Query(value = "select * from books.book  where (genre like  %:partial%) or (title like  %:partial%) or (author like  %:partial%)", nativeQuery = true)
+        @Query(value = "SELECT * FROM book  WHERE (genre LIKE  %:partial%) OR (title LIKE  %:partial%) OR (author LIKE  %:partial%)", nativeQuery = true)
         Page<Book> findPagePartial (String partial, Pageable page);
-
 
 }
