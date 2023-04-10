@@ -53,8 +53,10 @@ Complementary technology:
 - Advance search and recomendations algorithim based on read reviews and seen offers.
 </details>
     
-    
-## 🗺️ Front-end and structure design
+## 🚀 PHASE 1
+<details><summary>Front-end and structure design</summary>
+
+### 🗺️ Main Pages
 
 <details><summary> Main pages of our application. </summary>
 
@@ -153,10 +155,13 @@ Pages diagram:
 
 ![Pages diagram drawio](https://user-images.githubusercontent.com/66415975/219658345-556ecc2a-fcca-4785-b695-70ebc885aaf9.png)
 </details>
+
+</details>
     
 
 
-# 🚀 PHASE 2
+## 🚀 PHASE 2
+<details><summary>Backend developement with Spring, Java and MySQL</summary>
 
 ### 📱 Screens
 
@@ -210,7 +215,7 @@ Updated navegation diagram:
 - Java version: 17
 - SpringBoot version: 2.4.4
 - Database: MySQL
-   - Scheme: `books`
+   - Scheme: `readmewebstore`
    - User: `root`
    - Password: `password`
 
@@ -412,8 +417,10 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
       - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/resources/templates/book-particular-page.html) book-particular-page.html
 
 </details>
+</details>
 
-# 🚀 PHASE 3
+## 🚀 PHASE 3
+<details><summary>API rest integration and Docker deployment</summary>
 
 ### ✒ API Rest documentation
 
@@ -423,10 +430,26 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
  
  - [Link to html file](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp6/34cef72e0849b41e0397cc2d5f623f591249c2d6/backend/api-docs/api-docs.html)
  
- 
- </details>
+</details>
 
 ### ✒ Docker instructions
+
+<details><summary>Docker image creation</summary>
+
+ To create a Docker image of our proyect, download the complete proget and run: \
+ `docker build -t readmebookstore/webapp6 -f docker/Dockerfile .`
+ 
+</details>
+
+<details><summary>Docker compose run structions</summary>
+
+ To run our application container directly form Docker Hub theéonly requirements are to have Docker installed and a copy of our 
+ [Doker Compose file](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/docker/docker_compose.yml).
+ 
+ Then, just run the following command indicating the Docker Compose file location: \
+ `docker-compose -f docker/docker_compose.yml up`
+ 
+</details>
 
 ## 📊 Diagrams
 
@@ -437,9 +460,6 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 ![diagrama](https://user-images.githubusercontent.com/80122593/227806030-8cacd206-a192-4852-8a1c-11372e8ce6bc.png)
 
 </details>
-
-
-
 
 ## 🙋‍♂️ Member participation
 
@@ -588,4 +608,5 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
       - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/service/BookService.java) BookService.java
       - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/backend/src/main/java/es/codeurjc/readmebookstore/controller/web/BookController.java) BookController.java
 
+</details>
 </details>
