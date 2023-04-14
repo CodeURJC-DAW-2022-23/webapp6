@@ -12,6 +12,10 @@ import { UpdateOfferComponent } from './components/update-offer/update-offer.com
 import { UpdateReviewComponent } from './components/update-review/update-review.component';
 import { UploadOfferComponent } from './components/upload-offer/upload-offer.component';
 import { UploadReviewComponent } from './components/upload-review/upload-review.component';
+import {MatButtonModule} from '@angular/material/button';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 //Import all components
@@ -20,11 +24,12 @@ import { UploadReviewComponent } from './components/upload-review/upload-review.
 @NgModule({
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
-    UploadOfferComponent, UploadReviewComponent
+    UploadOfferComponent, UploadReviewComponent, CheckoutComponent
     //All components
   ],
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule
+    BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
+    MatButtonModule, MatCardModule, MatDividerModule
     //Add routing
   ],
   providers: [],
