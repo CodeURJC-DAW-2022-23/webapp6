@@ -18,6 +18,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import { CommonComponent } from './components/common/common.component';
 import {MatIconModule} from '@angular/material/icon';
+import { routing } from './app.routing';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 
 //Import all components
@@ -26,12 +28,12 @@ import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
-    UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent
+    UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent
     //All components
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
-    MatButtonModule, MatCardModule, MatDividerModule, MatIconModule
+    MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, routing
     //Add routing
   ],
   providers: [],
