@@ -3,3 +3,24 @@ a {
   font-weight: normal;
   color: black;
 }
+
+.example-form {
+  min-width: 20%;
+  max-width: 70%;
+  width: 100%;
+  margin: 8%;
+  margin: 6%;
+  text-align: center;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8%;
+}
+
+p {
+  font-size: 20px;
+}

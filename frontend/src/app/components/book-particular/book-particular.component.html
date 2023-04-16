@@ -1,3 +1,33 @@
+<h1 style="font-weight: bold; text-align: center; font-size: 30px;"><u>Nacidos de la Bruma</u></h1>
+
+<div class="example-form">
+
+  <div style="display: inline-block; width: 70%; text-align: center;">
+
+  <p>Autor: J.K.Rowling</p>
+  <p style="margin-bottom: 5%;">Género: Fantasía</p>
+
+  <!-- Now puts all the options, then only a div -->
+  <div class="example-button-row">
+    <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;">Añadir a favoritos<mat-icon>favorite_border</mat-icon></button>
+  </div>
+  <div class="example-button-row">
+    <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;">Quitar de favoritos<mat-icon>favorite</mat-icon></button>
+  </div>
+  <div class="example-button-row">
+    <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;">Inicia sesión para añadir a favoritos <mat-icon>person</mat-icon> </button>
+  </div>
+
+  </div>
+
+  <div style="display: inline-block; width: 30%;vertical-align: top;">
+      <a><img style="width: 100%; height: 100%;" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"></a>
+  </div>
+
+</div>
+
+
+
 
 <h1 style="font-weight: bold; text-align: center;">Reseñas</h1>
   <mat-divider style="margin-top: 2%; margin-bottom: 5%"></mat-divider>
@@ -20,9 +50,12 @@
   <button mat-raised-button color="primary" style="margin: 3%">Cargar más</button>
 </div>
 
+<!-- Now puts all the options, then only a div -->
 <div class="example-button-row">
-  <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;" (click)="uploadReview(23)">Publicar reseña</button>
-  <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;">Inicia sesión para publicar tu reseña</button>
+  <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;" (click)="uploadReview(23)">Publicar reseña<mat-icon>expand_less</mat-icon></button>
+</div>
+<div class="example-button-row">
+  <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;">Inicia sesión para publicar tu reseña <mat-icon>person</mat-icon></button>
 </div>
 
 
@@ -47,7 +80,10 @@
   <button mat-raised-button color="primary" style="margin: 3%">Cargar más</button>
 </div>
 
+<!-- Now puts all the options, then only a div -->
 <div class="example-button-row">
-  <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;" (click)="uploadOffer(23)">Subir anuncio</button>
-  <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;">Inicia sesión para subir tu anuncio</button>
+  <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;" (click)="uploadOffer(23)">Subir anuncio<mat-icon>expand_less</mat-icon></button>
+</div>
+<div class="example-button-row">
+  <button mat-raised-button style="margin-left: 3%; margin-bottom: 5%;">Inicia sesión para subir tu anuncio <mat-icon>person</mat-icon> </button>
 </div>
