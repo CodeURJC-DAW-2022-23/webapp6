@@ -1,0 +1,39 @@
+.general-title {
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.general-title h1 {
+	font-size: 2rem;
+	color: #1c1c1c;
+	font-weight: 700;
+	position: relative;
+}
+
+.general-title h1:after {
+	position: absolute;
+	left: 0;
+	bottom: -15px;
+	right: 0;
+	height: 4px;
+	width: 80px;
+	background: #2484c6;
+	content: "";
+	margin: 0 auto;
+}
+
+.section-title {
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.section-title h1 {
+	padding-top: 40px;
+	padding-bottom: 60px;
+	color: #1c1c1c;
+	text-align: left;
+	font-weight: 700;
+	border-bottom: 1px solid #e1e1e1;
+	padding-bottom: 20px;
+	margin-bottom: 25px;
+}

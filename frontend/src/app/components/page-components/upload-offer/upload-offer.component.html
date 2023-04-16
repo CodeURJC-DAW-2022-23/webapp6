@@ -1,0 +1,25 @@
+<general-title title="Nacidos de la bruma"></general-title>
+
+<section-title title="Sube tu libro"></section-title>
+<section-title title="Detalles del libro"></section-title>
+
+<div class="left-column">
+
+  <general-form text="Editorial"></general-form>
+  <general-form text="Descripción"></general-form>
+  <general-form text="Price"></general-form>
+
+</div>
+
+<div class="right-column">
+  <mat-card style="background-color: #f5f5f5;">
+    <mat-card-title style="text-align: center; font-weight: bold; margin: 3%; font-size: 30px;">Tu
+      libro</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content style="margin-bottom: 4%; margin-top: 4%;">
+      <input type='file' name='imageField' accept=".png, .jpg, .jpeg" />
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <button mat-raised-button color="primary" (click)="newOffer(23)">Subir libro</button>
+  </mat-card>
+</div>
