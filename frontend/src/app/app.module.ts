@@ -20,6 +20,7 @@ import { CommonComponent } from './components/common/common.component';
 import {MatIconModule} from '@angular/material/icon';
 import { routing } from './app.routing';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { BookParticularComponent } from './components/book-particular/book-particular.component';
 
 
 //Import all components
@@ -28,7 +29,8 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 @NgModule({
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
-    UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent
+    UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
+    BookParticularComponent
     //All components
   ],
   imports: [

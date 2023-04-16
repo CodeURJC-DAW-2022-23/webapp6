@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'update-offer',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./update-offer.component.css']
 })
 export class UpdateOfferComponent {
+
+  constructor(private router: Router) { }
 
   editorial = "Editorial de la oferta";
   // get editorial offer

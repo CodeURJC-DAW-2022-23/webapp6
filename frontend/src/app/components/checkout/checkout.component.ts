@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'checkout',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
 })
 export class CheckoutComponent {
 
+  constructor(private router: Router) { }
 
 }

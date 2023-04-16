@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'upload-offer',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./upload-offer.component.css']
 })
 export class UploadOfferComponent {
+
+  constructor(private router: Router) { }
+
+  newOffer(id: number) {
+    // Call to services to create de offer
+    this.router.navigate(['/books', id]);
+  }
 
 }
