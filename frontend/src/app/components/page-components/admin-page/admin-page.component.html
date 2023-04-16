@@ -1,17 +1,98 @@
 <general-title title="Página de administrador"></general-title>
 <section-title title="Usuarios"></section-title>
-<section-title title="Anuncios"></section-title>
-<section-title title="Reseñas"></section-title>
-<section-title title="Libros"></section-title>
+<table class="admin_table">
+    <tr>
+        <th>id</th>
+        <th>Usuario</th>
+        <th>Correro</th>
+        <th>Imágen</th>
+        <th>Opciones</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td class="center"><img [src]="userImage(user)"></td>
+        </tr>
+    </tbody>
+</table>
 
+<section-title title="Anuncios"></section-title>
+<table class="admin_table">
+    <tr>
+        <th>id</th>
+        <th>Libro</th>
+        <th>Vendedor</th>
+        <th>Fecha</th>
+        <th>Descripcción</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th>Opciones</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let offer of offers">
+            <td>{{offer.id}}</td>
+            <td>{{offer.book.title}}</td>
+            <td>{{offer.seller.name}}</td>
+            <td>{{offer.date}}</td>
+            <td>{{offer.description}}</td>
+            <td>{{offer.price}}</td>
+            <td class="center"><img [src]="offerImage(offer)"></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<section-title title="Reseñas"></section-title>
+<table class="admin_table">
+    <tr>
+        <th>id</th>
+        <th>Libro</th>
+        <th>Autor</th>
+        <th>Fecha</th>
+        <th>Texto</th>
+        <th>Opciones</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let review of reviews">
+            <td>{{review.id}}</td>
+            <td>{{review.book.title}}</td>
+            <td>{{review.author.name}}</td>
+            <td>{{review.date}}</td>
+            <td>{{review.text}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<section-title title="Libros"></section-title>
+<table class="admin_table">
+    <tr>
+        <th>id</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Género</th>
+        <th>Imágen</th>
+        <th>Opciones</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let book of books">
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>
+            <td class="center"><img [src]="bookImage(book)"></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
 
 <section-title title="Añadir un libro nuevo"></section-title>
-
 
 <general-form text="Título"></general-form>
 <general-form text="Autor"></general-form>
 <general-form text="Género"></general-form>
-
 
 <mat-card-content style="margin-bottom: 4%; margin-top: 4%;">
     <input type='file' name='imageField' accept=".png, .jpg, .jpeg" />

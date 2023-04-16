@@ -12,6 +12,10 @@ export class OfferService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getOffers(): Observable<Offer[]> {
+	return this.httpClient.get(BASE_URL + "/") as Observable<Offer[]>
+}
+
   getOffersByBookPaginated(id: number, n: number) {
 		return this.httpClient.get("/api/books/" + id + "/offers" + "?page=" + n).pipe(
 			catchError(catchError((error) => this.handleError(error)))

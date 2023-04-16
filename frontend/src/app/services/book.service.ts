@@ -8,9 +8,12 @@ import { Book } from '../models/book.model';
 const BASE_URL = '/api/books';
 
 @Injectable({ providedIn: 'root' })
-export class BooksService {
+export class BookService {
 
+    constructor(private httpClient: HttpClient) { }
 
-
+    getBooks(): Observable<Book[]> {
+		return this.httpClient.get(BASE_URL + "/") as Observable<Book[]>;
+	}
 
 }

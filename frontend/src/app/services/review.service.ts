@@ -10,8 +10,11 @@ const BASE_URL = '/api/reviews';
 @Injectable({ providedIn: 'root' })
 export class ReviewService {
 
-  constructor(private httpClient: HttpClient) { }
+	constructor(private httpClient: HttpClient) { }
 
+	getReviews(): Observable<Review[]> {
+		return this.httpClient.get(BASE_URL + "/") as Observable<Review[]>
+	}
 
 	getReviewsByBookPaginated(id: number, n: number) {
 		return this.httpClient.get("/api/books/" + id + "/reviews" + "?page=" + n).pipe(
@@ -19,8 +22,7 @@ export class ReviewService {
 		);
 	}
 
-  addReview(review: Review, id: number) {
-
+	addReview(review: Review, id: number) {
 		if (!review.id) {
 			return this.httpClient.post("/api/books/" + id + "/reviews", review)
 				.pipe(
@@ -50,6 +52,5 @@ export class ReviewService {
 		console.error(error);
 		return throwError("Server error (" + error.status + "): " + error.text())
 	}
-
 
 }

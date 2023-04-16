@@ -18,6 +18,4 @@ export class OfferComponent {
     this.router.navigate(['/offers', idOffer, 'update-offer']);
   }
 
-
-
 }
