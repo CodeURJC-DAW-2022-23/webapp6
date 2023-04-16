@@ -9,18 +9,21 @@ import { UploadReviewComponent } from './components/upload-review/upload-review.
 import { UpdateReviewComponent } from './components/update-review/update-review.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { BookParticularComponent } from './components/book-particular/book-particular.component';
+import { OfferComponent } from './components/offer/offer.component';
 
 const appRoutes = [
 
     { path: '', component: CommonComponent },
     { path: 'common', component: CommonComponent },
     { path: 'admin', component: AdminPageComponent },
-    { path: 'books/:id', component: BookParticularComponent},
-    { path: 'books/:id/upload-offer', component: UploadOfferComponent},
-    { path: 'offers/:id/update-offer', component: UpdateOfferComponent},
-    { path: 'books/:id/upload-review', component: UploadReviewComponent},
-    { path: 'reviews/:id/update-review', component: UpdateReviewComponent},
-    { path: 'offers/:id/checkout', component: CheckoutComponent},
+    { path: 'books/:idBook', component: BookParticularComponent},
+    { path: 'books/:idBook/upload-offer', component: UploadOfferComponent},
+    { path: 'offers/:idOffer/update-offer', component: UpdateOfferComponent},
+    { path: 'books/:idBook/upload-review', component: UploadReviewComponent},
+    { path: 'reviews/:idReview/update-review', component: UpdateReviewComponent},
+    { path: 'books/:idBook/offers/:idOffer/checkout', component: CheckoutComponent},
+    { path: 'books/:idBook/offers/:idOffer', component: OfferComponent},
+    { path: '**', redirectTo: '' }
 
 ]
 

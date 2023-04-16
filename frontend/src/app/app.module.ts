@@ -21,6 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { routing } from './app.routing';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { BookParticularComponent } from './components/book-particular/book-particular.component';
+import { OfferComponent } from './components/offer/offer.component';
 
 
 //Import all components
@@ -30,7 +31,7 @@ import { BookParticularComponent } from './components/book-particular/book-parti
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
-    BookParticularComponent
+    BookParticularComponent, OfferComponent
     //All components
   ],
   imports: [

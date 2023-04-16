@@ -1,0 +1,14 @@
+.example-form {
+  min-width: 20%;
+  max-width: 80%;
+  width: 100%;
+  margin: 6%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8%;
+}
