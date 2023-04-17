@@ -22,6 +22,11 @@ export class ReviewService {
 		);
 	}
 
+
+  getReview(id: number | undefined): Observable <Review> {
+    return this.httpClient.get(BASE_URL + "/" + id) as Observable<Review>
+  }
+
 	addReview(review: Review, id: number) {
 		if (!review.id) {
 			return this.httpClient.post("/api/books/" + id + "/reviews", review)

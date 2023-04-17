@@ -22,6 +22,14 @@ export class OfferService {
 		);
 	}
 
+  getOffer(id: number | undefined): Observable <Offer> {
+    return this.httpClient.get(BASE_URL + "/" + id) as Observable<Offer>
+  }
+
+  getImage(id: number){
+    return BASE_URL + "/" + id + '/image';
+  }
+
   addOffer(offer: Offer, id: number) {
 
 		if (!offer.id) {

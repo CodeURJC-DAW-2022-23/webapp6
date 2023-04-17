@@ -1,0 +1,36 @@
+
+.example-card {
+  width: 18%;
+  margin:2%
+}
+
+.review-card-date {
+  font-weight: bold;
+  margin-left: 4%;
+  margin-top: 3%;
+  text-align: center;
+}
+
+.review-card-h2 {
+  font-weight: bold;
+  margin-left: 4%;
+  margin-top: 3%;
+  text-align: center;
+}
+
+.review-card-text {
+  margin-left: 4%;
+  margin-top: 3%;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.review-card {
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  display: inline;
+}
+

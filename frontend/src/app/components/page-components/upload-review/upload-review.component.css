@@ -1,4 +1,4 @@
-.example-form {
+.review-form {
   min-width: 20%;
   max-width: 50%;
   width: 100%;
@@ -6,10 +6,4 @@
   margin: 6%;
 }
 
-.example-full-width {
-  width: 100%;
-}
 
-td {
-  padding-right: 8%;
-}

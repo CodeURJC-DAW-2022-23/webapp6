@@ -22,7 +22,7 @@ const appRoutes = [
     { path: 'books/:idBook/upload-review', component: UploadReviewComponent},
     { path: 'reviews/:idReview/update-review', component: UpdateReviewComponent},
     { path: 'books/:idBook/offers/:idOffer/checkout', component: CheckoutComponent},
-    { path: 'books/:idBook/offers/:idOffer', component: OfferComponent},
+    { path: 'offers/:idOffer', component: OfferComponent},
     { path: '**', redirectTo: '' }
 
 ]

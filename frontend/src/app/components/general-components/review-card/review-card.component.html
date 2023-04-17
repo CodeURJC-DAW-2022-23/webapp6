@@ -1,0 +1,12 @@
+<mat-card *ngIf="review" class="example-card">
+  <mat-card-content>
+    <h2 class="review-card-date">
+      <mat-icon>date_range</mat-icon>{{ review.date }}
+    </h2>
+    <h2 class="review-card-h2">{{ review.author.name }}</h2>
+    <p class="review-card-text">
+      {{ review.text }}
+    </p>
+  </mat-card-content>
+</mat-card>
+
