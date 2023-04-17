@@ -27,7 +27,7 @@ import { SectionTitle, GeneralTitle } from './components/general-components/titl
 import { Form } from './components/general-components/forms/forms.component';
 import { OfferCard } from './components/general-components/offer-card/offer-card.component';
 import { ReviewCard } from './components/general-components/review-card/review-card.component';
-import { FormWithData } from './components/general-components/form-with-data/form-with-data.component';
+
 
 
 
@@ -38,7 +38,7 @@ import { FormWithData } from './components/general-components/form-with-data/for
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
-    BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, ReviewCard, FormWithData
+    BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, ReviewCard,
     //All components
   ],
   imports: [
