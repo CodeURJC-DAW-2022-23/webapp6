@@ -7,5 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class Form {
   @Input() text: string | undefined;
+  @Input() type: string | undefined;
 }
 

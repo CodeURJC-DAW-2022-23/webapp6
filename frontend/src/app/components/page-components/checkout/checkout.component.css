@@ -49,3 +49,15 @@ td {
   text-align: right;
   color: red;
 }
+
+.left-column {
+  display: inline-block;
+  width: 55%;
+}
+
+.right-column {
+  display: inline-block;
+  width: 35%;
+  margin: 3%;
+  vertical-align: top;
+}

@@ -1,52 +1,35 @@
 
 <form class="example-form">
 
-<section-title title="Datos de facturación"></section-title>
+<section-title title="Datos de facturación" ></section-title>
 
-  <div style="display: inline-block; width: 65%">
+  <div class="left-column">
 
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Nombre</mat-label>
-      <input matInput type="text" placeholder="">
-    </mat-form-field></td>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Apellido</mat-label>
-      <input matInput type="text" placeholder="">
-    </mat-form-field></td>
-  </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><general-form text="Nombre" type="text"></general-form></td>
+      <td><general-form text="Apellido" type="text"></general-form></td>
+    </tr></table>
 
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>País</mat-label>
-      <input matInput type="text" placeholder="">
-    </mat-form-field></td>
-  </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><general-form text="Ciudad, código postal" type="text"></general-form></td>
+    </tr></table>
 
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Ciudad, código postal</mat-label>
-      <input matInput type="text" placeholder="">
-    </mat-form-field></td>
-  </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><general-form text="Calle, portal y piso" type="text"></general-form></td>
+    </tr></table>
 
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Calle, portal y piso</mat-label>
-      <input matInput type="text" placeholder="">
-    </mat-form-field></td>
-  </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><general-form text="Teléfono" type="number"></general-form></td>
+      <td><general-form text="Correo" type="text"></general-form></td>
+    </tr></table>
 
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Telefono</mat-label>
-      <input matInput type="number" placeholder="">
-    </mat-form-field></td>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Correo</mat-label>
-      <input matInput type="text" placeholder="">
-    </mat-form-field></td>
-  </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><general-form text="Número de cuenta" type="number"></general-form></td>
+      <td><general-form text="Pin" type="password"></general-form></td>
+    </tr></table>
+
+   <!--
+
 
   <table class="example-full-width" cellspacing="0"><tr>
     <td><mat-form-field class="example-full-width">
@@ -57,11 +40,11 @@
       <mat-label>Pin</mat-label>
       <input matInput type="password" placeholder="">
     </mat-form-field></td>
-  </tr></table>
+  </tr></table>-->
 
   </div>
 
-  <div *ngIf="offer" class="div-checkout">
+  <div *ngIf="offer" class="right-column">
 
     <mat-card class="example-card">
       <mat-card-title class="checkout-title-card">Tu pedido</mat-card-title>

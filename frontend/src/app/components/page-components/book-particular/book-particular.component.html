@@ -31,9 +31,13 @@
 
 <section-title title="Reseñas"></section-title>
 
-<div>
-  <review-card *ngFor="let review of reviews" reviewId="{{review.id}}"></review-card>
+
+<div class="card-container">
+  <div *ngFor="let review of reviews" class="review-card">
+    <review-card reviewId="{{review.id}}"></review-card>
+  </div>
 </div>
+
 
 
 <div class="example-button-row">
@@ -55,9 +59,14 @@
 
 <section-title title="Anuncios"></section-title>
 
-<div class="offer-card">
-  <offer-card *ngFor="let offer of offers"  offerId="{{ offer.id }}"></offer-card>
+
+<div class="card-container">
+  <div *ngFor="let offer of offers" class="offer-card">
+    <offer-card offerId="{{offer.id}}"></offer-card>
+  </div>
 </div>
+
+
 
 <div class="example-button-row">
   <button mat-raised-button color="primary" style="margin: 3%">
