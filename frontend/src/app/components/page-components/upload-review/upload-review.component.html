@@ -1,4 +1,4 @@
-<general-title title="Nacidos de la Bruma"></general-title>
+<general-title *ngIf="book" title="{{book.title}}"></general-title>
 
 <div class="review-form">
 
@@ -8,8 +8,8 @@
 
   <general-form text="Descripción de la reseña"></general-form>
 
-  <div>
-    <button mat-raised-button color="primary" (click)="newReview(23)">Subir reseña</button>
+  <div *ngIf="book">
+    <button mat-raised-button color="primary" (click)="newReview(book)">Subir reseña</button>
   </div>
 
 </div>

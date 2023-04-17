@@ -1,42 +1,51 @@
-<h1 style="font-weight: bold; text-align: center; font-size: 30px;"><u>Compra este ejemplar</u></h1>
+<general-title title="Compra este ejemplar"></general-title>
 
-<div class="example-form">
+<div *ngIf="offer" class="example-form">
 
-  <div style="display: inline-block; width: 40%;vertical-align: top;">
-    <img style="width: 100%; height: 100%;" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <div class="offer-div-image">
+    <img class="offer-image" mat-card-image [src]="getImage(offer)">
   </div>
 
-  <div style="margin-left: 5%; display: inline-block; width: 55%; vertical-align: top; flex-wrap: wrap;">
-      <mat-card class="example-card" style="background-color: #f5f5f5;">
-        <mat-card-title style="text-align: center; font-weight: bold; margin: 3%; font-size: 30px;">El señor de los anillos</mat-card-title>
+  <div class="div-offer-page">
+      <mat-card class="example-card">
+        <mat-card-title>{{offer.book.title}}</mat-card-title>
         <mat-divider></mat-divider>
-        <mat-card-content style="margin-bottom: 4%;">
-          <h2 style="font-weight: bold; display: inline-block; margin-top: 2%;padding-left: 5%">Vendedor:</h2>
-          <p style="display: inline-block; margin-left: 4%; font-size: 18px; margin: 0; padding-left: 5%;">Harry Potter</p>
-          <h2 style="padding-left: 5%; font-weight: bold; margin-left: 4%;">Precio: <span style="padding-left: 5%; text-align: right; color: red">5 EUR</span></h2>
-          <h2 style="font-weight: bold; display: inline-block; margin: 0;padding-left: 5%">Descripción:</h2>
-          <p style="display: inline-block; margin-left: 4%; font-size: 18px; margin: 0; padding-left: 5%; word-wrap: break-word;">This is a text description</p>
-          <div class="example-button-row" style="display: flex; justify-content: center;">
-            <button mat-raised-button color="primary" style="margin: 3%;" (click)="buyOffer(23,67)">Comprar<mat-icon>shopping_cart</mat-icon></button>
+        <mat-card-content>
+          <div>
+            <h2 class="offer-page-h2">Vendedor:</h2>
+            <p class="offer-page-p">{{offer.seller.name}}</p>
           </div>
-          <div class="example-button-row" style="display: flex; justify-content: center;">
-            <button mat-raised-button color="primary" style="margin: 3%;" (click)="editOffer(67)">Editar<mat-icon>create</mat-icon></button>
+          <div>
+            <h2 class="offer-page-h2">Precio:</h2>
+            <p class="offer-page-p"><span class="offer-price-span">{{offer.price}} euros</span> </p>
           </div>
-          <div class="example-button-row" style="display: flex; justify-content: center;">
+          <div>
+            <h2 class="offer-page-h2">Descripción:</h2>
+            <p class="offer-page-desc">{{offer.book.genre}}</p>
+          </div>
+
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" style="margin: 3%;" (click)="buyOffer(offer)">Comprar<mat-icon>shopping_cart</mat-icon></button>
+          </div>
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" style="margin: 3%;" (click)="editOffer(offer)">Editar<mat-icon>create</mat-icon></button>
+          </div>
+          <div class="example-button-row">
             <button mat-raised-button color="primary" style="margin: 3%;">Inicia sesión para comprar el libro<mat-icon>person</mat-icon></button>
           </div>
           <mat-divider></mat-divider>
           <div>
-          <h2 style="font-weight: bold; display: inline-block; margin-top: 2%;padding-left: 5%">Autor:</h2>
-          <p style="display: inline-block; margin-left: 4%; font-size: 18px; margin: 0; padding-left: 5%;">J.R.Tolkien</p>
+            <h2 class="offer-page-h2">Autor:</h2>
+            <p class="offer-page-p">{{offer.book.author}}</p>
           </div>
           <div>
-          <h2 style="font-weight: bold; display: inline-block; margin-top: 2%;padding-left: 5%">Editorial:</h2>
-          <p style="display: inline-block; margin-left: 4%; font-size: 18px; margin: 0; padding-left: 5%;">Santillana</p>
+            <h2 class="offer-page-h2">Editorial:</h2>
+            <p class="offer-page-p">{{offer.edition}}</p>
           </div>
-          <h2 style="font-weight: bold; display: inline-block; margin-top: 2%;padding-left: 5%">Género:</h2>
-          <p style="display: inline-block; margin-left: 4%; font-size: 18px; margin: 0; padding-left: 5%;">Fantasía</p>
-
+          <div>
+            <h2 class="offer-page-h2">Género:</h2>
+            <p class="offer-page-p">{{offer.book.genre}}</p>
+          </div>
         </mat-card-content>
       </mat-card>
   </div>

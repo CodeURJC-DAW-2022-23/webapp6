@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Review } from '../../../models/review.model';
+import { Book } from 'src/app/models/book.model';
+import { BookService } from 'src/app/services/book.service';
 
 @Component({
   selector: 'upload-review',
@@ -10,11 +12,21 @@ import { Review } from '../../../models/review.model';
 })
 export class UploadReviewComponent {
 
-  constructor(private router: Router) { }
+  book: Book | undefined;
 
-  newReview(id: number) {
+  constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService) {
+
+    const id = activatedRoute.snapshot.params['idBook'];
+
+    this.bookService.getBook(id).subscribe(
+      book => this.book = book,
+      error => console.log(error)
+    );
+  }
+
+  newReview(book: Book) {
     // Call to services to create de review
-    this.router.navigate(['/books', id]);
+    this.router.navigate(['/books', book.id]);
   }
 
 }

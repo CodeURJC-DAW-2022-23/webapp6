@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Book } from 'src/app/models/book.model';
+import { BookService } from 'src/app/services/book.service';
 
 @Component({
   selector: 'upload-offer',
@@ -8,11 +10,22 @@ import { Router } from '@angular/router';
 })
 export class UploadOfferComponent {
 
-  constructor(private router: Router) { }
+  book: Book | undefined;
 
-  newOffer(id: number) {
+  constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService) {
+
+    const id = activatedRoute.snapshot.params['idBook'];
+
+    this.bookService.getBook(id).subscribe(
+      book => this.book = book,
+      error => console.log(error)
+    );
+  }
+
+
+  newOffer(book: Book) {
     // Call to services to create de offer
-    this.router.navigate(['/books', id]);
+    this.router.navigate(['/books', book.id]);
   }
 
 }

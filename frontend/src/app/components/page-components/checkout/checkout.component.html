@@ -61,17 +61,17 @@
 
   </div>
 
-  <div style="display: inline-block; width: 35%; vertical-align: top;">
+  <div *ngIf="offer" class="div-checkout">
 
-    <mat-card class="example-card" style="background-color: #f5f5f5;">
-      <mat-card-title style="text-align: center; font-weight: bold; margin: 3%; font-size: 30px;">Tu pedido</mat-card-title>
+    <mat-card class="example-card">
+      <mat-card-title class="checkout-title-card">Tu pedido</mat-card-title>
       <mat-divider></mat-divider>
-      <mat-card-content style="margin-bottom: 4%;">
-        <h2 style="font-weight: bold; margin-left: 4%;margin-top: 3%;">Producto</h2>
-        <p style="margin-left: 4%;font-size: 18px;">Harry Potter</p>
-        <h2 style="font-weight: bold; margin-left: 4%;">Vendedor</h2>
-        <p style="margin-left: 4%;font-size: 18px;">Paco</p>
-        <h2 style="font-weight: bold; margin-left: 4%;">Total: <span style="text-align: right; color: red">5 EUR</span></h2>
+      <mat-card-content class="checkout-content-card">
+        <h2 class="checkout-h2">Producto: </h2>
+        <p class="checkout-p">{{offer.book.title}}</p>
+        <h2 class="checkout-h2">Vendedor: </h2>
+        <p class="checkout-p">{{offer.seller.name}}</p>
+        <h2 class="checkout-h2">Total: <span class="checkout-price-span">{{offer.price}} euros</span></h2>
       </mat-card-content>
       <mat-divider></mat-divider>
         <button mat-raised-button type="submit" color="primary">Comprar</button>

@@ -11,3 +11,19 @@
     vertical-align: top;
 }
 
+.card-upload-offer {
+  background-color: #f5f5f5;
+}
+
+.card-title-upload-offer {
+  text-align: center;
+  font-weight: bold;
+  margin: 3%;
+  font-size: 30px;
+}
+
+.card-content-upload-offer {
+  margin-bottom: 4%;
+  margin-top: 4%;
+}
+

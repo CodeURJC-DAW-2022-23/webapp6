@@ -12,3 +12,74 @@
 td {
   padding-right: 8%;
 }
+
+.offer-div-image{
+  display: inline-block;
+  width: 40%;
+  vertical-align: top;
+}
+
+.offer-image {
+  width: 100%;
+  height: 100%;
+}
+
+.div-offer-page{
+  margin-left: 5%;
+  display: inline-block;
+  width: 55%;
+  vertical-align: top;
+  flex-wrap: wrap;
+}
+
+.example-card{
+  background-color: #f5f5f5;
+}
+
+mat-card-title {
+  text-align: center;
+  font-weight: bold;
+  margin: 3%;
+  font-size: 30px;
+}
+
+mat-card-content {
+  margin-bottom: 4%;
+}
+
+.offer-page-h2 {
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 2%;
+  padding-left: 5%;
+}
+
+.offer-page-p {
+  display: inline-block;
+  margin-left: 4%;
+  font-size: 18px;
+  margin: 0;
+  padding-left: 5%;
+}
+
+.offer-price-span {
+  color: red;
+}
+
+.offer-page-desc {
+  display: inline-block;
+  margin-left: 4%;
+  font-size: 18px;
+  margin: 0;
+  padding-left: 5%;
+  word-wrap: break-word;
+}
+
+.example-button-row{
+  display: flex;
+  justify-content: center;
+}
+
+.offer-page-but {
+  margin: 10%;
+}
