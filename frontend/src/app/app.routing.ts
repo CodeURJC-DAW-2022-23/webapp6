@@ -10,6 +10,7 @@ import { UpdateReviewComponent } from './components/page-components/update-revie
 import { CheckoutComponent } from './components/page-components/checkout/checkout.component';
 import { BookParticularComponent } from './components/page-components/book-particular/book-particular.component';
 import { OfferComponent } from './components/page-components/offer/offer.component';
+import { LoginComponent } from './components/page-components/login/login.components';
 
 const appRoutes = [
 
@@ -23,6 +24,7 @@ const appRoutes = [
     { path: 'reviews/:idReview/update-review', component: UpdateReviewComponent},
     { path: 'offers/:idOffer/checkout', component: CheckoutComponent},
     { path: 'offers/:idOffer', component: OfferComponent},
+    { path: 'login', component: LoginComponent},
     { path: '**', redirectTo: '' }
 
 ]

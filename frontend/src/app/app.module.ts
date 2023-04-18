@@ -27,6 +27,8 @@ import { SectionTitle, GeneralTitle } from './components/general-components/titl
 import { Form } from './components/general-components/forms/forms.component';
 import { OfferCard } from './components/general-components/offer-card/offer-card.component';
 import { ReviewCard } from './components/general-components/review-card/review-card.component';
+import { LoginComponent } from './components/page-components/login/login.components';
+import { LoginFormComponent } from './components/page-components/login-form/login-form.component';
 
 
 
@@ -38,7 +40,8 @@ import { ReviewCard } from './components/general-components/review-card/review-c
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
-    BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, ReviewCard,
+    BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, LoginComponent,
+    ReviewCard, LoginFormComponent
     //All components
   ],
   imports: [

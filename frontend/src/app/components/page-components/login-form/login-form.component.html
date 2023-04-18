@@ -1,0 +1,14 @@
+<form (ngSubmit)="submitLoginForm()">
+    <mat-form-field>
+      <mat-label>Nombre de Usuario</mat-label>
+      <input matInput [(ngModel)]="username" type="text" name="username" placeholder="Nombre de Usuario" required>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput [(ngModel)]="password" type="password" name="password" placeholder="Contraseña" required>
+    </mat-form-field>
+  
+    <button class="btn btn-danger btn-lg" type="submit">Inicia Sesión</button>
+  </form>
+  
