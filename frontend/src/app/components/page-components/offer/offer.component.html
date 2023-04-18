@@ -25,10 +25,10 @@
           </div>
 
           <div *ngIf="loginService.isLogged()">
-            <div *ngIf="isOwn" class="example-button-row">
+            <div *ngIf="!isOwn" class="example-button-row">
               <button mat-raised-button color="primary" style="margin: 3%;" (click)="buyOffer(offer)">Comprar<mat-icon>shopping_cart</mat-icon></button>
             </div>
-            <div *ngIf="!isOwn" class="example-button-row">
+            <div *ngIf="isOwn" class="example-button-row">
               <button mat-raised-button color="primary" style="margin: 3%;" (click)="editOffer(offer)">Editar<mat-icon>create</mat-icon></button>
             </div>
           </div>

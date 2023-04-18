@@ -17,11 +17,13 @@ export class BookParticularComponent {
   book: Book | undefined;
   reviews: Page | undefined;
   offers: Page | undefined;
+  favorites: Book[] | undefined;
   pageOffers: number = 0;
   pageReviews: number = 0;
   showButtonOffers: boolean = true;
   showButtonReviews: boolean = true;
   logged: boolean | undefined;
+  isFavorite: boolean | undefined;
 
   constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService, public loginService: LoginService) {
 
@@ -29,6 +31,18 @@ export class BookParticularComponent {
 
     this.bookService.getBook(id).subscribe(
       book => this.book = book,
+      error => console.log(error)
+    );
+
+    this.bookService.getFavorites().subscribe(
+      favorites => {
+        this.favorites = favorites;
+        if (this.book != undefined && this.favorites.some((favorite) => favorite.id === this.book?.id)) {
+          this.isFavorite = true;
+        } else {
+          this.isFavorite = false;
+        }
+      },
       error => console.log(error)
     );
 
@@ -42,6 +56,7 @@ export class BookParticularComponent {
       error => console.log(error)
     );
   }
+
 
 
 
@@ -91,12 +106,35 @@ export class BookParticularComponent {
   }
 
   uploadReview(book: Book) {
-    // Call to services to create de offer
     this.router.navigate(['/books', book.id, 'upload-review']);
   }
 
   goLogin(){
     this.router.navigate(['/login'])
+  }
+
+  addFavorite(book: Book) {
+    if (book.id != undefined){
+    this.bookService.addFavorite(book.id).subscribe(
+      response => {
+        console.log(response);
+        this.isFavorite = true;
+      },
+      error => console.log(error)
+    );
+    }
+  }
+
+  deleteFavorite(book: Book) {
+    if (book.id != undefined){
+    this.bookService.deleteFavorite(book.id).subscribe(
+      response => {
+        console.log(response);
+        this.isFavorite = false;
+      },
+      error => console.log(error)
+    );
+    }
   }
 
 }

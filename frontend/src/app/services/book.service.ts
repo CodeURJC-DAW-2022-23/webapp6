@@ -45,4 +45,16 @@ export class BookService {
     return this.httpClient.get(BASE_URL + "/" + id + "/offers/all") as Observable<Offer[]>;
   }
 
+  addFavorite(id: number){
+    return this.httpClient.post("/api/user/favorites/" + id, {});
+  }
+
+  deleteFavorite(id: number){
+    return this.httpClient.delete("/api/user/favorites/" + id, {});
+  }
+
+  getFavorites(): Observable<Book[]> {
+    return this.httpClient.get("/api/user/favorites/") as Observable<Book[]>;
+  }
+
 }

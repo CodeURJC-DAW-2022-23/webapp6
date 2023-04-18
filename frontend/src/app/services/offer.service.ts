@@ -42,4 +42,13 @@ export class OfferService {
 		return this.httpClient.put(BASE_URL + "/" + offer.id + "/sold", {});
 	}
 
+  updateOffer(offer: Offer) {
+    return this.httpClient.put(BASE_URL + "/" + offer.id, offer)
+  }
+
+  deleteOfferImage(offer: Offer) {
+    return this.httpClient.delete(BASE_URL + "/" + offer.id + "/image")
+}
+
+
 }
