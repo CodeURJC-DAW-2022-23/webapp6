@@ -11,21 +11,25 @@ const BASE_URL = '/api/offers';
 @Injectable({ providedIn: 'root' })
 export class OfferService {
 
-  constructor(private httpClient: HttpClient) { }
+	constructor(private httpClient: HttpClient) { }
 
-  getOffers(): Observable<Offer[]> {
-	return this.httpClient.get(BASE_URL + "/") as Observable<Offer[]>
-}
+	getOffers(): Observable<Offer[]> {
+		return this.httpClient.get(BASE_URL + "/") as Observable<Offer[]>
+	}
 
-  getOffer(id: number | undefined): Observable <Offer> {
-    return this.httpClient.get(BASE_URL + "/" + id) as Observable<Offer>
-  }
+	getOffersPaginated(n: number): Observable<Page> {
+		return this.httpClient.get(BASE_URL + "?page=" + n) as Observable<Page>
+	}
 
-  getImage(id: number){
-    return BASE_URL + "/" + id + '/image';
-  }
+	getOffer(id: number | undefined): Observable<Offer> {
+		return this.httpClient.get(BASE_URL + "/" + id) as Observable<Offer>
+	}
 
-  addOffer(offer: Offer, id: number) {
+	getImage(id: number) {
+		return BASE_URL + "/" + id + '/image';
+	}
+
+	addOffer(offer: Offer, id: number) {
 
 		if (!offer.id) {
 			return this.httpClient.post("/api/books/" + id + "/offers", offer)
@@ -39,7 +43,7 @@ export class OfferService {
 		}
 	}
 
-  setOfferImage(offer: Offer, formData: FormData) {
+	setOfferImage(offer: Offer, formData: FormData) {
 		return this.httpClient.post(BASE_URL + "/" + offer.id + '/image', formData)
 			.pipe(
 				catchError(error => this.handleError(error))
@@ -65,11 +69,11 @@ export class OfferService {
 		);
 	}
 
-  buyOffer(offer: Offer) {
-    return this.httpClient.put(BASE_URL + "/" + offer.id +"/sold", {} ).pipe(
+	buyOffer(offer: Offer) {
+		return this.httpClient.put(BASE_URL + "/" + offer.id + "/sold", {}).pipe(
 			catchError(error => this.handleError(error))
 		);
-  }
+	}
 
 	private handleError(error: any) {
 		console.log("ERROR:");
