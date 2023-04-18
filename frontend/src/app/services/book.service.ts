@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { Book } from '../models/book.model';
 import { Review } from '../models/review.model';
 import { Offer } from '../models/offer.model';
+import { Page } from '../models/page.model';
 
 const BASE_URL = '/api/books';
 
@@ -20,6 +21,15 @@ export class BookService {
   getBook(id: number | undefined): Observable<Book> {
     return this.httpClient.get(BASE_URL + '/' + id) as Observable<Book>;
   }
+
+  getOffersPaginated(id: number, n: number): Observable<Page>{
+		return this.httpClient.get(BASE_URL +"/" + id + "/offers" + "?page=" + n) as Observable<Page> ;
+	}
+
+  getReviewsPaginated(id: number, n: number): Observable<Page>{
+		return this.httpClient.get(BASE_URL +"/" + id + "/reviews" + "?page=" + n) as Observable<Page> ;
+	}
+
 
   getImage(id: number) {
     return BASE_URL + '/' + id + '/image';

@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Offer } from '../models/offer.model';
+import { Page } from '../models/page.model';
 
 const BASE_URL = '/api/offers';
 
@@ -15,12 +16,6 @@ export class OfferService {
   getOffers(): Observable<Offer[]> {
 	return this.httpClient.get(BASE_URL + "/") as Observable<Offer[]>
 }
-
-  getOffersByBookPaginated(id: number, n: number) {
-		return this.httpClient.get("/api/books/" + id + "/offers" + "?page=" + n).pipe(
-			catchError(catchError((error) => this.handleError(error)))
-		);
-	}
 
   getOffer(id: number | undefined): Observable <Offer> {
     return this.httpClient.get(BASE_URL + "/" + id) as Observable<Offer>

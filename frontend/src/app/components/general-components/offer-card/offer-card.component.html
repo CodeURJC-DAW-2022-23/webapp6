@@ -1,7 +1,7 @@
 <div *ngIf="offer">
   <mat-card class="example-card">
-    <a [routerLink]="['/offers', offer.id]"><img class="offer-card-image" mat-card-image [src]="getImage(offer)"></a>
-    <mat-card-content>
+    <mat-card-content >
+      <a [routerLink]="['/offers', offer.id]"><img class="offer-card-image" mat-card-image [src]="getImage(offer)"></a>
       <h2 class="offer-card-h2"><a
         [routerLink]="['/offers', offer.id]">{{offer.seller.name}}</a></h2>
       <h2 class="offer-card-h2-price">{{offer.price}} euros</h2>

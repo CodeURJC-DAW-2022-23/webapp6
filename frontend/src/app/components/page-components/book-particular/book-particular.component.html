@@ -6,17 +6,19 @@
     <p class="book-particular-genre">Género: {{ book.genre }}</p>
 
     <!-- Now puts all the options, then only a div -->
-    <div class="example-button-row">
-      <button mat-raised-button class="book-particular-button">
-        Añadir a favoritos<mat-icon>favorite_border</mat-icon>
-      </button>
+    <div *ngIf="loginService.isLogged()">
+      <div class="example-button-row">
+        <button mat-raised-button class="book-particular-button">
+          Añadir a favoritos<mat-icon>favorite_border</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-row">
+        <button mat-raised-button class="book-particular-button">
+          Quitar de favoritos<mat-icon>favorite</mat-icon>
+        </button>
+      </div>
     </div>
-    <div class="example-button-row">
-      <button mat-raised-button class="book-particular-button">
-        Quitar de favoritos<mat-icon>favorite</mat-icon>
-      </button>
-    </div>
-    <div class="example-button-row">
+    <div *ngIf="!loginService.isLogged()"  class="example-button-row">
       <button mat-raised-button class="book-particular-button">
         Inicia sesión para añadir a favoritos <mat-icon>person</mat-icon>
       </button>
@@ -32,26 +34,25 @@
 <section-title title="Reseñas"></section-title>
 
 
-<div class="card-container">
-  <div *ngFor="let review of reviews" class="review-card">
+<div *ngIf="reviews" class="card-container">
+  <div *ngFor="let review of reviews.content" class="review-card">
     <review-card reviewId="{{review.id}}"></review-card>
   </div>
 </div>
 
-
-
-<div class="example-button-row">
-  <button mat-raised-button color="primary" style="margin: 3%">
+<div *ngIf="showButtonReviews"  class="example-button-row">
+  <button *ngIf="book" mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreReviews(book,pageReviews + 1)">
     Cargar más
   </button>
 </div>
 
+
 <!-- Now puts all the options, then only a div -->
-<div *ngIf="book" class="example-button-row">
-  <button mat-raised-button class="book-particular-button" (click)="uploadReview(book)">
+<div *ngIf="loginService.isLogged()"   class="example-button-row">
+  <button *ngIf="book" mat-raised-button class="book-particular-button" (click)="uploadReview(book)">
     Publicar reseña<mat-icon>expand_less</mat-icon></button>
 </div>
-<div class="example-button-row">
+<div *ngIf="!loginService.isLogged()"  class="example-button-row">
   <button mat-raised-button class="book-particular-button">
     Inicia sesión para publicar tu reseña <mat-icon>person</mat-icon>
   </button>
@@ -60,26 +61,25 @@
 <section-title title="Anuncios"></section-title>
 
 
-<div class="card-container">
-  <div *ngFor="let offer of offers" class="offer-card">
+<div *ngIf="offers" class="card-container">
+  <div *ngFor="let offer of offers.content" class="offer-card">
     <offer-card offerId="{{offer.id}}"></offer-card>
   </div>
 </div>
 
 
 
-<div class="example-button-row">
-  <button mat-raised-button color="primary" style="margin: 3%">
-    Cargar más
-  </button>
+<div *ngIf="showButtonOffers"  class="example-button-row">
+  <button *ngIf="book" mat-raised-button color="primary" style="margin: 3%" (click)="loadMoreOffers(book,pageOffers + 1)">
+    Cargar más </button>
 </div>
 
 <!-- Now puts all the options, then only a div -->
-<div *ngIf="book" class="example-button-row">
-  <button mat-raised-button class="book-particular-button" (click)="uploadOffer(book)">
+<div *ngIf="loginService.isLogged()"  class="example-button-row">
+  <button  *ngIf="book" mat-raised-button class="book-particular-button" (click)="uploadOffer(book)">
     Subir anuncio<mat-icon>expand_less</mat-icon></button>
 </div>
-<div class="example-button-row">
+<div *ngIf="!loginService.isLogged()" class="example-button-row">
   <button mat-raised-button class="book-particular-button">
     Inicia sesión para subir tu anuncio <mat-icon>person</mat-icon>
   </button>

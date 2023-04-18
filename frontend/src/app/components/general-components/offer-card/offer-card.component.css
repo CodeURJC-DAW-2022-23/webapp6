@@ -27,3 +27,11 @@ a {
   color: black;
 }
 
+.example-card {
+    width: 270px; /* Establece el ancho deseado */
+    height: 400px;
+}
+
+.example-card mat-card-content {
+  height: 70%;
+}

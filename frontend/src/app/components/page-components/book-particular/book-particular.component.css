@@ -58,7 +58,8 @@ p {
 }
 
 .offer-card {
-  max-width: 20%;
+  width: 20%;
+  height: 20%;
   margin-bottom: 5%;
   margin-right: 5%;
 }

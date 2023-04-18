@@ -27,7 +27,12 @@ export class OfferCard {
   }
 
   getImage(offer: Offer) {
-    return '/api/offers/' + offer.id + '/image';
+    if (offer.id != undefined){
+      return this.offerService.getImage(offer.id);
+    }
+    else{
+      return "";
+    }
   }
 
 }

@@ -30,4 +30,12 @@
   display: inline;
 }
 
+.review-content {
+  width: 270px; /* Establece el ancho deseado */
+  height: 250px;
+}
+
+.review-content mat-card-content {
+height: 70%;
+}
 

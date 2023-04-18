@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/models/book.model';
 import { Offer } from 'src/app/models/offer.model';
+import { Page } from 'src/app/models/page.model';
 import { Review } from 'src/app/models/review.model';
 import { BookService } from 'src/app/services/book.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'book-particular',
@@ -13,10 +15,14 @@ import { BookService } from 'src/app/services/book.service';
 export class BookParticularComponent {
 
   book: Book | undefined;
-  reviews: Review[] | undefined;
-  offers: Offer[] | undefined;
+  reviews: Page | undefined;
+  offers: Page | undefined;
+  pageOffers: number = 0;
+  pageReviews: number = 0;
+  showButtonOffers: boolean = true;
+  showButtonReviews: boolean = true;
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService) {
+  constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService, public loginService: LoginService) {
 
     const id = activatedRoute.snapshot.params['idBook'];
 
@@ -25,20 +31,58 @@ export class BookParticularComponent {
       error => console.log(error)
     );
 
-    this.bookService.getReviews(id).subscribe(
+    this.bookService.getReviewsPaginated(id,0).subscribe(
       reviews => this.reviews = reviews,
       error => console.log(error)
     );
 
-    this.bookService.getOffers(id).subscribe(
+    this.bookService.getOffersPaginated(id, 0).subscribe(
       offers => this.offers = offers,
       error => console.log(error)
     );
+  }
 
+
+
+  loadMoreOffers(book: Book, n: number) {
+    this.pageOffers = n;
+    if (book.id !== undefined) {
+      this.bookService.getOffersPaginated(book.id, n).subscribe(
+        newOffers => {
+          if (this.offers != undefined && newOffers.numberOfElements != 0){
+            this.offers.content = this.offers.content.concat(newOffers.content);
+          }else{
+            this.showButtonOffers = false;
+          }
+        },
+        error => console.log(error)
+      );
+    }
+  }
+
+  loadMoreReviews(book: Book, n: number) {
+    this.pageReviews = n;
+    if (book.id !== undefined) {
+      this.bookService.getReviewsPaginated(book.id, n).subscribe(
+        newReviews => {
+          if (this.reviews != undefined && newReviews.numberOfElements != 0){
+            this.reviews.content = this.reviews.content.concat(newReviews.content);
+          }else{
+            this.showButtonReviews = false;
+          }
+        },
+        error => console.log(error)
+      );
+    }
   }
 
   getImage(book: Book) {
-    return '/api/books/' + book.id + '/image';
+    if (book.id != undefined){
+      return this.bookService.getImage(book.id);
+    }
+    else{
+      return "";
+    }
   }
 
   uploadOffer(book: Book) {

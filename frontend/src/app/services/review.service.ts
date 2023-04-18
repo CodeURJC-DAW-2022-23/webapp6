@@ -16,12 +16,6 @@ export class ReviewService {
 		return this.httpClient.get(BASE_URL + "/") as Observable<Review[]>
 	}
 
-	getReviewsByBookPaginated(id: number, n: number) {
-		return this.httpClient.get("/api/books/" + id + "/reviews" + "?page=" + n).pipe(
-			catchError(catchError((error) => this.handleError(error)))
-		);
-	}
-
 
   getReview(id: number | undefined): Observable <Review> {
     return this.httpClient.get(BASE_URL + "/" + id) as Observable<Review>
