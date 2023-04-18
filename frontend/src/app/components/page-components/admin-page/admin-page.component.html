@@ -12,9 +12,23 @@
         <tr *ngFor="let user of users.content">
             <td>{{user.id}}</td>
             <td>{{user.name}}</td>
-            <td>{{user.email}}</td>
-            <td class="center"><img [src]="userImage(user)"></td>
-            <td></td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="user.email" value="{{user.date}}" type="text">
+                </mat-form-field>
+            </td>
+            <td class="center">
+                <img [src]="userImage(user)"><br>
+                <input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
+            </td>
+            <td class="center">
+                <button mat-icon-button (click)="updateUser(user)">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteUser(user)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -37,11 +51,33 @@
             <td>{{offer.id}}</td>
             <td>{{offer.book.title}}</td>
             <td>{{offer.seller.name}}</td>
-            <td>{{offer.date}}</td>
-            <td>{{offer.description}}</td>
-            <td>{{offer.price}}</td>
-            <td class="center"><img [src]="offerImage(offer)"></td>
-            <td></td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="offer.date" value="{{offer.date}}" type="date">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="offer.description" value="{{offer.description}}" type="text">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="offer.price" value="{{offer.price}}" type="number">
+                </mat-form-field>
+            </td>
+            <td class="center">
+                <img [src]="offerImage(offer)"><br>
+                <input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
+            </td>
+            <td class="center">
+                <button mat-icon-button (click)="updateOffer(offer)">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteOffer(offer)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -62,9 +98,24 @@
             <td>{{review.id}}</td>
             <td>{{review.book.title}}</td>
             <td>{{review.author.name}}</td>
-            <td>{{review.date}}</td>
-            <td>{{review.text}}</td>
-            <td></td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="review.date" value="{{review.date}}" type="date">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="review.text" value="{{review.text}}" type="text">
+                </mat-form-field>
+            </td>
+            <td class="center">
+                <button mat-icon-button (click)="updateReview(review)">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteReview(review)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -83,11 +134,33 @@
     <tbody *ngIf="books">
         <tr *ngFor="let book of books.content">
             <td>{{book.id}}</td>
-            <td>{{book.title}}</td>
-            <td>{{book.author}}</td>
-            <td>{{book.genre}}</td>
-            <td class="center"><img [src]="bookImage(book)"></td>
-            <td></td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="book.title" value="{{book.title}}" type="text">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="book.author" value="{{book.author}}" type="text">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="book.genre" value="{{book.genre}}" type="text">
+                </mat-form-field>
+            </td>
+            <td class="center">
+                <img [src]="bookImage(book)"><br>
+                <input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
+            </td>
+            <td class="center">
+                <button mat-icon-button (click)="updateBook(book)">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteBook(book)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>

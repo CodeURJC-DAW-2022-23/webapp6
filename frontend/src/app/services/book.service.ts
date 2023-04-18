@@ -33,7 +33,6 @@ export class BookService {
     return this.httpClient.get(BASE_URL + "/" + id + "/reviews" + "?page=" + n) as Observable<Page>;
   }
 
-
   getImage(id: number) {
     return BASE_URL + '/' + id + '/image';
   }
@@ -45,14 +44,5 @@ export class BookService {
   getOffers(id: number): Observable<Offer[]> {
     return this.httpClient.get(BASE_URL + "/" + id + "/offers/all") as Observable<Offer[]>;
   }
-
-  addBook(book: Book): Observable<Book> {
-    return this.httpClient.post("/api/admin/books/", book) as Observable<Book>;
-  }
-
-  setBookImage(book: Book, formData: FormData) {
-    return this.httpClient.post("/api/admin/books/" + book.id + '/image', formData);
-  }
-
 
 }

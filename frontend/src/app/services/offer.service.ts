@@ -30,17 +30,16 @@ export class OfferService {
 		return BASE_URL + "/" + id + '/image';
 	}
 
-  addOffer(id:number, offer: OfferTDO): Observable<Offer> {
-    return this.httpClient.post("/api/books/" + id + "/offers", offer) as Observable<Offer>;
-  }
+	addOffer(id: number, offer: OfferTDO): Observable<Offer> {
+		return this.httpClient.post("/api/books/" + id + "/offers", offer) as Observable<Offer>;
+	}
 
-  setOfferImage(offer: Offer, formData: FormData) {
-    return this.httpClient.post(BASE_URL + "/" + offer.id + '/image', formData);
-  }
+	setOfferImage(offer: Offer, formData: FormData) {
+		return this.httpClient.post(BASE_URL + "/" + offer.id + '/image', formData);
+	}
 
 	buyOffer(offer: Offer) {
 		return this.httpClient.put(BASE_URL + "/" + offer.id + "/sold", {});
 	}
-
 
 }

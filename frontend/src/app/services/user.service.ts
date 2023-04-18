@@ -12,11 +12,4 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers(): Observable<User[]> {
-    return this.httpClient.get("/api/admin/users/") as Observable<User[]>;
-  }
-
-  getUsersPaginated(n: number): Observable<Page> {
-    return this.httpClient.get("/api/admin/users?page=" + n) as Observable<Page>;
-  }
 }
