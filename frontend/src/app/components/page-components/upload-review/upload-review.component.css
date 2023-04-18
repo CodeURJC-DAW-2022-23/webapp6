@@ -6,4 +6,7 @@
   margin: 6%;
 }
 
+mat-form-field {
+  width: 100%;
+}
 

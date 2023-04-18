@@ -6,7 +6,7 @@
     <p class="book-particular-genre">Género: {{ book.genre }}</p>
 
     <!-- Now puts all the options, then only a div -->
-    <div *ngIf="loginService.isLogged()">
+    <div >
       <div class="example-button-row">
         <button mat-raised-button class="book-particular-button">
           Añadir a favoritos<mat-icon>favorite_border</mat-icon>
@@ -18,8 +18,8 @@
         </button>
       </div>
     </div>
-    <div *ngIf="!loginService.isLogged()"  class="example-button-row">
-      <button mat-raised-button class="book-particular-button">
+    <div class="example-button-row">
+      <button mat-raised-button class="book-particular-button" (click)="goLogin()">
         Inicia sesión para añadir a favoritos <mat-icon>person</mat-icon>
       </button>
     </div>
@@ -48,12 +48,12 @@
 
 
 <!-- Now puts all the options, then only a div -->
-<div *ngIf="loginService.isLogged()"   class="example-button-row">
+<div class="example-button-row">
   <button *ngIf="book" mat-raised-button class="book-particular-button" (click)="uploadReview(book)">
     Publicar reseña<mat-icon>expand_less</mat-icon></button>
 </div>
-<div *ngIf="!loginService.isLogged()"  class="example-button-row">
-  <button mat-raised-button class="book-particular-button">
+<div class="example-button-row">
+  <button mat-raised-button class="book-particular-button" (click)="goLogin()">
     Inicia sesión para publicar tu reseña <mat-icon>person</mat-icon>
   </button>
 </div>
@@ -75,12 +75,12 @@
 </div>
 
 <!-- Now puts all the options, then only a div -->
-<div *ngIf="loginService.isLogged()"  class="example-button-row">
+<div class="example-button-row">
   <button  *ngIf="book" mat-raised-button class="book-particular-button" (click)="uploadOffer(book)">
     Subir anuncio<mat-icon>expand_less</mat-icon></button>
 </div>
-<div *ngIf="!loginService.isLogged()" class="example-button-row">
-  <button mat-raised-button class="book-particular-button">
+<div class="example-button-row">
+  <button mat-raised-button class="book-particular-button" (click)="goLogin()">
     Inicia sesión para subir tu anuncio <mat-icon>person</mat-icon>
   </button>
 </div>

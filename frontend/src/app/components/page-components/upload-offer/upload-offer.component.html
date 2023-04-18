@@ -3,13 +3,22 @@
 <section-title title="Sube tu libro"></section-title>
 <section-title title="Detalles del libro"></section-title>
 
-<div class="left-column">
 
-  <general-form text="Editorial" type="text"></general-form>
-  <general-form text="Descripción" type="text"></general-form>
-  <general-form text="Price" type="number"></general-form>
+  <mat-form-field>
+    <mat-label>Editorial</mat-label>
+    <input matInput [(ngModel)]="newOffer.edition" type="text" required>
+  </mat-form-field>
 
-</div>
+  <mat-form-field>
+    <mat-label>Descripción</mat-label>
+    <input matInput [(ngModel)]="newOffer.description" type="text" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Precio</mat-label>
+    <input matInput [(ngModel)]="newOffer.price" type="number" required>
+  </mat-form-field>
+
 
 <div *ngIf="book" class="right-column">
   <mat-card class="card-upload-offer">
@@ -17,9 +26,8 @@
       libro</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content class="card-content-upload-offer">
-      <input type='file' name='imageField' accept=".png, .jpg, .jpeg" />
+      <input #file type='file' name='imageField' accept=".png, .jpg, .jpeg" />
     </mat-card-content>
     <mat-divider></mat-divider>
-    <button mat-raised-button color="primary" (click)="newOffer(book)">Subir libro</button>
+    <button (click)="addNewOffer(book)" mat-raised-button type="submit">Subir anuncio</button>
   </mat-card>
-</div>

@@ -21,6 +21,7 @@ export class BookParticularComponent {
   pageReviews: number = 0;
   showButtonOffers: boolean = true;
   showButtonReviews: boolean = true;
+  logged: boolean | undefined;
 
   constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService, public loginService: LoginService) {
 
@@ -93,4 +94,9 @@ export class BookParticularComponent {
     // Call to services to create de offer
     this.router.navigate(['/books', book.id, 'upload-review']);
   }
+
+  goLogin(){
+    this.router.navigate(['/login'])
+  }
+
 }

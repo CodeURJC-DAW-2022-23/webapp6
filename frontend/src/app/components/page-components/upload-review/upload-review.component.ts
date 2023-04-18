@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Review } from '../../../models/review.model';
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
+import { ReviewTDO } from 'src/app/models/reviewTDO.model';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'upload-review',
@@ -14,7 +16,7 @@ export class UploadReviewComponent {
 
   book: Book | undefined;
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService) {
+  constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService, public reviewService: ReviewService) {
 
     const id = activatedRoute.snapshot.params['idBook'];
 
@@ -24,9 +26,20 @@ export class UploadReviewComponent {
     );
   }
 
-  newReview(book: Book) {
-    // Call to services to create de review
-    this.router.navigate(['/books', book.id]);
+  newReview: ReviewTDO = {text:""};
+
+  addNewReview(book: Book) {
+    if (book.id != undefined){
+    this.reviewService.addReview(book.id, this.newReview).subscribe(
+      response => {
+        console.log(response);
+        this.router.navigate(['/books', book.id]);
+      },
+      error => console.log(error)
+    );
+    }
   }
+
+
 
 }
