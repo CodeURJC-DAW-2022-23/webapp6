@@ -31,15 +31,29 @@ export class LoginService {
 
     }
 
-    logIn(user: string, pass: string) {
+    logIn(name: string, pass: string) {
 
-        this.http.post(BASE_URL + "/login", { username: user, password: pass }, { withCredentials: true })
+        this.http.post(BASE_URL + "/login", { username: name, password: pass }, { withCredentials: true })
             .subscribe(
-                (response) => this.reqIsLogged(),
+                //(response) => this.reqIsLogged(), 
+                (response) => alert("Log In Correcto"), 
                 (error) => alert("Wrong credentials")
             );
 
     }
+
+    register(name: string, password: string, email: string) {
+
+        //alert(`Username: ${name}\nPassword: ${password}\nEmail: ${email}`);
+    
+        this.http.post(BASE_URL + "/register", { name: name, password: password, email: email }, { withCredentials: true })
+            .subscribe(
+                (response) => this.reqIsLogged(),
+                (error) => alert("Error al Registrarse")
+            );
+    
+    }
+    
 
     logOut() {
 

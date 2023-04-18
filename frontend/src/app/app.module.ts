@@ -29,7 +29,8 @@ import { OfferCard } from './components/general-components/offer-card/offer-card
 import { ReviewCard } from './components/general-components/review-card/review-card.component';
 import { LoginComponent } from './components/page-components/login/login.components';
 import { LoginFormComponent } from './components/page-components/login-form/login-form.component';
-
+import { RegisterComponent } from './components/page-components/register/register.components';
+import { RegisterFormComponent } from './components/page-components/register-form/register-form.component';
 
 
 
@@ -41,7 +42,7 @@ import { LoginFormComponent } from './components/page-components/login-form/logi
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
     BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, LoginComponent,
-    ReviewCard, LoginFormComponent
+    ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent
     //All components
   ],
   imports: [

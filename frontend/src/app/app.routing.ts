@@ -11,6 +11,7 @@ import { CheckoutComponent } from './components/page-components/checkout/checkou
 import { BookParticularComponent } from './components/page-components/book-particular/book-particular.component';
 import { OfferComponent } from './components/page-components/offer/offer.component';
 import { LoginComponent } from './components/page-components/login/login.components';
+import { RegisterComponent } from './components/page-components/register/register.components';
 
 const appRoutes = [
 
@@ -25,6 +26,7 @@ const appRoutes = [
     { path: 'offers/:idOffer/checkout', component: CheckoutComponent},
     { path: 'offers/:idOffer', component: OfferComponent},
     { path: 'login', component: LoginComponent},
+    { path: 'register', component: RegisterComponent},
     { path: '**', redirectTo: '' }
 
 ]
