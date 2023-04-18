@@ -6,10 +6,13 @@
 
   <section-title title="Cuenta al mundo que te ha parecido"></section-title>
 
-  <general-form text="Descripción de la reseña" type="text"></general-form>
+  <mat-form-field>
+    <mat-label>Descripción</mat-label>
+    <input matInput [(ngModel)]="newReview.text" type="text" required>
+  </mat-form-field>
 
   <div *ngIf="book">
-    <button mat-raised-button color="primary" (click)="newReview(book)">Subir reseña</button>
+    <button (click)="addNewReview(book)" mat-raised-button type="submit">Subir reseña</button>
   </div>
 
 </div>

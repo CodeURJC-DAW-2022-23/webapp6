@@ -32,8 +32,6 @@ import { LoginFormComponent } from './components/page-components/login-form/logi
 import { RegisterComponent } from './components/page-components/register/register.components';
 import { RegisterFormComponent } from './components/page-components/register-form/register-form.component';
 
-
-
 //Import all components
 //Import routing
 

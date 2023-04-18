@@ -21,17 +21,19 @@
           </div>
           <div>
             <h2 class="offer-page-h2">Descripción:</h2>
-            <p class="offer-page-desc">{{offer.book.genre}}</p>
+            <p class="offer-page-desc">{{offer.description}}</p>
           </div>
 
-          <div class="example-button-row">
-            <button mat-raised-button color="primary" style="margin: 3%;" (click)="buyOffer(offer)">Comprar<mat-icon>shopping_cart</mat-icon></button>
+          <div *ngIf="loginService.isLogged()">
+            <div *ngIf="!isOwn" class="example-button-row">
+              <button mat-raised-button color="primary" style="margin: 3%;" (click)="buyOffer(offer)">Comprar<mat-icon>shopping_cart</mat-icon></button>
+            </div>
+            <div *ngIf="isOwn" class="example-button-row">
+              <button mat-raised-button color="primary" style="margin: 3%;" (click)="editOffer(offer)">Editar<mat-icon>create</mat-icon></button>
+            </div>
           </div>
-          <div class="example-button-row">
-            <button mat-raised-button color="primary" style="margin: 3%;" (click)="editOffer(offer)">Editar<mat-icon>create</mat-icon></button>
-          </div>
-          <div class="example-button-row">
-            <button mat-raised-button color="primary" style="margin: 3%;">Inicia sesión para comprar el libro<mat-icon>person</mat-icon></button>
+          <div *ngIf="!loginService.isLogged()" class="example-button-row">
+            <button mat-raised-button color="primary" style="margin: 3%;" (click)="goLogin()">Inicia sesión para comprar el libro<mat-icon>person</mat-icon></button>
           </div>
           <mat-divider></mat-divider>
           <div>

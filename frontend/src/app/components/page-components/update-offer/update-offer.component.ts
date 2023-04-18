@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Offer } from 'src/app/models/offer.model';
 import { OfferService } from 'src/app/services/offer.service';
@@ -20,6 +20,33 @@ export class UpdateOfferComponent {
       offer => this.offer = offer,
       error => console.log(error)
     );
+  }
+
+  updateOffer(offer: Offer) {
+    this.offerService.updateOffer(offer).subscribe(
+      _ => {
+        this.offerService.deleteOfferImage(offer);
+        this.uploadImage(offer);
+        this.router.navigate(['/offers', offer.id]);
+      } ,
+      error => console.error(error)
+    );
+  }
+
+  @ViewChild("file")
+  file: any;
+  uploadImage(offer: Offer): void {
+    const image = this.file.nativeElement.files[0];
+    if (image) {
+      let formData = new FormData();
+      formData.append("imageFile", image);
+      this.offerService.setOfferImage(offer, formData).subscribe(
+        response => {
+          console.log(response);
+        },
+        error => alert('Error uploading offer image: ' + error)
+      );
+    }
   }
 
   getImage(offer: Offer) {

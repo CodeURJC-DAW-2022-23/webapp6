@@ -22,4 +22,11 @@ export class CheckoutComponent {
     );
   }
 
+  buyOffer(offer: Offer){
+    this.offerService.buyOffer(offer).subscribe(
+      error => console.log(error)
+    );
+    this.router.navigate(['/books', offer.book.id]);
+  }
+
 }

@@ -1,9 +1,10 @@
+import { Review } from './../models/review.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-import { Review } from '../models/review.model';
+import { Page } from '../models/page.model';
+import { ReviewTDO } from '../models/reviewTDO.model';
 
 const BASE_URL = '/api/reviews';
 
@@ -16,40 +17,16 @@ export class ReviewService {
 		return this.httpClient.get(BASE_URL + "/") as Observable<Review[]>
 	}
 
+	getReviewsPaginated(n: number): Observable<Page> {
+		return this.httpClient.get(BASE_URL + "?page=" + n) as Observable<Page>
+	}
 
-  getReview(id: number | undefined): Observable <Review> {
-    return this.httpClient.get(BASE_URL + "/" + id) as Observable<Review>
+	getReview(id: number | undefined): Observable<Review> {
+		return this.httpClient.get(BASE_URL + "/" + id) as Observable<Review>
+	}
+
+	addReview(id:number, review: ReviewTDO): Observable<Review> {
+    return this.httpClient.post("/api/books/" + id + "/reviews", review) as Observable<Review>;
   }
-
-	addReview(review: Review, id: number) {
-		if (!review.id) {
-			return this.httpClient.post("/api/books/" + id + "/reviews", review)
-				.pipe(
-					catchError(error => this.handleError(error))
-				);
-		} else {
-			return this.httpClient.put(BASE_URL + "/" + review.id, review).pipe(
-				catchError(error => this.handleError(error))
-			);
-		}
-	}
-
-	deleteReview(review: Review) {
-		return this.httpClient.delete(BASE_URL + "/" + review.id).pipe(
-			catchError(error => this.handleError(error))
-		);
-	}
-
-	updateReview(review: Review) {
-		return this.httpClient.put(BASE_URL + "/" + review.id, review).pipe(
-			catchError(error => this.handleError(error))
-		);
-	}
-
-	private handleError(error: any) {
-		console.log("ERROR:");
-		console.error(error);
-		return throwError("Server error (" + error.status + "): " + error.text())
-	}
 
 }
