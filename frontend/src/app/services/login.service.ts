@@ -13,12 +13,13 @@ export class LoginService {
     user: User | undefined;
 
     constructor(private http: HttpClient) {
-        
+      this.reqLogged();
     }
 
     reqIsLogged(): Observable<boolean> {
         return this.http.get<boolean>('/api/user/isLogged', { withCredentials: true }).pipe(
           tap(response => {
+            console.log(response)
             this.logged = response;
           }),
           catchError(error => {
@@ -28,18 +29,33 @@ export class LoginService {
           })
         );
       }
-      
-    
-    
-    
-    
+
+
+      reqLogged() {
+
+        this.http.get('/api/user/', { withCredentials: true }).subscribe(
+            response => {
+                this.user = response as User;
+                this.logged = true;
+            },
+            error => {
+                if (error.status != 404) {
+                    console.error('Error when asking if logged: ' + JSON.stringify(error));
+                }
+            }
+        );
+
+    }
+
 
     logIn(name: string, pass: string) {
 
         this.http.post(BASE_URL + "/login", { username: name, password: pass }, { withCredentials: true })
             .subscribe(
-                //(response) => this.reqIsLogged(), 
-                (response) => alert("Log In Correcto"), 
+                response => {
+                  this.reqLogged(),
+                  alert("Log In Correcto")
+                },
                 (error) => alert("Wrong credentials")
             );
 
@@ -48,15 +64,15 @@ export class LoginService {
     register(name: string, password: string, email: string) {
 
         //alert(`Username: ${name}\nPassword: ${password}\nEmail: ${email}`);
-    
+
         this.http.post(BASE_URL + "/register", { name: name, password: password, email: email }, { withCredentials: true })
             .subscribe(
                 (response) => alert("Registro correcto"),
                 (error) => alert("Error al Registrarse")
             );
-    
+
     }
-    
+
 
     logOut() {
 
