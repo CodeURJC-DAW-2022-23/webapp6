@@ -1,1 +1,44 @@
-<h1>Este es el header</h1>
+<!-- Header Section Begin -->
+    <header class="header">
+      <div class="header__top">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                      <div class="header__top__left">
+                          <ul>
+                              <li><i class="fa fa-envelope"></i> readme@tienda.es</li>
+                              <li>Compra, vende y analiza tus libros favoritos.</li>
+                          </ul>
+                      </div>
+                      <div class="header__top__right">
+                        <li *ngIf="!isLogged" class="fa fa-envelope"><a [routerLink]="['login']">LOG IN</a></li>
+                        <li *ngIf="isLogged" class="fa fa-envelope"><a [routerLink]="['aux']" (click)='logOut()' style="cursor:pointer">LOG OUT</a></li>
+                        <li *ngIf="!isLogged" class="fa fa-envelope"><a [routerLink]="['register']">REGISTER</a></li>
+                        <li *ngIf="isAdmin" class="fa fa-envelope"><a [routerLink]="['admin']">Admin</a></li>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6">
+                  <nav class="header__menu">
+                      <ul>
+                        <li class="menu-has-children"><a [routerLink]="['']">INICIO</a></li>
+                        <li class="menu-has-children"><a [routerLink]="['books']">LIBROS</a></li>
+                        <li class="menu-has-children"><a [routerLink]="['contact']">CONTACTO</a></li>
+                        <li class="menu-has-children"><a [routerLink]="['statistics']">ESTADISTICAS</a></li>
+
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+          <div class="humberger__open">
+              <i class="fa fa-bars"></i>
+          </div>
+      </div>
+  </header>
+  <!-- Header Section End -->
+
+

@@ -3,4 +3,5 @@ export interface User {
     name: string;
     email: string;
     image: boolean;
+    roles: Array<string>;
 }
