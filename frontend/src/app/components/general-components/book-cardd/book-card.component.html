@@ -1,0 +1,9 @@
+<div *ngIf="book">
+  <mat-card class="example-card">
+    <mat-card-content >
+      <a [routerLink]="['/books', book.id]"><img class="offer-card-image" mat-card-image [src]="getImage(book)"></a>
+      <h2 class="offer-card-h2"><a
+        [routerLink]="['/books', book.id]">{{book.title}}</a></h2>
+    </mat-card-content>
+  </mat-card>
+</div>

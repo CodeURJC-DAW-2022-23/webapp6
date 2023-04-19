@@ -5,6 +5,7 @@ export interface Offer {
   id?: number;
   book: Book;
   seller: User;
+  buyer: User;
   date: Date;
   edition: string;
   description: string;

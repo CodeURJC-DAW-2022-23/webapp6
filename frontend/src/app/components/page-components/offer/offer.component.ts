@@ -15,6 +15,7 @@ export class OfferComponent {
   offer: Offer | undefined;
   isOwn: boolean | undefined;
   user: User | undefined;
+  isSold: boolean | undefined;
 
   constructor(private router: Router, activatedRoute: ActivatedRoute, public offerService: OfferService, public loginService: LoginService) {
 
@@ -24,7 +25,9 @@ export class OfferComponent {
       offer => {
         this.offer = offer,
         this.user = this.loginService.currentUser();
+        this.isSold = offer.sold;
         this.isOwn = this.user?.name === this.offer?.seller.name;
+
       },
       error => console.log(error)
     );

@@ -23,6 +23,9 @@
             <h2 class="offer-page-h2">Descripción:</h2>
             <p class="offer-page-desc">{{offer.description}}</p>
           </div>
+          <div *ngIf="isSold">
+            <h2 class="offer-page-h2">Ejemplar de {{offer.seller}} vendido a {{offer.buyer}}</h2>
+          </div>
 
           <div *ngIf="loginService.isLogged()">
             <div *ngIf="!isOwn" class="example-button-row">
