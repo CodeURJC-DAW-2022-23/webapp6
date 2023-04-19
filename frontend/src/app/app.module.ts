@@ -31,6 +31,7 @@ import { LoginComponent } from './components/page-components/login/login.compone
 import { LoginFormComponent } from './components/page-components/login-form/login-form.component';
 import { RegisterComponent } from './components/page-components/register/register.components';
 import { RegisterFormComponent } from './components/page-components/register-form/register-form.component';
+import { UserComponent } from './components/page-components/user-page/user.components';
 
 //Import all components
 //Import routing
@@ -40,7 +41,7 @@ import { RegisterFormComponent } from './components/page-components/register-for
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
     BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, LoginComponent,
-    ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent
+    ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent
     //All components
   ],
   imports: [

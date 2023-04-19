@@ -87,13 +87,13 @@ public class AuthRestController {
 		userService.save(user);
 
 		// Sends a confirmation mail:
-		/* String subject = "Confirmación de registro";
+		String subject = "Confirmación de registro";
 		String body = "Hola " + user.getName() + ",";
 		try {
 			mailService.sendConfirmationEmail(user.getEmail(), subject, body);
 		} catch (MessagingException e) {
 			
-		}  */
+		} 
 
 		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/admin/users/{id}")
                 .buildAndExpand(user.getId()).toUri();

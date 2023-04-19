@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
-import { Observable, Subscription, throwError } from 'rxjs';
+import { Observable, Subscription, of, throwError } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 
 const BASE_URL = '/api/auth';
 
@@ -12,24 +13,26 @@ export class LoginService {
     user: User | undefined;
 
     constructor(private http: HttpClient) {
-        this.reqIsLogged();
+        
     }
 
-    reqIsLogged() {
-
-        this.http.get('/api/user/', { withCredentials: true }).subscribe(
-            response => {
-                this.user = response as User;
-                this.logged = true;
-            },
-            error => {
-                if (error.status != 404) {
-                    console.error('Error when asking if logged: ' + JSON.stringify(error));
-                }
-            }
+    reqIsLogged(): Observable<boolean> {
+        return this.http.get<boolean>('/api/user/isLogged', { withCredentials: true }).pipe(
+          tap(response => {
+            this.logged = response;
+          }),
+          catchError(error => {
+            console.error('Error when asking if logged: ' + JSON.stringify(error));
+            this.logged = false;
+            return of(false);
+          })
         );
-
-    }
+      }
+      
+    
+    
+    
+    
 
     logIn(name: string, pass: string) {
 
@@ -48,7 +51,7 @@ export class LoginService {
     
         this.http.post(BASE_URL + "/register", { name: name, password: password, email: email }, { withCredentials: true })
             .subscribe(
-                (response) => this.reqIsLogged(),
+                (response) => alert("Registro correcto"),
                 (error) => alert("Error al Registrarse")
             );
     

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 import { CommonComponent } from './components/common/common.component';
 import { AdminPageComponent } from './components/page-components/admin-page/admin-page.component';
@@ -12,6 +13,7 @@ import { BookParticularComponent } from './components/page-components/book-parti
 import { OfferComponent } from './components/page-components/offer/offer.component';
 import { LoginComponent } from './components/page-components/login/login.components';
 import { RegisterComponent } from './components/page-components/register/register.components';
+import { UserComponent } from './components/page-components/user-page/user.components';
 
 const appRoutes = [
 
@@ -27,6 +29,7 @@ const appRoutes = [
     { path: 'offers/:idOffer', component: OfferComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
+    { path: 'user-page', component: UserComponent, canActivate: [AuthGuard]},
     { path: '**', redirectTo: '' }
 
 ]

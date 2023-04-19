@@ -82,6 +82,26 @@ public class UserRestController {
         }
     }
 
+    @Operation(summary = "Get the information of the user in the session")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found user", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request, try again", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Unauthorized action, login", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    })
+
+    @GetMapping("/isLogged")
+public ResponseEntity<Boolean> isLogged(HttpServletRequest request) {
+    Principal principal = request.getUserPrincipal();
+    if (principal != null) {
+        return ResponseEntity.ok(true);
+    } else {
+        return ResponseEntity.ok(false);
+    }
+}
+
+
     @Operation(summary = "Get user favorite books")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found user favorite books", content = {
