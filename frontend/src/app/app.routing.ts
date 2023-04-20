@@ -9,6 +9,7 @@ import { UpdateOfferComponent } from './components/page-components/update-offer/
 import { UploadReviewComponent } from './components/page-components/upload-review/upload-review.component';
 import { UpdateReviewComponent } from './components/page-components/update-review/update-review.component';
 import { CheckoutComponent } from './components/page-components/checkout/checkout.component';
+import { BookGeneralComponent } from './components/page-components/book-general/book-general.component';
 import { BookParticularComponent } from './components/page-components/book-particular/book-particular.component';
 import { OfferComponent } from './components/page-components/offer/offer.component';
 import { LoginComponent } from './components/page-components/login/login.components';
@@ -21,6 +22,7 @@ const appRoutes = [
     { path: '', component: CommonComponent },
     { path: 'common', component: CommonComponent },
     { path: 'admin', component: AdminPageComponent },
+    { path: 'books', component: BookGeneralComponent},
     { path: 'books/:idBook', component: BookParticularComponent},
     { path: 'books/:idBook/upload-offer', component: UploadOfferComponent},
     { path: 'offers/:idOffer/update-offer', component: UpdateOfferComponent},

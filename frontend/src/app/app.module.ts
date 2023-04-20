@@ -20,6 +20,7 @@ import { CommonComponent } from './components/common/common.component';
 import { MatIconModule } from '@angular/material/icon';
 import { routing } from './app.routing';
 import { AdminPageComponent } from './components/page-components/admin-page/admin-page.component';
+import { BookGeneralComponent } from './components/page-components/book-general/book-general.component';
 import { BookParticularComponent } from './components/page-components/book-particular/book-particular.component';
 import { OfferComponent } from './components/page-components/offer/offer.component';
 
@@ -43,7 +44,7 @@ import { UpdateProfileComponent } from './components/page-components/update-prof
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
-    BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, LoginComponent,
+    BookGeneralComponent, BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, LoginComponent,
     ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent, BookCard,
     UpdateProfileComponent
     //All components
