@@ -28,7 +28,7 @@ export class UpdateReviewComponent {
     );
   }
 
-  
+
 
   reviewIdNumber(): number | undefined {
     return parseInt(this.reviewId || '', 10);
@@ -39,6 +39,7 @@ export class UpdateReviewComponent {
       this.reviewService.updateReview2(this.review.id.toString(), this.originalText).subscribe(
         review => {
           alert("La reseña se ha actualizado correctamente");
+          this.router.navigate(['/user-page']);
         },
         error => alert("Ha ocurrido un error al actualizar la reseña")
       );
@@ -47,8 +48,8 @@ export class UpdateReviewComponent {
     }
   }
 
-  
-  
-  
-  
+
+
+
+
 }
