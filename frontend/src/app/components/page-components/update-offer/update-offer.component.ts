@@ -27,6 +27,7 @@ export class UpdateOfferComponent {
       _ => {
         this.offerService.deleteOfferImage(offer);
         this.uploadImage(offer);
+        alert("La oferta se ha actualizado correctamente");
         this.router.navigate(['/offers', offer.id]);
       } ,
       error => console.error(error)

@@ -34,6 +34,7 @@ export class UploadOfferComponent {
       response => {
         console.log(response);
         this.uploadImage(response);
+        alert("La oferta se ha subido correctamente");
         this.router.navigate(['/books', book.id]);
       },
       error => console.log(error)

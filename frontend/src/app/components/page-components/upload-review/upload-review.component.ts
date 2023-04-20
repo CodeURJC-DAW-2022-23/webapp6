@@ -33,6 +33,7 @@ export class UploadReviewComponent {
     this.reviewService.addReview(book.id, this.newReview).subscribe(
       response => {
         console.log(response);
+        alert("La reseña se ha subido correctamente");
         this.router.navigate(['/books', book.id]);
       },
       error => console.log(error)
