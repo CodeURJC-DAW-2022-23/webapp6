@@ -24,6 +24,10 @@ export class UserService {
     return this.httpClient.get(BASE_URL + "?page=" + n) as Observable<Page>;
   }
 
+  getUserFavoritesPaginated(n: number): Observable<Page> {
+    return this.httpClient.get(BASE_URL + '/favorites' + "?page=" + n) as Observable<Page>;
+  }
+
   getBook(id: number | undefined): Observable<Book> {
     return this.httpClient.get(BASE_URL + '/' + id) as Observable<Book>;
   }
@@ -36,8 +40,8 @@ export class UserService {
     return this.httpClient.get(BASE_URL + "/reviews" + "?page=" + n) as Observable<Page>;
   }
 
-  getUserImage() {
-    return BASE_URL + '/image';
+  getUserImage(): Observable<any> {
+    return this.httpClient.get(BASE_URL + '/image', { responseType: 'blob' });
   }
 
   getUserReviews(): Observable<Review[]> {

@@ -14,6 +14,7 @@ import { OfferComponent } from './components/page-components/offer/offer.compone
 import { LoginComponent } from './components/page-components/login/login.components';
 import { RegisterComponent } from './components/page-components/register/register.components';
 import { UserComponent } from './components/page-components/user-page/user.components';
+import { UpdateProfileComponent } from './components/page-components/update-profile/update-profile.component';
 
 const appRoutes = [
 
@@ -30,6 +31,7 @@ const appRoutes = [
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
     { path: 'user-page', component: UserComponent, canActivate: [AuthGuard]},
+    { path: 'update-profile', component: UpdateProfileComponent, canActivate: [AuthGuard]},
     { path: '**', redirectTo: '' }
 
 ]

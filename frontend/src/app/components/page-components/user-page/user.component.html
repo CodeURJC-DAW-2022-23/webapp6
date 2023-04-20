@@ -9,10 +9,26 @@
     
   </div>
 
-  <!-- <div class="book-particular-div-image">
-    <a><img class="book-particular-image" mat-card-image [src]="getImage(book)"/></a>
-  </div> -->
+  <div class="book-particular-div-image">
+    <img *ngIf="userImage" [src]="userImage" alt="User Image">
+  </div>
 </div>
+<!-- _________________________________________ -->
+
+<section-title title="Tus libros favoritos"></section-title>
+
+
+ <div *ngIf="favorites" class="card-container">
+  <div *ngFor="let book of favorites.content" class="review-card">
+    <book-card [bookId]="book.id"></book-card>
+  </div>
+</div> 
+
+<div *ngIf="showButtonFavorites"  class="example-button-row">
+  <button  mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreUserFavorites(pageReviews + 1)">
+    Cargar más
+  </button>
+</div> 
 
 
 <section-title title="Tus anuncios"></section-title>
@@ -31,20 +47,7 @@
 </div>
 
 
-<!-- <section-title title="Tus libros favoritos"></section-title>
 
-
- <div *ngIf="favorites" class="card-container">
-  <div *ngFor="let review of favorites.content" class="review-card">
-    <review-card reviewId="{{review}}"></review-card>
-  </div>
-</div> 
-
-<div *ngIf="showButtonReviews"  class="example-button-row">
-  <button  mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreReviews(book,pageReviews + 1)">
-    Cargar más
-  </button>
-</div> -->
 
 
 <section-title title="Tus reseñas"></section-title>
@@ -67,7 +70,6 @@
 
 <section-title title="Tus historial de compra-venta"></section-title>
 
-<!-- ... -->
 
 <div *ngIf="historial" class="card-container">
   <div *ngFor="let offer of historial?.content" class="offer-card">
@@ -75,23 +77,15 @@
   </div>
 </div>
 
-<!-- ... -->
-
-
-
-
-
-
 
 <div *ngIf="showButtonOffers" class="example-button-row">
-  <button mat-raised-button color="primary" style="margin: 3%" (click)="loadMoreUserOffers(pageOffers + 1)">
+  <button mat-raised-button color="primary" style="margin: 3%" (click)="loadMoreUserHistorials(pageHistorial + 1)">
     Cargar más </button>
 </div>
 
 
 
 
-<!-- Now puts all the options, then only a div -->
 <div *ngIf="loginService.isLogged()" class="example-button-row">
   <button  *ngIf="book" mat-raised-button class="book-particular-button" (click)="uploadOffer(book)">
     Subir anuncio<mat-icon>expand_less</mat-icon></button>

@@ -32,7 +32,9 @@ import { LoginFormComponent } from './components/page-components/login-form/logi
 import { RegisterComponent } from './components/page-components/register/register.components';
 import { RegisterFormComponent } from './components/page-components/register-form/register-form.component';
 import { UserComponent } from './components/page-components/user-page/user.components';
-import { BookCard } from './components/general-components/book-cardd/book-card.component';
+import { BookCard } from './components/general-components/book-card/book-card.component';
+import { UpdateProfileComponent } from './components/page-components/update-profile/update-profile.component';
+
 
 //Import all components
 //Import routing
@@ -42,7 +44,8 @@ import { BookCard } from './components/general-components/book-cardd/book-card.c
     AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
     BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, LoginComponent,
-    ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent, BookCard
+    ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent, BookCard,
+    UpdateProfileComponent
     //All components
   ],
   imports: [

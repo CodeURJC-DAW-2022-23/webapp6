@@ -19,17 +19,20 @@ export class UserComponent{
     book: Book | undefined;
     reviews: Page | undefined;
     offers: Page | undefined;
-    favorites: Book[] | undefined;
+    favorites: Page | undefined;
     pageOffers: number = 0;
     pageHistorial: number = 0;
+    pageFavorites: number = 0;
     pageReviews: number = 0;
     showButtonOffers: boolean = true;
     showButtonReviews: boolean = true;
+    showButtonFavorites: boolean = true;
     logged: boolean | undefined;
     isFavorite: boolean | undefined;
     user: User | undefined;
     historial: Page | undefined;
-  
+    userImage: any;
+
     constructor(private router: Router, activatedRoute: ActivatedRoute, 
         public bookService: BookService, public loginService: LoginService,
          public userService: UserService) {
@@ -40,16 +43,23 @@ export class UserComponent{
         user => this.user = user,
         error => console.log(error)
       );
-  
-      this.bookService.getFavorites().subscribe(
-        favorites => {
-          this.favorites = favorites;
-          if (this.book != undefined && this.favorites.some((favorite) => favorite.id === this.book?.id)) {
-            this.isFavorite = true;
-          } else {
-            this.isFavorite = false;
+
+      this.userService.getUserImage().subscribe(
+        image => {
+          let reader = new FileReader();
+          reader.addEventListener("load", () => {
+            this.userImage = reader.result;
+          }, false);
+      
+          if (image) {
+            reader.readAsDataURL(image);
           }
         },
+        error => console.log(error)
+      );
+  
+      this.userService.getUserFavoritesPaginated(0).subscribe(
+        favorites => this.favorites = favorites,
         error => console.log(error)
       );
   
@@ -108,7 +118,7 @@ export class UserComponent{
   
     loadMoreUserReviews(n: number) {
     this.pageReviews = n;      
-    this.userService.getUserHistorialPaginated(n).subscribe(
+    this.userService.getUserReviewsPaginated(n).subscribe(
         newReviews => {
         if (this.reviews != undefined && newReviews.numberOfElements != 0){
             this.reviews.content = this.reviews.content.concat(newReviews.content);
@@ -131,6 +141,20 @@ export class UserComponent{
           },
           error => console.log(error)
       );
+    }
+
+      loadMoreUserFavorites(n: number) {
+        this.pageFavorites = n;
+        this.userService.getUserFavoritesPaginated(n).subscribe(
+            newFavorites => {
+                if (this.favorites != undefined && newFavorites.numberOfElements != 0) {
+                    this.favorites.content = this.favorites.content.concat(newFavorites.content);
+                } else {
+                    this.showButtonFavorites = false;
+                }
+            },
+            error => console.log(error)
+        );
       }
 
       loadMoreUserHistorials(n: number) {
@@ -145,20 +169,15 @@ export class UserComponent{
             },
             error => console.log(error)
         );
+
+        
+        
     }
     
     
       
   
-    getImage(book: Book) {
-      if (book.id != undefined){
-        return this.bookService.getImage(book.id);
-      }
-      else{
-        return "";
-      }
-    }
-  
+   
     uploadOffer(book: Book) {
       this.router.navigate(['/books', book.id, 'upload-offer']);
     }
