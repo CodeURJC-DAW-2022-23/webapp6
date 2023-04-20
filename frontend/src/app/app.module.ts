@@ -46,7 +46,7 @@ import { UpdateProfileComponent } from './components/page-components/update-prof
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
     BookGeneralComponent, BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, LoginComponent,
     ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent, BookCard,
-    UpdateProfileComponent
+    UpdateProfileComponent, UpdateReviewComponent
     //All components
   ],
   imports: [

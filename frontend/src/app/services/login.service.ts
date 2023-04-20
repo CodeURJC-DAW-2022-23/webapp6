@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Observable, Subscription, of, throwError } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const BASE_URL = '/api/auth';
 
@@ -12,7 +13,7 @@ export class LoginService {
     logged: boolean | undefined;
     user: User | undefined;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
       this.reqLogged();
     }
 
@@ -49,17 +50,16 @@ export class LoginService {
 
 
     logIn(name: string, pass: string) {
-
         this.http.post(BASE_URL + "/login", { username: name, password: pass }, { withCredentials: true })
-            .subscribe(
-                response => {
-                  this.reqLogged(),
-                  alert("Log In Correcto")
-                },
-                (error) => alert("Wrong credentials")
-            );
-
-    }
+          .subscribe(
+            response => {
+              this.reqLogged(),
+              this.router.navigate(['/user-page']);
+            },
+            (error) => alert("Credenciales incorrectas")
+          );
+      }
+      
 
     register(name: string, password: string, email: string) {
 

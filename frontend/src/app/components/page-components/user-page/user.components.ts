@@ -25,6 +25,7 @@ export class UserComponent{
     pageFavorites: number = 0;
     pageReviews: number = 0;
     showButtonOffers: boolean = true;
+    showButtonHistorial: boolean = true;
     showButtonReviews: boolean = true;
     showButtonFavorites: boolean = true;
     logged: boolean | undefined;
@@ -166,7 +167,7 @@ export class UserComponent{
                 if (this.historial != undefined && newHistorial.numberOfElements != 0) {
                     this.historial.content = this.historial.content.concat(newHistorial.content);
                 } else {
-                    this.showButtonOffers = false;
+                    this.showButtonHistorial = false;
                 }
             },
             error => console.log(error)
@@ -216,6 +217,10 @@ export class UserComponent{
       }
     }
 
+    navigateToUploadReview(id: number) {
+      this.router.navigate(['/update-review', id]);
+    }
+    
 
   
   }

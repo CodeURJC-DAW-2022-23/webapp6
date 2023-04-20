@@ -30,7 +30,7 @@
 </div> 
 
 <div *ngIf="showButtonFavorites"  class="example-button-row">
-  <button  mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreUserFavorites(pageReviews + 1)">
+  <button  mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreUserFavorites(pageFavorites + 1)">
     Cargar más
   </button>
 </div> 
@@ -61,8 +61,17 @@
 <div *ngIf="reviews" class="card-container">
   <div *ngFor="let review of reviews.content" class="review-card">
     <review-card reviewId="{{review.id}}"></review-card>
+    <div>
+      <button mat-icon-button>        
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="navigateToUploadReview(review.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
+
 
 <div *ngIf="showButtonReviews"  class="example-button-row">
   <button  mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreUserReviews(pageReviews + 1)">
@@ -83,7 +92,7 @@
 </div>
 
 
-<div *ngIf="showButtonOffers" class="example-button-row">
+<div *ngIf="showButtonHistorial" class="example-button-row">
   <button mat-raised-button color="primary" style="margin: 3%" (click)="loadMoreUserHistorials(pageHistorial + 1)">
     Cargar más </button>
 </div>

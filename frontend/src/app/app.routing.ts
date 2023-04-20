@@ -34,6 +34,7 @@ const appRoutes = [
     { path: 'register', component: RegisterComponent},
     { path: 'user-page', component: UserComponent, canActivate: [AuthGuard]},
     { path: 'update-profile', component: UpdateProfileComponent, canActivate: [AuthGuard]},
+    { path: 'update-review/:idReview', component: UpdateReviewComponent, canActivate: [AuthGuard]},
     { path: '**', redirectTo: '' }
 
 ]

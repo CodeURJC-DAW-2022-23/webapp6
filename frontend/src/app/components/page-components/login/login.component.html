@@ -1,25 +1,4 @@
-<!-- <general-title title="Iniciar sesión"></general-title>
-
-<div class="review-form">
-
- 
-  <div class="form-group">
-    <input #user type="text" class="form-control" name="username" placeholder="Nombre de Usuario">
-</div>
-
-<div class="form-group">
-    <input #pass type="password" class="form-control" name="password" placeholder="Contraseña">
-</div>
-
-  <button (click)="logIn($event, user.value, pass.value)" class="btn btn-danger btn-lg"
-                                type="submit">Inicia Sesión
-                        </button>
-
-</div>
-
- -->
-
- <general-title title="Iniciar sesión"></general-title>
+<general-title title="Iniciar sesión"></general-title>
 <div class="review-form">
   <login-form (onLogIn)="logIn($event)"></login-form>
 </div>

@@ -28,5 +28,13 @@ export class ReviewService {
 	addReview(id:number, review: ReviewTDO): Observable<Review> {
     return this.httpClient.post("/api/books/" + id + "/reviews", review) as Observable<Review>;
   }
-
+  updateReview(id: number | undefined, text: string): Observable<Review> {
+	return this.httpClient.put(BASE_URL + "/" + id, {text:text}) as Observable<Review>
 }
+updateReview2(id: string | undefined, text: string): Observable<Review> {
+	return this.httpClient.put(BASE_URL + "/" + id, {text:text}) as Observable<Review>
+}
+}
+  
+  
+
