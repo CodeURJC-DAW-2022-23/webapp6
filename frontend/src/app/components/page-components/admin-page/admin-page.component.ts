@@ -35,13 +35,9 @@ export class AdminPageComponent {
   booksButton = true;
 
   constructor(private adminService: AdminService, private userService: UserService, private offerService: OfferService,
-    private reviewService: ReviewService, private bookService: BookService,
-    public loginService: LoginService) { }
+    private reviewService: ReviewService, private bookService: BookService) { }
 
   ngOnInit() {
-
-    // Force admin login while real login functionalitie is not implemented:
-    this.loginService.logIn('admin', 'adminpass');
 
     this.loadUsers();
     this.loadOffers();
