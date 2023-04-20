@@ -1,5 +1,7 @@
 <general-title title="Libros"></general-title>
 
+<search></search>
+
 <div *ngIf="books" class="card-container">
   <div *ngFor="let book of books.content" class="book-card">
     <book-card bookId="{{book.id}}"></book-card>

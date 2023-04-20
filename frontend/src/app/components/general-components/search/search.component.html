@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <div>
+                <mat-toolbar color="primary">
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="hide()">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                    <span>Categorías</span>
+                </mat-toolbar>
+            </div>
+
+            <div *ngIf="categories" class="hero__categories">
+                <ul>
+                    <li><a href="/books?searchtext=Fantasia">Fantasía</a></li>
+                    <li><a href="/books?searchtext=Literatura">Literatura</a></li>
+                    <li><a href="/books?searchtext=Literatura Universal">Literatura Universal</a></li>
+                    <li><a href="/books?searchtext=Literatura Clásica">Literatura Clásica</a></li>
+                    <li><a href="/books?searchtext=Novela histórica">Novela histórica</a></li>
+                    <li><a href="/books?searchtext=Policiaca">Policiaca</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="hero__search">
+                <div class="hero__search__form">
+                    <form action="/books">
+                        <input type="text" name="searchtext" placeholder="Encuentra tu proximo libro favorito">
+                        <button type="submit" class="site-btn">BUSCAR</button>
+                        <button mat-raised-button matTooltip="Info about the action"
+                            aria-label="Button that displays a tooltip when focused or hovered over">
+                            Action
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="hero__item set-bg" data-setbg="">
+                <div class="hero__text">
+                    <span>LIBRO RECOMENDADO</span>
+                    <search-title *ngIf="bestPick" title="{{bestPick.title}}"></search-title>
+                    <p>Basado en tus búsquedas y libros favoritos.</p>
+                    <button *ngIf="bestPick" class="primary-btn" (click)="goBestPick(bestPick)">Lee sus reseñas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

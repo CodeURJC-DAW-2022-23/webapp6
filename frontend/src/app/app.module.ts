@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './components/app.component';
 import { HeaderComponent } from './components/general-components/header/header.component';
 import { FooterComponent } from './components/general-components/footer/footer.component';
+import { SearchComponent } from './components/general-components/search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,7 +25,7 @@ import { BookGeneralComponent } from './components/page-components/book-general/
 import { BookParticularComponent } from './components/page-components/book-particular/book-particular.component';
 import { OfferComponent } from './components/page-components/offer/offer.component';
 
-import { SectionTitle, GeneralTitle } from './components/general-components/titles/titles.component';
+import { SectionTitle, GeneralTitle, SearchTitle } from './components/general-components/titles/titles.component';
 import { Form } from './components/general-components/forms/forms.component';
 import { OfferCard } from './components/general-components/offer-card/offer-card.component';
 import { ReviewCard } from './components/general-components/review-card/review-card.component';
@@ -35,23 +36,23 @@ import { RegisterFormComponent } from './components/page-components/register-for
 import { UserComponent } from './components/page-components/user-page/user.components';
 import { BookCard } from './components/general-components/book-card/book-card.component';
 import { UpdateProfileComponent } from './components/page-components/update-profile/update-profile.component';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 //Import all components
 //Import routing
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, FooterComponent, UpdateOfferComponent, UpdateReviewComponent,
+    AppComponent, HeaderComponent, FooterComponent, SearchComponent, UpdateOfferComponent, UpdateReviewComponent,
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
-    BookGeneralComponent, BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, Form, OfferCard, LoginComponent,
+    BookGeneralComponent, BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, SearchTitle, Form, OfferCard, LoginComponent,
     ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent, BookCard,
     UpdateProfileComponent, UpdateReviewComponent
     //All components
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
-    MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, routing
+    MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, MatToolbarModule, routing
   ],
   providers: [],
   bootstrap: [AppComponent]
