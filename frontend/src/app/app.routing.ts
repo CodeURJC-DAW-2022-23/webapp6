@@ -16,6 +16,8 @@ import { LoginComponent } from './components/page-components/login/login.compone
 import { RegisterComponent } from './components/page-components/register/register.components';
 import { UserComponent } from './components/page-components/user-page/user.components';
 import { UpdateProfileComponent } from './components/page-components/update-profile/update-profile.component';
+import { ContactComponent } from './components/page-components/contact-page/contact.component';
+import { StatisticsComponent } from './components/page-components/statistics-page/statistics.component';
 
 const appRoutes = [
 
@@ -35,6 +37,8 @@ const appRoutes = [
     { path: 'user-page', component: UserComponent, canActivate: [AuthGuard]},
     { path: 'update-profile', component: UpdateProfileComponent, canActivate: [AuthGuard]},
     { path: 'update-review/:idReview', component: UpdateReviewComponent, canActivate: [AuthGuard]},
+    { path: 'contact', component: ContactComponent},
+    { path: 'statistics', component: StatisticsComponent},
     { path: '**', redirectTo: '' }
 
 ]
