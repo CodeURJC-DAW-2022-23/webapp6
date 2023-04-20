@@ -61,16 +61,21 @@
 <div *ngIf="reviews" class="card-container">
   <div *ngFor="let review of reviews.content" class="review-card">
     <review-card reviewId="{{review.id}}"></review-card>
-    <div>
-      <button mat-icon-button>        
-        <mat-icon>delete</mat-icon>
-      </button>
-      <button mat-icon-button (click)="navigateToUploadReview(review.id)">
-        <mat-icon>edit</mat-icon>
-      </button>
+    <div class="button-container">
+      <div class="button-wrapper">
+        <button mat-icon-button (click)="deleteReview(review.id)">        
+          <mat-icon>delete</mat-icon>
+        </button>
+      
+        <button mat-icon-button (click)="navigateToUploadReview(review.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>
+
+
 
 
 <div *ngIf="showButtonReviews"  class="example-button-row">

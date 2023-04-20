@@ -8,6 +8,7 @@ import { Review } from 'src/app/models/review.model';
 import { BookService } from 'src/app/services/book.service';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
     selector: './user',
@@ -37,7 +38,7 @@ export class UserComponent{
 
     constructor(private router: Router, activatedRoute: ActivatedRoute, 
         public bookService: BookService, public loginService: LoginService,
-         public userService: UserService) {
+         public userService: UserService, private reviewService: ReviewService) {
 
       const id = activatedRoute.snapshot.params['idBook'];
   
@@ -220,6 +221,26 @@ export class UserComponent{
     navigateToUploadReview(id: number) {
       this.router.navigate(['/update-review', id]);
     }
+
+    deleteReview(id: number): void {
+      if (confirm("¿Estás seguro de que deseas eliminar esta reseña?")) {
+        this.reviewService.deleteReview(id).subscribe(
+          response => {
+            alert("La reseña ha sido eliminada.");
+            this.userService.getUserReviewsPaginated(this.pageReviews).subscribe(
+              reviews => this.reviews = reviews,
+              error => console.log(error)
+            );
+          },
+          error => {
+            console.log(error);
+            alert("Error al eliminar la reseña.");
+          }
+        );
+      }
+    }
+
+    
     
 
   

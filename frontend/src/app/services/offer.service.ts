@@ -50,5 +50,9 @@ export class OfferService {
     return this.httpClient.delete(BASE_URL + "/" + offer.id + "/image")
 }
 
+deleteOffer(offer: Offer) {
+    return this.httpClient.delete(BASE_URL + "/" + offer.id)
+}
+
 
 }

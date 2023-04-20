@@ -53,6 +53,26 @@ export class OfferComponent {
     this.router.navigate(['/offers', offer.id, 'update-offer']);
   }
 
+  deleteOffer(offer: Offer) {
+    if (offer.id !== undefined) {
+      this.offerService.deleteOffer(offer).subscribe(
+        () => {
+          alert('La oferta ha sido eliminada');
+          // Aquí puedes agregar la lógica para actualizar la vista o redirigir al usuario
+        },
+        error => {
+          console.log(error);
+          alert('Error al eliminar la oferta');
+        }
+      );
+    }
+  }
+
+
+
+
+  
+
   goLogin(){
     this.router.navigate(['/login'])
   }

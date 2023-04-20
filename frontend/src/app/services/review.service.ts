@@ -25,6 +25,10 @@ export class ReviewService {
 		return this.httpClient.get(BASE_URL + "/" + id) as Observable<Review>
 	}
 
+	deleteReview(id: number | undefined): Observable<Review> {
+		return this.httpClient.delete(BASE_URL + "/" + id) as Observable<Review>
+	}
+
 	addReview(id:number, review: ReviewTDO): Observable<Review> {
     return this.httpClient.post("/api/books/" + id + "/reviews", review) as Observable<Review>;
   }

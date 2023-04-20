@@ -70,6 +70,18 @@ p {
   flex-wrap: wrap;
 
 }
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
 
 .offer-card {
   width: 20%;

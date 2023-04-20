@@ -35,6 +35,9 @@
               <div *ngIf="isOwn" class="example-button-row">
                 <button mat-raised-button color="primary" style="margin: 3%;" (click)="editOffer(offer)">Editar<mat-icon>create</mat-icon></button>
               </div>
+              <div *ngIf="isOwn" class="example-button-row">
+                <button mat-raised-button color="primary" style="margin: 3%;" (click)="deleteOffer(offer)">Eliminar<mat-icon>create</mat-icon></button>
+              </div>
             </div>
             <div *ngIf="!loginService.isLogged()" class="example-button-row">
               <button mat-raised-button color="primary" style="margin: 3%;" (click)="goLogin()">Inicia sesión para comprar el libro<mat-icon>person</mat-icon></button>
