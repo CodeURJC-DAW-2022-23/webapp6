@@ -37,3 +37,20 @@
 	padding-bottom: 20px;
 	margin-bottom: 25px;
 }
+
+.search-title {
+	font-size: 35px;
+    color: #252525;
+    line-height: 52px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.search-title h2 {
+	padding-bottom: 60px;
+	color: #1c1c1c;
+	text-align: left;
+	font-weight: 700;
+	padding-bottom: 20px;
+	margin-bottom: 25px;
+}

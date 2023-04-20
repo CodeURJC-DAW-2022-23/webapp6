@@ -121,7 +121,7 @@ public class BookRestController {
                         @ApiResponse(responseCode = "400", description = "Invalid page supplied", content = @Content),
                         @ApiResponse(responseCode = "404", description = "Recommended books not found", content = @Content)
         })
-    @GetMapping("/algorithm")
+    @GetMapping("/recommended")
     private ResponseEntity<List<Book>> recommendationAlgorithm(HttpServletRequest request) throws Exception {
 		List<Long> recommendedBooksIds = algorithmService.recommendationAlgorithm (request);
 		List<Book> recommendedBooks = new ArrayList<Book>();
@@ -134,6 +134,25 @@ public class BookRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(recommendedBooks, HttpStatus.OK);
+        }
+    }
+
+    @Operation(summary = "Get the top book to recommended a user")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Found the book to recommend", content = {
+                                        @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class, subTypes = {Book.class })) }),
+                        @ApiResponse(responseCode = "400", description = "Invalid page supplied", content = @Content),
+                        @ApiResponse(responseCode = "404", description = "Recommended book not found", content = @Content)
+        })
+    @GetMapping("/bestpick")
+    private ResponseEntity<Book> bestRecommendation(HttpServletRequest request) throws Exception {
+		List<Long> recommendedBooksIds = algorithmService.recommendationAlgorithm (request);
+		
+        Book book = bookService.findById(recommendedBooksIds.get(0)).get();
+        if (book.equals(null)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(book, HttpStatus.OK);
         }
     }
 

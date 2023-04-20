@@ -2,7 +2,7 @@
 
 <div *ngIf="book" class="example-form">
   <div class="book-particular-title">
-    <p>Autor: {{ book.title }}</p>
+    <p>Autor: {{ book.author }}</p>
     <p class="book-particular-genre">Género: {{ book.genre }}</p>
 
     <div *ngIf="loginService.isLogged()">

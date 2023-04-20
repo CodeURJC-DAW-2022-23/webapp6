@@ -17,3 +17,12 @@ export class GeneralTitle {
 export class SectionTitle {
   @Input() title: string | undefined;
 }
+
+@Component({
+  selector: 'search-title',
+  templateUrl: './search-title.component.html',
+  styleUrls: ['./titles.component.css']
+})
+export class SearchTitle {
+  @Input() title: string | undefined;
+}
