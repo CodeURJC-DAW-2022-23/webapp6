@@ -1,5 +1,20 @@
 <general-title title="Modificar perfil de usuario"></general-title>
 <div class="review-form">
   <section-title title="Nuevo correo electrónico:"></section-title>
-  <general-form ></general-form>
+  <form>
+    <mat-form-field>
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput type="email" [(ngModel)]="newEmail" name="email" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="updateUserEmail()">Actualizar correo electrónico</button>
+  </form>
+  <section-title title="Nueva imagen de perfil:"></section-title>
+  <form>
+    <div>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="updateProfileImage()" [disabled]="!selectedFile">Actualizar imagen de perfil</button>
+    </div>
+  </form>
 </div>

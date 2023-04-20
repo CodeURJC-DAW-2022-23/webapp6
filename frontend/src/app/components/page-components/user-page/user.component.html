@@ -4,15 +4,20 @@
 
 <div *ngIf="user" class="example-form">
   <div class="book-particular-title">
-    <p><strong>Nombre de usuario:</strong> {{ user.name }}</p>
-    <p><strong>Correo electrónico:</strong> {{ user.email }}</p>
+    <p class="username"><strong>Nombre de usuario:</strong> {{ user.name }}</p>
+    <p class="username"><strong>Correo electrónico:</strong> {{ user.email }}</p>
     
   </div>
 
-  <div class="book-particular-div-image">
+  <div class="user-div-image">
     <img *ngIf="userImage" [src]="userImage" alt="User Image">
   </div>
 </div>
+
+<div class="blog__item__text">
+  <a href="/update-profile" class="blog__btn">Modifica tu perfil<span class="arrow_right"></span></a>
+</div>
+
 <!-- _________________________________________ -->
 
 <section-title title="Tus libros favoritos"></section-title>

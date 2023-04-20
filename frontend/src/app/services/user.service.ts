@@ -72,5 +72,17 @@ export class UserService {
     return this.httpClient.get("/api/user/favorites/") as Observable<Book[]>;
   }
 
+  updateUserEmail(newEmail: string): Observable<User> {
+    const updatedUser: Partial<User> = { email: newEmail };
+    return this.httpClient.put<User>(`${BASE_URL}/`, updatedUser);
+  }
+
+  updateProfileImage(imageFile: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('imageFile', imageFile);
+    
+    return this.httpClient.post<any>('/api/user/image', formData);
+    }
+
 }
 

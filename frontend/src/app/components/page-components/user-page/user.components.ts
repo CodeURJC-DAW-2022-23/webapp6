@@ -32,6 +32,7 @@ export class UserComponent{
     user: User | undefined;
     historial: Page | undefined;
     userImage: any;
+    newEmail: string | undefined;
 
     constructor(private router: Router, activatedRoute: ActivatedRoute, 
         public bookService: BookService, public loginService: LoginService,
@@ -98,7 +99,7 @@ export class UserComponent{
     }
   
   
-  
+    
   
    
     loadUserOffers() {
@@ -113,6 +114,7 @@ export class UserComponent{
           error => console.log(error)
         );
       }
+
       
       
   
