@@ -23,16 +23,14 @@
         </div>
         <div class="col-lg-9">
             <div class="hero__search">
-                <div class="hero__search__form">
-                    <form action="/books">
-                        <input type="text" name="searchtext" placeholder="Encuentra tu proximo libro favorito">
-                        <button type="submit" class="site-btn">BUSCAR</button>
-                        <button mat-raised-button matTooltip="Info about the action"
-                            aria-label="Button that displays a tooltip when focused or hovered over">
-                            Action
-                        </button>
-                    </form>
-                </div>
+                <mat-form-field>
+                    <mat-label>Encuentra tu proximo libro favorito</mat-label>
+                    <input matInput #searchText type="text">
+                </mat-form-field>
+                <button mat-raised-button matTooltip="Info about the action" type="submit" class="site-btn"
+                    aria-label="Button that displays a tooltip when focused or hovered over" (click)="goSearch(searchText.value)">
+                    BUSCAR
+                </button>
             </div>
             <div class="hero__item set-bg" data-setbg="">
                 <div class="hero__text">

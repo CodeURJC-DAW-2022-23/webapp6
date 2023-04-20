@@ -65,4 +65,8 @@ export class BookService {
     return this.httpClient.get("/api/books/bestpick") as Observable<Book>;
   }
 
+  getSearchBooks(searchText:String, n: number): Observable<Page> {
+    return this.httpClient.get("api/books?searchtext=" + searchText + "&page=" + n) as Observable<Page>;
+  }
+
 }

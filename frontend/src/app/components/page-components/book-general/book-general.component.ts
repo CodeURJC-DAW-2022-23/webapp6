@@ -15,12 +15,23 @@ export class BookGeneralComponent {
   booksPage = 0;
   booksButton = true;
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService, public loginService: LoginService) {
+    constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService, public loginService: LoginService) {
+        this.loadBooks();
+    }
 
-    this.bookService.getBooksPaginated(0).subscribe(
-        books => this.books = books,
-        error => console.log(error)
-      );
+
+    loadBooks(searchText?: String) {
+        if(searchText == null) {
+            this.bookService.getSearchBooks( "", this.booksPage).subscribe(
+                books => this.books = books,
+                error => console.log(error)
+            );
+        } else {
+            this.bookService.getSearchBooks( searchText, this.booksPage).subscribe(
+                books => this.books = books,
+                error => console.log(error)
+            );
+        }
     }
 
     loadMoreBooks(n: number) {
