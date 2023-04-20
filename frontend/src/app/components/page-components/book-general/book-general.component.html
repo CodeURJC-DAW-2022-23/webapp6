@@ -1,0 +1,13 @@
+<general-title title="Libros"></general-title>
+
+<div *ngIf="books" class="card-container">
+  <div *ngFor="let book of books.content" class="book-card">
+    <book-card bookId="{{book.id}}"></book-card>
+  </div>
+</div>
+
+<div *ngIf="booksButton"  class="example-button-row">
+    <button mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreBooks(booksPage + 1)">
+      Cargar más Libros
+    </button>
+</div>

@@ -1,0 +1,18 @@
+a {
+  text-decoration: none;
+  font-weight: normal;
+  color: black;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.book-card {
+    width: 18%;
+    margin-bottom: 5%;
+    margin-right: 5%;
+  }
+
