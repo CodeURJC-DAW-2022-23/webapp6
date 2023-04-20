@@ -58,6 +58,7 @@ export class OfferComponent {
       this.offerService.deleteOffer(offer).subscribe(
         () => {
           alert('La oferta ha sido eliminada');
+          this.router.navigate(['/books', offer.book.id]);
         },
         error => {
           console.log(error);
@@ -70,7 +71,7 @@ export class OfferComponent {
 
 
 
-  
+
 
   goLogin(){
     this.router.navigate(['/login'])
