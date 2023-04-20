@@ -58,7 +58,6 @@ export class OfferComponent {
       this.offerService.deleteOffer(offer).subscribe(
         () => {
           alert('La oferta ha sido eliminada');
-          // Aquí puedes agregar la lógica para actualizar la vista o redirigir al usuario
         },
         error => {
           console.log(error);

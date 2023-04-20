@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { AdminGuard } from './auth.guard';
+
 
 import { CommonComponent } from './components/common/common.component';
 import { AdminPageComponent } from './components/page-components/admin-page/admin-page.component';
@@ -23,14 +25,14 @@ const appRoutes = [
 
     { path: '', component: CommonComponent },
     { path: 'common', component: CommonComponent },
-    { path: 'admin', component: AdminPageComponent },
-    { path: 'books', component: BookGeneralComponent},
+    { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard] },
+        { path: 'books', component: BookGeneralComponent},
     { path: 'books/:idBook', component: BookParticularComponent},
-    { path: 'books/:idBook/upload-offer', component: UploadOfferComponent},
-    { path: 'offers/:idOffer/update-offer', component: UpdateOfferComponent},
-    { path: 'books/:idBook/upload-review', component: UploadReviewComponent},
-    { path: 'reviews/:idReview/update-review', component: UpdateReviewComponent},
-    { path: 'offers/:idOffer/checkout', component: CheckoutComponent},
+    { path: 'books/:idBook/upload-offer', component: UploadOfferComponent, canActivate: [AuthGuard]},
+    { path: 'offers/:idOffer/update-offer', component: UpdateOfferComponent, canActivate: [AuthGuard]},
+    { path: 'books/:idBook/upload-review', component: UploadReviewComponent, canActivate: [AuthGuard]},
+    { path: 'reviews/:idReview/update-review', component: UpdateReviewComponent, canActivate: [AuthGuard]},
+    { path: 'offers/:idOffer/checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
     { path: 'offers/:idOffer', component: OfferComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},

@@ -23,3 +23,21 @@ export class AuthGuard implements CanActivate {
     }));
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AdminGuard implements CanActivate {
+
+  constructor(private loginService: LoginService, private router: Router) {}
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const currentUser = this.loginService.currentUser();
+    if (currentUser && currentUser.name === 'admin') {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+}
