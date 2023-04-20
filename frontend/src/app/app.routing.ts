@@ -4,7 +4,7 @@ import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './auth.guard';
 
 
-import { CommonComponent } from './components/common/common.component';
+import { IndexComponent } from './components/index/index.component';
 import { AdminPageComponent } from './components/page-components/admin-page/admin-page.component';
 import { UploadOfferComponent } from './components/page-components/upload-offer/upload-offer.component';
 import { UpdateOfferComponent } from './components/page-components/update-offer/update-offer.component';
@@ -23,10 +23,10 @@ import { StatisticsComponent } from './components/page-components/statistics-pag
 
 const appRoutes = [
 
-    { path: '', component: CommonComponent },
-    { path: 'common', component: CommonComponent },
+    { path: '', component: IndexComponent },
+    { path: 'index', component: IndexComponent },
     { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard] },
-        { path: 'books', component: BookGeneralComponent},
+    { path: 'books', component: BookGeneralComponent},
     { path: 'books/:idBook', component: BookParticularComponent},
     { path: 'books/:idBook/upload-offer', component: UploadOfferComponent, canActivate: [AuthGuard]},
     { path: 'offers/:idOffer/update-offer', component: UpdateOfferComponent, canActivate: [AuthGuard]},

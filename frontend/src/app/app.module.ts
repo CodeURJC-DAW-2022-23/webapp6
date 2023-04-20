@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CheckoutComponent } from './components/page-components/checkout/checkout.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
-import { CommonComponent } from './components/common/common.component';
+import { IndexComponent } from './components/index/index.component';
 import { MatIconModule } from '@angular/material/icon';
 import { routing } from './app.routing';
 import { AdminPageComponent } from './components/page-components/admin-page/admin-page.component';
@@ -45,7 +45,7 @@ import { AdminGuard } from './auth.guard';
 @NgModule({
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, SearchComponent, UpdateOfferComponent, UpdateReviewComponent,
-    UploadOfferComponent, UploadReviewComponent, CheckoutComponent, CommonComponent, AdminPageComponent,
+    UploadOfferComponent, UploadReviewComponent, CheckoutComponent, IndexComponent, AdminPageComponent,
     BookGeneralComponent, BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, SearchTitle, Form, OfferCard, LoginComponent,
     ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent, BookCard,
     UpdateProfileComponent, UpdateReviewComponent
