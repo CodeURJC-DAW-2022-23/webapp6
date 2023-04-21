@@ -40,6 +40,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { StatisticsComponent } from './components/page-components/statistics-page/statistics.component';
 import { ContactComponent } from './components/page-components/contact-page/contact.component';
 import { NgChartsModule } from 'ng2-charts'
+import { AdminGuard, AuthGuard } from './auth.guard';
 
 //Import all components
 //Import routing
@@ -57,7 +58,7 @@ import { NgChartsModule } from 'ng2-charts'
     BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
     MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, MatToolbarModule, NgChartsModule, routing
   ],
-  providers: [],
+  providers: [AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

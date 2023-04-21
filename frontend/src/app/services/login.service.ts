@@ -14,7 +14,7 @@ export class LoginService {
     user: User | undefined;
 
     constructor(private http: HttpClient, private router: Router) {
-      this.reqLogged();
+      //this.reqLogged();
     }
 
     reqIsLogged(): Observable<boolean> {
@@ -54,22 +54,19 @@ export class LoginService {
           .subscribe(
             response => {
               this.reqLogged(),
-              this.router.navigate(['/user-page']);
+              this.router.navigate(['/user-page']),
+              alert("Credenciales correctas");
             },
             (error) => alert("Credenciales incorrectas")
           );
       }
-      
+
 
     register(name: string, password: string, email: string) {
 
         //alert(`Username: ${name}\nPassword: ${password}\nEmail: ${email}`);
 
-        this.http.post(BASE_URL + "/register", { name: name, password: password, email: email }, { withCredentials: true })
-            .subscribe(
-                (response) => alert("Registro correcto"),
-                (error) => alert("Error al Registrarse")
-            );
+        return this.http.post(BASE_URL + "/register", { name: name, password: password, email: email }, { withCredentials: true });
 
     }
 
@@ -79,6 +76,7 @@ export class LoginService {
         return this.http.post(BASE_URL + '/logout', { withCredentials: true })
             .subscribe((resp: any) => {
                 console.log("LOGOUT: Successfully");
+                alert("Sesión cerrada correctamente");
                 this.logged = false;
                 this.user = undefined;
             });
@@ -89,9 +87,9 @@ export class LoginService {
         return this.logged;
     }
 
-    /* isAdmin() {
-        return this.user && this.user.roles.indexOf('ADMIN') !== -1;
-    } */
+    isAdmin() {
+        return  this.logged && this.currentUser()?.name === "admin";
+    }
 
     currentUser() {
         return this.user;

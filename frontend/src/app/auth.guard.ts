@@ -31,13 +31,15 @@ export class AdminGuard implements CanActivate {
 
   constructor(private loginService: LoginService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const currentUser = this.loginService.currentUser();
-    if (currentUser && currentUser.name === 'admin') {
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-      return false;
-    }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    this.loginService.reqLogged();
+    return this.loginService.reqIsLogged().pipe(map(logged => {
+      if (logged && this.loginService.isAdmin()) {
+        return true;
+      } else {
+        this.router.navigate(['/login']);
+        return false;
+      }
+    }));
   }
 }
