@@ -14,7 +14,7 @@ export class LoginService {
     user: User | undefined;
 
     constructor(private http: HttpClient, private router: Router) {
-      //this.reqLogged();
+      this.reqLogged();
     }
 
     reqIsLogged(): Observable<boolean> {
@@ -61,8 +61,7 @@ export class LoginService {
           );
       }
 
-
-    register(name: string, password: string, email: string) {
+      register(name: string, password: string, email: string) {
 
         //alert(`Username: ${name}\nPassword: ${password}\nEmail: ${email}`);
 
@@ -93,7 +92,6 @@ export class LoginService {
     }
 
     isLogged() {
-        this.reqLogged;
         return this.logged;
     }
 
