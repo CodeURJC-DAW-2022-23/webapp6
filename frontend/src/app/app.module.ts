@@ -37,6 +37,9 @@ import { UserComponent } from './components/page-components/user-page/user.compo
 import { BookCard } from './components/general-components/book-card/book-card.component';
 import { UpdateProfileComponent } from './components/page-components/update-profile/update-profile.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { StatisticsComponent } from './components/page-components/statistics-page/statistics.component';
+import { ContactComponent } from './components/page-components/contact-page/contact.component';
+import { NgChartsModule } from 'ng2-charts'
 
 //Import all components
 //Import routing
@@ -47,12 +50,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, IndexComponent, AdminPageComponent,
     BookGeneralComponent, BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, SearchTitle, Form, OfferCard, LoginComponent,
     ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent, BookCard,
-    UpdateProfileComponent, UpdateReviewComponent
+    UpdateProfileComponent, UpdateReviewComponent, StatisticsComponent, ContactComponent
     //All components
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
-    MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, MatToolbarModule, routing
+    MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, MatToolbarModule, NgChartsModule, routing
   ],
   providers: [],
   bootstrap: [AppComponent]
