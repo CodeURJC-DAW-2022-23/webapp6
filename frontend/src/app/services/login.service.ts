@@ -66,7 +66,11 @@ export class LoginService {
 
         //alert(`Username: ${name}\nPassword: ${password}\nEmail: ${email}`);
 
-        return this.http.post(BASE_URL + "/register", { name: name, password: password, email: email }, { withCredentials: true });
+        this.http.post(BASE_URL + "/register", { name: name, password: password, email: email }, { withCredentials: true })
+            .subscribe(
+                (response) => alert("Registro correcto"),
+                (error) => alert("Error al Registrarse")
+            );
 
     }
 
