@@ -37,7 +37,6 @@ import { UserComponent } from './components/page-components/user-page/user.compo
 import { BookCard } from './components/general-components/book-card/book-card.component';
 import { UpdateProfileComponent } from './components/page-components/update-profile/update-profile.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AdminGuard } from './auth.guard';
 
 //Import all components
 //Import routing
@@ -55,7 +54,7 @@ import { AdminGuard } from './auth.guard';
     BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
     MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, MatToolbarModule, routing
   ],
-  providers: [AdminGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
