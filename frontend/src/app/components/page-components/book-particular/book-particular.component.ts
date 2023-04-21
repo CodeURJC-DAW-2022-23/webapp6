@@ -34,17 +34,19 @@ export class BookParticularComponent {
       error => console.log(error)
     );
 
-    this.bookService.getFavorites().subscribe(
-      favorites => {
-        this.favorites = favorites;
-        if (this.book != undefined && this.favorites.some((favorite) => favorite.id === this.book?.id)) {
-          this.isFavorite = true;
-        } else {
-          this.isFavorite = false;
-        }
-      },
-      error => console.log(error)
-    );
+    if (this.loginService.isLogged()){
+      this.bookService.getFavorites().subscribe(
+        favorites => {
+          this.favorites = favorites;
+          if (this.book != undefined && this.favorites.some((favorite) => favorite.id === this.book?.id)) {
+            this.isFavorite = true;
+          } else {
+            this.isFavorite = false;
+          }
+        },
+        error => console.log(error)
+      );
+    }
 
     this.bookService.getReviewsPaginated(id,0).subscribe(
       reviews => this.reviews = reviews,

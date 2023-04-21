@@ -77,17 +77,23 @@ export class LoginService {
 
     logOut() {
 
+      if(this.logged){
         return this.http.post(BASE_URL + '/logout', { withCredentials: true })
             .subscribe((resp: any) => {
                 console.log("LOGOUT: Successfully");
                 alert("Sesión cerrada correctamente");
+                this.router.navigate(['/index']),
                 this.logged = false;
                 this.user = undefined;
             });
+      }else{
+        return "";
+      }
 
     }
 
     isLogged() {
+        this.reqLogged;
         return this.logged;
     }
 
