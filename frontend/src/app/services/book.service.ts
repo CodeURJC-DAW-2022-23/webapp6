@@ -58,7 +58,7 @@ export class BookService {
   }
 
   getRecommendedBooks(): Observable<Book[]> {
-    return this.httpClient.get("/api/books/algorithm") as Observable<Book[]>;
+    return this.httpClient.get("/api/books/recommended") as Observable<Book[]>;
   }
 
   getBestPick(): Observable<Book> {

@@ -24,8 +24,10 @@ import { AdminPageComponent } from './components/page-components/admin-page/admi
 import { BookGeneralComponent } from './components/page-components/book-general/book-general.component';
 import { BookParticularComponent } from './components/page-components/book-particular/book-particular.component';
 import { OfferComponent } from './components/page-components/offer/offer.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { SectionTitle, GeneralTitle, SearchTitle } from './components/general-components/titles/titles.component';
+import { Carousel } from './components/general-components/carousel/carousel.component';
 import { Form } from './components/general-components/forms/forms.component';
 import { OfferCard } from './components/general-components/offer-card/offer-card.component';
 import { ReviewCard } from './components/general-components/review-card/review-card.component';
@@ -49,13 +51,13 @@ import { AdminGuard, AuthGuard } from './auth.guard';
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, SearchComponent, UpdateOfferComponent, UpdateReviewComponent,
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, IndexComponent, AdminPageComponent,
-    BookGeneralComponent, BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, SearchTitle, Form, OfferCard, LoginComponent,
+    BookGeneralComponent, BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, SearchTitle, Carousel, Form, OfferCard, LoginComponent,
     ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent, BookCard,
     UpdateProfileComponent, UpdateReviewComponent, StatisticsComponent, ContactComponent
     //All components
   ],
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
+    BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, CarouselModule, MatInputModule, MatFormFieldModule,
     MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, MatToolbarModule, NgChartsModule, routing
   ],
   providers: [AdminGuard],
