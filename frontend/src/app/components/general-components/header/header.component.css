@@ -160,7 +160,7 @@
 }
 
 .header__logo {
-	padding: 15px 0;
+	text-align: center;
 }
 
 .header__logo a {
@@ -307,4 +307,12 @@
 
 .humberger__open {
 	display: none;
+}
+
+.top{
+  display: flex;
+}
+
+.top div {
+  flex: 1;
 }
