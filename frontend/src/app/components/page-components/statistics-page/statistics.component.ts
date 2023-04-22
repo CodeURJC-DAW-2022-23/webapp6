@@ -21,7 +21,7 @@ export class StatisticsComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true,
   };
-  public barChartLabels = ['Users', 'Books', 'Offers', 'Reviews'];
+  public barChartLabels = ['Store Statistics'];
   public barChartType = 'bar';
   public barChartLegend = true;
 
@@ -35,13 +35,17 @@ export class StatisticsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<Statistics>('/api/statistics')
+    this.http.get<Statistics>('/api/statistics/')
       .subscribe((data) => {
+
         this.statistics = data;
         this.barChartData[0].data.push(this.statistics['Number of users']);
         this.barChartData[1].data.push(this.statistics['Number of books']);
         this.barChartData[2].data.push(this.statistics['Number of offers']);
         this.barChartData[3].data.push(this.statistics['Number of reviews']);
-      });
+      },
+      (error) => alert("Credenciales incorrectas"));
   }
+
+
 }
