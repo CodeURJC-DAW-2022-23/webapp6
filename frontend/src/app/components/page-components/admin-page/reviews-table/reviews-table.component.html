@@ -1,0 +1,38 @@
+
+<section-title title="Reseñas"></section-title>
+<table class="admin_table">
+    <tr>
+        <th>id</th>
+        <th>Libro</th>
+        <th>Autor</th>
+        <th>Fecha</th>
+        <th>Texto</th>
+        <th>Opciones</th>
+    </tr>
+    <tbody *ngIf="reviews">
+        <tr *ngFor="let review of reviews">
+            <td>{{review.id}}</td>
+            <td>{{review.book.title}}</td>
+            <td>{{review.author.name}}</td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="review.date" value="{{review.date}}" type="date">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="review.text" value="{{review.text}}" type="text">
+                </mat-form-field>
+            </td>
+            <td class="center">
+                <button mat-icon-button (click)="updateReview(review)">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteReview(review)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button *ngIf="loadMoreButton" (click)="nextPage()" mat-raised-button>Cargar más reseñas</button>

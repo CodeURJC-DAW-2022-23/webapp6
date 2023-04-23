@@ -1,0 +1,44 @@
+
+<section-title title="Libros"></section-title>
+<table class="admin_table">
+    <tr>
+        <th>id</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Género</th>
+        <th>Imágen</th>
+        <th>Opciones</th>
+    </tr>
+    <tbody *ngIf="books">
+        <tr *ngFor="let book of books">
+            <td>{{book.id}}</td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="book.title" value="{{book.title}}" type="text">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="book.author" value="{{book.author}}" type="text">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="book.genre" value="{{book.genre}}" type="text">
+                </mat-form-field>
+            </td>
+            <td class="center">
+                <img [src]="bookImage(book)"><br>
+            </td>
+            <td class="center">
+                <button mat-icon-button (click)="updateBook(book)">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteBook(book)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button *ngIf="loadMoreButton" (click)="nextPage()" mat-raised-button>Cargar más libros</button>

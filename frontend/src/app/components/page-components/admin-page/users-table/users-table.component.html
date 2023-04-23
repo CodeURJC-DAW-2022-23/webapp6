@@ -1,0 +1,35 @@
+
+<section-title title="Usuarios"></section-title>
+<table class="admin_table">
+    <tr>
+        <th>id</th>
+        <th>Usuario</th>
+        <th>Correro</th>
+        <th>Imágen</th>
+        <th>Opciones</th>
+    </tr>
+    <tbody *ngIf="users">
+        <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="user.email" value="{{user.email}}" type="text">
+                </mat-form-field>
+            </td>
+            <td class="center">
+                <img [src]="userImage(user)"><br>
+                <input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
+            </td>
+            <td class="center">
+                <button mat-icon-button (click)="updateUser(user)">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteUser(user)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button *ngIf="usersButton" (click)="nextPage()" mat-raised-button>Cargar más usuarios</button>

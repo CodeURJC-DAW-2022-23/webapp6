@@ -1,0 +1,49 @@
+
+<section-title title="Anuncios"></section-title>
+<table class="admin_table">
+    <tr>
+        <th>id</th>
+        <th>Libro</th>
+        <th>Vendedor</th>
+        <th>Fecha</th>
+        <th>Descripcción</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th>Opciones</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let offer of offers">
+            <td>{{offer.id}}</td>
+            <td>{{offer.book.title}}</td>
+            <td>{{offer.seller.name}}</td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="offer.date" value="{{offer.date}}" type="date">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="offer.description" value="{{offer.description}}" type="text">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="offer.price" value="{{offer.price}}" type="number">
+                </mat-form-field>
+            </td>
+            <td class="center">
+                <img [src]="offerImage(offer)"><br>
+                <input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
+            </td>
+            <td class="center">
+                <button mat-icon-button (click)="updateOffer(offer)">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteOffer(offer)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button *ngIf="loadMoreButton" (click)="nextPage()" mat-raised-button>Cargar más anuncios</button>

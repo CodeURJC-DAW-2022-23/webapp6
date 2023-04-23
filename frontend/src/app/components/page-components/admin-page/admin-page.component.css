@@ -32,6 +32,11 @@ img {
   text-align: center;
 }
 
+.new_book_button {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
 mat-form-field {
   width: 100%;
 }
