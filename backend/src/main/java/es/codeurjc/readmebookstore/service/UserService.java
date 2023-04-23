@@ -41,7 +41,7 @@ public class UserService {
     }
 
     public void save(User user) {
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
     }
 
     public void delete(long id) {

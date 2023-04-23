@@ -8,12 +8,14 @@ import { Book } from '../models/book.model';
 import { Review } from '../models/review.model';
 import { Offer } from '../models/offer.model';
 import { Page } from '../models/page.model';
+import { Router } from '@angular/router';
+
 
 const BASE_URL = '/api/user';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   getUser(): Observable<User> {
     return this.httpClient.get<User>(BASE_URL + '/');
@@ -74,14 +76,14 @@ export class UserService {
 
   updateUserEmail(newEmail: string): Observable<User> {
     const updatedUser: Partial<User> = { email: newEmail };
+    this.router.navigate(['/user-page']);
     return this.httpClient.put<User>(`${BASE_URL}/`, updatedUser);
   }
 
   updateProfileImage(imageFile: File): Observable<any> {
     const formData = new FormData();
     formData.append('imageFile', imageFile);
-    
-    return this.httpClient.post<any>('/api/user/image', formData);
+    return this.httpClient.post<any>('/api/user/image', formData);    
     }
 
 }

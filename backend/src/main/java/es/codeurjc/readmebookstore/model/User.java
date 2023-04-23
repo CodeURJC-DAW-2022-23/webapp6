@@ -66,6 +66,16 @@ public class User {
 		this.email = email;
 	}
 
+	public User(String name, String encodedPassword, String email) {
+		this.name = name;
+		this.encodedPassword = encodedPassword;
+		this.email = email;
+		this.roles = new ArrayList<>();
+		this.roles.add("USER");		
+		this.favouriteBook = new ArrayList<>();
+	}
+	
+
 	public User(String name, String encodedPassword, String email, String... roles) {
 		this.name = name;
 		this.encodedPassword = encodedPassword;

@@ -54,8 +54,7 @@ export class LoginService {
           .subscribe(
             response => {
               this.reqLogged(),
-              this.router.navigate(['/user-page']),
-              alert("Credenciales correctas");
+              this.router.navigate(['/user-page']);
             },
             (error) => alert("Credenciales incorrectas")
           );
@@ -67,8 +66,8 @@ export class LoginService {
 
         this.http.post(BASE_URL + "/register", { name: name, password: password, email: email }, { withCredentials: true })
             .subscribe(
-                (response) => alert("Registro correcto"),
-                (error) => alert("Error al Registrarse")
+                (response) =>this.router.navigate(['/login']),
+                (error) => this.router.navigate(['/login'])
             );
 
     }

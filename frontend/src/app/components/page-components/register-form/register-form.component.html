@@ -1,4 +1,5 @@
 <form (ngSubmit)="submitRegisterForm()">
+
     <mat-form-field>
         <mat-label>Nombre de Usuario</mat-label>
         <input matInput [(ngModel)]="username" type="username" name="username" placeholder="Nombre de Usuario" required>
@@ -14,10 +15,8 @@
         <input matInput [(ngModel)]="email" type="email" name="email" placeholder="Correo electrónico" required>
     </mat-form-field>
 
+
     <div class="blog__item__text">
-        <button class="blog__btn"  type="submit">Registrarse</button>
+        <button class="blog__btn" type="submit">Registrarse</button>
     </div>
 </form>
-
-
-
