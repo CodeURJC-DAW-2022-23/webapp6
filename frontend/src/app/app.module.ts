@@ -20,7 +20,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { IndexComponent } from './components/index/index.component';
 import { MatIconModule } from '@angular/material/icon';
 import { routing } from './app.routing';
+
 import { AdminPageComponent } from './components/page-components/admin-page/admin-page.component';
+import { UsersTableComponent } from './components/page-components/admin-page/users-table/users-table.component';
+import { OffersTableComponent } from './components/page-components/admin-page/offers-table/offers-table.component';
+import { ReviewsTableComponent } from './components/page-components/admin-page/reviews-table/reviews-table.component';
+import { BooksTableComponent } from './components/page-components/admin-page/books-table/books-table.component';
+
 import { BookGeneralComponent } from './components/page-components/book-general/book-general.component';
 import { BookParticularComponent } from './components/page-components/book-particular/book-particular.component';
 import { OfferComponent } from './components/page-components/offer/offer.component';
@@ -53,7 +59,8 @@ import { AdminGuard, AuthGuard } from './auth.guard';
     UploadOfferComponent, UploadReviewComponent, CheckoutComponent, IndexComponent, AdminPageComponent,
     BookGeneralComponent, BookParticularComponent, OfferComponent, SectionTitle, GeneralTitle, SearchTitle, Carousel, Form, OfferCard, LoginComponent,
     ReviewCard, LoginFormComponent, RegisterComponent, RegisterFormComponent, UserComponent, BookCard,
-    UpdateProfileComponent, UpdateReviewComponent, StatisticsComponent, ContactComponent
+    UpdateProfileComponent, UpdateReviewComponent, StatisticsComponent, ContactComponent,
+    UsersTableComponent, OffersTableComponent, ReviewsTableComponent, BooksTableComponent
     //All components
   ],
   imports: [

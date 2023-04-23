@@ -1,188 +1,29 @@
 <general-title title="Página de administrador"></general-title>
-<section-title title="Usuarios"></section-title>
-<table class="admin_table">
-    <tr>
-        <th>id</th>
-        <th>Usuario</th>
-        <th>Correro</th>
-        <th>Imágen</th>
-        <th>Opciones</th>
-    </tr>
-    <tbody *ngIf="users">
-        <tr *ngFor="let user of users.content">
-            <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td>
-                <mat-form-field>
-                    <input matInput [(ngModel)]="user.email" value="{{user.date}}" type="text">
-                </mat-form-field>
-            </td>
-            <td class="center">
-                <img [src]="userImage(user)"><br>
-                <input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
-            </td>
-            <td class="center">
-                <button mat-icon-button (click)="updateUser(user)">
-                    <mat-icon>save</mat-icon>
-                </button>
-                <button mat-icon-button (click)="deleteUser(user)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<button *ngIf="usersButton" (click)="loadMoreUsers(usersPage + 1)" mat-raised-button>Cargar más usuarios</button>
 
-<section-title title="Anuncios"></section-title>
-<table class="admin_table">
-    <tr>
-        <th>id</th>
-        <th>Libro</th>
-        <th>Vendedor</th>
-        <th>Fecha</th>
-        <th>Descripcción</th>
-        <th>Precio</th>
-        <th>Imagen</th>
-        <th>Opciones</th>
-    </tr>
-    <tbody *ngIf="offers">
-        <tr *ngFor="let offer of offers.content">
-            <td>{{offer.id}}</td>
-            <td>{{offer.book.title}}</td>
-            <td>{{offer.seller.name}}</td>
-            <td>
-                <mat-form-field>
-                    <input matInput [(ngModel)]="offer.date" value="{{offer.date}}" type="date">
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field>
-                    <input matInput [(ngModel)]="offer.description" value="{{offer.description}}" type="text">
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field>
-                    <input matInput [(ngModel)]="offer.price" value="{{offer.price}}" type="number">
-                </mat-form-field>
-            </td>
-            <td class="center">
-                <img [src]="offerImage(offer)"><br>
-                <input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
-            </td>
-            <td class="center">
-                <button mat-icon-button (click)="updateOffer(offer)">
-                    <mat-icon>save</mat-icon>
-                </button>
-                <button mat-icon-button (click)="deleteOffer(offer)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<button *ngIf="offersButton" (click)="loadMoreOffers(offersPage + 1)" mat-raised-button>Cargar más anuncios</button>
-
-<section-title title="Reseñas"></section-title>
-<table class="admin_table">
-    <tr>
-        <th>id</th>
-        <th>Libro</th>
-        <th>Autor</th>
-        <th>Fecha</th>
-        <th>Texto</th>
-        <th>Opciones</th>
-    </tr>
-    <tbody *ngIf="reviews">
-        <tr *ngFor="let review of reviews.content">
-            <td>{{review.id}}</td>
-            <td>{{review.book.title}}</td>
-            <td>{{review.author.name}}</td>
-            <td>
-                <mat-form-field>
-                    <input matInput [(ngModel)]="review.date" value="{{review.date}}" type="date">
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field>
-                    <input matInput [(ngModel)]="review.text" value="{{review.text}}" type="text">
-                </mat-form-field>
-            </td>
-            <td class="center">
-                <button mat-icon-button (click)="updateReview(review)">
-                    <mat-icon>save</mat-icon>
-                </button>
-                <button mat-icon-button (click)="deleteReview(review)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<button *ngIf="reviewsButton" (click)="loadMoreReviews(reviewsPage + 1)" mat-raised-button>Cargar más reseñas</button>
-
-<section-title title="Libros"></section-title>
-<table class="admin_table">
-    <tr>
-        <th>id</th>
-        <th>Título</th>
-        <th>Autor</th>
-        <th>Género</th>
-        <th>Imágen</th>
-        <th>Opciones</th>
-    </tr>
-    <tbody *ngIf="books">
-        <tr *ngFor="let book of books.content">
-            <td>{{book.id}}</td>
-            <td>
-                <mat-form-field>
-                    <input matInput [(ngModel)]="book.title" value="{{book.title}}" type="text">
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field>
-                    <input matInput [(ngModel)]="book.author" value="{{book.author}}" type="text">
-                </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field>
-                    <input matInput [(ngModel)]="book.genre" value="{{book.genre}}" type="text">
-                </mat-form-field>
-            </td>
-            <td class="center">
-                <img [src]="bookImage(book)"><br>
-                <input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
-            </td>
-            <td class="center">
-                <button mat-icon-button (click)="updateBook(book)">
-                    <mat-icon>save</mat-icon>
-                </button>
-                <button mat-icon-button (click)="deleteBook(book)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<button *ngIf="booksButton" (click)="loadMoreBooks(booksPage + 1)" mat-raised-button>Cargar más libros</button>
+<users-table></users-table>
+<offers-table></offers-table>
+<reviews-table></reviews-table>
+<books-table></books-table>
 
 <section-title title="Añadir un libro nuevo"></section-title>
-
-<mat-form-field>
-    <mat-label>Título</mat-label>
-    <input matInput [(ngModel)]="newBook.title" type="text" required>
-</mat-form-field>
-
-<mat-form-field>
-    <mat-label>Autor</mat-label>
-    <input matInput [(ngModel)]="newBook.author" type="text" required>
-</mat-form-field>
-
-<mat-form-field>
-    <mat-label>Género</mat-label>
-    <input matInput [(ngModel)]="newBook.genre" type="text" required>
-</mat-form-field>
-
-<input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
-
-<button (click)="addNewBook()" mat-raised-button type="submit">Subir libro</button>
+<div>
+    <mat-form-field>
+        <mat-label>Título</mat-label>
+        <input matInput [(ngModel)]="newBook.title" type="text" required>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Autor</mat-label>
+        <input matInput [(ngModel)]="newBook.author" type="text" required>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Género</mat-label>
+        <input matInput [(ngModel)]="newBook.genre" type="text" required>
+    </mat-form-field>
+    
+    <input #file type='file' name='imageFile' accept=".png, .jpg, .jpeg" />
+</div>
+<div class="new_book_button">
+    <button (click)="addNewBook()" mat-raised-button type="submit">Subir libro</button>
+</div>
