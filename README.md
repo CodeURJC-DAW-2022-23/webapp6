@@ -610,3 +610,161 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 
 </details>
 </details>
+
+
+## 🚀 PHASE 4
+<details><summary>Web application as SPA client with Angular and deployment</summary>
+
+### ✒ Development environment
+ 
+ <details><summary>Instructions for running the SPA application with Angular.</summary>
+
+ 
+</details>
+
+
+## 📊 Diagrams
+
+<details><summary>SPA diagram.</summary>
+   
+   SPA class diagram and templates.
+   
+![SPAdiagram](https://user-images.githubusercontent.com/80122593/233835761-21318e10-f0d9-40a1-b727-a2fecb8f9cf8.png)
+
+
+</details>
+
+## 🙋‍♂️ Member participation
+
+<details><summary>Gonzalo Ortega Carpintero.</summary>
+ 
+   - 📂 Completed tasks:
+ 
+      - a
+      - b
+      - c
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]()  
+      - [Commit 2]() 
+      - [Commit 3]() 
+      - [Commit 4]() 
+      - [Commit 5]() 
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]() 
+      - [File 2]() 
+      - [File 3]() 
+      - [File 4]() 
+      - [File 5]() 
+
+</details>
+
+<details><summary>Sergio Hernández Sandoval.</summary>
+   
+   - 📂 Completed tasks:
+ 
+      - a
+      - b
+      - c
+      
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]()  
+      - [Commit 2]() 
+      - [Commit 3]() 
+      - [Commit 4]() 
+      - [Commit 5]() 
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]() 
+      - [File 2]() 
+      - [File 3]() 
+      - [File 4]() 
+      - [File 5]() 
+
+</details>
+
+<details><summary>Markos Aguirre Elorza.</summary>
+   
+   - 📂 Completed tasks:
+ 
+      - a
+      - b
+      - c
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]()  
+      - [Commit 2]() 
+      - [Commit 3]() 
+      - [Commit 4]() 
+      - [Commit 5]() 
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]() 
+      - [File 2]() 
+      - [File 3]() 
+      - [File 4]() 
+      - [File 5]() 
+     
+
+</details>
+
+<details><summary>Manuel Martin Alaez.</summary>
+   
+   - 📂 Completed tasks:
+ 
+      - a
+      - b
+      - c
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]()  
+      - [Commit 2]() 
+      - [Commit 3]() 
+      - [Commit 4]() 
+      - [Commit 5]() 
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]() 
+      - [File 2]() 
+      - [File 3]() 
+      - [File 4]() 
+      - [File 5]() 
+
+</details>
+
+<details><summary> Alberto Jiménez Gómez.</summary>
+   
+   - 📂 Completed tasks:
+ 
+      - a
+      - b
+      - c
+ 
+   - 📤 Most significant commits:
+ 
+      - [Commit 1]()  
+      - [Commit 2]() 
+      - [Commit 3]() 
+      - [Commit 4]() 
+      - [Commit 5]() 
+ 
+   - 📝 Files with more participation:
+ 
+      - [File 1]() 
+      - [File 2]() 
+      - [File 3]() 
+      - [File 4]() 
+      - [File 5]() 
+
+</details>
+</details>
