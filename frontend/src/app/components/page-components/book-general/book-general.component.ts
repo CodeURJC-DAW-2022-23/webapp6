@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Page } from 'src/app/models/page.model';
 import { BookService } from 'src/app/services/book.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -14,37 +14,58 @@ export class BookGeneralComponent {
   books: Page | undefined;
   booksPage = 0;
   booksButton = true;
-
-    constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService, public loginService: LoginService) {
-        this.loadBooks();
-    }
+  searchText: String | undefined;
 
 
-    loadBooks(searchText?: String) {
-        if(searchText == null) {
-            this.bookService.getSearchBooks( "", this.booksPage).subscribe(
-                books => this.books = books,
-                error => console.log(error)
-            );
+    constructor(private route: ActivatedRoute, public bookService: BookService, activatedRoute: ActivatedRoute, public loginService: LoginService) {
+        const searchWord = activatedRoute.snapshot.params['searchWord'];
+        if (searchWord == null){
+            this.loadBooks("");
         } else {
-            this.bookService.getSearchBooks( searchText, this.booksPage).subscribe(
-                books => this.books = books,
-                error => console.log(error)
-            );
+            this.loadBooks(searchWord);
         }
     }
 
-    loadMoreBooks(n: number) {
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+          const myParam = params['searchWord'];
+        });
+      }
+
+    loadBooks(searchText: String) {
+        this.booksPage = 0;
+        this.searchText = searchText;
+        this.booksButton = true;
+        this.bookService.getSearchBooks( searchText, this.booksPage).subscribe(
+                books => this.books = books,
+                error => console.log(error)
+            );
+    }
+
+    loadMoreBooks(n: number, searchText?: String) {
         this.booksPage = n;
-        this.bookService.getBooksPaginated(n).subscribe(
-        newBooks => {
-            if (this.books != undefined && newBooks.numberOfElements != 0) {
-            this.books.content = this.books.content.concat(newBooks.content);
-            } else {
-            this.booksButton = false;
-            }
-        },
-        error => console.log(error)
-        );
+        if (searchText == null) {
+            this.bookService.getBooksPaginated(n).subscribe(
+            newBooks => {
+                if (this.books != undefined && newBooks.numberOfElements != 0) {
+                this.books.content = this.books.content.concat(newBooks.content);
+                } else {
+                this.booksButton = false;
+                }
+            },
+            error => console.log(error)
+            );
+        } else {
+            this.bookService.getSearchBooks( searchText, n).subscribe(
+                newBooks => {
+                    if (this.books != undefined && newBooks.numberOfElements != 0) {
+                    this.books.content = this.books.content.concat(newBooks.content);
+                    } else {
+                    this.booksButton = false;
+                    }
+                },
+                error => console.log(error)
+                );
+        }
     }
 }

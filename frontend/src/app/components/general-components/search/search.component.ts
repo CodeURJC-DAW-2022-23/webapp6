@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
@@ -14,7 +14,6 @@ export class SearchComponent {
   bestPick: Book | undefined;
   booksPage = 0;
   categories = true;
-  searchText: String = "";
 
 
   constructor(private router: Router, activatedRoute: ActivatedRoute, public bookService: BookService) {
@@ -33,17 +32,13 @@ export class SearchComponent {
         }
     }
 
-    goSearch(searchText: String) {
-        //this.router.navigate(['/books?searchtext=', searchText]);
-        this.router.navigate(['/books?searchtext=Literatura']);
+    @Output()
+    searchText = new EventEmitter<String>;
+
+    goSearch(searchWord: String) {
+        this.searchText.emit(searchWord);
     }
-
-    /*getSearchBooks(searchText:String, n: number): Observable<Page> {
-        return this.httpClient.get("/books?searchtext=" + searchText + "&page=" + n) as Observable<Page>;
-      }*/
-
-    //https://localhost:8443/api/books?searchtext=Literatura&page=1
-
+  
     goBestPick(bestPick: Book) {
         this.router.navigate(['/books', bestPick.id]);
     }

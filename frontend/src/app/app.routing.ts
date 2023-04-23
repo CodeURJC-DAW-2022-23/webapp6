@@ -27,6 +27,7 @@ const appRoutes = [
     { path: 'index', component: IndexComponent },
     { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard] },
     { path: 'books', component: BookGeneralComponent},
+    { path: 'books?searchtext=:searchWord', component: BookGeneralComponent},
     { path: 'books/:idBook', component: BookParticularComponent},
     { path: 'books/:idBook/upload-offer', component: UploadOfferComponent, canActivate: [AuthGuard]},
     { path: 'offers/:idOffer/update-offer', component: UpdateOfferComponent, canActivate: [AuthGuard]},

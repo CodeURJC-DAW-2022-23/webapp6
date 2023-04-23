@@ -12,12 +12,12 @@
 
             <div *ngIf="categories" class="hero__categories">
                 <ul>
-                    <li><a href="/books?searchtext=Fantasia">Fantasía</a></li>
-                    <li><a href="/books?searchtext=Literatura">Literatura</a></li>
-                    <li><a href="/books?searchtext=Literatura Universal">Literatura Universal</a></li>
-                    <li><a href="/books?searchtext=Literatura Clásica">Literatura Clásica</a></li>
-                    <li><a href="/books?searchtext=Novela histórica">Novela histórica</a></li>
-                    <li><a href="/books?searchtext=Policiaca">Policiaca</a></li>
+                    <li><a (click)="goSearch('Fantasia')">Fantasía</a></li>
+                    <li><a (click)="goSearch('Literatura')">Literatura</a></li>
+                    <li><a (click)="goSearch('Literatura Universal')">Literatura Universal</a></li>
+                    <li><a (click)="goSearch('Literatura Clásica')">Literatura Clásica</a></li>
+                    <li><a (click)="goSearch('Novela histórica')">Novela histórica</a></li>
+                    <li><a (click)="goSearch('Policiaca')">Policiaca</a></li>
                 </ul>
             </div>
         </div>

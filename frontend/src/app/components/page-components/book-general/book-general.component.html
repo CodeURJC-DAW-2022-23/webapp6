@@ -1,6 +1,6 @@
 <general-title title="Libros"></general-title>
 
-<search></search>
+<search (searchText)="loadBooks($event)"></search>
 
 <div *ngIf="books" class="card-container">
   <div *ngFor="let book of books.content" class="book-card">
@@ -9,7 +9,7 @@
 </div>
 
 <div *ngIf="booksButton"  class="example-button-row">
-    <button mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreBooks(booksPage + 1)">
+    <button mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreBooks(booksPage + 1, searchText)">
       Cargar más Libros
     </button>
 </div>
