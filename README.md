@@ -764,25 +764,27 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
    
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Book general page
+      - Search component with best pick, search bar and categories
+      - Index
+      - Carousel of recommended books
+      - Video
  
    - 📤 Most significant commits:
  
-      - [Commit 1]()  
-      - [Commit 2]() 
-      - [Commit 3]() 
-      - [Commit 4]() 
-      - [Commit 5]() 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/199b645ade5dce5343660d313eca03f9bdba6a49) Books general page  
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f101356e7f2c6a1d6a770948b57f3b70148d093b) Best Pick
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/6026f2ae59a60c3df93466eeb7cfcac8bfff3156) Search almost done
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/8d073254a14220476d8df77a5a054b8572110ec2) Carousel, Index, Reccommended Books
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/0fe164f33edf0e8189e2c72adccd97b72e973df6) Search from Books and Index page, finished
  
    - 📝 Files with more participation:
  
-      - [File 1]() 
-      - [File 2]() 
-      - [File 3]() 
-      - [File 4]() 
-      - [File 5]() 
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/book-general/book-general.component.ts) book-general.component.ts
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/book-general/book-general.component.html) book-general.component.html
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/general-components/search/search.component.html) search.component.html
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/general-components/search/search.component.ts) search.component.ts
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/general-components/carousel/carousel.component.ts) carousel.component.ts
 
 </details>
 </details>
