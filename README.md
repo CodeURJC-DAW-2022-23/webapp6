@@ -3,6 +3,8 @@
 
 Web application made for the Web Applications Developement course from Universidad Rey Juan Carlos.
 
+Deployed in the university server at [Readme Sook Store](https://10.100.139.75:8443).
+
 ## 🤷‍♂️ Team organization
 
 ### Team members
@@ -614,23 +616,31 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 
 ## 🚀 PHASE 4
 <details><summary>Web application as SPA client with Angular and deployment</summary>
-
-### ✒ Development environment
- 
- <details><summary>Instructions for running the SPA application with Angular.</summary>
-
  
 </details>
  
- ### 🛰 Deployment on the university machine
+ ### 🅰️ Angular production files
  
- <details><summary>Instructions for deployment.</summary>
+ <details><summary>Compile and run SPA with Angular instructions</summary>
+ To generate Angular production files run: <br />
+ `ng build --configuration production --base-href="/new/"` <br />
+ 
+ Then, move the files to a new folder in the backend resources so it can be served using: <br />
+ `mkdir ../backend/src/main/resources/static/new` <br />
+ `cp dist/frontend/* ../backend/src/main/resources/static/new` <br />
+ 
+</details>
 
+### 📽️ Demostration video
+ 
+<details><summary>YouTube video link showing the main functionalities of our web.</summary>
+
+[Video](https://youtu.be/fPG0xn_GmCQ)
  
 </details>
 
 
-## 📊 Diagrams
+### 📊 Diagrams
 
 <details><summary>SPA diagram.</summary>
    
@@ -647,25 +657,26 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
  
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Angular proyect and router maping file initializated.
+      - Angular admin page and all its components.
+      - Title components.
+      - Docker image creation and deployment in the university server.
  
    - 📤 Most significant commits:
  
-      - [Commit 1]()  
-      - [Commit 2]() 
-      - [Commit 3]() 
-      - [Commit 4]() 
-      - [Commit 5]() 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/c584a4d056f823090bf1c5837276dd49313ae5de) Router initialization.
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/c512630b73852f8b7a2183ba85640672f8786851) Data load to admin page.
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/bcf35fb7b76ab6a0386179fb64c6edbd2c488d47) Upload books from admin page.
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/42485d30284491db4676818c9cb9ac133aa76a75) Admin page modularized and completed.
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/fd8c6f46b4411ed5d3eb075f81e3aa7d0a16077a) Updated Dokerfile to deploy the frontend.
  
    - 📝 Files with more participation:
  
-      - [File 1]() 
-      - [File 2]() 
-      - [File 3]() 
-      - [File 4]() 
-      - [File 5]() 
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/admin-page/books-table/books-table.component.ts) books-table.component.ts 
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/admin-page/admin-page.component.html) admin-page.component.html
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/admin-page/admin-page.component.ts) admin-page.component.ts
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/services/admin.service.ts) admin.service.ts
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/docker/docker_compose.yml) docker_compose.yml
 
 </details>
 
