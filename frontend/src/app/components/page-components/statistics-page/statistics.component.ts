@@ -1,7 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-
 
 interface Statistics {
   [key: string]: number;
@@ -44,8 +42,7 @@ export class StatisticsComponent implements OnInit {
         this.barChartData[2].data.push(this.statistics['Number of offers']);
         this.barChartData[3].data.push(this.statistics['Number of reviews']);
       },
-      (error) => alert("Credenciales incorrectas"));
+        (error) => console.log("Credenciales incorrectas"));
   }
-
 
 }

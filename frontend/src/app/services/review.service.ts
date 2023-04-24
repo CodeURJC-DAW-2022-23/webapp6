@@ -1,8 +1,7 @@
 import { Review } from './../models/review.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Page } from '../models/page.model';
 import { ReviewTDO } from '../models/reviewTDO.model';
 
@@ -29,16 +28,14 @@ export class ReviewService {
 		return this.httpClient.delete(BASE_URL + "/" + id) as Observable<Review>
 	}
 
-	addReview(id:number, review: ReviewTDO): Observable<Review> {
-    return this.httpClient.post("/api/books/" + id + "/reviews", review) as Observable<Review>;
-  }
-  updateReview(id: number | undefined, text: string): Observable<Review> {
-	return this.httpClient.put(BASE_URL + "/" + id, {text:text}) as Observable<Review>
+	addReview(id: number, review: ReviewTDO): Observable<Review> {
+		return this.httpClient.post("/api/books/" + id + "/reviews", review) as Observable<Review>;
+	}
+	updateReview(id: number | undefined, text: string): Observable<Review> {
+		return this.httpClient.put(BASE_URL + "/" + id, { text: text }) as Observable<Review>
+	}
+
 }
-updateReview2(id: string | undefined, text: string): Observable<Review> {
-	return this.httpClient.put(BASE_URL + "/" + id, {text:text}) as Observable<Review>
-}
-}
-  
-  
+
+
 

@@ -7,58 +7,61 @@
   </div>
 
   <div class="div-offer-page">
-      <mat-card class="example-card">
-        <mat-card-title>{{offer.book.title}}</mat-card-title>
+    <mat-card class="example-card">
+      <mat-card-title>{{offer.book.title}}</mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <div>
+          <h2 class="offer-page-h2">Vendedor:</h2>
+          <p class="offer-page-p">{{offer.seller.name}}</p>
+        </div>
+        <div>
+          <h2 class="offer-page-h2">Precio:</h2>
+          <p class="offer-page-p"><span class="offer-price-span">{{offer.price}} euros</span> </p>
+        </div>
+        <div>
+          <h2 class="offer-page-h2">Descripción:</h2>
+          <p class="offer-page-desc">{{offer.description}}</p>
+        </div>
+        <div *ngIf="isSold">
+          <h2 class="offer-page-h2">Ejemplar de {{offer.seller.name}} vendido a {{offer.buyer.name}}</h2>
+        </div>
+
+        <div *ngIf="!isSold">
+          <div *ngIf="loginService.isLogged()">
+            <div *ngIf="!isOwn" class="example-button-row">
+              <button mat-raised-button  style="margin: 3%;"
+                (click)="buyOffer(offer)">Comprar<mat-icon>shopping_cart</mat-icon></button>
+            </div>
+            <div *ngIf="isOwn" class="example-button-row">
+              <button mat-raised-button  style="margin: 3%;"
+                (click)="editOffer(offer)">Editar<mat-icon>create</mat-icon></button>
+            </div>
+            <div *ngIf="isOwn" class="example-button-row">
+              <button mat-raised-button  style="margin: 3%;"
+                (click)="deleteOffer(offer)">Eliminar<mat-icon>create</mat-icon></button>
+            </div>
+          </div>
+          <div *ngIf="!loginService.isLogged()" class="example-button-row">
+            <button mat-raised-button  style="margin: 3%;" (click)="goLogin()">Inicia sesión para comprar
+              el libro<mat-icon>person</mat-icon></button>
+          </div>
+        </div>
         <mat-divider></mat-divider>
-        <mat-card-content>
-          <div>
-            <h2 class="offer-page-h2">Vendedor:</h2>
-            <p class="offer-page-p">{{offer.seller.name}}</p>
-          </div>
-          <div>
-            <h2 class="offer-page-h2">Precio:</h2>
-            <p class="offer-page-p"><span class="offer-price-span">{{offer.price}} euros</span> </p>
-          </div>
-          <div>
-            <h2 class="offer-page-h2">Descripción:</h2>
-            <p class="offer-page-desc">{{offer.description}}</p>
-          </div>
-          <div *ngIf="isSold">
-            <h2 class="offer-page-h2">Ejemplar de {{offer.seller.name}} vendido a {{offer.buyer.name}}</h2>
-          </div>
-
-          <div *ngIf="!isSold">
-            <div *ngIf="loginService.isLogged()">
-              <div *ngIf="!isOwn" class="example-button-row">
-                <button mat-raised-button color="primary" style="margin: 3%;" (click)="buyOffer(offer)">Comprar<mat-icon>shopping_cart</mat-icon></button>
-              </div>
-              <div *ngIf="isOwn" class="example-button-row">
-                <button mat-raised-button color="primary" style="margin: 3%;" (click)="editOffer(offer)">Editar<mat-icon>create</mat-icon></button>
-              </div>
-              <div *ngIf="isOwn" class="example-button-row">
-                <button mat-raised-button color="primary" style="margin: 3%;" (click)="deleteOffer(offer)">Eliminar<mat-icon>create</mat-icon></button>
-              </div>
-            </div>
-            <div *ngIf="!loginService.isLogged()" class="example-button-row">
-              <button mat-raised-button color="primary" style="margin: 3%;" (click)="goLogin()">Inicia sesión para comprar el libro<mat-icon>person</mat-icon></button>
-            </div>
-          </div>
-          <mat-divider></mat-divider>
-          <div>
-            <h2 class="offer-page-h2">Autor:</h2>
-            <p class="offer-page-p">{{offer.book.author}}</p>
-          </div>
-          <div>
-            <h2 class="offer-page-h2">Editorial:</h2>
-            <p class="offer-page-p">{{offer.edition}}</p>
-          </div>
-          <div>
-            <h2 class="offer-page-h2">Género:</h2>
-            <p class="offer-page-p">{{offer.book.genre}}</p>
-          </div>
-        </mat-card-content>
-      </mat-card>
+        <div>
+          <h2 class="offer-page-h2">Autor:</h2>
+          <p class="offer-page-p">{{offer.book.author}}</p>
+        </div>
+        <div>
+          <h2 class="offer-page-h2">Editorial:</h2>
+          <p class="offer-page-p">{{offer.edition}}</p>
+        </div>
+        <div>
+          <h2 class="offer-page-h2">Género:</h2>
+          <p class="offer-page-p">{{offer.book.genre}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
-
 
 </div>

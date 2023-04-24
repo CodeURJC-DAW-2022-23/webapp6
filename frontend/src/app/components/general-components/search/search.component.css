@@ -121,7 +121,7 @@ h2 {
 }
 
 .hero.hero-normal .hero__search {
-	margin-bottom: 0;
+	margin: 2%;
 }
 
 .hero__categories__all {
@@ -232,38 +232,6 @@ h2 {
 	height: 50px;
 }
 
-.hero__search__phone {
-	float: right;
-}
-
-.hero__search__phone__icon {
-	font-size: 18px;
-	color: var(--main-color);
-	height: 50px;
-	width: 50px;
-	background: #f5f5f5;
-	line-height: 50px;
-	text-align: center;
-	border-radius: 50%;
-	float: left;
-	margin-right: 20px;
-}
-
-.hero__search__phone__text {
-	overflow: hidden;
-}
-
-.hero__search__phone__text h5 {
-	color: #1c1c1c;
-	font-weight: 700;
-	margin-bottom: 5px;
-}
-
-.hero__search__phone__text span {
-	font-size: 14px;
-	color: #6f6f6f;
-}
-
 .hero__item {
 	height: 431px;
 	display: flex;
@@ -281,4 +249,9 @@ h2 {
 
 .hero__text p {
 	margin-bottom: 35px;
+}
+
+.search_field {
+	width: 100%;
+	margin: 2%;
 }

@@ -5,18 +5,18 @@
 .contact {
 	padding-top: 80px;
 	padding-bottom: 50px;
-  text-align: center;
+	text-align: center;
 }
 
 .contact__widget {
 	margin-bottom: 30px;
-  text-align: center;
+	text-align: center;
 }
 
 .contact__widget span {
 	font-size: 36px;
 	color: var(--main-color);
-  text-align: center;
+	text-align: center;
 }
 
 .contact__widget h4 {
@@ -159,6 +159,6 @@
 }
 
 .row {
-  display: inline-block;
-  text-align: center;
+	display: inline-block;
+	text-align: center;
 }

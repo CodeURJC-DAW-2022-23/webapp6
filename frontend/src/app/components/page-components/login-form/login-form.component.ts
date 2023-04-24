@@ -12,10 +12,10 @@ export class LoginFormComponent {
 
   constructor(public loginService: LoginService) { }
 
-  @Output() onLogIn = new EventEmitter<{username: string, password: string}>();
+  @Output() onLogIn = new EventEmitter<{ username: string, password: string }>();
 
   submitLoginForm() {
-    this.onLogIn.emit({username: this.username, password: this.password});
+    this.onLogIn.emit({ username: this.username, password: this.password });
   }
 
   logOut() {

@@ -27,9 +27,8 @@ export class UpdateOfferComponent {
       _ => {
         this.offerService.deleteOfferImage(offer);
         this.uploadImage(offer);
-        alert("La oferta se ha actualizado correctamente");
         this.router.navigate(['/offers', offer.id]);
-      } ,
+      },
       error => console.error(error)
     );
   }
@@ -45,16 +44,16 @@ export class UpdateOfferComponent {
         response => {
           console.log(response);
         },
-        error => alert('Error uploading offer image: ' + error)
+        error => console.log('Error uploading offer image: ' + error)
       );
     }
   }
 
   getImage(offer: Offer) {
-    if (offer.id != undefined){
+    if (offer.id != undefined) {
       return this.offerService.getImage(offer.id);
     }
-    else{
+    else {
       return "";
     }
   }

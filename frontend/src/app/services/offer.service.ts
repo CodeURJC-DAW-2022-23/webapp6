@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-
+import { Observable } from 'rxjs';
 import { Offer } from '../models/offer.model';
 import { Page } from '../models/page.model';
 import { OfferTDO } from '../models/offerTDO.model';
@@ -42,17 +40,16 @@ export class OfferService {
 		return this.httpClient.put(BASE_URL + "/" + offer.id + "/sold", {});
 	}
 
-  updateOffer(offer: Offer) {
-    return this.httpClient.put(BASE_URL + "/" + offer.id, offer)
-  }
+	updateOffer(offer: Offer) {
+		return this.httpClient.put(BASE_URL + "/" + offer.id, offer)
+	}
 
-  deleteOfferImage(offer: Offer) {
-    return this.httpClient.delete(BASE_URL + "/" + offer.id + "/image")
-}
+	deleteOfferImage(offer: Offer) {
+		return this.httpClient.delete(BASE_URL + "/" + offer.id + "/image")
+	}
 
-deleteOffer(offer: Offer) {
-    return this.httpClient.delete(BASE_URL + "/" + offer.id)
-}
-
+	deleteOffer(offer: Offer) {
+		return this.httpClient.delete(BASE_URL + "/" + offer.id)
+	}
 
 }

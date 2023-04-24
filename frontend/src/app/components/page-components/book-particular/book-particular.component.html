@@ -25,10 +25,9 @@
   </div>
 
   <div class="book-particular-div-image">
-    <a><img class="book-particular-image" mat-card-image [src]="getImage(book)"/></a>
+    <a><img class="book-particular-image" mat-card-image [src]="getImage(book)" /></a>
   </div>
 </div>
-
 
 <section-title title="Reseñas"></section-title>
 
@@ -39,12 +38,12 @@
   </div>
 </div>
 
-<div *ngIf="showButtonReviews"  class="example-button-row">
-  <button *ngIf="book" mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreReviews(book,pageReviews + 1)">
+<div *ngIf="showButtonReviews" class="example-button-row">
+  <button *ngIf="book" mat-raised-button  style="margin: 3%"
+    (click)="loadMoreReviews(book,pageReviews + 1)">
     Cargar más
   </button>
 </div>
-
 
 <div *ngIf="loginService.isLogged()" class="example-button-row">
   <button *ngIf="book" mat-raised-button class="book-particular-button" (click)="uploadReview(book)">
@@ -58,23 +57,20 @@
 
 <section-title title="Anuncios"></section-title>
 
-
 <div *ngIf="offers" class="card-container">
   <div *ngFor="let offer of offers.content" class="offer-card">
     <offer-card offerId="{{offer.id}}"></offer-card>
   </div>
 </div>
 
-
-
-<div *ngIf="showButtonOffers"  class="example-button-row">
-  <button *ngIf="book" mat-raised-button color="primary" style="margin: 3%" (click)="loadMoreOffers(book,pageOffers + 1)">
+<div *ngIf="showButtonOffers" class="example-button-row">
+  <button *ngIf="book" mat-raised-button  style="margin: 3%"
+    (click)="loadMoreOffers(book,pageOffers + 1)">
     Cargar más </button>
 </div>
 
-<!-- Now puts all the options, then only a div -->
 <div *ngIf="loginService.isLogged()" class="example-button-row">
-  <button  *ngIf="book" mat-raised-button class="book-particular-button" (click)="uploadOffer(book)">
+  <button *ngIf="book" mat-raised-button class="book-particular-button" (click)="uploadOffer(book)">
     Subir anuncio<mat-icon>expand_less</mat-icon></button>
 </div>
 <div *ngIf="!loginService.isLogged()" class="example-button-row">

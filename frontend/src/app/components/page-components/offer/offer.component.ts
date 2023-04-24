@@ -23,7 +23,7 @@ export class OfferComponent {
 
     this.offerService.getOffer(id).subscribe(
       offer => {
-        this.offer = offer,
+        this.offer = offer;
         this.user = this.loginService.currentUser();
         this.isSold = offer.sold;
         this.isOwn = this.user?.name === this.offer?.seller.name;
@@ -37,10 +37,10 @@ export class OfferComponent {
   }
 
   getImage(offer: Offer) {
-    if (offer.id != undefined){
+    if (offer.id != undefined) {
       return this.offerService.getImage(offer.id);
     }
-    else{
+    else {
       return "";
     }
   }
@@ -57,23 +57,18 @@ export class OfferComponent {
     if (offer.id !== undefined) {
       this.offerService.deleteOffer(offer).subscribe(
         () => {
-          alert('La oferta ha sido eliminada');
+          console.log('La oferta ha sido eliminada');
           this.router.navigate(['/user-page']);
         },
         error => {
           console.log(error);
-          alert('Error al eliminar la oferta');
+          console.log('Error al eliminar la oferta');
         }
       );
     }
   }
 
-
-
-
-
-
-  goLogin(){
+  goLogin() {
     this.router.navigate(['/login'])
   }
 

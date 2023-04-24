@@ -1,4 +1,3 @@
-
 .blog__item__text .blog__btn {
 	display: inline-block;
 	font-size: 14px;
@@ -9,7 +8,8 @@
 	padding: 14px 20px 12px;
 	border-radius: 25px;
 }
+
 mat-form-field {
-  display: block;
-  margin-bottom: 16px;
+	display: block;
+	margin-bottom: 16px;
 }

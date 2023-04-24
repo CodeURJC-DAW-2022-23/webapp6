@@ -1,28 +1,24 @@
 <general-title *ngIf="review" title="Modifica tu reseña"></general-title>
 
-
 <div *ngIf="review" class="example-form">
   <form class="example-form" (ngSubmit)="updateReview()">
 
     <mat-divider style="margin-top: 2%; margin-bottom: 5%"></mat-divider>
 
     <section-title title="Reseña"></section-title>
-    
+
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
           <mat-form-field class="example-full-width">
-            <!-- <input matInput type="text" name="text" required [(ngModel)]="review.text"> -->
             <input matInput type="text" name="text" required [(ngModel)]="originalText">
           </mat-form-field>
         </td>
       </tr>
     </table>
-    
-    
 
     <div class="example-button-row">
-      <button type="submit" mat-raised-button color="primary">Actualizar reseña</button>
+      <button type="submit" mat-raised-button >Actualizar reseña</button>
     </div>
 
   </form>

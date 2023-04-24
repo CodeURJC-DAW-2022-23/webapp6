@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+
+import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './auth.guard';
 
@@ -26,22 +26,22 @@ const appRoutes = [
     { path: '', component: IndexComponent },
     { path: 'index', component: IndexComponent },
     { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard] },
-    { path: 'books', component: BookGeneralComponent},
-    { path: 'books?searchtext=:searchWord', component: BookGeneralComponent},
-    { path: 'books/:idBook', component: BookParticularComponent},
-    { path: 'books/:idBook/upload-offer', component: UploadOfferComponent, canActivate: [AuthGuard]},
-    { path: 'offers/:idOffer/update-offer', component: UpdateOfferComponent, canActivate: [AuthGuard]},
-    { path: 'books/:idBook/upload-review', component: UploadReviewComponent, canActivate: [AuthGuard]},
-    { path: 'reviews/:idReview/update-review', component: UpdateReviewComponent, canActivate: [AuthGuard]},
-    { path: 'offers/:idOffer/checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
-    { path: 'offers/:idOffer', component: OfferComponent},
-    { path: 'login', component: LoginComponent},
-    { path: 'register', component: RegisterComponent},
-    { path: 'user-page', component: UserComponent, canActivate: [AuthGuard]},
-    { path: 'update-profile', component: UpdateProfileComponent, canActivate: [AuthGuard]},
-    { path: 'update-review/:idReview', component: UpdateReviewComponent, canActivate: [AuthGuard]},
-    { path: 'contact', component: ContactComponent},
-    { path: 'statistics', component: StatisticsComponent},
+    { path: 'books', component: BookGeneralComponent },
+    { path: 'books?searchtext=:searchWord', component: BookGeneralComponent },
+    { path: 'books/:idBook', component: BookParticularComponent },
+    { path: 'books/:idBook/upload-offer', component: UploadOfferComponent, canActivate: [AuthGuard] },
+    { path: 'offers/:idOffer/update-offer', component: UpdateOfferComponent, canActivate: [AuthGuard] },
+    { path: 'books/:idBook/upload-review', component: UploadReviewComponent, canActivate: [AuthGuard] },
+    { path: 'reviews/:idReview/update-review', component: UpdateReviewComponent, canActivate: [AuthGuard] },
+    { path: 'offers/:idOffer/checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
+    { path: 'offers/:idOffer', component: OfferComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'user-page', component: UserComponent, canActivate: [AuthGuard] },
+    { path: 'update-profile', component: UpdateProfileComponent, canActivate: [AuthGuard] },
+    { path: 'update-review/:idReview', component: UpdateReviewComponent, canActivate: [AuthGuard] },
+    { path: 'contact', component: ContactComponent },
+    { path: 'statistics', component: StatisticsComponent },
     { path: '**', redirectTo: '' }
 
 ]

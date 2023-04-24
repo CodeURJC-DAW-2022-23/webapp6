@@ -6,7 +6,6 @@ import { User } from '../models/user.model';
 
 import { Book } from '../models/book.model';
 import { Review } from '../models/review.model';
-import { Offer } from '../models/offer.model';
 import { Page } from '../models/page.model';
 import { Router } from '@angular/router';
 
@@ -19,8 +18,7 @@ export class UserService {
 
   getUser(): Observable<User> {
     return this.httpClient.get<User>(BASE_URL + '/');
-}
-
+  }
 
   getUserBooksPaginated(n: number): Observable<Page> {
     return this.httpClient.get(BASE_URL + "?page=" + n) as Observable<Page>;
@@ -54,19 +52,15 @@ export class UserService {
     return this.httpClient.get<Page>(BASE_URL + '/offers/');
   }
 
- /*  getUserHistorial(): Observable<Offer[]> {
-    return this.httpClient.get(BASE_URL + "/historial") as Observable<Offer[]>;
-  } */
-
   getUserHistorialPaginated(n: number): Observable<Page> {
     return this.httpClient.get(BASE_URL + "/historial" + "?page=" + n) as Observable<Page>;
   }
 
-  addFavorite(id: number){
+  addFavorite(id: number) {
     return this.httpClient.post("/api/user/favorites/" + id, {});
   }
 
-  deleteFavorite(id: number){
+  deleteFavorite(id: number) {
     return this.httpClient.delete("/api/user/favorites/" + id, {});
   }
 
@@ -83,8 +77,8 @@ export class UserService {
   updateProfileImage(imageFile: File): Observable<any> {
     const formData = new FormData();
     formData.append('imageFile', imageFile);
-    return this.httpClient.post<any>('/api/user/image', formData);    
-    }
+    return this.httpClient.post<any>('/api/user/image', formData);
+  }
 
 }
 

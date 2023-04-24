@@ -7,16 +7,15 @@ a {
 .card-container {
   display: flex;
   flex-wrap: wrap;
-
 }
 
 .book-card {
-    width: 25%;
-    margin-bottom: 2%;
-    margin-right: -11%;
-    margin-left: 8%;
-  }
+  width: 25%;
+  margin-bottom: 2%;
+  margin-right: -11%;
+  margin-left: 8%;
+}
 
-.example-button-row{
-    margin-left: 5%;
+.example-button-row {
+  margin-left: 5%;
 }

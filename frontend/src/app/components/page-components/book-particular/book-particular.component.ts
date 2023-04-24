@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/models/book.model';
-import { Offer } from 'src/app/models/offer.model';
 import { Page } from 'src/app/models/page.model';
-import { Review } from 'src/app/models/review.model';
 import { BookService } from 'src/app/services/book.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -34,7 +32,7 @@ export class BookParticularComponent {
       error => console.log(error)
     );
 
-    if (this.loginService.isLogged()){
+    if (this.loginService.isLogged()) {
       this.bookService.getFavorites().subscribe(
         favorites => {
           this.favorites = favorites;
@@ -48,7 +46,7 @@ export class BookParticularComponent {
       );
     }
 
-    this.bookService.getReviewsPaginated(id,0).subscribe(
+    this.bookService.getReviewsPaginated(id, 0).subscribe(
       reviews => this.reviews = reviews,
       error => console.log(error)
     );
@@ -59,17 +57,14 @@ export class BookParticularComponent {
     );
   }
 
-
-
-
   loadMoreOffers(book: Book, n: number) {
     this.pageOffers = n;
     if (book.id !== undefined) {
       this.bookService.getOffersPaginated(book.id, n).subscribe(
         newOffers => {
-          if (this.offers != undefined && newOffers.numberOfElements != 0){
+          if (this.offers != undefined && newOffers.numberOfElements != 0) {
             this.offers.content = this.offers.content.concat(newOffers.content);
-          }else{
+          } else {
             this.showButtonOffers = false;
           }
         },
@@ -83,9 +78,9 @@ export class BookParticularComponent {
     if (book.id !== undefined) {
       this.bookService.getReviewsPaginated(book.id, n).subscribe(
         newReviews => {
-          if (this.reviews != undefined && newReviews.numberOfElements != 0){
+          if (this.reviews != undefined && newReviews.numberOfElements != 0) {
             this.reviews.content = this.reviews.content.concat(newReviews.content);
-          }else{
+          } else {
             this.showButtonReviews = false;
           }
         },
@@ -95,10 +90,10 @@ export class BookParticularComponent {
   }
 
   getImage(book: Book) {
-    if (book.id != undefined){
+    if (book.id != undefined) {
       return this.bookService.getImage(book.id);
     }
-    else{
+    else {
       return "";
     }
   }
@@ -111,31 +106,31 @@ export class BookParticularComponent {
     this.router.navigate(['/books', book.id, 'upload-review']);
   }
 
-  goLogin(){
+  goLogin() {
     this.router.navigate(['/login'])
   }
 
   addFavorite(book: Book) {
-    if (book.id != undefined){
-    this.bookService.addFavorite(book.id).subscribe(
-      response => {
-        console.log(response);
-        this.isFavorite = true;
-      },
-      error => console.log(error)
-    );
+    if (book.id != undefined) {
+      this.bookService.addFavorite(book.id).subscribe(
+        response => {
+          console.log(response);
+          this.isFavorite = true;
+        },
+        error => console.log(error)
+      );
     }
   }
 
   deleteFavorite(book: Book) {
-    if (book.id != undefined){
-    this.bookService.deleteFavorite(book.id).subscribe(
-      response => {
-        console.log(response);
-        this.isFavorite = false;
-      },
-      error => console.log(error)
-    );
+    if (book.id != undefined) {
+      this.bookService.deleteFavorite(book.id).subscribe(
+        response => {
+          console.log(response);
+          this.isFavorite = false;
+        },
+        error => console.log(error)
+      );
     }
   }
 

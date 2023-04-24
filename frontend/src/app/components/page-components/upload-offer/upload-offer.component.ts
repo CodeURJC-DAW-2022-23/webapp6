@@ -25,20 +25,19 @@ export class UploadOfferComponent {
     );
   }
 
-
-  newOffer: OfferTDO = {edition: '', description: '', price: 0, image: false };
+  newOffer: OfferTDO = { edition: '', description: '', price: 0, image: false };
 
   addNewOffer(book: Book) {
-    if (book.id != undefined){
-    this.offerService.addOffer(book.id, this.newOffer).subscribe(
-      response => {
-        console.log(response);
-        this.uploadImage(response);
-        alert("La oferta se ha subido correctamente");
-        this.router.navigate(['/books', book.id]);
-      },
-      error => console.log(error)
-    );
+    if (book.id != undefined) {
+      this.offerService.addOffer(book.id, this.newOffer).subscribe(
+        response => {
+          console.log(response);
+          this.uploadImage(response);
+          console.log("La oferta se ha subido correctamente");
+          this.router.navigate(['/books', book.id]);
+        },
+        error => console.log(error)
+      );
     }
   }
 
@@ -53,7 +52,7 @@ export class UploadOfferComponent {
         response => {
           console.log(response);
         },
-        error => alert('Error uploading offer image: ' + error)
+        error => console.log('Error uploading offer image: ' + error)
       );
     }
   }

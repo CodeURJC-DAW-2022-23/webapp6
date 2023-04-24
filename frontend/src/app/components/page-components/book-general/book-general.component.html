@@ -8,8 +8,8 @@
   </div>
 </div>
 
-<div *ngIf="booksButton"  class="example-button-row">
-    <button mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreBooks(booksPage + 1, searchText)">
-      Cargar más Libros
-    </button>
+<div *ngIf="booksButton" class="example-button-row">
+  <button mat-raised-button  style="margin: 3%" (click)="loadMoreBooks(booksPage + 1, searchText)">
+    Cargar más Libros
+  </button>
 </div>

@@ -1,14 +1,13 @@
-
 .left-column {
-    display: inline-block;
-    width: 55%;
+  display: inline-block;
+  width: 55%;
 }
 
 .right-column {
-    display: inline-block;
-    width: 35%;
-    margin: 3%;
-    vertical-align: top;
+  display: inline-block;
+  width: 35%;
+  margin: 3%;
+  vertical-align: top;
 }
 
 .card-upload-offer {
@@ -30,4 +29,3 @@
 mat-form-field {
   width: 70%;
 }
-

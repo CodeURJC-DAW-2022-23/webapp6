@@ -1,29 +1,35 @@
 <div class="example-form">
 
-<section-title title="Modifica los detalles de tu anuncio"></section-title>
+  <section-title title="Modifica los detalles de tu anuncio"></section-title>
 
   <div *ngIf="offer" style="display: inline-block; width: 60%">
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>Editorial</mat-label>
-        <input matInput type="text" [(ngModel)]="offer.edition"  value={{offer.edition}} required>
-      </mat-form-field></td>
-    </tr></table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><mat-form-field class="example-full-width">
+            <mat-label>Editorial</mat-label>
+            <input matInput type="text" [(ngModel)]="offer.edition" value={{offer.edition}} required>
+          </mat-form-field></td>
+      </tr>
+    </table>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>Descripción</mat-label>
-        <input matInput type="text" [(ngModel)]="offer.description" value={{offer.description}} required>
-      </mat-form-field></td>
-    </tr></table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><mat-form-field class="example-full-width">
+            <mat-label>Descripción</mat-label>
+            <input matInput type="text" [(ngModel)]="offer.description" value={{offer.description}} required>
+          </mat-form-field></td>
+      </tr>
+    </table>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>Price</mat-label>
-        <input matInput type="number" step="0.01" [(ngModel)]="offer.price" value={{offer.price}} required>
-      </mat-form-field></td>
-    </tr></table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><mat-form-field class="example-full-width">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" step="0.01" [(ngModel)]="offer.price" value={{offer.price}} required>
+          </mat-form-field></td>
+      </tr>
+    </table>
   </div>
 
   <div *ngIf="offer" class="update-offer">
@@ -35,7 +41,7 @@
         <input #file type='file' name='imageField' accept=".png, .jpg, .jpeg" />
       </mat-card-content>
       <mat-divider></mat-divider>
-        <button (click)="updateOffer(offer)" mat-raised-button type="submit">Actualizar anuncio</button>
+      <button (click)="updateOffer(offer)" mat-raised-button type="submit">Actualizar anuncio</button>
     </mat-card>
   </div>
 

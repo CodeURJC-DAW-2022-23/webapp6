@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 import { LoginService } from 'src/app/services/login.service';
 
-
 @Component({
   selector: 'index',
   templateUrl: './index.component.html',
@@ -11,11 +10,9 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class IndexComponent {
 
-    constructor(private router: Router, public bookService: BookService, public loginService: LoginService) {
-    
-    }
+  constructor(private router: Router, public bookService: BookService, public loginService: LoginService) { }
 
-    loadIndexBooks(searchWord: String) {
-            this.router.navigate(['/books', {searchWord}]);
-        }
+  loadIndexBooks(searchWord: String) {
+    this.router.navigate(['/books', { searchWord }]);
+  }
 }

@@ -74,7 +74,7 @@ export class BooksTableComponent {
           console.log(response);
           this.reload();
         },
-        error => alert('Error uploading book image: ' + error)
+        error => console.log('Error uploading book image: ' + error)
       );
     }
   }

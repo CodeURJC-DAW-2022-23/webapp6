@@ -22,10 +22,10 @@ export class CheckoutComponent {
     );
   }
 
-  buyOffer(offer: Offer){
+  buyOffer(offer: Offer) {
     this.offerService.buyOffer(offer).subscribe(
       response => {
-        alert("La oferta se ha comprado correctamente");
+        console.log("La oferta se ha comprado correctamente");
         this.router.navigate(['/user-page']);
       },
       error => console.log(error)

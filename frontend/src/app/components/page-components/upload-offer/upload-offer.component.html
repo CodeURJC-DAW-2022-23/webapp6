@@ -3,22 +3,20 @@
 <section-title title="Sube tu libro"></section-title>
 <section-title title="Detalles del libro"></section-title>
 
+<mat-form-field>
+  <mat-label>Editorial</mat-label>
+  <input matInput [(ngModel)]="newOffer.edition" type="text" required>
+</mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Editorial</mat-label>
-    <input matInput [(ngModel)]="newOffer.edition" type="text" required>
-  </mat-form-field>
+<mat-form-field>
+  <mat-label>Descripción</mat-label>
+  <input matInput [(ngModel)]="newOffer.description" type="text" required>
+</mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Descripción</mat-label>
-    <input matInput [(ngModel)]="newOffer.description" type="text" required>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Precio</mat-label>
-    <input matInput [(ngModel)]="newOffer.price" type="number" required>
-  </mat-form-field>
-
+<mat-form-field>
+  <mat-label>Precio</mat-label>
+  <input matInput [(ngModel)]="newOffer.price" type="number" required>
+</mat-form-field>
 
 <div *ngIf="book" class="right-column">
   <mat-card class="card-upload-offer">

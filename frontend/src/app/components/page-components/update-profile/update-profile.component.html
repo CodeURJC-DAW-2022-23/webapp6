@@ -6,7 +6,7 @@
       <mat-label>Correo electrónico</mat-label>
       <input matInput type="email" [(ngModel)]="newEmail" name="email" required>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="updateUserEmail()">Actualizar correo electrónico</button>
+    <button mat-raised-button  (click)="updateUserEmail()">Actualizar correo electrónico</button>
   </form>
   <section-title title="Nueva imagen de perfil:"></section-title>
   <form>
@@ -14,7 +14,9 @@
       <input type="file" (change)="onFileSelected($event)" accept="image/*" />
     </div>
     <div>
-      <button mat-raised-button color="primary" (click)="updateProfileImage()" [disabled]="!selectedFile">Actualizar imagen de perfil</button>
+      <button mat-raised-button  (click)="updateProfileImage()" [disabled]="!selectedFile">
+        Actualizar imagen de perfil
+      </button>
     </div>
   </form>
 </div>

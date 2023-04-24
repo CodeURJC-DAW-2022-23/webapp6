@@ -15,7 +15,9 @@
 </div>
 
 <div class="blog__item__text">
-  <a href="/update-profile" class="blog__btn">Modifica tu perfil<span class="arrow_right"></span></a>
+  <button  mat-raised-button style="margin: 3%"  (click)="navigateToUpEditProfile()">
+    Modifica tu perfil
+  </button>
 </div>
 
 <!-- _________________________________________ -->
@@ -30,7 +32,7 @@
 </div> 
 
 <div *ngIf="showButtonFavorites"  class="example-button-row">
-  <button  mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreUserFavorites(pageFavorites + 1)">
+  <button  mat-raised-button  style="margin: 3%"  (click)="loadMoreUserFavorites(pageFavorites + 1)">
     Cargar más
   </button>
 </div> 
@@ -47,7 +49,7 @@
 
 
 <div *ngIf="showButtonOffers" class="example-button-row">
-  <button mat-raised-button color="primary" style="margin: 3%" (click)="loadMoreUserOffers(pageOffers + 1)">
+  <button mat-raised-button  style="margin: 3%" (click)="loadMoreUserOffers(pageOffers + 1)">
     Cargar más </button>
 </div>
 
@@ -79,7 +81,7 @@
 
 
 <div *ngIf="showButtonReviews"  class="example-button-row">
-  <button  mat-raised-button color="primary" style="margin: 3%"  (click)="loadMoreUserReviews(pageReviews + 1)">
+  <button  mat-raised-button  style="margin: 3%"  (click)="loadMoreUserReviews(pageReviews + 1)">
     Cargar más
   </button>
 </div>
@@ -98,7 +100,7 @@
 
 
 <div *ngIf="showButtonHistorial" class="example-button-row">
-  <button mat-raised-button color="primary" style="margin: 3%" (click)="loadMoreUserHistorials(pageHistorial + 1)">
+  <button mat-raised-button  style="margin: 3%" (click)="loadMoreUserHistorials(pageHistorial + 1)">
     Cargar más </button>
 </div>
 

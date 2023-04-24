@@ -12,7 +12,7 @@ export class UpdateProfileComponent {
   newEmail: string = '';
   selectedFile: File | null = null;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) { }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];

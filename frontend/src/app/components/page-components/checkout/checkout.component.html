@@ -1,32 +1,41 @@
-
 <form class="example-form">
 
-<section-title title="Datos de facturación" ></section-title>
+  <section-title title="Datos de facturación"></section-title>
 
   <div class="left-column">
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><general-form text="Nombre" type="text"></general-form></td>
-      <td><general-form text="Apellido" type="text"></general-form></td>
-    </tr></table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><general-form text="Nombre" type="text"></general-form></td>
+        <td><general-form text="Apellido" type="text"></general-form></td>
+      </tr>
+    </table>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><general-form text="Ciudad, código postal" type="text"></general-form></td>
-    </tr></table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><general-form text="Ciudad, código postal" type="text"></general-form></td>
+      </tr>
+    </table>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><general-form text="Calle, portal y piso" type="text"></general-form></td>
-    </tr></table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><general-form text="Calle, portal y piso" type="text"></general-form></td>
+      </tr>
+    </table>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><general-form text="Teléfono" type="number"></general-form></td>
-      <td><general-form text="Correo" type="text"></general-form></td>
-    </tr></table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><general-form text="Teléfono" type="number"></general-form></td>
+        <td><general-form text="Correo" type="text"></general-form></td>
+      </tr>
+    </table>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><general-form text="Número de cuenta" type="number"></general-form></td>
-      <td><general-form text="Pin" type="password"></general-form></td>
-    </tr></table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><general-form text="Número de cuenta" type="number"></general-form></td>
+        <td><general-form text="Pin" type="password"></general-form></td>
+      </tr>
+    </table>
 
   </div>
 
@@ -43,11 +52,8 @@
         <h2 class="checkout-h2">Total: <span class="checkout-price-span">{{offer.price}} euros</span></h2>
       </mat-card-content>
       <mat-divider></mat-divider>
-        <button mat-raised-button type="submit" color="primary" (click)="buyOffer(offer)">Comprar</button>
+      <button mat-raised-button type="submit"  (click)="buyOffer(offer)">Comprar</button>
     </mat-card>
   </div>
 
 </form>
-
-
-

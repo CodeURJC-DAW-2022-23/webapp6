@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Book } from '../models/book.model';
 import { Review } from '../models/review.model';
@@ -45,11 +45,11 @@ export class BookService {
     return this.httpClient.get(BASE_URL + "/" + id + "/offers/all") as Observable<Offer[]>;
   }
 
-  addFavorite(id: number){
+  addFavorite(id: number) {
     return this.httpClient.post("/api/user/favorites/" + id, {});
   }
 
-  deleteFavorite(id: number){
+  deleteFavorite(id: number) {
     return this.httpClient.delete("/api/user/favorites/" + id, {});
   }
 
@@ -65,8 +65,8 @@ export class BookService {
     return this.httpClient.get("/api/books/bestpick") as Observable<Book>;
   }
 
-  getSearchBooks(searchText:String, n: number): Observable<Page> {
-    return this.httpClient.get("api/books?searchtext=" + searchText + "&page=" + n) as Observable<Page>;
+  getSearchBooks(searchText: String, n: number): Observable<Page> {
+    return this.httpClient.get("/api/books?searchtext=" + searchText + "&page=" + n) as Observable<Page>;
   }
 
 }

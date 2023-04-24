@@ -26,7 +26,7 @@ export class AdminPageComponent {
         response => {
           console.log(response);
         },
-        error => alert('Error uploading book image: ' + error)
+        error => console.log('Error uploading book image: ' + error)
       );
     }
   }
