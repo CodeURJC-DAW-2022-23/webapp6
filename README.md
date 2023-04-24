@@ -621,6 +621,13 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 
  
 </details>
+ 
+ ### 🛰 Deployment on the university machine
+ 
+ <details><summary>Instructions for deployment.</summary>
+
+ 
+</details>
 
 
 ## 📊 Diagrams
@@ -666,26 +673,33 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
    
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Component of display everything related to a book, including show his reviews, his offers and add/remove favorites.
+      - Component of upload a review.
+      - Component of upload a offer.
+      - Component of upload a review.
+      - Component of edit a offer.
+      - Component of edit a offer.
+      - Component of checkout (buy a offer).
+      - Common components such as review, offer and book formats.
+      - Added Angular material.
+      - Many code improvements and bug fixes.
       
  
    - 📤 Most significant commits:
  
-      - [Commit 1]()  
-      - [Commit 2]() 
-      - [Commit 3]() 
-      - [Commit 4]() 
-      - [Commit 5]() 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/0d4a0bc47c34f3b8ac6c66c8cef3200e28bbf288) Created offer and review cards and show all data of a particular book.
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/3bc36ef359d5f91c62fc84a1b5ef6c1644f6e601) Added loading more.
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/15f013a40208672018d67c08ca9e2d3e4e1f4bc9) Users can update offers.
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/e23e53adc5fcf5ec5142ffe0348c8947cd3268db) Book particular and offer components.
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/f651decf18f05f6987c8131eeda5626c4cac53d7) Logged users can upload offers and reviews.
  
    - 📝 Files with more participation:
  
-      - [File 1]() 
-      - [File 2]() 
-      - [File 3]() 
-      - [File 4]() 
-      - [File 5]() 
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/services/offer.service.ts) Offer.service.ts
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/book-particular/book-particular.component.ts) Book-particular.component.ts
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/checkout/checkout.component.ts) Checkout.component.ts
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/upload-offer/upload-offer.component.ts) Upload-offer.component.ts
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/update-offer/update-offer.component.ts) Update-offer.component.ts
 
 </details>
 
