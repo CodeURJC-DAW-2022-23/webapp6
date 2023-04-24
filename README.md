@@ -705,28 +705,30 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
 
 <details><summary>Markos Aguirre Elorza.</summary>
    
-   - 📂 Completed tasks:
+     - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Everything regarding the user entity
+      - Login and Register functionalities
+      - Security (restrict access to pages)
+      - Review update
+      - Mailing service manteinance
+      
  
    - 📤 Most significant commits:
  
-      - [Commit 1]()  
-      - [Commit 2]() 
-      - [Commit 3]() 
-      - [Commit 4]() 
-      - [Commit 5]() 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/45ac8f9f8b761e046c7e1873d2a09fd97abb4c4e) User Page finished.
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/4de7d313200e6c62b539e0de089df897e7923477) Register done.
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/6c6d32d7e4415b72e5e98d47cfb4623a9562f9c6) Security.
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/808ac5ac338e7e7fd4debc2b52a00d58945c4627) Update Review.
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/74c47badf3ecc0ef46e7ed32495fdd49d97d85fb) Update profile.
  
    - 📝 Files with more participation:
  
-      - [File 1]() 
-      - [File 2]() 
-      - [File 3]() 
-      - [File 4]() 
-      - [File 5]() 
-     
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/user-page/user.component.html) User.component.html
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/register/register.components.ts) register.component.ts
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/auth.guard.ts) auth.guard.ts
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/update-profile/update-profile.component.ts) update-profile.component.ts
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/update-review/update-review.component.ts) update-review.component.ts
 
 </details>
 
