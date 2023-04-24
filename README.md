@@ -736,25 +736,27 @@ To start the application run the `ReadmeBookstoreApplication.java` and go to `ht
    
    - 📂 Completed tasks:
  
-      - a
-      - b
-      - c
+      - Header
+      - Footer
+      - Contact
+      - Statistics
+      - Bugs 
  
    - 📤 Most significant commits:
  
-      - [Commit 1]()  
-      - [Commit 2]() 
-      - [Commit 3]() 
-      - [Commit 4]() 
-      - [Commit 5]() 
+      - [Commit 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/293056fe2acfffd28424b47aea1efe74932d6c00) Header 
+      - [Commit 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/4aebf14fd6616019d1b86801313da265d6608931) Contact
+      - [Commit 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/263b4960b0d8cbef0b44d72b454d339795662792) statistics
+      - [Commit 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/c415d99d3436eac8c1b02d87c7f5879ab85958e3) footer 
+      - [Commit 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/commit/10e1b056637157e2af5cdc2a031872908026e65e) bugs
  
    - 📝 Files with more participation:
  
-      - [File 1]() 
-      - [File 2]() 
-      - [File 3]() 
-      - [File 4]() 
-      - [File 5]() 
+      - [File 1](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/statistics-page/statistics.component.ts) 
+      - [File 2](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/services/statistics.service.ts) 
+      - [File 3](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/general-components/header/header.component.html) 
+      - [File 4](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/page-components/contact-page/contact.component.html) 
+      - [File 5](https://github.com/CodeURJC-DAW-2022-23/webapp6/blob/main/frontend/src/app/components/general-components/footer/footer.component.html) 
 
 </details>
 
